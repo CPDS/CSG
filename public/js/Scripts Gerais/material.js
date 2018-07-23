@@ -80,3 +80,53 @@ $(document).ready(function($) {
 
   
 });
+
+$(document).on('click', '.btnAdicionar', function() {
+    
+        $('.modal-footer .btn-action').removeClass('edit');
+        $('.modal-footer .btn-action').addClass('add');
+
+        $('.modal-title').text('Novo Cadastro de Material');
+        $('.callout').addClass("hidden"); 
+        $('.callout').find("p").text(""); 
+
+        $('#form')[0].reset();
+
+        jQuery('#criar_editar-modal').modal('show');
+});
+$(document).on('click', '.btnVer', function() {
+        $('.modal-footer .btn-action').removeClass('add');
+        $('.modal-footer .btn-action').addClass('edit');
+        $('.modal-title').text('Ver Material');
+        $('.callout').addClass("hidden"); //ocultar a div de aviso
+        $('.callout').find("p").text(""); //limpar a div de aviso
+
+        var btnEditar = $(this);
+
+        $('#form :input').each(function(index,input){
+            $('#'+input.id).val($(btnEditar).data(input.id));
+        });
+
+        
+        jQuery('#criar_ver-modal').modal('show'); //Abrir o modal
+});
+$(document).on('click', '.btnEditar', function() {
+    $('.modal-footer .btn-action').removeClass('add');
+        $('.modal-footer .btn-action').addClass('edit');
+        $('.modal-title').text('Editar Cadastro de Manutenção');
+        $('.callout').addClass("hidden"); //ocultar a div de aviso
+        $('.callout').find("p").text(""); //limpar a div de aviso
+
+        var btnEditar = $(this);
+
+        $('#form :input').each(function(index,input){
+            $('#'+input.id).val($(btnEditar).data(input.id));
+        });
+
+        
+        jQuery('#criar_editar-modal').modal('show'); //Abrir o modal
+});
+$(document).on('click', '.btnDeletar', function() {
+    
+});
+

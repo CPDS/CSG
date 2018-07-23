@@ -27,7 +27,26 @@ class MaterialController extends Controller
     public function list()
     {
         $material = Material::orderBy('created_at', 'desc')->get();
-        return DataTables::of($material)->make(true);
+        return DataTables::of($material)
+            ->editColumn('acao', function ($material){
+                return $this->setBtns($material);
+            })->escapeColumns([0])
+            ->make(true);
+    }
+
+    private function setBtns(Material $materials){
+        $dados = "data-id='$materials->id' data-nome='$materials->nome' data-colaborador='$materials->colaborador' data-n_licitacao='$materials->n_licitacao' data-modalidade='$materials->modalidade' ";
+
+        $btnVer = "<a class='btn btn-info btn-sm btnVer'  data-toggle='tooltip' title='Ver material' $dados> <i class='fa fa-eye'></i></a> ";
+
+        $btnEditar = "<a class='btn btn-primary btn-sm btnEditar' data-toggle='tooltip' title='Editar material' $dados> <i class='fa fa-edit'></i></a> ";
+
+        $btnDeletar = "<a class='btn btn-danger btn-sm btnDeletar' data-toggle='tooltip' title='Deletar material' data-id='$materials->id'><i class='fa fa-trash'></i></a>";
+
+
+        return $btnVer.$btnEditar.$btnDeletar;
+
+
     }
 
     /**
