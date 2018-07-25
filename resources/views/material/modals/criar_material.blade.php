@@ -13,7 +13,8 @@
                 <p></p>
         </div>
 
-       <form class="form-horizontal" role="form" id="form">
+       <form class="form-horizontal" role="form" id="form" method="post" enctype="multipart/form-data">
+                    
                     <div class="form-group">
                         <div class="col-sm-12">
                             <strong>Nome:</strong>

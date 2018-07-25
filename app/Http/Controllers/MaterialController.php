@@ -66,8 +66,16 @@ class MaterialController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+            $material = new Material();
+            $material->nome = $request->nome;
+            $material->colaborador = $request->colaborador;
+            $material->n_licitacao = $request->n_licitacao;
+            $material->modalidade = $request->modalidade;
+            $material->save();
+            $material->setAttribute('buttons', $this->setDataButtons($material)); 
+            return response()->json($material);
+        
     }
 
     /**

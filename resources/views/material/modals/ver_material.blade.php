@@ -13,7 +13,7 @@
                 <p></p>
         </div>
 
-       <form class="form-horizontal" role="form" id="form">
+       <form class="form-horizontal" role="for" id="for">
                     <div class="form-group">
                         <div class="col-sm-12">
                             <strong>Nome:</strong>

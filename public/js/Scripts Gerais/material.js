@@ -15,7 +15,7 @@ $(document).ready(function($) {
             processing: true,
             serverSide: true,
             deferRender: true,
-            ajax: './gerenciar-materiais/list',
+            ajax: './list',
             columns: [
             { data: null, name: 'order' },
             { data: 'nome', name: 'nome' },
@@ -94,6 +94,65 @@ $(document).on('click', '.btnAdicionar', function() {
 
         jQuery('#criar_editar-modal').modal('show');
 });
+
+
+
+
+    $('.modal-footer').on('click', '.add', function() {
+        var dados = new FormData($("#form")[0]); //pega os dados do form
+
+        $.ajax({
+            type: 'post',
+            url: "gerenciar-materiais/store",
+            data: dados,
+            processData: false,
+            contentType: false,
+            beforeSend: function(){
+                jQuery('.add').button('loading');
+            },
+            complete: function() {
+                jQuery('.add').button('reset');
+            },
+            success: function(data) {
+                 //Verificar os erros de preenchimento
+                if ((data.errors)) {
+
+                    $('.callout').removeClass('hidden'); //exibe a div de erro
+                    $('.callout').find('p').text(""); //limpa a div para erros successivos
+
+                    $.each(data.errors, function(nome, mensagem) {
+                            $('.callout').find("p").append(mensagem + "</br>");
+                    });
+
+                } else {
+                    
+                    $('#table').DataTable().draw(false);
+
+                    jQuery('#criar_editar-modal').modal('hide');
+
+                    $(function() {
+                        iziToast.success({
+                            title: 'OK',
+                            message: 'Material adicionado Adicionada com Sucesso!',
+                        });
+                    });
+
+                }
+            },
+
+            error: function() {
+                jQuery('#criar_editar-modal').modal('hide'); //fechar o modal
+
+                iziToast.error({
+                    title: 'Erro Interno',
+                    message: 'Operação Cancelada!',
+                });
+            },
+
+        });
+    });
+
+
 $(document).on('click', '.btnVer', function() {
         $('.modal-footer .btn-action').removeClass('add');
         $('.modal-footer .btn-action').addClass('edit');
@@ -129,4 +188,3 @@ $(document).on('click', '.btnEditar', function() {
 $(document).on('click', '.btnDeletar', function() {
     
 });
-
