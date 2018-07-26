@@ -16,7 +16,8 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware' => 'auth'], function () {
-Route::group(['prefix' => 'gerenciar-materiais', 'where' => ['id' => '[0-9]+']], function() {
+
+Route::group(['prefix' => 'gerenciar-materiais', 'where' => ['id' => '[0-9]+'], 'middleware' => ['role:Administrador']] ,function() {
         Route::get('', ['as' => 'gerenciar-materiais.index', 'uses' => 'MaterialController@index']);
         Route::get('/list',['as' => 'gerenciar-materiais.list', 'uses' => 'MaterialController@list']);
         Route::post('/store', ['as' => 'gerenciar-materiais.store', 'uses' => 'MaterialController@store']);
@@ -24,6 +25,7 @@ Route::group(['prefix' => 'gerenciar-materiais', 'where' => ['id' => '[0-9]+']],
         Route::post('/delete', ['as' => 'gerenciar-materiais.destroy', 'uses' => 'MaterialController@destroy']);
     }); 	
 });
+
 
 Auth::routes();
 

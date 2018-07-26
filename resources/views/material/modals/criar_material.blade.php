@@ -13,7 +13,7 @@
                 <p></p>
         </div>
 
-       <form class="form-horizontal" role="form" id="form" method="post" enctype="multipart/form-data">
+       <form class="form-horizontal" role="form" id="form" >
                     
                     <div class="form-group">
                         <div class="col-sm-12">
@@ -35,6 +35,16 @@
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <strong>Bens:</strong>
+                            <div class="input-group">
+                                <span data-toggle="tooltip" title="Bens" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <input type="text" maxlength="254" class="form-control" name="bens"  id="bens">
+                            </div>       
+                        </div>
+                    </div>
+
 
                      <div class="form-group">
                         <div class="col-sm-12">
@@ -45,13 +55,42 @@
                             </div>       
                         </div>
                     </div>
-
                      <div class="form-group">
                         <div class="col-sm-12">
                             <strong>Modalidade:</strong>
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="Modalide" class="input-group-addon"><i class="fa fa-pencil"></i></span>
                                 <input type="text" maxlength="254" class="form-control" name="modalidade"  id="modalidade">
+                            </div>       
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <strong>Termo Aditivo:</strong>
+                            <div class="input-group">
+                                <span data-toggle="tooltip" title="Modalide" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <input type="text" maxlength="254" class="form-control" name="termo_aditivo"  id="termo_aditivo">
+                            </div>       
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <strong>Valor da Licitação:</strong>
+                            <div class="input-group">
+                                <span data-toggle="tooltip" title="Modalide" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <input type="text" maxlength="254" class="form-control" name="valor_licitacao"  id="valor_licitacao">
+                            </div>       
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <strong>Valor Unitário:</strong>
+                            <div class="input-group">
+                                <span data-toggle="tooltip" title="Modalide" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <input type="text" maxlength="254" class="form-control" name="valor_unitario"  id="valor_unitario">
                             </div>       
                         </div>
                     </div>
@@ -62,7 +101,7 @@
       </div> <!-- Fim de ModaL Body-->
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-action btn-success" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> &nbsp Aguarde...">
+        <button type="button" class="btn btn-action btn-success add" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> &nbsp Aguarde...">
           <i class="fa fa-floppy-o"> </i>
         </button>
         <button type="button" class="btn btn-danger" data-dismiss="modal">

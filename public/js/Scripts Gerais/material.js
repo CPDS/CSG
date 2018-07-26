@@ -15,13 +15,18 @@ $(document).ready(function($) {
             processing: true,
             serverSide: true,
             deferRender: true,
-            ajax: './list',
+            ajax: './gerenciar-materiais/list',
             columns: [
+            
             { data: null, name: 'order' },
             { data: 'nome', name: 'nome' },
             { data: 'colaborador', name: 'colaborador' },
+            { data: 'bens', name: 'bens' },
             { data: 'n_licitacao', name: 'n_licitacao' },
             { data: 'modalidade', name: 'modalidade' },
+            { data: 'termo_aditivo', name: 'termo_aditivo' },
+            { data: 'valor_licitacao', name: 'valor_licitacao' },
+            { data: 'valor_unitario', name: 'valor_unitario' },
             { data: 'acao', name: 'acao' },
             ],
             createdRow : function( row, data, index ) {
@@ -78,32 +83,16 @@ $(document).ready(function($) {
         });
     }).draw();
 
-  
-});
-
-$(document).on('click', '.btnAdicionar', function() {
-    
-        $('.modal-footer .btn-action').removeClass('edit');
-        $('.modal-footer .btn-action').addClass('add');
-
-        $('.modal-title').text('Novo Cadastro de Material');
-        $('.callout').addClass("hidden"); 
-        $('.callout').find("p").text(""); 
-
-        $('#form')[0].reset();
-
-        jQuery('#criar_editar-modal').modal('show');
-});
-
-
 
 
     $('.modal-footer').on('click', '.add', function() {
         var dados = new FormData($("#form")[0]); //pega os dados do form
 
+        console.log(dados);
+
         $.ajax({
             type: 'post',
-            url: "gerenciar-materiais/store",
+            url: "/gerenciar-materiais/store",
             data: dados,
             processData: false,
             contentType: false,
@@ -153,10 +142,161 @@ $(document).on('click', '.btnAdicionar', function() {
     });
 
 
+    $('.modal-footer').on('click', '.edit', function() {
+        var dados = new FormData($("#form")[0]); //pega os dados do form
+
+        console.log(dados);
+
+        $.ajax({
+            type: 'post',
+            url: "/gerenciar-materiais/update",
+            data: dados,
+            processData: false,
+            contentType: false,
+            beforeSend: function(){
+                jQuery('.edit').button('loading');
+            },
+            complete: function() {
+                jQuery('.edit').button('reset');
+            },
+            success: function(data) {
+                 //Verificar os erros de preenchimento
+                if ((data.errors)) {
+
+                    $('.callout').removeClass('hidden'); //exibe a div de erro
+                    $('.callout').find('p').text(""); //limpa a div para erros successivos
+
+                    $.each(data.errors, function(nome, mensagem) {
+                            $('.callout').find("p").append(mensagem + "</br>");
+                    });
+
+                } else {
+                    
+                    $('#table').DataTable().draw(false);
+
+                    jQuery('#criar_editar-modal').modal('hide');
+
+                    $(function() {
+                        iziToast.success({
+                            title: 'OK',
+                            message: 'Material alterado com Sucesso!',
+                        });
+                    });
+
+                }
+            },
+
+            error: function() {
+                jQuery('#criar_editar-modal').modal('hide'); //fechar o modal
+
+                iziToast.error({
+                    title: 'Erro Interno',
+                    message: 'Operação Cancelada!',
+                });
+            },
+
+        });
+    });
+
+    $('.modal-footer').on('click', '.excluir', function() {
+        var dados = new FormData($("#deletar")[0]); //pega os dados do form
+
+        console.log(dados);
+
+        $.ajax({
+            type: 'post',
+            url: "/gerenciar-materiais/delete",
+            data: dados,
+            processData: false,
+            contentType: false,
+            beforeSend: function(){
+                jQuery('.excluir').button('loading');
+            },
+            complete: function() {
+                jQuery('.excluir').button('reset');
+            },
+            success: function(data) {
+                 //Verificar os erros de preenchimento
+                if ((data.errors)) {
+
+                    $('.callout').removeClass('hidden'); //exibe a div de erro
+                    $('.callout').find('p').text(""); //limpa a div para erros successivos
+
+                    $.each(data.errors, function(nome, mensagem) {
+                            $('.callout').find("p").append(mensagem + "</br>");
+                    });
+
+                } else {
+                    
+                    $('#table').DataTable().draw(false);
+
+                    jQuery('#criar_deletar-modal').modal('hide');
+
+                    $(function() {
+                        iziToast.success({
+                            title: 'OK',
+                            message: 'Material alterado com Sucesso!',
+                        });
+                    });
+
+                }
+            },
+
+            error: function() {
+                jQuery('#criar_editar-modal').modal('hide'); //fechar o modal
+
+                iziToast.error({
+                    title: 'Erro Interno',
+                    message: 'Operação Cancelada!',
+                });
+            },
+
+        });
+    });
+
+
+
+  
+});
+
+$(document).on('click', '.btnAdicionar', function() {
+        $('.modal-footer .btn-action').removeClass('edit');
+        $('.modal-footer .btn-action').addClass('add');
+
+        //habilita os campos desabilitados
+        $('#nome').prop('readonly',false);
+        $('#colaborador').prop('readonly',false);
+        $('#bens').prop('readonly',false);
+        $('#n_licitacao').prop('readonly',false);
+        $('#modalidade').prop('readonly',false);
+        $('#termo_aditivo').prop('readonly',false);
+        $('#valor_licitacao').prop('readonly',false);
+        $('#valor_unitario').prop('readonly',false);
+
+        $('.modal-title').text('Novo Cadastro de Material');
+        $('.callout').addClass("hidden"); 
+        $('.callout').find("p").text(""); 
+
+        $('#form')[0].reset();
+
+        jQuery('#criar_editar-modal').modal('show');
+});
+
 $(document).on('click', '.btnVer', function() {
-        $('.modal-footer .btn-action').removeClass('add');
-        $('.modal-footer .btn-action').addClass('edit');
+
+        $('.modal-footer .btn-action').removeClass('edit');
         $('.modal-title').text('Ver Material');
+        
+        //desabilita os campos
+        $('#nome').prop('readonly',true);
+        $('#colaborador').prop('readonly',true);
+        $('#bens').prop('readonly',true);
+        $('#n_licitacao').prop('readonly',true);
+        $('#modalidade').prop('readonly',true);
+        $('#termo_aditivo').prop('readonly',true);
+        $('#valor_licitacao').prop('readonly',true);
+        $('#valor_unitario').prop('readonly',true);
+
         $('.callout').addClass("hidden"); //ocultar a div de aviso
         $('.callout').find("p").text(""); //limpar a div de aviso
 
@@ -167,14 +307,24 @@ $(document).on('click', '.btnVer', function() {
         });
 
         
-        jQuery('#criar_ver-modal').modal('show'); //Abrir o modal
+        jQuery('#criar_editar-modal').modal('show');
 });
 $(document).on('click', '.btnEditar', function() {
-    $('.modal-footer .btn-action').removeClass('add');
+        $('.modal-footer .btn-action').removeClass('add');
         $('.modal-footer .btn-action').addClass('edit');
-        $('.modal-title').text('Editar Cadastro de Manutenção');
+        $('.modal-title').text('Editar Material');
         $('.callout').addClass("hidden"); //ocultar a div de aviso
         $('.callout').find("p").text(""); //limpar a div de aviso
+
+        //habilita os campos desabilitados
+        $('#nome').prop('readonly',false);
+        $('#colaborador').prop('readonly',false);
+        $('#bens').prop('readonly',false);
+        $('#n_licitacao').prop('readonly',false);
+        $('#modalidade').prop('readonly',false);
+        $('#termo_aditivo').prop('readonly',false);
+        $('#valor_licitacao').prop('readonly',false);
+        $('#valor_unitario').prop('readonly',false);
 
         var btnEditar = $(this);
 
@@ -186,5 +336,17 @@ $(document).on('click', '.btnEditar', function() {
         jQuery('#criar_editar-modal').modal('show'); //Abrir o modal
 });
 $(document).on('click', '.btnDeletar', function() {
-    
+   $('.modal-title').text('Deletar material');   
+   $('.modal-footer .btn-action').removeClass('add');
+   $('.modal-footer .btn-action').removeClass('edit');
+   $('.modal-footer .btn-action').addClass('excluir');
+   
+   var btnExcluir = $(this);
+
+    $('#deletar :input').each(function(index,input){
+        $('#'+input.id).val($(btnExcluir).data(input.id));
+    });
+
+    jQuery('#criar_deletar-modal').modal('show'); //Abrir o modal 
+
 });

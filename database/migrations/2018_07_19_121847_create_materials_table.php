@@ -23,6 +23,7 @@ class CreateMaterialsTable extends Migration
             $table->string('modalidade');
             $table->decimal('valor_licitacao',8,2);
             $table->decimal('valor_unitario',8,2);
+            $table->string('status');
             $table->timestamps();
         });
     }

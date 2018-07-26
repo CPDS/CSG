@@ -84,7 +84,7 @@ class CreatePermissionTables extends Migration
 
         Schema::drop($tableNames['role_has_permissions']);
         Schema::drop($tableNames['model_has_roles']);
-        Schema::drop($tableNames['model_has_permissions']); //não usar
+        Schema::drop($tableNames['model_has_permissions']);
         Schema::drop($tableNames['roles']);
         Schema::drop($tableNames['permissions']);
     }

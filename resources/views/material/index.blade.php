@@ -9,7 +9,7 @@
 <script src="{{ asset('js/iziToast.min.js') }}"></script>
 
 @section('htmlheader_title')
-	Change Title here!
+	Gerenciar Materiais
 @endsection
 
  
@@ -36,9 +36,13 @@
                                 <th>Nº</th>
                                 <th>Nome</th>   
                                 <th>Colaborador</th>
+                                <th>Bens</th>
                                 <th>Nº licitação</th>
                                 <th>Modalidade</th>
-                                <th>Ações</th>
+                                <th>Termo aditivo</th>
+                                <th>Valor licitação</th>
+                                <th>Valor unitario</th>
+                                <th width="20%">Ações</th>
                             </tr>
                             </thead>
                             
@@ -50,6 +54,7 @@
 			</div>
 		</div>
 	</div>
+
+@include('material.modals.deletar_material')
 @include('material.modals.criar_material')
-@include('material.modals.ver_material')
 @endsection
