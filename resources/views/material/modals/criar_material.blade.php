@@ -27,75 +27,48 @@
 
                     <div class="form-group">
                         <div class="col-sm-12">
-                            <strong>Colaborador:</strong>
-                            <div class="input-group">
-                                <span data-toggle="tooltip" title="Colaborador" class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="colaborador"  id="colaborador">
-                            </div>       
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <strong>Bens:</strong>
-                            <div class="input-group">
-                                <span data-toggle="tooltip" title="Bens" class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="bens"  id="bens">
-                            </div>       
-                        </div>
-                    </div>
-
-
-                     <div class="form-group">
-                        <div class="col-sm-12">
-                            <strong>Nº da licitação:</strong>
-                            <div class="input-group">
-                                <span data-toggle="tooltip" title="Nº da licitação" class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="n_licitacao"  id="n_licitacao">
-                            </div>       
-                        </div>
-                    </div>
-                     <div class="form-group">
-                        <div class="col-sm-12">
-                            <strong>Modalidade:</strong>
-                            <div class="input-group">
-                                <span data-toggle="tooltip" title="Modalide" class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="modalidade"  id="modalidade">
-                            </div>       
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <strong>Termo Aditivo:</strong>
-                            <div class="input-group">
-                                <span data-toggle="tooltip" title="Modalide" class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="termo_aditivo"  id="termo_aditivo">
-                            </div>       
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <strong>Valor da Licitação:</strong>
-                            <div class="input-group">
-                                <span data-toggle="tooltip" title="Modalide" class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="valor_licitacao"  id="valor_licitacao">
-                            </div>       
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-sm-12">
                             <strong>Valor Unitário:</strong>
                             <div class="input-group">
-                                <span data-toggle="tooltip" title="Modalide" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <span data-toggle="tooltip" title="Valor Unitário" class="input-group-addon"><i class="fa fa-pencil"></i></span>
                                 <input type="text" maxlength="254" class="form-control" name="valor_unitario"  id="valor_unitario">
                             </div>       
                         </div>
                     </div>
-                  
-                            <input type="hidden" id="id" name="id">
+                        
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <strong>Valor Total:</strong>
+                            <div class="input-group">
+                                <span data-toggle="tooltip" title="Valor Total" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <input type="text" maxlength="254" class="form-control" name="valor_total"  id="valor_total">
+                            </div>       
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <strong>Quantidade:</strong>
+                            <div class="input-group">
+                                <span data-toggle="tooltip" title="Quantidade" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <input type="text" maxlength="254" class="form-control" name="quantidade"  id="quantidade">
+                            </div>       
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <strong>Licitação:</strong>
+                            <div class="input-group">
+                                <span data-toggle="tooltip" title="Valor Total" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <select class="form-control" name="id_licitacao" id="id_licitacao">
+                                    @foreach($licitacoes as $licitacao)
+                                    <option value="{{$licitacao->id}}">{{$licitacao->numero}}</option>
+                                    @endforeach
+                                </select>
+                            </div>       
+                        </div>
+                    </div>
+                        <input type="hidden" id="id" name="id">
                 </form>
 
       </div> <!-- Fim de ModaL Body-->

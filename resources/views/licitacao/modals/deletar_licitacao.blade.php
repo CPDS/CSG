@@ -15,10 +15,10 @@
 
        <form class="form-horizontal" role="deletar" id="deletar">             
     
-             <input type="text" id="id_del" name="id_del">
+             <input type="hidden" id="id_del" name="id_del">
         </form>
 
-      <h3>Deseja realmente deletar esse material?</h3>                
+      <h3>Deseja realmente deletar essa licitação?</h3>                
 
       </div> <!-- Fim de ModaL Body-->
 

@@ -35,13 +35,11 @@
                             <tr>
                                 <th>Nº</th>
                                 <th>Nome</th>   
-                                <th>Colaborador</th>
-                                <th>Bens</th>
+                                <th>Valor unitário</th>
+                                <th>Valor total</th>
                                 <th>Nº licitação</th>
                                 <th>Modalidade</th>
                                 <th>Termo aditivo</th>
-                                <th>Valor licitação</th>
-                                <th>Valor unitario</th>
                                 <th width="20%">Ações</th>
                             </tr>
                             </thead>

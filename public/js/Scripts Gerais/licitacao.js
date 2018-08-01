@@ -117,7 +117,7 @@ $(document).ready(function($) {
                     $(function() {
                         iziToast.success({
                             title: 'OK',
-                            message: 'Material adicionado Adicionada com Sucesso!',
+                            message: 'Licitação adicionado Adicionada com Sucesso!',
                         });
                     });
 
@@ -174,7 +174,7 @@ $(document).ready(function($) {
                     $(function() {
                         iziToast.success({
                             title: 'OK',
-                            message: 'Material alterado com Sucesso!',
+                            message: 'Licitação alterado com Sucesso!',
                         });
                     });
 
@@ -230,7 +230,7 @@ $(document).ready(function($) {
                     $(function() {
                         iziToast.success({
                             title: 'OK',
-                            message: 'Material alterado com Sucesso!',
+                            message: 'Licitação excluída com Sucesso!',
                         });
                     });
 
@@ -238,7 +238,7 @@ $(document).ready(function($) {
             },
 
             error: function() {
-                jQuery('#criar_editar-modal').modal('hide'); //fechar o modal
+                jQuery('#criar_deletar-modal').modal('hide'); //fechar o modal
 
                 iziToast.error({
                     title: 'Erro Interno',
@@ -276,7 +276,7 @@ $(document).on('click', '.btnAdicionar', function() {
 $(document).on('click', '.btnVer', function() {
 
         $('.modal-footer .btn-action').removeClass('edit');
-        $('.modal-title').text('Ver Material');
+        $('.modal-title').text('Ver Licitação');
         
         //desabilita os campos
         $('#numero').prop('readonly',true);
@@ -298,7 +298,7 @@ $(document).on('click', '.btnVer', function() {
 $(document).on('click', '.btnEditar', function() {
         $('.modal-footer .btn-action').removeClass('add');
         $('.modal-footer .btn-action').addClass('edit');
-        $('.modal-title').text('Editar Material');
+        $('.modal-title').text('Editar Licitação');
         $('.callout').addClass("hidden"); //ocultar a div de aviso
         $('.callout').find("p").text(""); //limpar a div de aviso
 
@@ -317,7 +317,7 @@ $(document).on('click', '.btnEditar', function() {
         jQuery('#criar_editar-modal').modal('show'); //Abrir o modal
 });
 $(document).on('click', '.btnDeletar', function() {
-   $('.modal-title').text('Deletar material');   
+   $('.modal-title').text('Deletar Licitação');   
    $('.modal-footer .btn-action').removeClass('add');
    $('.modal-footer .btn-action').removeClass('edit');
    $('.modal-footer .btn-action').addClass('excluir');

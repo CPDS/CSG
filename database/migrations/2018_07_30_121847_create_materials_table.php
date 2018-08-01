@@ -16,9 +16,10 @@ class CreateMaterialsTable extends Migration
         Schema::create('materials', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
-            $table->decimal('valor_licitacao',8,2);
             $table->decimal('valor_unitario',8,2);
+            $table->decimal('valor_total',8,2);
             $table->string('status');
+            $table->integer('quantidade');
             $table->integer('id_licitacao')->unsigned();
             $table->foreign('id_licitacao')->references('id')->on('licitacaos');
             $table->timestamps();

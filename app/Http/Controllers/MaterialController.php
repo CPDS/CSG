@@ -11,19 +11,26 @@ use DataTables;
 use DB;
 use Auth;
 use App\Material;
+use App\Licitacao;
 
 class MaterialController extends Controller
 {
     
     public function index()
     {
-        return view('material.index');    
+        $licitacoes = Licitacao::where('status','Ativo')->get();
+        return view('material.index',compact('licitacoes'));    
     } 
 
     public function list()
     {
-        $material = Material::orderBy('created_at', 'desc')
-        ->where('status','Ativo')->get();
+
+        $material = Material::JOIN('licitacaos','materials.id_licitacao','=','licitacaos.id')
+        ->where('materials.status','Ativo')
+        ->select('materials.id','materials.nome','materials.valor_unitario','materials.valor_total','materials.quantidade','licitacaos.termo_aditivo','licitacaos.numero','licitacaos.modalidade', 'licitacaos.id as id_licitacao')
+        ->orderBy('materials.created_at', 'desc')->get();
+
+        
         return DataTables::of($material)
             ->editColumn('acao', function ($material){
                 return $this->setBtns($material);
@@ -32,7 +39,7 @@ class MaterialController extends Controller
     }
 
     private function setBtns(Material $materials){
-        $dados = "data-id_del='$materials->id' data-id='$materials->id' data-nome='$materials->nome' data-colaborador='$materials->colaborador' data-n_licitacao='$materials->n_licitacao' data-modalidade='$materials->modalidade' data-bens='$materials->bens'  data-valor_licitacao='$materials->valor_licitacao' data-valor_unitario='$materials->valor_unitario' data-termo_aditivo='$materials->termo_aditivo'";
+        $dados = "data-id_del='$materials->id' data-id='$materials->id' data-nome='$materials->nome' data-numero='$materials->numero' data-id_licitacao='$materials->id_licitacao' data-modalidade='$materials->modalidade' data-valor_total='$materials->valor_total' data-valor_unitario='$materials->valor_unitario' data-termo_aditivo='$materials->termo_aditivo' data-quantidade='$materials->quantidade' ";
 
         $btnVer = "<a class='btn btn-info btn-sm btnVer' data-toggle='tooltip' title='Ver material' $dados> <i class='fa fa-eye'></i></a> ";
 
@@ -50,21 +57,18 @@ class MaterialController extends Controller
     {   
         $rules = array(
             'nome' => 'required',
-            'colaborador' => 'required',
-            'n_licitacao' => 'required',
-            'modalidade' => 'required'
+            'valor_unitario' => 'required',
+            'valor_total' => 'required',
+            'quantidade' => 'required'
         );
         $attributeNames = array(
             'nome' => 'Nome',
-            'colaborador' => 'Colaborador',
-            'n_licitacao' => 'Nº da Licitação',
-            'modalidade' => 'Modalidade'
-            
+            'valor_unitario' => 'Valor Unitário',
+            'valor_total' => 'Valor Total',
+            'quantidade' => 'Quantidade'
         );
-        $messages = array(
-            'same' => 'Essas senhas não coincidem.'
-        );
-        $validator = Validator::make(Input::all(), $rules, $messages);
+        
+        $validator = Validator::make(Input::all(), $rules);
         $validator->setAttributeNames($attributeNames);
         if ($validator->fails()){
                 return Response::json(array('errors' => $validator->getMessageBag()->toArray()));
@@ -72,16 +76,13 @@ class MaterialController extends Controller
 
             $material = new Material();
             $material->nome = $request->nome;
-            $material->colaborador = $request->colaborador;
-            $material->bens = $request->bens;
-            $material->n_licitacao = $request->n_licitacao;
-            $material->termo_aditivo = $request->termo_aditivo;
-            $material->modalidade = $request->modalidade;
-            $material->valor_licitacao = $request->valor_licitacao;
             $material->valor_unitario = $request->valor_unitario;
+            $material->valor_total = $request->valor_total;
+            $material->quantidade = $request->quantidade;
+            $material->id_licitacao = $request->id_licitacao;
             $material->status = 'Ativo';
             $material->save();
-            //$material->setAttribute('buttons', $this->setDataButtons($material)); 
+            
             return response()->json($material);
         }
     }
@@ -90,13 +91,10 @@ class MaterialController extends Controller
     {
         $material = Material::find($request->id);
         $material->nome = $request->nome;
-        $material->colaborador = $request->colaborador;
-        $material->bens = $request->bens;
-        $material->n_licitacao = $request->n_licitacao;
-        $material->termo_aditivo = $request->termo_aditivo;
-        $material->modalidade = $request->modalidade;
-        $material->valor_licitacao = $request->valor_licitacao;
         $material->valor_unitario = $request->valor_unitario;
+        $material->valor_total = $request->valor_total;
+        $material->quantidade = $request->quantidade;
+        $material->id_licitacao = $request->id_licitacao;
         $material->save();
 
         return response()->json($material);

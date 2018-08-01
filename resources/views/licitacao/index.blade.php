@@ -12,7 +12,6 @@
 	Gerenciar Licitação
 @endsection
 
- 
 @section('main-content')
 	<div class="container-fluid spark-screen">
 		<div class="row">
@@ -50,6 +49,6 @@
 		</div>
 	</div>
 
-@include('licitacao.modals.deletar_licitacao')
 @include('licitacao.modals.criar_licitacao')
+@include('licitacao.modals.deletar_licitacao')
 @endsection

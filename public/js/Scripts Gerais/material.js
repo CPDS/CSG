@@ -20,13 +20,11 @@ $(document).ready(function($) {
             
             { data: null, name: 'order' },
             { data: 'nome', name: 'nome' },
-            { data: 'colaborador', name: 'colaborador' },
-            { data: 'bens', name: 'bens' },
-            { data: 'n_licitacao', name: 'n_licitacao' },
+            { data: 'valor_unitario', name: 'valor_unitario' },
+            { data: 'valor_total', name: 'valor_total' },
+            { data: 'numero', name: 'numero' },
             { data: 'modalidade', name: 'modalidade' },
             { data: 'termo_aditivo', name: 'termo_aditivo' },
-            { data: 'valor_licitacao', name: 'valor_licitacao' },
-            { data: 'valor_unitario', name: 'valor_unitario' },
             { data: 'acao', name: 'acao' },
             ],
             createdRow : function( row, data, index ) {
@@ -235,7 +233,7 @@ $(document).ready(function($) {
                     $(function() {
                         iziToast.success({
                             title: 'OK',
-                            message: 'Material alterado com Sucesso!',
+                            message: 'Material deletado com Sucesso!',
                         });
                     });
 
@@ -289,13 +287,12 @@ $(document).on('click', '.btnVer', function() {
         
         //desabilita os campos
         $('#nome').prop('readonly',true);
-        $('#colaborador').prop('readonly',true);
-        $('#bens').prop('readonly',true);
-        $('#n_licitacao').prop('readonly',true);
         $('#modalidade').prop('readonly',true);
         $('#termo_aditivo').prop('readonly',true);
-        $('#valor_licitacao').prop('readonly',true);
         $('#valor_unitario').prop('readonly',true);
+        $('#valor_total').prop('readonly',true);
+        $('#quantidade').prop('readonly',true);
+        $('#id_licitacao').prop('readonly',true);
 
         $('.callout').addClass("hidden"); //ocultar a div de aviso
         $('.callout').find("p").text(""); //limpar a div de aviso
