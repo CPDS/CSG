@@ -115,9 +115,10 @@ $(document).ready(function($) {
                     jQuery('#criar_editar-modal').modal('hide');
 
                     $(function() {
+                        iziToast.destroy();
                         iziToast.success({
                             title: 'OK',
-                            message: 'Licitação adicionado Adicionada com Sucesso!',
+                            message: 'Licitação adicionado com Sucesso!',
                         });
                     });
 
@@ -172,6 +173,7 @@ $(document).ready(function($) {
                     jQuery('#criar_editar-modal').modal('hide');
 
                     $(function() {
+                        iziToast.destroy();
                         iziToast.success({
                             title: 'OK',
                             message: 'Licitação alterado com Sucesso!',
@@ -228,6 +230,7 @@ $(document).ready(function($) {
                     jQuery('#criar_deletar-modal').modal('hide');
 
                     $(function() {
+                        iziToast.destroy();
                         iziToast.success({
                             title: 'OK',
                             message: 'Licitação excluída com Sucesso!',
@@ -257,6 +260,7 @@ $(document).ready(function($) {
 $(document).on('click', '.btnAdicionar', function() {
         $('.modal-footer .btn-action').removeClass('edit');
         $('.modal-footer .btn-action').addClass('add');
+        $('.modal-footer .btn-action').removeClass('hidden');
 
         //habilita os campos desabilitados
         $('#numero').prop('readonly',false);
@@ -277,6 +281,7 @@ $(document).on('click', '.btnVer', function() {
 
         $('.modal-footer .btn-action').removeClass('edit');
         $('.modal-title').text('Ver Licitação');
+        $('.modal-footer .btn-action').addClass('hidden');
         
         //desabilita os campos
         $('#numero').prop('readonly',true);
@@ -298,6 +303,8 @@ $(document).on('click', '.btnVer', function() {
 $(document).on('click', '.btnEditar', function() {
         $('.modal-footer .btn-action').removeClass('add');
         $('.modal-footer .btn-action').addClass('edit');
+        $('.modal-footer .btn-action').removeClass('hidden');
+
         $('.modal-title').text('Editar Licitação');
         $('.callout').addClass("hidden"); //ocultar a div de aviso
         $('.callout').find("p").text(""); //limpar a div de aviso

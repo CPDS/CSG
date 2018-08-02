@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSetorsTable extends Migration
+class CreateServidorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreateSetorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('setors', function (Blueprint $table) {
+        Schema::create('servidors', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
-            $table->string('sigla');
-            $table->string('email');
-            $table->string('status');
+            $table->string('rg');
+            $table->string('cargo');
+            $table->integer('id_setor');
+            $table->foreign('id_setor')->references('id')->on('setors');
+            $table->string('status');       
             $table->timestamps();
         });
     }
@@ -30,6 +32,6 @@ class CreateSetorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('setors');
+        Schema::dropIfExists('servidors');
     }
 }

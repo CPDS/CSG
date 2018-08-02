@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 <script src ="{{ asset('/plugins/jQuery/jQuery-3.1.0.min.js') }}" type = "text/javascript" ></script>
-<script src ="{{ asset('/js/scripts_gerais/material.js') }}" type = "text/javascript" ></script>
+<script src ="{{ asset('/js/scripts_gerais/setor.js') }}" type = "text/javascript" ></script>
 <script src="{{ asset('plugins/datatables/jquery.dataTables.js') }}" type = "text/javascript"></script>
 
 <script src="{{ asset('plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
@@ -9,10 +9,9 @@
 <script src="{{ asset('js/iziToast.min.js') }}"></script>
 
 @section('htmlheader_title')
-	Gerenciar Materiais
+	Gerenciar Setor
 @endsection
 
- 
 @section('main-content')
 	<div class="container-fluid spark-screen">
 		<div class="row">
@@ -20,10 +19,10 @@
 
 				<div class="box box-success">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Example box</h3>
+                        <h3 class="box-title">Setores</h3>
                        
                        <div class="pull-right">      
-                            <a class="btnAdicionar btn btn-primary btn-sm" title="Adicionar Material" data-toggle="tooltip"><span class="glyphicon glyphicon-plus"></span> Cadastrar Material</a>
+                            <a class="btnAdicionar btn btn-primary btn-sm" title="Adicionar Material" data-toggle="tooltip"><span class="glyphicon glyphicon-plus"></span> Cadastrar Setor</a>
                         </div>
                     </div>
                     <!-- /.box-header -->
@@ -35,11 +34,8 @@
                             <tr>
                                 <th>Nº</th>
                                 <th>Nome</th>   
-                                <th>Valor unitário</th>
-                                <th>Valor total</th>
-                                <th>Nº licitação</th>
-                                <th>Modalidade</th>
-                                <th>Termo aditivo</th>
+                                <th>Sigla</th>
+                                <th>E-mail</th>
                                 <th width="20%">Ações</th>
                             </tr>
                             </thead>
@@ -53,6 +49,6 @@
 		</div>
 	</div>
 
-@include('material.modals.deletar_material')
-@include('material.modals.criar_material')
+@include('setor.modals.criar_setor')
+@include('setor.modals.deletar_setor')
 @endsection

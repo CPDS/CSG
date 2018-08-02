@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 <script src ="{{ asset('/plugins/jQuery/jQuery-3.1.0.min.js') }}" type = "text/javascript" ></script>
-<script src ="{{ asset('/js/Scripts Gerais/licitacao.js') }}" type = "text/javascript" ></script>
+<script src ="{{ asset('/js/scripts_gerais/licitacao.js') }}" type = "text/javascript" ></script>
 <script src="{{ asset('plugins/datatables/jquery.dataTables.js') }}" type = "text/javascript"></script>
 
 <script src="{{ asset('plugins/datatables/dataTables.bootstrap.min.js') }}"></script>

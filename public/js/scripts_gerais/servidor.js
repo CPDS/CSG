@@ -15,16 +15,13 @@ $(document).ready(function($) {
             processing: true,
             serverSide: true,
             deferRender: true,
-            ajax: './gerenciar-materiais/list',
+            ajax: './gerenciar-servidores/list',
             columns: [
-            
             { data: null, name: 'order' },
-            { data: 'nome', name: 'nome' },
-            { data: 'valor_unitario', name: 'valor_unitario' },
-            { data: 'valor_total', name: 'valor_total' },
-            { data: 'numero', name: 'numero' },
-            { data: 'modalidade', name: 'modalidade' },
-            { data: 'termo_aditivo', name: 'termo_aditivo' },
+            { data: 'nome_servidor', name: 'nome_servidor' },
+            { data: 'rg', name: 'rg' },
+            { data: 'cargo', name: 'cargo' },
+            { data: 'nome_setor', name: 'nome_setor' },
             { data: 'acao', name: 'acao' },
             ],
             createdRow : function( row, data, index ) {
@@ -90,7 +87,7 @@ $(document).ready(function($) {
 
         $.ajax({
             type: 'post',
-            url: "/gerenciar-materiais/store",
+            url: "/gerenciar-servidores/store",
             data: dados,
             processData: false,
             contentType: false,
@@ -118,9 +115,10 @@ $(document).ready(function($) {
                     jQuery('#criar_editar-modal').modal('hide');
 
                     $(function() {
+                        iziToast.destroy();
                         iziToast.success({
                             title: 'OK',
-                            message: 'Material adicionado Adicionada com Sucesso!',
+                            message: 'Servidor adicionado com Sucesso!',
                         });
                     });
 
@@ -147,7 +145,7 @@ $(document).ready(function($) {
 
         $.ajax({
             type: 'post',
-            url: "/gerenciar-materiais/update",
+            url: "/gerenciar-servidores/update",
             data: dados,
             processData: false,
             contentType: false,
@@ -175,9 +173,10 @@ $(document).ready(function($) {
                     jQuery('#criar_editar-modal').modal('hide');
 
                     $(function() {
+                        iziToast.destroy();
                         iziToast.success({
                             title: 'OK',
-                            message: 'Material alterado com Sucesso!',
+                            message: 'Servidor alterado com Sucesso!',
                         });
                     });
 
@@ -203,7 +202,7 @@ $(document).ready(function($) {
 
         $.ajax({
             type: 'post',
-            url: "/gerenciar-materiais/delete",
+            url: "/gerenciar-servidores/delete",
             data: dados,
             processData: false,
             contentType: false,
@@ -231,9 +230,10 @@ $(document).ready(function($) {
                     jQuery('#criar_deletar-modal').modal('hide');
 
                     $(function() {
+                        iziToast.destroy();
                         iziToast.success({
                             title: 'OK',
-                            message: 'Material deletado com Sucesso!',
+                            message: 'Servidor deletado com Sucesso!',
                         });
                     });
 
@@ -251,27 +251,21 @@ $(document).ready(function($) {
 
         });
     });
-
-
-
-  
 });
 
 $(document).on('click', '.btnAdicionar', function() {
         $('.modal-footer .btn-action').removeClass('edit');
         $('.modal-footer .btn-action').addClass('add');
+        $('.modal-footer .btn-action').removeClass('hidden');
 
         //habilita os campos desabilitados
-        $('#nome').prop('readonly',false);
-        $('#colaborador').prop('readonly',false);
-        $('#bens').prop('readonly',false);
-        $('#n_licitacao').prop('readonly',false);
-        $('#modalidade').prop('readonly',false);
-        $('#termo_aditivo').prop('readonly',false);
-        $('#valor_licitacao').prop('readonly',false);
-        $('#valor_unitario').prop('readonly',false);
+        $('#nome_servidor').prop('readonly',false);
+        $('#nome_setor').prop('readonly',false);
+        $('#rg').prop('readonly',false);
+        $('#cargo').prop('readonly',false);
+        $('#id_setor').prop('disabled',false);
 
-        $('.modal-title').text('Novo Cadastro de Material');
+        $('.modal-title').text('Novo Cadastro de Servidor');
         $('.callout').addClass("hidden"); 
         $('.callout').find("p").text(""); 
 
@@ -283,16 +277,14 @@ $(document).on('click', '.btnAdicionar', function() {
 $(document).on('click', '.btnVer', function() {
 
         $('.modal-footer .btn-action').removeClass('edit');
-        $('.modal-title').text('Ver Material');
+        $('.modal-title').text('Ver Servidor');
+        $('.modal-footer .btn-action').addClass('hidden');
         
         //desabilita os campos
-        $('#nome').prop('readonly',true);
-        $('#modalidade').prop('readonly',true);
-        $('#termo_aditivo').prop('readonly',true);
-        $('#valor_unitario').prop('readonly',true);
-        $('#valor_total').prop('readonly',true);
-        $('#quantidade').prop('readonly',true);
-        $('#id_licitacao').prop('readonly',true);
+        $('#nome_servidor').prop('readonly',true);
+        $('#rg').prop('readonly',true);
+        $('#cargo').prop('readonly',true);
+        $('#id_setor').prop('disabled',true);
 
         $('.callout').addClass("hidden"); //ocultar a div de aviso
         $('.callout').find("p").text(""); //limpar a div de aviso
@@ -309,19 +301,17 @@ $(document).on('click', '.btnVer', function() {
 $(document).on('click', '.btnEditar', function() {
         $('.modal-footer .btn-action').removeClass('add');
         $('.modal-footer .btn-action').addClass('edit');
-        $('.modal-title').text('Editar Material');
+        $('.modal-footer .btn-action').removeClass('hidden');
+
+        $('.modal-title').text('Editar Servidor');
         $('.callout').addClass("hidden"); //ocultar a div de aviso
         $('.callout').find("p").text(""); //limpar a div de aviso
 
         //habilita os campos desabilitados
-        $('#nome').prop('readonly',false);
-        $('#colaborador').prop('readonly',false);
-        $('#bens').prop('readonly',false);
-        $('#n_licitacao').prop('readonly',false);
-        $('#modalidade').prop('readonly',false);
-        $('#termo_aditivo').prop('readonly',false);
-        $('#valor_licitacao').prop('readonly',false);
-        $('#valor_unitario').prop('readonly',false);
+        $('#nome_servidor').prop('readonly',false);
+        $('#rg').prop('readonly',false);
+        $('#cargo').prop('readonly',false);
+        $('#id_setor').prop('disabled',false);
 
         var btnEditar = $(this);
 
@@ -333,10 +323,10 @@ $(document).on('click', '.btnEditar', function() {
         jQuery('#criar_editar-modal').modal('show'); //Abrir o modal
 });
 $(document).on('click', '.btnDeletar', function() {
-   $('.modal-title').text('Deletar material');   
+   $('.modal-title').text('Deletar Servidor');   
+   $('.modal-footer .btn-action').addClass('excluir');
    $('.modal-footer .btn-action').removeClass('add');
    $('.modal-footer .btn-action').removeClass('edit');
-   $('.modal-footer .btn-action').addClass('excluir');
    
    var btnExcluir = $(this);
 
