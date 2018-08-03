@@ -15,13 +15,13 @@ $(document).ready(function($) {
             processing: true,
             serverSide: true,
             deferRender: true,
-            ajax: './gerenciar-licitacoes/list',
+            ajax: './gerenciar-setores/list',
             columns: [
             
             { data: null, name: 'order' },
-            { data: 'numero', name: 'numero' },
-            { data: 'modalidade', name: 'modalidade' },
-            { data: 'termo_aditivo', name: 'termo_aditivo' },
+            { data: 'nome', name: 'nome' },
+            { data: 'sigla', name: 'sigla' },
+            { data: 'email', name: 'email' },
             { data: 'acao', name: 'acao' },
             ],
             createdRow : function( row, data, index ) {
@@ -87,7 +87,7 @@ $(document).ready(function($) {
 
         $.ajax({
             type: 'post',
-            url: "/gerenciar-licitacoes/store",
+            url: "/gerenciar-setores/store",
             data: dados,
             processData: false,
             contentType: false,
@@ -118,10 +118,11 @@ $(document).ready(function($) {
                         iziToast.destroy();
                         iziToast.success({
                             title: 'OK',
-                            message: 'Licitação adicionado com Sucesso!',
+                            message: 'Setor adicionado com Sucesso!',
                         });
                     });
 
+                
                 }
             },
 
@@ -145,7 +146,7 @@ $(document).ready(function($) {
 
         $.ajax({
             type: 'post',
-            url: "/gerenciar-licitacoes/update",
+            url: "/gerenciar-setores/update",
             data: dados,
             processData: false,
             contentType: false,
@@ -176,10 +177,9 @@ $(document).ready(function($) {
                         iziToast.destroy();
                         iziToast.success({
                             title: 'OK',
-                            message: 'Licitação alterado com Sucesso!',
+                            message: 'Setor alterado com Sucesso!',
                         });
                     });
-
                 }
             },
 
@@ -202,7 +202,7 @@ $(document).ready(function($) {
 
         $.ajax({
             type: 'post',
-            url: "/gerenciar-licitacoes/delete",
+            url: "/gerenciar-setores/delete",
             data: dados,
             processData: false,
             contentType: false,
@@ -233,16 +233,14 @@ $(document).ready(function($) {
                         iziToast.destroy();
                         iziToast.success({
                             title: 'OK',
-                            message: 'Licitação excluída com Sucesso!',
+                            message: 'Setor deletado com Sucesso!',
                         });
                     });
-
                 }
             },
 
             error: function() {
-                jQuery('#criar_deletar-modal').modal('hide'); //fechar o modal
-
+                jQuery('#criar_editar-modal').modal('hide'); //fechar o modal
                 iziToast.error({
                     title: 'Erro Interno',
                     message: 'Operação Cancelada!',
@@ -251,9 +249,6 @@ $(document).ready(function($) {
 
         });
     });
-
-
-
   
 });
 
@@ -263,12 +258,12 @@ $(document).on('click', '.btnAdicionar', function() {
         $('.modal-footer .btn-action').removeClass('hidden');
 
         //habilita os campos desabilitados
-        $('#numero').prop('readonly',false);
-        $('#n_licitacao').prop('readonly',false);
-        $('#modalidade').prop('readonly',false);
+        $('#nome').prop('readonly',false);
+        $('#sigla').prop('readonly',false);
+        $('#email').prop('readonly',false);
         
 
-        $('.modal-title').text('Novo Cadastro de Licitacão');
+        $('.modal-title').text('Novo Cadastro de Setor');
         $('.callout').addClass("hidden"); 
         $('.callout').find("p").text(""); 
 
@@ -280,13 +275,13 @@ $(document).on('click', '.btnAdicionar', function() {
 $(document).on('click', '.btnVer', function() {
 
         $('.modal-footer .btn-action').removeClass('edit');
-        $('.modal-title').text('Ver Licitação');
         $('.modal-footer .btn-action').addClass('hidden');
+        $('.modal-title').text('Ver Setor');
         
         //desabilita os campos
-        $('#numero').prop('readonly',true);
-        $('#modalidade').prop('readonly',true);
-        $('#termo_aditivo').prop('readonly',true);
+        $('#nome').prop('readonly',true);
+        $('#sigla').prop('readonly',true);
+        $('#email').prop('readonly',true);
 
         $('.callout').addClass("hidden"); //ocultar a div de aviso
         $('.callout').find("p").text(""); //limpar a div de aviso
@@ -305,14 +300,14 @@ $(document).on('click', '.btnEditar', function() {
         $('.modal-footer .btn-action').addClass('edit');
         $('.modal-footer .btn-action').removeClass('hidden');
 
-        $('.modal-title').text('Editar Licitação');
+        $('.modal-title').text('Editar Setor');
         $('.callout').addClass("hidden"); //ocultar a div de aviso
         $('.callout').find("p").text(""); //limpar a div de aviso
 
         //habilita os campos desabilitados
-        $('#numero').prop('readonly',false);
-        $('#modalidade').prop('readonly',false);
-        $('#termo_aditivo').prop('readonly',false);
+        $('#nome').prop('readonly',false);
+        $('#sigla').prop('readonly',false);
+        $('#email').prop('readonly',false);
 
         var btnEditar = $(this);
 
@@ -324,7 +319,7 @@ $(document).on('click', '.btnEditar', function() {
         jQuery('#criar_editar-modal').modal('show'); //Abrir o modal
 });
 $(document).on('click', '.btnDeletar', function() {
-   $('.modal-title').text('Deletar Licitação');   
+   $('.modal-title').text('Deletar Setor');   
    $('.modal-footer .btn-action').removeClass('add');
    $('.modal-footer .btn-action').removeClass('edit');
    $('.modal-footer .btn-action').addClass('excluir');
