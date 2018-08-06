@@ -21,6 +21,7 @@ class CreateEscalaHorariosTable extends Migration
             $table->time('horario_termino');
             $table->integer('id_servidor')->unsigned();
             $table->foreign('id_servidor')->references('id')->on('servidors');
+            $table->string('status');       
             $table->timestamps();
         });
     }

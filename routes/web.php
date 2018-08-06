@@ -48,7 +48,15 @@ Route::group(['prefix' => 'gerenciar-servidores', 'where' => ['id' => '[0-9]+'],
         Route::post('/store', ['as' => 'gerenciar-servidores.store', 'uses' => 'ServidorController@store']);
         Route::post('/update', ['as' => 'gerenciar-servidores.update', 'uses' => 'ServidorController@update']);
         Route::post('/delete', ['as' => 'gerenciar-servidores.destroy', 'uses' => 'ServidorController@destroy']);
-});     
+});    
+
+Route::group(['prefix' => 'gerenciar-escalas', 'where' => ['id' => '[0-9]+'], 'middleware' => ['role:Administrador']] ,function() {
+        Route::get('', ['as' => 'gerenciar-escalas.index', 'uses' => 'EscalaHorarioController@index']);
+        Route::get('/list',['as' => 'gerenciar-escalas.list', 'uses' => 'EscalaHorarioController@list']);
+        Route::post('/store', ['as' => 'gerenciar-escalas.store', 'uses' => 'EscalaHorarioController@store']);
+        Route::post('/update', ['as' => 'gerenciar-escalas.update', 'uses' => 'EscalaHorarioController@update']);
+        Route::post('/delete', ['as' => 'gerenciar-escalas.destroy', 'uses' => 'EscalaHorarioController@destroy']);
+}); 
 
 });
 

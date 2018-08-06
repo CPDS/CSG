@@ -15,13 +15,14 @@ $(document).ready(function($) {
             processing: true,
             serverSide: true,
             deferRender: true,
-            ajax: './gerenciar-setores/list',
+            ajax: './gerenciar-escalas/list',
             columns: [
-            
             { data: null, name: 'order' },
-            { data: 'nome', name: 'nome' },
-            { data: 'sigla', name: 'sigla' },
-            { data: 'email', name: 'email' },
+            { data: 'nome_servidor', name: 'nome_servidor' },
+            { data: 'horario_inicio', name: 'horario_inicio' },
+            { data: 'horario_pausa', name: 'horario_pausa' },
+            { data: 'horario_pos_pausa', name: 'horario_pos_pausa' },
+            { data: 'horario_termino', name: 'horario_termino' },
             { data: 'acao', name: 'acao' },
             ],
             createdRow : function( row, data, index ) {
@@ -87,7 +88,7 @@ $(document).ready(function($) {
 
         $.ajax({
             type: 'post',
-            url: "/gerenciar-setores/store",
+            url: "/gerenciar-escalas/store",
             data: dados,
             processData: false,
             contentType: false,
@@ -118,7 +119,7 @@ $(document).ready(function($) {
                         iziToast.destroy();
                         iziToast.success({
                             title: 'OK',
-                            message: 'Setor adicionado com Sucesso!',
+                            message: 'Escala adicionado com Sucesso!',
                         });
                     });
 
@@ -146,7 +147,7 @@ $(document).ready(function($) {
 
         $.ajax({
             type: 'post',
-            url: "/gerenciar-setores/update",
+            url: "/gerenciar-escalas/update",
             data: dados,
             processData: false,
             contentType: false,
@@ -177,7 +178,7 @@ $(document).ready(function($) {
                         iziToast.destroy();
                         iziToast.success({
                             title: 'OK',
-                            message: 'Setor alterado com Sucesso!',
+                            message: 'Escala alterado com Sucesso!',
                         });
                     });
                 }
@@ -202,7 +203,7 @@ $(document).ready(function($) {
 
         $.ajax({
             type: 'post',
-            url: "/gerenciar-setores/delete",
+            url: "/gerenciar-escalas/delete",
             data: dados,
             processData: false,
             contentType: false,
@@ -233,7 +234,7 @@ $(document).ready(function($) {
                         iziToast.destroy();
                         iziToast.success({
                             title: 'OK',
-                            message: 'Setor deletado com Sucesso!',
+                            message: 'Escala deletado com Sucesso!',
                         });
                     });
                 }
@@ -258,12 +259,14 @@ $(document).on('click', '.btnAdicionar', function() {
         $('.modal-footer .btn-action').removeClass('hidden');
 
         //habilita os campos desabilitados
-        $('#nome').prop('readonly',false);
-        $('#sigla').prop('readonly',false);
-        $('#email').prop('readonly',false);
+        $('#horario_inicio').prop('readonly',false);
+        $('#horario_pausa').prop('readonly',false);
+        $('#horario_pos_pausa').prop('readonly',false);
+        $('#horario_termino').prop('readonly',false);
+        $('#id_servidor').prop('disabled',false);
         
 
-        $('.modal-title').text('Novo Cadastro de Setor');
+        $('.modal-title').text('Novo Cadastro de escala');
         $('.callout').addClass("hidden"); 
         $('.callout').find("p").text(""); 
 
@@ -276,12 +279,14 @@ $(document).on('click', '.btnVer', function() {
 
         $('.modal-footer .btn-action').removeClass('edit');
         $('.modal-footer .btn-action').addClass('hidden');
-        $('.modal-title').text('Ver Setor');
+        $('.modal-title').text('Ver escala de horário');
         
         //desabilita os campos
-        $('#nome').prop('readonly',true);
-        $('#sigla').prop('readonly',true);
-        $('#email').prop('readonly',true);
+        $('#horario_inicio').prop('readonly',true);
+        $('#horario_pausa').prop('readonly',true);
+        $('#horario_pos_pausa').prop('readonly',true);
+        $('#horario_termino').prop('readonly',true);
+        $('#id_servidor').prop('disabled',true);
 
         $('.callout').addClass("hidden"); //ocultar a div de aviso
         $('.callout').find("p").text(""); //limpar a div de aviso
@@ -305,9 +310,11 @@ $(document).on('click', '.btnEditar', function() {
         $('.callout').find("p").text(""); //limpar a div de aviso
 
         //habilita os campos desabilitados
-        $('#nome').prop('readonly',false);
-        $('#sigla').prop('readonly',false);
-        $('#email').prop('readonly',false);
+        $('#horario_inicio').prop('readonly',false);
+        $('#horario_pausa').prop('readonly',false);
+        $('#horario_pos_pausa').prop('readonly',false);
+        $('#horario_termino').prop('readonly',false);
+        $('#id_servidor').prop('disabled',false);
 
         var btnEditar = $(this);
 
