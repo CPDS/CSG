@@ -336,6 +336,7 @@ $(document).on('click', '.btnDeletar', function() {
    $('.modal-footer .btn-action').removeClass('add');
    $('.modal-footer .btn-action').removeClass('edit');
    $('.modal-footer .btn-action').addClass('excluir');
+   $('.modal-footer .btn-action').removeClass('hidden');
    
    var btnExcluir = $(this);
 

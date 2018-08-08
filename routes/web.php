@@ -58,6 +58,14 @@ Route::group(['prefix' => 'gerenciar-escalas', 'where' => ['id' => '[0-9]+'], 'm
         Route::post('/delete', ['as' => 'gerenciar-escalas.destroy', 'uses' => 'EscalaHorarioController@destroy']);
 }); 
 
+Route::group(['prefix' => 'gerenciar-horas', 'where' => ['id' => '[0-9]+'], 'middleware' => ['role:Administrador']] ,function() {
+        Route::get('', ['as' => 'gerenciar-horas.index', 'uses' => 'HoraExtraController@index']);
+        Route::get('/list',['as' => 'gerenciar-horas.list', 'uses' => 'HoraExtraController@list']);
+        Route::post('/store', ['as' => 'gerenciar-horas.store', 'uses' => 'HoraExtraController@store']);
+        Route::post('/update', ['as' => 'gerenciar-horas.update', 'uses' => 'HoraExtraController@update']);
+        Route::post('/delete', ['as' => 'gerenciar-horas.destroy', 'uses' => 'HoraExtraController@destroy']);
+}); 
+
 });
 
 

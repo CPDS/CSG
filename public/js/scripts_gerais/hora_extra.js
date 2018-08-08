@@ -15,13 +15,12 @@ $(document).ready(function($) {
             processing: true,
             serverSide: true,
             deferRender: true,
-            ajax: './gerenciar-setores/list',
+            ajax: './gerenciar-horas/list',
             columns: [
-            
             { data: null, name: 'order' },
-            { data: 'nome', name: 'nome' },
-            { data: 'sigla', name: 'sigla' },
-            { data: 'email', name: 'email' },
+            { data: 'nome_servidor', name: 'nome_servidor' },
+            { data: 'horas_excedidas', name: 'horas_excedidas' },
+            { data: 'dia', name: 'dia' },
             { data: 'acao', name: 'acao' },
             ],
             createdRow : function( row, data, index ) {
@@ -87,7 +86,7 @@ $(document).ready(function($) {
 
         $.ajax({
             type: 'post',
-            url: "/gerenciar-setores/store",
+            url: "/gerenciar-horas/store",
             data: dados,
             processData: false,
             contentType: false,
@@ -118,7 +117,7 @@ $(document).ready(function($) {
                         iziToast.destroy();
                         iziToast.success({
                             title: 'OK',
-                            message: 'Setor adicionado com Sucesso!',
+                            message: 'Hora adicionado com Sucesso!',
                         });
                     });
 
@@ -146,7 +145,7 @@ $(document).ready(function($) {
 
         $.ajax({
             type: 'post',
-            url: "/gerenciar-setores/update",
+            url: "/gerenciar-horas/update",
             data: dados,
             processData: false,
             contentType: false,
@@ -177,7 +176,7 @@ $(document).ready(function($) {
                         iziToast.destroy();
                         iziToast.success({
                             title: 'OK',
-                            message: 'Setor alterado com Sucesso!',
+                            message: 'Hora alterado com Sucesso!',
                         });
                     });
                 }
@@ -202,7 +201,7 @@ $(document).ready(function($) {
 
         $.ajax({
             type: 'post',
-            url: "/gerenciar-setores/delete",
+            url: "/gerenciar-horas/delete",
             data: dados,
             processData: false,
             contentType: false,
@@ -233,7 +232,7 @@ $(document).ready(function($) {
                         iziToast.destroy();
                         iziToast.success({
                             title: 'OK',
-                            message: 'Setor deletado com Sucesso!',
+                            message: 'Hora deletado com Sucesso!',
                         });
                     });
                 }
@@ -258,12 +257,12 @@ $(document).on('click', '.btnAdicionar', function() {
         $('.modal-footer .btn-action').removeClass('hidden');
 
         //habilita os campos desabilitados
-        $('#nome').prop('readonly',false);
-        $('#sigla').prop('readonly',false);
-        $('#email').prop('readonly',false);
+        $('#horas_excedidas').prop('readonly',false);
+        $('#dia').prop('readonly',false);
+        $('#id_servidor').prop('disabled',false);
         
 
-        $('.modal-title').text('Novo Cadastro de Setor');
+        $('.modal-title').text('Novo Cadastro de Hora');
         $('.callout').addClass("hidden"); 
         $('.callout').find("p").text(""); 
 
@@ -276,12 +275,12 @@ $(document).on('click', '.btnVer', function() {
 
         $('.modal-footer .btn-action').removeClass('edit');
         $('.modal-footer .btn-action').addClass('hidden');
-        $('.modal-title').text('Ver Setor');
+        $('.modal-title').text('Ver Hora de horário');
         
         //desabilita os campos
-        $('#nome').prop('readonly',true);
-        $('#sigla').prop('readonly',true);
-        $('#email').prop('readonly',true);
+        $('#horas_excedidas').prop('readonly',true);
+        $('#dia').prop('readonly',true);
+        $('#id_servidor').prop('disabled',true);
 
         $('.callout').addClass("hidden"); //ocultar a div de aviso
         $('.callout').find("p").text(""); //limpar a div de aviso
@@ -305,9 +304,9 @@ $(document).on('click', '.btnEditar', function() {
         $('.callout').find("p").text(""); //limpar a div de aviso
 
         //habilita os campos desabilitados
-        $('#nome').prop('readonly',false);
-        $('#sigla').prop('readonly',false);
-        $('#email').prop('readonly',false);
+        $('#horas_excedidas').prop('readonly',false);
+        $('#dia').prop('readonly',false);
+        $('#id_servidor').prop('disabled',false);
 
         var btnEditar = $(this);
 
