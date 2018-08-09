@@ -17,14 +17,12 @@ $(document).ready(function($) {
             deferRender: true,
             ajax: './gerenciar-materiais/list',
             columns: [
-            
+      
             { data: null, name: 'order' },
-            { data: 'nome', name: 'nome' },
-            { data: 'valor_unitario', name: 'valor_unitario' },
-            { data: 'valor_total', name: 'valor_total' },
-            { data: 'numero', name: 'numero' },
-            { data: 'modalidade', name: 'modalidade' },
-            { data: 'termo_aditivo', name: 'termo_aditivo' },
+            { data: 'codigo', name: 'codigo' },
+            { data: 'descricao', name: 'descricao' },
+            { data: 'quantidade', name: 'quantidade' },
+            { data: 'nome_usuario', name: 'nome_usuario' },
             { data: 'acao', name: 'acao' },
             ],
             createdRow : function( row, data, index ) {
@@ -255,7 +253,7 @@ $(document).ready(function($) {
         });
     });
   
-});
+});       
 
 $(document).on('click', '.btnAdicionar', function() {
         $('.modal-footer .btn-action').removeClass('edit');
@@ -263,12 +261,9 @@ $(document).on('click', '.btnAdicionar', function() {
         $('.modal-footer .btn-action').removeClass('hidden');
 
         //habilita os campos desabilitados
-        $('#nome').prop('readonly',false);
-        $('#modalidade').prop('readonly',false);
-        $('#valor_total').prop('readonly',false);
-        $('#valor_unitario').prop('readonly',false);
+        $('#descricao').prop('readonly',false);
+        $('#codigo').prop('readonly',false);
         $('#quantidade').prop('readonly',false);
-        $('#id_licitacao').prop('disabled',false);
 
         $('.modal-title').text('Novo Cadastro de Material');
         $('.callout').addClass("hidden"); 
@@ -286,11 +281,9 @@ $(document).on('click', '.btnVer', function() {
         $('.modal-footer .btn-action').addClass('hidden');
         
         //desabilita os campos
-        $('#nome').prop('readonly',true);
-        $('#valor_unitario').prop('readonly',true);
-        $('#valor_total').prop('readonly',true);
+        $('#codigo]').prop('readonly',true);
+        $('#descricao').prop('readonly',true);
         $('#quantidade').prop('readonly',true);
-        $('#id_licitacao').prop('disabled',true);
 
         $('.callout').addClass("hidden"); //ocultar a div de aviso
         $('.callout').find("p").text(""); //limpar a div de aviso
@@ -314,12 +307,9 @@ $(document).on('click', '.btnEditar', function() {
         $('.callout').find("p").text(""); //limpar a div de aviso
 
         //habilita os campos desabilitados
-        $('#nome').prop('readonly',false);      
+        $('#descricao').prop('readonly',false);      
         $('#quantidade').prop('readonly',false);
-        $('#valor_total').prop('readonly',false);
-        $('#valor_unitario').prop('readonly',false);
-        $('#valor_total').prop('readonly',false);
-        $('#id_licitacao').prop('disabled',false);
+        $('#codigo').prop('readonly',false);
 
 
         var btnEditar = $(this);

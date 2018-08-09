@@ -20,7 +20,7 @@
 
 				<div class="box box-success">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Example box</h3>
+                        <h3 class="box-title">Materiais</h3>
                        
                        <div class="pull-right">      
                             <a class="btnAdicionar btn btn-primary btn-sm" title="Adicionar Material" data-toggle="tooltip"><span class="glyphicon glyphicon-plus"></span> Cadastrar Material</a>
@@ -29,17 +29,14 @@
                     <!-- /.box-header -->
                     <div class="box-body">
                     
-                        <table class="table" id="table">
+                        <table class="table table-bordered" id="table">
                             <thead>
-
                             <tr>
                                 <th>Nº</th>
-                                <th>Nome</th>   
-                                <th>Valor unitário</th>
-                                <th>Valor total</th>
-                                <th>Nº licitação</th>
-                                <th>Modalidade</th>
-                                <th>Termo aditivo</th>
+                                <th>Código</th>   
+                                <th>Descrição</th>
+                                <th>Quantidade</th>
+                                <th>Usuário</th>
                                 <th width="20%">Ações</th>
                             </tr>
                             </thead>

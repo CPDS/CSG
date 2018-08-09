@@ -37,7 +37,7 @@
                         <div class="col-sm-12">
                             <strong>Termo Aditivo:</strong>
                             <div class="input-group">
-                                <span data-toggle="tooltip" title="Modalide" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <span data-toggle="tooltip" title="Modalide" class="input-group-addon"><i class="fa fa-file-o"></i></span>
                                 <input type="text" maxlength="254" class="form-control" name="termo_aditivo"  id="termo_aditivo">
                             </div>       
                         </div>

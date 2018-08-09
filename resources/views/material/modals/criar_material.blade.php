@@ -17,30 +17,20 @@
                     
                     <div class="form-group">
                         <div class="col-sm-12">
-                            <strong>Nome:</strong>
+                            <strong>Código:</strong>
                             <div class="input-group">
-                                <span data-toggle="tooltip" title="Nome" class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="nome"  id="nome">
+                                <span data-toggle="tooltip" title="Descrição" class="input-group-addon"><i class="fa fa-barcode"></i></span>
+                                <input type="text" maxlength="254" class="form-control" name="codigo"  id="codigo">
                             </div>       
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-sm-12">
-                            <strong>Valor Unitário:</strong>
+                            <strong>Descrição:</strong>
                             <div class="input-group">
-                                <span data-toggle="tooltip" title="Valor Unitário" class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="valor_unitario"  id="valor_unitario">
-                            </div>       
-                        </div>
-                    </div>
-                        
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <strong>Valor Total:</strong>
-                            <div class="input-group">
-                                <span data-toggle="tooltip" title="Valor Total" class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="valor_total"  id="valor_total">
+                                <span data-toggle="tooltip" title="Descrição" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <input type="text" maxlength="254" class="form-control" name="descricao"  id="descricao">
                             </div>       
                         </div>
                     </div>
@@ -49,25 +39,12 @@
                         <div class="col-sm-12">
                             <strong>Quantidade:</strong>
                             <div class="input-group">
-                                <span data-toggle="tooltip" title="Quantidade" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <span data-toggle="tooltip" title="Quantidade" class="input-group-addon"><i class="fa fa-database"></i></span>
                                 <input type="text" maxlength="254" class="form-control" name="quantidade"  id="quantidade">
                             </div>       
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <strong>Licitação:</strong>
-                            <div class="input-group">
-                                <span data-toggle="tooltip" title="Valor Total" class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                                <select class="form-control" name="id_licitacao" id="id_licitacao">
-                                    @foreach($licitacoes as $licitacao)
-                                    <option value="{{$licitacao->id}}">{{$licitacao->numero}}</option>
-                                    @endforeach
-                                </select>
-                            </div>       
-                        </div>
-                    </div>
                         <input type="hidden" id="id" name="id">
                 </form>
 

@@ -15,13 +15,12 @@ class CreateMaterialsTable extends Migration
     {   
         Schema::create('materials', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nome');
-            $table->decimal('valor_unitario',8,2);
-            $table->decimal('valor_total',8,2);
+            $table->string('codigo');
+            $table->string('descricao');
+            $table->integer('quantidade');           
             $table->string('status');
-            $table->integer('quantidade');
-            $table->integer('id_licitacao')->unsigned();
-            $table->foreign('id_licitacao')->references('id')->on('licitacaos');
+            $table->integer('id_user');
+            $table->foreign('id_user')->references('id')->on('users');
             $table->timestamps();
         });
     }
