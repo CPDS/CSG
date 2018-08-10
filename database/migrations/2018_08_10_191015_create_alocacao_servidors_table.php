@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEscalaHorariosTable extends Migration
+class CreateAlocacaoServidorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class CreateEscalaHorariosTable extends Migration
      */
     public function up()
     {
-        Schema::create('escala_horarios', function (Blueprint $table) {
+        Schema::create('alocacao_servidors', function (Blueprint $table) {
             $table->increments('id');
-            $table->time('horario_inicio');
-            $table->time('horario_pausa');
-            $table->time('horario_pos_pausa');
-            $table->time('horario_termino');
+            $table->date('data');
+            $table->string('justificativa');
+            $table->string('status');
             $table->integer('fk_servidor')->unsigned();
+            $table->integer('fk_setor')->unsigned();
             $table->foreign('fk_servidor')->references('id')->on('servidors');
-            $table->string('status');       
+            $table->foreign('fk_setor')->references('id')->on('setors');
             $table->timestamps();
         });
     }
@@ -33,6 +33,6 @@ class CreateEscalaHorariosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('escala_horarios');
+        Schema::dropIfExists('alocacao_servidors');
     }
 }

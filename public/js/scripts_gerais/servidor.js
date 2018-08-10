@@ -21,6 +21,7 @@ $(document).ready(function($) {
             { data: 'nome_servidor', name: 'nome_servidor' },
             { data: 'rg', name: 'rg' },
             { data: 'cargo', name: 'cargo' },
+            { data: 'telefone', name: 'telefone' },
             { data: 'nome_setor', name: 'nome_setor' },
             { data: 'acao', name: 'acao' },
             ],
@@ -141,9 +142,7 @@ $(document).ready(function($) {
     $('.modal-footer').on('click', '.edit', function() {
         var dados = new FormData($("#form")[0]); //pega os dados do form
 
-        console.log(dados);
-
-        $.ajax({
+       $.ajax({
             type: 'post',
             url: "/gerenciar-servidores/update",
             data: dados,
@@ -254,6 +253,10 @@ $(document).ready(function($) {
 });
 
 $(document).on('click', '.btnAdicionar', function() {
+        $("#id_setor").change(function() {
+          alert( "adicionar campo obsercacao" );//em editar
+        });
+
         $('.modal-footer .btn-action').removeClass('edit');
         $('.modal-footer .btn-action').addClass('add');
         $('.modal-footer .btn-action').removeClass('hidden');
@@ -263,6 +266,7 @@ $(document).on('click', '.btnAdicionar', function() {
         $('#nome_setor').prop('readonly',false);
         $('#rg').prop('readonly',false);
         $('#cargo').prop('readonly',false);
+        $('#telefone').prop('readonly',false);
         $('#id_setor').prop('disabled',false);
 
         $('.modal-title').text('Novo Cadastro de Servidor');
@@ -315,6 +319,7 @@ $(document).on('click', '.btnEditar', function() {
 
         var btnEditar = $(this);
 
+
         $('#form :input').each(function(index,input){
             $('#'+input.id).val($(btnEditar).data(input.id));
         });
@@ -322,6 +327,8 @@ $(document).on('click', '.btnEditar', function() {
         
         jQuery('#criar_editar-modal').modal('show'); //Abrir o modal
 });
+
+
 $(document).on('click', '.btnDeletar', function() {
    $('.modal-title').text('Deletar Servidor');   
    $('.modal-footer .btn-action').addClass('excluir');

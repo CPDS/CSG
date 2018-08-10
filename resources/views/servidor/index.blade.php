@@ -36,6 +36,7 @@
                                 <th>Nome</th>
                                 <th>RG</th>   
                                 <th>Cargo</th>
+                                <th>Telefone</th>
                                 <th>Setor</th>
                                 <th width="20%">Ações</th>
                             </tr>
