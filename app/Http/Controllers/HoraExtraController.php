@@ -10,6 +10,7 @@ use Response;
 use DataTables;
 use DB;
 use Auth;
+use App\User;
 use App\Servidor;
 use App\HoraExtra;
 
@@ -57,12 +58,12 @@ class HoraExtraController extends Controller
         $rules = array(
             'horas_excedidas' => 'required',
             'dia' => 'required',
-            'id_servidor' => 'required'
+            'fk_servidor' => 'required'
         );
         $attributeNames = array(
             'horas_excedidas' => 'Horas excedidasd',
             'dia' => 'Dia',
-            'id_servidor' => 'required'
+            'fk_servidor' => 'required'
         );
         
         $validator = Validator::make(Input::all(), $rules);
@@ -73,8 +74,9 @@ class HoraExtraController extends Controller
             $hora_extra = new HoraExtra();
             $hora_extra->horas_excedidas = $request->horas_excedidas;
             $hora_extra->dia = $request->dia;
-            $hora_extra->id_servidor = $request->id_servidor;
+            $hora_extra->fk_servidor = $request->fk_servidor;
             $hora_extra->status = 'Ativo';
+            $hora_extra->fk_user = Auth::User()->id;
             $hora_extra->save();
             
             return response()->json($hora_extra);
@@ -86,7 +88,7 @@ class HoraExtraController extends Controller
         $hora_extra = HoraExtra::find($request->id);
         $hora_extra->horas_excedidas = $request->horas_excedidas;
         $hora_extra->dia = $request->dia;
-        $hora_extra->id_servidor = $request->id_servidor;
+        $hora_extra->fk_servidor = $request->fk_servidor;
         $hora_extra->save();
 
         return response()->json($hora_extra);

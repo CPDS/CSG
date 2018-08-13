@@ -18,9 +18,9 @@ class CreateMaterialsTable extends Migration
             $table->string('codigo');
             $table->string('descricao');
             $table->integer('quantidade');           
+            $table->integer('fk_user');
+            $table->foreign('fk_user')->references('id')->on('users');
             $table->string('status');
-            $table->integer('id_user');
-            $table->foreign('id_user')->references('id')->on('users');
             $table->timestamps();
         });
     }

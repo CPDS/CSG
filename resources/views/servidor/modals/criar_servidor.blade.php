@@ -56,25 +56,25 @@
 
                     <div class="form-group">
                         <div class="col-sm-12">
-                            <strong>Justificativa:</strong>
-                            <div class="input-group">
-                                <span data-toggle="tooltip" title="Telefone" class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="justificativa"  id="justificativa">
-                            </div>       
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-sm-12">
                             <strong>Setor:</strong>
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="Setor" class="input-group-addon"><i class="fa fa-pencil"></i></span>
                                 <select class="form-control" name="id_setor" id="id_setor">
-                                    <option selected="">Teste</option>
                                     @foreach($setores as $setor)
                                     <option value="{{$setor->id}}">{{$setor->nome}}</option>
                                     @endforeach
                                 </select>
+                            </div>       
+                        </div>
+                    </div>
+
+
+                    <div class="form-group hidden" id="justifica">
+                        <div class="col-sm-12">
+                            <strong>Justificativa:</strong>
+                            <div class="input-group">
+                                <span data-toggle="tooltip" title="Telefone" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <input type="text" maxlength="254" class="form-control" name="justificativa"  id="justificativa">
                             </div>       
                         </div>
                     </div>

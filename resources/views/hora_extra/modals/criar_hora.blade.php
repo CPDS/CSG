@@ -19,7 +19,7 @@
                             <strong>Servidor</strong>
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="Servidor" class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                                <select class="form-control" name="id_servidor" id="id_servidor">
+                                <select class="form-control" name="fk_servidor" id="fk_servidor">
                                     @foreach($servidores as $servidor)
                                     <option value="{{$servidor->id}}">{{$servidor->nome}}</option>
                                     @endforeach

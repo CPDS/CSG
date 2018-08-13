@@ -17,11 +17,11 @@ class CreateAlocacaoServidorsTable extends Migration
             $table->increments('id');
             $table->date('data');
             $table->string('justificativa');
-            $table->string('status');
             $table->integer('fk_servidor')->unsigned();
             $table->integer('fk_setor')->unsigned();
             $table->foreign('fk_servidor')->references('id')->on('servidors');
             $table->foreign('fk_setor')->references('id')->on('setors');
+            $table->string('status');
             $table->timestamps();
         });
     }

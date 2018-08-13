@@ -109,23 +109,29 @@ class ServidorController extends Controller
         $servidor->telefone = $request->telefone;
         $servidor->id_setor = $request->id_setor;
         $servidor->save();
+    
 
+        //só entra se a pessoa escolher um novo setor pro servidor
         if($request->justificativa != ''){
             $data = date("Y-m-d");
+            //busca a ultima alocação que o servidor estava
+            $alocacao = AlocacaoServidor::where('fk_servidor','=',$request->id)
+            ->where('status','Ativo')
+            ->get();
 
-            $alocacao = AlocacaoServidor::where('fk_servidor','=',$request->id)->get();
-            dd($alocacao);
+            //inativa a ultima alocação do servidor
+            $alo = AlocacaoServidor::find($alocacao[0]->id);
+            $alo->status = 'Inativo';
+            $alo->save();
 
-            $alocacao->status = 'Inativo';
-            $alocacao->save();
-/*
+            //cria uma nova alocação servidor
             $newAlocacao = new AlocacaoServidor();
             $newAlocacao->data = $data;
             $newAlocacao->justificativa = $request->justificativa;
             $newAlocacao->status = 'Ativo';
             $newAlocacao->fk_servidor = $servidor->id;
             $newAlocacao->fk_setor = $request->id_setor;
-            $newAlocacao->save();*/
+            $newAlocacao->save();
         }
 
         

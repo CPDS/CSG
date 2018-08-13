@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class HoraExtra extends Model
 {
-	protected $fillable = ['horas_excedidas','dia','id_servidor'];
+	protected $fillable = ['horas_excedidas','dia','fk_servidor','fk_user'];
     
 }

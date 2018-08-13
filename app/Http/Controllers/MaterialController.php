@@ -77,7 +77,7 @@ class MaterialController extends Controller
             $material->codigo = $request->codigo;
             $material->descricao = $request->descricao;
             $material->quantidade = $request->quantidade;
-            $material->id_user = Auth::User()->id;
+            $material->fk_user = Auth::User()->id;
             $material->status = 'Ativo';
             $material->save();
             

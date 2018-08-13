@@ -19,6 +19,8 @@ class CreateHoraExtrasTable extends Migration
             $table->date('dia');
             $table->integer('id_servidor')->unsigned();
             $table->foreign('id_servidor')->references('id')->on('servidors');
+            $table->integer('fk_user')->unsigned();
+            $table->foreign('fk_user')->references('id')->on('users');
             $table->string('status');  
             $table->timestamps();
         });

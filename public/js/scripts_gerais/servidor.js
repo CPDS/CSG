@@ -253,10 +253,7 @@ $(document).ready(function($) {
 });
 
 $(document).on('click', '.btnAdicionar', function() {
-        $("#id_setor").change(function() {
-          alert( "adicionar campo obsercacao" );//em editar
-        });
-
+        $('#justifica').addClass('hidden');
         $('.modal-footer .btn-action').removeClass('edit');
         $('.modal-footer .btn-action').addClass('add');
         $('.modal-footer .btn-action').removeClass('hidden');
@@ -279,7 +276,7 @@ $(document).on('click', '.btnAdicionar', function() {
 });
 
 $(document).on('click', '.btnVer', function() {
-
+        $('#justifica').addClass('hidden');
         $('.modal-footer .btn-action').removeClass('edit');
         $('.modal-title').text('Ver Servidor');
         $('.modal-footer .btn-action').addClass('hidden');
@@ -303,6 +300,12 @@ $(document).on('click', '.btnVer', function() {
         jQuery('#criar_editar-modal').modal('show');
 });
 $(document).on('click', '.btnEditar', function() {
+        $('#justifica').addClass('hidden');
+
+        $("#id_setor").change(function() {
+             $('#justifica').removeClass('hidden');
+        });
+
         $('.modal-footer .btn-action').removeClass('add');
         $('.modal-footer .btn-action').addClass('edit');
         $('.modal-footer .btn-action').removeClass('hidden');

@@ -259,7 +259,7 @@ $(document).on('click', '.btnAdicionar', function() {
         //habilita os campos desabilitados
         $('#horas_excedidas').prop('readonly',false);
         $('#dia').prop('readonly',false);
-        $('#id_servidor').prop('disabled',false);
+        $('#fk_servidor').prop('disabled',false);
         
 
         $('.modal-title').text('Novo Cadastro de Hora');
@@ -280,7 +280,7 @@ $(document).on('click', '.btnVer', function() {
         //desabilita os campos
         $('#horas_excedidas').prop('readonly',true);
         $('#dia').prop('readonly',true);
-        $('#id_servidor').prop('disabled',true);
+        $('#fk_servidor').prop('disabled',true);
 
         $('.callout').addClass("hidden"); //ocultar a div de aviso
         $('.callout').find("p").text(""); //limpar a div de aviso
@@ -306,7 +306,7 @@ $(document).on('click', '.btnEditar', function() {
         //habilita os campos desabilitados
         $('#horas_excedidas').prop('readonly',false);
         $('#dia').prop('readonly',false);
-        $('#id_servidor').prop('disabled',false);
+        $('#fk_servidor').prop('disabled',false);
 
         var btnEditar = $(this);
 
