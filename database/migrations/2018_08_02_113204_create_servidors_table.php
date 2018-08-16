@@ -19,8 +19,8 @@ class CreateServidorsTable extends Migration
             $table->string('rg');
             $table->string('cargo');
             $table->string('telefone');
-            $table->integer('id_setor');
-            $table->foreign('id_setor')->references('id')->on('setors');
+            $table->integer('fk_setor');
+            $table->foreign('fk_setor')->references('id')->on('setors');
             $table->string('status');       
             $table->timestamps();
         });

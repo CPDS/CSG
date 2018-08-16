@@ -28,46 +28,65 @@
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <strong>Setor</strong>
+                            <div class="input-group">
+                                <span data-toggle="tooltip" title="Setor" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <select class="form-control" name="fk_setor" id="fk_setor">
+                                    @foreach($setores as $setore)
+                                    <option value="{{$setor->id}}">{{$setor->nome}}</option>
+                                    @endforeach
+                                </select>
+                            </div>       
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <strong>Material</strong>
+                            <div class="input-group">
+                                <span data-toggle="tooltip" title="Setor" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <select class="form-control" name="fk_setor" id="fk_setor">
+                                    @foreach($setores as $setore)
+                                    <option value="{{$setor->id}}">{{$setor->nome}}</option>
+                                    @endforeach
+                                </select>
+                            </div>       
+                        </div>
+                    </div>
+
                      <div class="form-group">
                         <div class="col-sm-12">
-                            <strong>Horário início:</strong>
+                            <strong>Data solicitação:</strong>
                             <div class="input-group">
-                                <span data-toggle="tooltip" title="Horário início" class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="horario_inicio"  id="horario_inicio">
+                                <span data-toggle="tooltip" title="Data solicitação" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <input type="text" maxlength="254" class="form-control" name="data_solicitacao"  id="data_solicitacao">
                             </div>       
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <div class="col-sm-12">
-                            <strong>Horário pausa:</strong>
+                            <strong>Data Realização:</strong>
+                            <div class="input-group">
+                                <span data-toggle="tooltip" title="Data solicitação" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <input type="text" maxlength="254" class="form-control" name="data_realizacao"  id="data_realizacao">
+                            </div>       
+                        </div>
+                    </div>
+
+                                        //'data_solicitacao','data_realizacao', 
+//'nome_setor','nome_servidor','codigo_material','descricao_material','quantidade'
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <strong>Dia:</strong>
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="Horário pausa" class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="horario_pausa"  id="horario_pausa">
+                                <input type="text" maxlength="254" class="form-control" name="dia"  id="dia">
                             </div>       
                         </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <strong>Horário pós pausa:</strong>
-                            <div class="input-group">
-                                <span data-toggle="tooltip" title="Horário pós pausa" class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="horario_pos_pausa"  id="horario_pos_pausa">
-                            </div>       
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <strong>Horário término:</strong>
-                            <div class="input-group">
-                                <span data-toggle="tooltip" title="Horário término" class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="horario_termino"  id="horario_termino">
-                            </div>       
-                        </div>
-                    </div>
-                  
+                    </div>                  
                             <input type="hidden" id="id" name="id">
                 </form>
 

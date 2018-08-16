@@ -59,7 +59,7 @@
                             <strong>Setor:</strong>
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="Setor" class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                                <select class="form-control" name="id_setor" id="id_setor">
+                                <select class="form-control" name="fk_setor" id="fk_setor">
                                     @foreach($setores as $setor)
                                     <option value="{{$setor->id}}">{{$setor->nome}}</option>
                                     @endforeach

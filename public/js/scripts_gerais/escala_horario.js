@@ -263,7 +263,7 @@ $(document).on('click', '.btnAdicionar', function() {
         $('#horario_pausa').prop('readonly',false);
         $('#horario_pos_pausa').prop('readonly',false);
         $('#horario_termino').prop('readonly',false);
-        $('#id_servidor').prop('disabled',false);
+        $('#fk_servidor').prop('disabled',false);
         
 
         $('.modal-title').text('Novo Cadastro de escala');
@@ -286,7 +286,7 @@ $(document).on('click', '.btnVer', function() {
         $('#horario_pausa').prop('readonly',true);
         $('#horario_pos_pausa').prop('readonly',true);
         $('#horario_termino').prop('readonly',true);
-        $('#id_servidor').prop('disabled',true);
+        $('#fk_servidor').prop('disabled',true);
 
         $('.callout').addClass("hidden"); //ocultar a div de aviso
         $('.callout').find("p").text(""); //limpar a div de aviso
@@ -314,7 +314,7 @@ $(document).on('click', '.btnEditar', function() {
         $('#horario_pausa').prop('readonly',false);
         $('#horario_pos_pausa').prop('readonly',false);
         $('#horario_termino').prop('readonly',false);
-        $('#id_servidor').prop('disabled',false);
+        $('#fk_servidor').prop('disabled',false);
 
         var btnEditar = $(this);
 

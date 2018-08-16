@@ -25,9 +25,9 @@ class ServidorController extends Controller
     public function list()
     {
 
-        $servidor = Servidor::JOIN('setors','servidors.id_setor','=','setors.id')
+        $servidor = Servidor::JOIN('setors','servidors.fk_setor','=','setors.id')
         ->where('servidors.status','Ativo')
-        ->select('servidors.id','servidors.nome as nome_servidor','servidors.rg','servidors.cargo','servidors.telefone','setors.nome as nome_setor','setors.sigla','setors.email', 'setors.id as id_setor')
+        ->select('servidors.id','servidors.nome as nome_servidor','servidors.rg','servidors.cargo','servidors.telefone','setors.nome as nome_setor','setors.sigla','setors.email', 'setors.id as fk_setor')
         ->orderBy('servidors.created_at', 'desc')->get();
 
         
@@ -39,7 +39,7 @@ class ServidorController extends Controller
     }
 
     private function setBtns(Servidor $servidors){
-        $dados = "data-id_del='$servidors->id' data-id='$servidors->id' data-nome_servidor='$servidors->nome_servidor' data-rg='$servidors->rg' data-telefone='$servidors->telefone' data-id_setor='$servidors->id_setor' data-cargo='$servidors->cargo' data-nome_setor='$servidors->nome_setor' data-sigla='$servidors->sigla' ";
+        $dados = "data-id_del='$servidors->id' data-id='$servidors->id' data-nome_servidor='$servidors->nome_servidor' data-rg='$servidors->rg' data-telefone='$servidors->telefone' data-fk_setor='$servidors->fk_setor' data-cargo='$servidors->cargo' data-nome_setor='$servidors->nome_setor' data-sigla='$servidors->sigla' ";
 
         $btnVer = "<a class='btn btn-info btn-sm btnVer' data-toggle='tooltip' title='Ver servidor' $dados> <i class='fa fa-eye'></i></a> ";
 
@@ -59,13 +59,13 @@ class ServidorController extends Controller
             'nome_servidor' => 'required',
             'rg' => 'required',
             'cargo' => 'required',
-            'id_setor' => 'required'
+            'fk_setor' => 'required'
         );
         $attributeNames = array(
             'nome_servidor' => 'Nome',
             'rg' => 'RG',
             'cargo' => 'Cargo',
-            'id_setor' => 'Setor'
+            'fk_setor' => 'Setor'
         );
         
         $validator = Validator::make(Input::all(), $rules);
@@ -81,7 +81,7 @@ class ServidorController extends Controller
             $servidor->rg = $request->rg;
             $servidor->cargo = $request->cargo;
             $servidor->telefone = $request->telefone;
-            $servidor->id_setor = $request->id_setor;
+            $servidor->fk_setor = $request->fk_setor;
             $servidor->status = 'Ativo';
             $servidor->save();
 
@@ -91,7 +91,7 @@ class ServidorController extends Controller
             $alocacao->justificativa = 'Primeira alocação';
             $alocacao->status = 'Ativo';
             $alocacao->fk_servidor = $servidor->id;
-            $alocacao->fk_setor = $request->id_setor;
+            $alocacao->fk_setor = $request->fk_setor;
             $alocacao->save();
             
             return response()->json($servidor);
@@ -102,12 +102,12 @@ class ServidorController extends Controller
     {
         $servidor = Servidor::find($request->id);
         $servidor->cargo = $request->cargo;
-        $servidor->id_setor = $request->id_setor;
+        $servidor->fk_setor = $request->fk_setor;
         $servidor->nome = $request->nome_servidor;
         $servidor->rg = $request->rg;
         $servidor->cargo = $request->cargo;
         $servidor->telefone = $request->telefone;
-        $servidor->id_setor = $request->id_setor;
+        $servidor->fk_setor = $request->fk_setor;
         $servidor->save();
     
 
@@ -130,7 +130,7 @@ class ServidorController extends Controller
             $newAlocacao->justificativa = $request->justificativa;
             $newAlocacao->status = 'Ativo';
             $newAlocacao->fk_servidor = $servidor->id;
-            $newAlocacao->fk_setor = $request->id_setor;
+            $newAlocacao->fk_setor = $request->fk_setor;
             $newAlocacao->save();
         }
 

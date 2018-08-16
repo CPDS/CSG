@@ -9,20 +9,23 @@ $(document).ready(function($) {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-
+//'data_solicitacao','data_realizacao', 
+//'nome_setor','nome_servidor','codigo_material','descricao_material','quantidade'
     
     var tabela = $('#table').DataTable({
             processing: true,
             serverSide: true,
             deferRender: true,
-            ajax: './gerenciar-servidores/list',
+            ajax: './gerenciar-solicitacao-servicos/list',
             columns: [
             { data: null, name: 'order' },
+            { data: 'data_solicitacao', name: 'data_solicitacao' },
+            { data: 'data_realizacao', name: 'data_realizacao' },
             { data: 'nome_servidor', name: 'nome_servidor' },
-            { data: 'rg', name: 'rg' },
-            { data: 'cargo', name: 'cargo' },
-            { data: 'telefone', name: 'telefone' },
             { data: 'nome_setor', name: 'nome_setor' },
+            { data: 'descricao_material', name: 'descricao_material' },
+            { data: 'codigo_material', name: 'codigo_material' },
+            { data: 'quantidade', name: 'quantidade' },
             { data: 'acao', name: 'acao' },
             ],
             createdRow : function( row, data, index ) {
@@ -88,7 +91,7 @@ $(document).ready(function($) {
 
         $.ajax({
             type: 'post',
-            url: "/gerenciar-servidores/store",
+            url: "/gerenciar-solicitacao-servicos/store",
             data: dados,
             processData: false,
             contentType: false,
@@ -119,10 +122,11 @@ $(document).ready(function($) {
                         iziToast.destroy();
                         iziToast.success({
                             title: 'OK',
-                            message: 'Servidor adicionado com Sucesso!',
+                            message: 'Escala adicionado com Sucesso!',
                         });
                     });
 
+                
                 }
             },
 
@@ -142,9 +146,11 @@ $(document).ready(function($) {
     $('.modal-footer').on('click', '.edit', function() {
         var dados = new FormData($("#form")[0]); //pega os dados do form
 
-       $.ajax({
+        console.log(dados);
+
+        $.ajax({
             type: 'post',
-            url: "/gerenciar-servidores/update",
+            url: "/gerenciar-solicitacao-servicos/update",
             data: dados,
             processData: false,
             contentType: false,
@@ -175,10 +181,9 @@ $(document).ready(function($) {
                         iziToast.destroy();
                         iziToast.success({
                             title: 'OK',
-                            message: 'Servidor alterado com Sucesso!',
+                            message: 'Escala alterado com Sucesso!',
                         });
                     });
-
                 }
             },
 
@@ -201,7 +206,7 @@ $(document).ready(function($) {
 
         $.ajax({
             type: 'post',
-            url: "/gerenciar-servidores/delete",
+            url: "/gerenciar-solicitacao-servicos/delete",
             data: dados,
             processData: false,
             contentType: false,
@@ -232,16 +237,14 @@ $(document).ready(function($) {
                         iziToast.destroy();
                         iziToast.success({
                             title: 'OK',
-                            message: 'Servidor deletado com Sucesso!',
+                            message: 'Escala deletado com Sucesso!',
                         });
                     });
-
                 }
             },
 
             error: function() {
                 jQuery('#criar_editar-modal').modal('hide'); //fechar o modal
-
                 iziToast.error({
                     title: 'Erro Interno',
                     message: 'Operação Cancelada!',
@@ -250,23 +253,23 @@ $(document).ready(function($) {
 
         });
     });
+  
 });
 
 $(document).on('click', '.btnAdicionar', function() {
-        $('#justifica').addClass('hidden');
         $('.modal-footer .btn-action').removeClass('edit');
         $('.modal-footer .btn-action').addClass('add');
         $('.modal-footer .btn-action').removeClass('hidden');
 
         //habilita os campos desabilitados
-        $('#nome_servidor').prop('readonly',false);
-        $('#nome_setor').prop('readonly',false);
-        $('#rg').prop('readonly',false);
-        $('#cargo').prop('readonly',false);
-        $('#telefone').prop('readonly',false);
-        $('#fk_setor').prop('disabled',false);
+        $('#horario_inicio').prop('readonly',false);
+        $('#horario_pausa').prop('readonly',false);
+        $('#horario_pos_pausa').prop('readonly',false);
+        $('#horario_termino').prop('readonly',false);
+        $('#fk_servidor').prop('disabled',false);
+        
 
-        $('.modal-title').text('Novo Cadastro de Servidor');
+        $('.modal-title').text('Novo Cadastro de escala');
         $('.callout').addClass("hidden"); 
         $('.callout').find("p").text(""); 
 
@@ -276,16 +279,17 @@ $(document).on('click', '.btnAdicionar', function() {
 });
 
 $(document).on('click', '.btnVer', function() {
-        $('#justifica').addClass('hidden');
+
         $('.modal-footer .btn-action').removeClass('edit');
-        $('.modal-title').text('Ver Servidor');
         $('.modal-footer .btn-action').addClass('hidden');
+        $('.modal-title').text('Ver escala de horário');
         
         //desabilita os campos
-        $('#nome_servidor').prop('readonly',true);
-        $('#rg').prop('readonly',true);
-        $('#cargo').prop('readonly',true);
-        $('#fk_setor').prop('disabled',true);
+        $('#horario_inicio').prop('readonly',true);
+        $('#horario_pausa').prop('readonly',true);
+        $('#horario_pos_pausa').prop('readonly',true);
+        $('#horario_termino').prop('readonly',true);
+        $('#fk_servidor').prop('disabled',true);
 
         $('.callout').addClass("hidden"); //ocultar a div de aviso
         $('.callout').find("p").text(""); //limpar a div de aviso
@@ -300,28 +304,22 @@ $(document).on('click', '.btnVer', function() {
         jQuery('#criar_editar-modal').modal('show');
 });
 $(document).on('click', '.btnEditar', function() {
-        $('#justifica').addClass('hidden');
-
-        $("#fk_setor").change(function() {
-             $('#justifica').removeClass('hidden');
-        });
-
         $('.modal-footer .btn-action').removeClass('add');
         $('.modal-footer .btn-action').addClass('edit');
         $('.modal-footer .btn-action').removeClass('hidden');
 
-        $('.modal-title').text('Editar Servidor');
+        $('.modal-title').text('Editar Setor');
         $('.callout').addClass("hidden"); //ocultar a div de aviso
         $('.callout').find("p").text(""); //limpar a div de aviso
 
         //habilita os campos desabilitados
-        $('#nome_servidor').prop('readonly',false);
-        $('#rg').prop('readonly',false);
-        $('#cargo').prop('readonly',false);
-        $('#fk_setor').prop('disabled',false);
+        $('#horario_inicio').prop('readonly',false);
+        $('#horario_pausa').prop('readonly',false);
+        $('#horario_pos_pausa').prop('readonly',false);
+        $('#horario_termino').prop('readonly',false);
+        $('#fk_servidor').prop('disabled',false);
 
         var btnEditar = $(this);
-
 
         $('#form :input').each(function(index,input){
             $('#'+input.id).val($(btnEditar).data(input.id));
@@ -330,13 +328,11 @@ $(document).on('click', '.btnEditar', function() {
         
         jQuery('#criar_editar-modal').modal('show'); //Abrir o modal
 });
-
-
 $(document).on('click', '.btnDeletar', function() {
-   $('.modal-title').text('Deletar Servidor');   
-   $('.modal-footer .btn-action').addClass('excluir');
+   $('.modal-title').text('Deletar Setor');   
    $('.modal-footer .btn-action').removeClass('add');
    $('.modal-footer .btn-action').removeClass('edit');
+   $('.modal-footer .btn-action').addClass('excluir');
    $('.modal-footer .btn-action').removeClass('hidden');
    
    var btnExcluir = $(this);

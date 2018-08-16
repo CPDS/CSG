@@ -66,6 +66,14 @@ Route::group(['prefix' => 'gerenciar-horas', 'where' => ['id' => '[0-9]+'], 'mid
         Route::post('/delete', ['as' => 'gerenciar-horas.destroy', 'uses' => 'HoraExtraController@destroy']);
 }); 
 
+Route::group(['prefix' => 'gerenciar-solicitacao-servicos', 'where' => ['id' => '[0-9]+'], 'middleware' => ['role:Administrador']] ,function() {
+        Route::get('', ['as' => 'gerenciar-solicitacao-servicos.index', 'uses' => 'SolicitacaoServicoController@index']);
+        Route::get('/list',['as' => 'gerenciar-solicitacao-servicos.list', 'uses' => 'SolicitacaoServicoController@list']);
+        Route::post('/store', ['as' => 'gerenciar-solicitacao-servicos.store', 'uses' => 'SolicitacaoServicoController@store']);
+        Route::post('/update', ['as' => 'gerenciar-solicitacao-servicos.update', 'uses' => 'SolicitacaoServicoController@update']);
+        Route::post('/delete', ['as' => 'gerenciar-solicitacao-servicos.destroy', 'uses' => 'SolicitacaoServicoController@destroy']);
+}); 
+
 });
 
 

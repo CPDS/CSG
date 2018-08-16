@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHoraExtrasTable extends Migration
+class CreateSolicitacaoServicosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,16 +12,18 @@ class CreateHoraExtrasTable extends Migration
      * @return void
      */
     public function up()
-    { 
-        Schema::create('hora_extras', function (Blueprint $table) {
+    {
+        Schema::create('solicitacao_servicos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('horas_excedidas');
-            $table->date('dia');
-            $table->integer('fk_servidor')->unsigned();
+            $table->date('data_solicitacao');
+            $table->date('data_realizacao');
+            $table->integer('fk_servidor')->nullable();
             $table->foreign('fk_servidor')->references('id')->on('servidors');
+            $table->integer('fk_setor')->unsigned();
+            $table->foreign('fk_setor')->references('id')->on('setors');
             $table->integer('fk_user')->unsigned();
             $table->foreign('fk_user')->references('id')->on('users');
-            $table->string('status');  
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -33,6 +35,6 @@ class CreateHoraExtrasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hora_extras');
+        Schema::dropIfExists('solicitacao_servicos');
     }
 }

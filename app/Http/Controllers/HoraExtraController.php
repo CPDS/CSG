@@ -25,9 +25,9 @@ class HoraExtraController extends Controller
     public function list()
     {
         
-        $hora_extra = HoraExtra::JOIN('servidors','hora_extras.id_servidor','=','servidors.id')
+        $hora_extra = HoraExtra::JOIN('servidors','hora_extras.fk_servidor','=','servidors.id')
         ->where('hora_extras.status','Ativo')
-        ->select('hora_extras.id','hora_extras.horas_excedidas','hora_extras.dia','servidors.nome as nome_servidor', 'servidors.id as id_servidor')
+        ->select('hora_extras.id','hora_extras.horas_excedidas','hora_extras.dia','servidors.nome as nome_servidor', 'servidors.id as fk_servidor')
         ->orderBy('hora_extras.created_at', 'desc')->get();
 
 
@@ -39,7 +39,7 @@ class HoraExtraController extends Controller
     }
 
     private function setBtns(HoraExtra $hora_extras){
-        $dados = "data-id_del='$hora_extras->id' data-id='$hora_extras->id' data-horas_excedidas='$hora_extras->horas_excedidas' data-dia='$hora_extras->dia' data-nome_servidor='$hora_extras->nome_servidor' data-id_servidor='$hora_extras->id_servidor' ";
+        $dados = "data-id_del='$hora_extras->id' data-id='$hora_extras->id' data-horas_excedidas='$hora_extras->horas_excedidas' data-dia='$hora_extras->dia' data-nome_servidor='$hora_extras->nome_servidor' data-fk_servidor='$hora_extras->fk_servidor' ";
 
         $btnVer = "<a class='btn btn-info btn-sm btnVer' data-toggle='tooltip' title='Ver hora_extra' $dados> <i class='fa fa-eye'></i></a> ";
 
