@@ -1,5 +1,5 @@
 <div id="criar_editar-modal" class="modal fade bs-example" role="dialog" data-backdrop="static">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
 
       <div class="modal-header">
@@ -34,7 +34,7 @@
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="Setor" class="input-group-addon"><i class="fa fa-pencil"></i></span>
                                 <select class="form-control" name="fk_setor" id="fk_setor">
-                                    @foreach($setores as $setore)
+                                    @foreach($setores as $setor)
                                     <option value="{{$setor->id}}">{{$setor->nome}}</option>
                                     @endforeach
                                 </select>
@@ -42,19 +42,6 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <strong>Material</strong>
-                            <div class="input-group">
-                                <span data-toggle="tooltip" title="Setor" class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                                <select class="form-control" name="fk_setor" id="fk_setor">
-                                    @foreach($setores as $setore)
-                                    <option value="{{$setor->id}}">{{$setor->nome}}</option>
-                                    @endforeach
-                                </select>
-                            </div>       
-                        </div>
-                    </div>
 
                      <div class="form-group">
                         <div class="col-sm-12">
@@ -76,8 +63,8 @@
                         </div>
                     </div>
 
-                                        //'data_solicitacao','data_realizacao', 
-//'nome_setor','nome_servidor','codigo_material','descricao_material','quantidade'
+                                        <!--'data_solicitacao','data_realizacao', 
+//'nome_setor','nome_servidor','codigo_material','descricao_material','quantidade' -->
                     <div class="form-group">
                         <div class="col-sm-12">
                             <strong>Dia:</strong>
@@ -86,7 +73,53 @@
                                 <input type="text" maxlength="254" class="form-control" name="dia"  id="dia">
                             </div>       
                         </div>
-                    </div>                  
+                    </div>    
+
+
+
+                    <div class="form-group">
+                        <div class="col-sm-8">
+                            <strong>Material</strong>
+                            <div class="input-group">
+                                <span data-toggle="tooltip" title="Material" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <select class="form-control" name="fk_material" id="fk_material">
+                                    @foreach($materiais as $material)
+                                    <option value="{{$material->id}}">{{$material->descricao}}</option>
+                                    @endforeach
+                                </select>
+                            </div>       
+                        </div>
+                    
+                        <div class="col-sm-3">
+                            <strong>Quantidade</strong>
+                            <div class="input-group">
+                                <span data-toggle="tooltip" title="Horário pausa" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <input type="text" maxlength="254" class="form-control" name="quantidade" id="quantidade">
+                            </div>       
+                        </div>
+
+                        <div class="col-sm-1">
+                            
+                                <a class="btnAdcMaterial btn btn-sm btn-primary" style="margin-top: 22px; padding: 11px"><i class="glyphicon glyphicon-plus"></i></a>
+                        </div>
+                                 
+                    
+                    </div>
+
+                            <div class="col-md-12">
+                            <br>
+                                <table class="table table-bordered table-responsive" id="materiais">
+                                    <tr>
+                                        <th>Material</th>
+                                        <th>Quantidade</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                    <tbody id="material_id">
+                                    </tbody>
+                                </table>
+                            </div>
+
+
                             <input type="hidden" id="id" name="id">
                 </form>
 

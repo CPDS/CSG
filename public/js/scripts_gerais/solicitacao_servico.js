@@ -254,6 +254,51 @@ $(document).ready(function($) {
         });
     });
   
+
+  
+ var i = 0;
+ var materiais = new Array();
+  //Adicionar Equipamento
+  $(document).on('click', '.btnAdcMaterial', function() {
+    //verificar se a opção selecionada possiu valor
+    //verificar se a opção selecionada já se encontra no array equipamentos e emitir alerta quando já estiver
+    
+    var cols = '';
+    cols = '';
+    novaLinha = null; 
+    var fk_material = $('#fk_material :selected').val();
+    var descricao_material = $('#fk_material :selected').text();
+    var quantidade = $('#quantidade').val();
+
+    var novaLinha = '<tr class="'+'linha'+i+'">';
+    //Adc equipamento ao array
+    materiais.push({'fk_material': fk_material});
+
+    
+    /* Crian a linha p/ tabela*/
+    
+    cols += '<td>'+descricao_material+'</td>';
+    cols += '<td>'+quantidade+'</td>';
+    cols += '<td class="text-left"><a class="btnRemoverMaterial btn btn-xs btn-danger" data-indexof="'+materiais.indexOf(materiais[i])+'" data-linha="'+i+'"><i class="fa fa-trash"></i> Remover</a></td>';
+    novaLinha += cols + '</tr>';
+    
+
+
+    $('#material_id').append(novaLinha); /*Adc a linha  tabela*/
+    i+=1;
+
+    $('#quantidade').val('');
+
+    
+    console.log(cols);
+    });
+
+//Remover Equipamento
+$(document).on('click', '.btnRemoverMaterial', function(){
+materiais.splice($(this).data('indexof'),1); //remove do array de acordo com o indice
+$('.linha'+ $(this).data('linha')).remove(); //Remove a linha da tela 
+});
+
 });
 
 $(document).on('click', '.btnAdicionar', function() {

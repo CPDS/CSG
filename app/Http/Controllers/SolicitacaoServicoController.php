@@ -22,8 +22,8 @@ class SolicitacaoServicoController extends Controller
 
         $setores = Servidor::where('status','Ativo')->get();
         $servidores = Servidor::where('status','Ativo')->get();
-        $materias = Material::where('status','Ativo')->get();
-        return view('solicitacao_servico.index',compact('setores','servidores','materias'));    
+        $materiais = Material::where('status','Ativo')->get();
+        return view('solicitacao_servico.index',compact('setores','servidores','materiais'));    
     } 
 
     public function list()

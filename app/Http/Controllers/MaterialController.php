@@ -25,7 +25,7 @@ class MaterialController extends Controller
     public function list()
     {
 
-        $material = Material::JOIN('users','users.id','=','materials.id_user')
+        $material = Material::JOIN('users','users.id','=','materials.fk_user')
         ->select('users.name as nome_usuario','materials.codigo','materials.descricao','materials.quantidade')
 
         ->orderBy('materials.created_at', 'desc')

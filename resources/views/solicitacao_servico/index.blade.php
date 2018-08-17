@@ -52,6 +52,6 @@
 		</div>
 	</div>
 
-@include('hora_extra.modals.criar_hora')
-@include('hora_extra.modals.deletar_hora')
+@include('solicitacao_servico.modals.criar_solicitacao')
+@include('solicitacao_servico.modals.deletar_solicitacao')
 @endsection
