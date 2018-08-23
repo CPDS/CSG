@@ -18,6 +18,11 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('telefone');
+            $table->string('endereco');
+            $table->string('rg');
+            $table->integer('fk_setor')->nullable();
+            $table->foreign('fk_setor')->references('id')->on('setors');
             $table->rememberToken();
             $table->timestamps();
         });

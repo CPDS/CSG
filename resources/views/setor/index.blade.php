@@ -36,6 +36,7 @@
                                 <th>Nome</th>   
                                 <th>Sigla</th>
                                 <th>E-mail</th>
+                                <th>Telefone</th>
                                 <th width="20%">Ações</th>
                             </tr>
                             </thead>

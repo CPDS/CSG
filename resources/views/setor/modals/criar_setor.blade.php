@@ -42,6 +42,16 @@
                             </div>       
                         </div>
                     </div>
+
+                      <div class="form-group">
+                        <div class="col-sm-12">
+                            <strong>Telefone:</strong>
+                            <div class="input-group">
+                                <span data-toggle="tooltip" title="E-mail" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <input type="text" maxlength="254" class="form-control" name="telefone"  id="telefone">
+                            </div>       
+                        </div>
+                    </div>
                   
                             <input type="hidden" id="id" name="id">
                 </form>

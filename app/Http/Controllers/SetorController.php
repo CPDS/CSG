@@ -39,7 +39,7 @@ class SetorController extends Controller
     }
 
     private function setBtns(setor $setors){
-        $dados = "data-id_del='$setors->id' data-id='$setors->id' data-nome='$setors->nome' data-sigla='$setors->sigla' data-email='$setors->email'";
+        $dados = "data-id_del='$setors->id' data-id='$setors->id' data-nome='$setors->nome' data-sigla='$setors->sigla' data-email='$setors->email' data-telefone='$setors->telefone'";
 
         $btnVer = "<a class='btn btn-info btn-sm btnVer' data-toggle='tooltip' title='Ver setor' $dados> <i class='fa fa-eye'></i></a> ";
 
@@ -58,12 +58,14 @@ class SetorController extends Controller
         $rules = array(
             'nome' => 'required',
             'sigla' => 'required',
+            'telefone' => 'required',
             'email' => 'required'
         );
         $attributeNames = array(
             'nome' => 'Nome',
             'sigla' => 'Sigla',
-            'email' => 'E-mail'
+            'email' => 'E-mail',
+            'telefone' => 'Telefone'
         );
         
         $validator = Validator::make(Input::all(), $rules);
@@ -76,6 +78,7 @@ class SetorController extends Controller
             $setor->nome = $request->nome;
             $setor->sigla = $request->sigla;
             $setor->email = $request->email;
+            $setor->telefone = $request->telefone;
             $setor->status = 'Ativo';
             $setor->save();
             
@@ -89,6 +92,7 @@ class SetorController extends Controller
         $setor->nome = $request->nome;
         $setor->sigla = $request->sigla;
         $setor->email = $request->email;
+        $setor->telefone = $request->telefone;
         $setor->save();
 
         return response()->json($setor);

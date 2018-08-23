@@ -34,7 +34,7 @@ Route::group(['prefix' => 'gerenciar-licitacoes', 'where' => ['id' => '[0-9]+'],
 }); 	
 
 
-Route::group(['prefix' => 'gerenciar-setores', 'where' => ['id' => '[0-9]+'], 'middleware' => ['role:Administrador']] ,function() {
+Route::group(['prefix' => 'gerenciar-setores', 'where' => ['id' => '[0-9]+'], 'middleware' => ['role:Servidor']] ,function() {
         Route::get('', ['as' => 'gerenciar-setores.index', 'uses' => 'SetorController@index']);
         Route::get('/list',['as' => 'gerenciar-setores.list', 'uses' => 'SetorController@list']);
         Route::post('/store', ['as' => 'gerenciar-setores.store', 'uses' => 'SetorController@store']);

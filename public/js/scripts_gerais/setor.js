@@ -22,6 +22,7 @@ $(document).ready(function($) {
             { data: 'nome', name: 'nome' },
             { data: 'sigla', name: 'sigla' },
             { data: 'email', name: 'email' },
+            { data: 'telefone', name: 'telefone' },
             { data: 'acao', name: 'acao' },
             ],
             createdRow : function( row, data, index ) {
@@ -261,6 +262,7 @@ $(document).on('click', '.btnAdicionar', function() {
         $('#nome').prop('readonly',false);
         $('#sigla').prop('readonly',false);
         $('#email').prop('readonly',false);
+        $('#telefone').prop('readonly',false);
         
 
         $('.modal-title').text('Novo Cadastro de Setor');
@@ -282,6 +284,7 @@ $(document).on('click', '.btnVer', function() {
         $('#nome').prop('readonly',true);
         $('#sigla').prop('readonly',true);
         $('#email').prop('readonly',true);
+        $('#telefone').prop('readonly',true);
 
         $('.callout').addClass("hidden"); //ocultar a div de aviso
         $('.callout').find("p").text(""); //limpar a div de aviso
@@ -308,6 +311,7 @@ $(document).on('click', '.btnEditar', function() {
         $('#nome').prop('readonly',false);
         $('#sigla').prop('readonly',false);
         $('#email').prop('readonly',false);
+        $('#telefone').prop('readonly',false);
 
         var btnEditar = $(this);
 

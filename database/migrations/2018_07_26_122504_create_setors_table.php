@@ -18,6 +18,7 @@ class CreateSetorsTable extends Migration
             $table->string('nome');
             $table->string('sigla');
             $table->string('email');
+            $table->string('telefone');
             $table->string('status');
             $table->timestamps();
         });
