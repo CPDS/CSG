@@ -15,12 +15,12 @@ $(document).ready(function($) {
             processing: true,
             serverSide: true,
             deferRender: true,
-            ajax: './gerenciar-servidores/list',
+            ajax: './gerenciar-funcionarios/list',
             columns: [
             { data: null, name: 'order' },
-            { data: 'nome_servidor', name: 'nome_servidor' },
+            { data: 'nome_user', name: 'nome_user' },
             { data: 'rg', name: 'rg' },
-            { data: 'cargo', name: 'cargo' },
+            { data: 'nome_role', name: 'nome_role' },
             { data: 'telefone', name: 'telefone' },
             { data: 'nome_setor', name: 'nome_setor' },
             { data: 'acao', name: 'acao' },
@@ -88,7 +88,7 @@ $(document).ready(function($) {
 
         $.ajax({
             type: 'post',
-            url: "/gerenciar-servidores/store",
+            url: "/gerenciar-funcionarios/store",
             data: dados,
             processData: false,
             contentType: false,
@@ -144,7 +144,7 @@ $(document).ready(function($) {
 
        $.ajax({
             type: 'post',
-            url: "/gerenciar-servidores/update",
+            url: "/gerenciar-funcionarios/update",
             data: dados,
             processData: false,
             contentType: false,
@@ -201,7 +201,7 @@ $(document).ready(function($) {
 
         $.ajax({
             type: 'post',
-            url: "/gerenciar-servidores/delete",
+            url: "/gerenciar-funcionarios/delete",
             data: dados,
             processData: false,
             contentType: false,
@@ -259,11 +259,13 @@ $(document).on('click', '.btnAdicionar', function() {
         $('.modal-footer .btn-action').removeClass('hidden');
 
         //habilita os campos desabilitados
-        $('#nome_servidor').prop('readonly',false);
+        $('#nome_user').prop('readonly',false);
         $('#nome_setor').prop('readonly',false);
         $('#rg').prop('readonly',false);
-        $('#cargo').prop('readonly',false);
+        $('#nome_setor').prop('readonly',false);
         $('#telefone').prop('readonly',false);
+        $('#email').prop('readonly',false);
+        $('#nome_role').prop('readonly',false);
         $('#fk_setor').prop('disabled',false);
 
         $('.modal-title').text('Novo Cadastro de Servidor');
@@ -282,10 +284,16 @@ $(document).on('click', '.btnVer', function() {
         $('.modal-footer .btn-action').addClass('hidden');
         
         //desabilita os campos
-        $('#nome_servidor').prop('readonly',true);
+        $('#nome_user').prop('readonly',true);
         $('#rg').prop('readonly',true);
-        $('#cargo').prop('readonly',true);
+        $('#nome_setor').prop('readonly',true);
+        $('#endereco').prop('readonly',true);
+        $('#telefone').prop('readonly',true);
+        $('#email').prop('readonly',true);
         $('#fk_setor').prop('disabled',true);
+        $('#nome_role').prop('disabled',true);
+        $('#senha').addClass("hidden"); //ocultar a div de aviso
+
 
         $('.callout').addClass("hidden"); //ocultar a div de aviso
         $('.callout').find("p").text(""); //limpar a div de aviso
@@ -315,9 +323,11 @@ $(document).on('click', '.btnEditar', function() {
         $('.callout').find("p").text(""); //limpar a div de aviso
 
         //habilita os campos desabilitados
-        $('#nome_servidor').prop('readonly',false);
+        $('#nome_user').prop('readonly',false);
         $('#rg').prop('readonly',false);
-        $('#cargo').prop('readonly',false);
+        $('#nome_setor').prop('readonly',false);
+        $('#nome_role').prop('readonly',false);
+        $('#email').prop('readonly',false);
         $('#fk_setor').prop('disabled',false);
 
         var btnEditar = $(this);

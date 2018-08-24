@@ -16,5 +16,6 @@ class ModelRolesSeeder extends Seeder
             'model_type' => 'App\User',
             'model_id' => 1,
         ]);
+
     }
 }

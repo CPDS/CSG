@@ -19,7 +19,7 @@
                             <strong>Nome:</strong>
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="Nome" class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="nome_servidor"  id="nome_servidor">
+                                <input type="text" maxlength="254" class="form-control" name="nome_user"  id="nome_user">
                             </div>       
                         </div>
                     </div>
@@ -36,10 +36,10 @@
 
                     <div class="form-group">
                         <div class="col-sm-12">
-                            <strong>Cargo:</strong>
+                            <strong>Endereço:</strong>
                             <div class="input-group">
-                                <span data-toggle="tooltip" title="Cargo" class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="cargo"  id="cargo">
+                                <span data-toggle="tooltip" title="Endereço" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <input type="text" maxlength="254" class="form-control" name="endereco"  id="endereco">
                             </div>       
                         </div>
                     </div>
@@ -56,6 +56,27 @@
 
                     <div class="form-group">
                         <div class="col-sm-12">
+                            <strong>E-mail:</strong>
+                            <div class="input-group">
+                                <span data-toggle="tooltip" title="E-mail" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <input type="email" maxlength="254" class="form-control" name="email"  id="email">
+                            </div>       
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="senha">
+                        <div class="col-sm-12">
+                            <strong>Password:</strong>
+                            <div class="input-group">
+                                <span data-toggle="tooltip" title="Password" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <input type="password" maxlength="254" class="form-control" name="password"  id="password">
+                            </div>       
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-sm-12">
                             <strong>Setor:</strong>
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="Setor" class="input-group-addon"><i class="fa fa-pencil"></i></span>
@@ -68,17 +89,22 @@
                         </div>
                     </div>
 
-
-                    <div class="form-group hidden" id="justifica">
+                    <div class="form-group">
                         <div class="col-sm-12">
-                            <strong>Justificativa:</strong>
+                            <strong>Tipo de funcionário:</strong>
                             <div class="input-group">
-                                <span data-toggle="tooltip" title="Telefone" class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="justificativa"  id="justificativa">
+                                <span data-toggle="tooltip" title="Setor" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <select class="form-control" name="nome_role" id="nome_role">
+                                    <option>Servidor</option>
+                                    <option value="Ag-limpeza">Agente de limpeza</option>
+                                </select>
                             </div>       
                         </div>
                     </div>
-                  
+
+
+
+          
                             <input type="hidden" id="id" name="id">
                 </form>
 
