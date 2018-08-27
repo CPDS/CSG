@@ -14,6 +14,7 @@ use App\User;
 use App\Setor;
 use App\AlocacaoFuncionario;
 
+
 class FuncionarioController extends Controller
 {
     public function index()
@@ -91,56 +92,31 @@ class FuncionarioController extends Controller
             $user->save();
 
             $user->assignRole($request->nome_role);
-
-            /* $alocacao = new Alocacaouser();
-
-            $alocacao->data = $data;
-            $alocacao->justificativa = 'Primeira alocação';
-            $alocacao->status = 'Ativo';
-            $alocacao->fk_user = $user->id;
-            $alocacao->fk_setor = $request->fk_setor;
-            $alocacao->save();
-            
-            return response()->json($user);
-            */
         }
     }
 
     public function update(Request $request)
     {
+       
         $user = User::find($request->id);
-        $user->cargo = $request->cargo;
-        $user->fk_setor = $request->fk_setor;
-        $user->nome = $request->nome_user;
+
+
+        $role = $user->getRoleNames();
+
+        $user->removeRole($role);
+
+        return response()->json($permissions);
+
+        $user->name = $request->nome_user;
+        $user->email = $request->email;
         $user->rg = $request->rg;
-        $user->cargo = $request->cargo;
         $user->telefone = $request->telefone;
+        $user->endereco = $request->endereco;
         $user->fk_setor = $request->fk_setor;
+        $user->assignRole($request->nome_role);
         $user->save();
     
-
-        //só entra se a pessoa escolher um novo setor pro user
-        if($request->justificativa != ''){
-            $data = date("Y-m-d");
-            //busca a ultima alocação que o user estava
-            $alocacao = Alocacaouser::where('fk_user','=',$request->id)
-            ->where('status','Ativo')
-            ->get();
-
-            //inativa a ultima alocação do user
-            $alo = Alocacaouser::find($alocacao[0]->id);
-            $alo->status = 'Inativo';
-            $alo->save();
-
-            //cria uma nova alocação user
-            $newAlocacao = new Alocacaouser();
-            $newAlocacao->data = $data;
-            $newAlocacao->justificativa = $request->justificativa;
-            $newAlocacao->status = 'Ativo';
-            $newAlocacao->fk_user = $user->id;
-            $newAlocacao->fk_setor = $request->fk_setor;
-            $newAlocacao->save();
-        }
+       
 
         
         return response()->json($user);
