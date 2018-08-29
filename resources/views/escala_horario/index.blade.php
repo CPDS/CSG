@@ -32,12 +32,14 @@
                             <thead>
                             <tr>
                                 <th>Nº</th>
-                                <th>Servidor</th>
+                                <th>Funcionário</th>
                                 <th>H. de início</th>   
-                                <th>H. pausa</th>
-                                <th>H. pós pausa</th>
-                                <th>H. término</th>
+                                <th>H. Fim</th>
+                                <th>Dia da semana</th>
+                                <th>Setor</th>
+                                @permission('editar-escaola')
                                 <th width="20%">Ações</th>
+                                @endpermission
                             </tr>
                             </thead>
                             

@@ -16,12 +16,12 @@
        <form class="form-horizontal" role="form" id="form" >
                      <div class="form-group">
                         <div class="col-sm-12">
-                            <strong>Servidor</strong>
+                            <strong>Funcionário</strong>
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="Servidor" class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                                <select class="form-control" name="fk_servidor" id="fk_servidor">
-                                    @foreach($servidores as $servidor)
-                                    <option value="{{$servidor->id}}">{{$servidor->nome}}</option>
+                                <select class="form-control" name="fk_user" id="fk_user">
+                                    @foreach($users as $user)
+                                    <option value="{{$user->id}}">{{$user->name}}</option>
                                     @endforeach
                                 </select>
                             </div>       
@@ -30,7 +30,7 @@
 
                      <div class="form-group">
                         <div class="col-sm-12">
-                            <strong>Horas excedidas:</strong>
+                            <strong>Horas extendidas:</strong>
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="Horas excedidas" class="input-group-addon"><i class="fa fa-pencil"></i></span>
                                 <input type="text" maxlength="254" class="form-control" name="horas_excedidas"  id="horas_excedidas">
@@ -40,10 +40,10 @@
                     
                     <div class="form-group">
                         <div class="col-sm-12">
-                            <strong>Dia:</strong>
+                            <strong>Data:</strong>
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="Horário pausa" class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="dia"  id="dia">
+                                <input type="date" maxlength="254" class="form-control" name="dia"  id="dia">
                             </div>       
                         </div>
                     </div>                  

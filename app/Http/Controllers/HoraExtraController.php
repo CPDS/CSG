@@ -11,23 +11,22 @@ use DataTables;
 use DB;
 use Auth;
 use App\User;
-use App\Servidor;
 use App\HoraExtra;
 
 class HoraExtraController extends Controller
 {
     public function index()
     {
-        $servidores = Servidor::where('status','Ativo')->get();
-        return view('hora_extra.index',compact('servidores'));    
+        $users = User::where('status','Ativo')->get();
+        return view('hora_extra.index',compact('users'));    
     } 
 
     public function list()
     {
         
-        $hora_extra = HoraExtra::JOIN('servidors','hora_extras.fk_servidor','=','servidors.id')
+        $hora_extra = HoraExtra::JOIN('users','hora_extras.fk_user','=','users.id')
         ->where('hora_extras.status','Ativo')
-        ->select('hora_extras.id','hora_extras.horas_excedidas','hora_extras.dia','servidors.nome as nome_servidor', 'servidors.id as fk_servidor')
+        ->select('hora_extras.id','hora_extras.horas_excedidas','hora_extras.dia','users.name as nome_funcionario', 'users.id as fk_user')
         ->orderBy('hora_extras.created_at', 'desc')->get();
 
 
@@ -39,7 +38,7 @@ class HoraExtraController extends Controller
     }
 
     private function setBtns(HoraExtra $hora_extras){
-        $dados = "data-id_del='$hora_extras->id' data-id='$hora_extras->id' data-horas_excedidas='$hora_extras->horas_excedidas' data-dia='$hora_extras->dia' data-nome_servidor='$hora_extras->nome_servidor' data-fk_servidor='$hora_extras->fk_servidor' ";
+        $dados = "data-id_del='$hora_extras->id' data-id='$hora_extras->id' data-horas_excedidas='$hora_extras->horas_excedidas' data-dia='$hora_extras->dia' data-nome_funcionario='$hora_extras->nome_funcionario' data-fk_user='$hora_extras->fk_user' ";
 
         $btnVer = "<a class='btn btn-info btn-sm btnVer' data-toggle='tooltip' title='Ver hora_extra' $dados> <i class='fa fa-eye'></i></a> ";
 
@@ -58,12 +57,12 @@ class HoraExtraController extends Controller
         $rules = array(
             'horas_excedidas' => 'required',
             'dia' => 'required',
-            'fk_servidor' => 'required'
+            'fk_user' => 'required'
         );
         $attributeNames = array(
             'horas_excedidas' => 'Horas excedidasd',
             'dia' => 'Dia',
-            'fk_servidor' => 'required'
+            'fk_user' => 'required'
         );
         
         $validator = Validator::make(Input::all(), $rules);
@@ -74,9 +73,8 @@ class HoraExtraController extends Controller
             $hora_extra = new HoraExtra();
             $hora_extra->horas_excedidas = $request->horas_excedidas;
             $hora_extra->dia = $request->dia;
-            $hora_extra->fk_servidor = $request->fk_servidor;
+            $hora_extra->fk_user = $request->fk_user;
             $hora_extra->status = 'Ativo';
-            $hora_extra->fk_user = Auth::User()->id;
             $hora_extra->save();
             
             return response()->json($hora_extra);
@@ -88,7 +86,7 @@ class HoraExtraController extends Controller
         $hora_extra = HoraExtra::find($request->id);
         $hora_extra->horas_excedidas = $request->horas_excedidas;
         $hora_extra->dia = $request->dia;
-        $hora_extra->fk_servidor = $request->fk_servidor;
+        $hora_extra->fk_user = $request->fk_user;
         $hora_extra->save();
 
         return response()->json($hora_extra);

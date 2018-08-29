@@ -32,8 +32,8 @@
                             <thead>
                             <tr>
                                 <th>Nº</th>
-                                <th>Servidor</th>
-                                <th>Horas excedidas</th>   
+                                <th>Funcionário</th>
+                                <th>Horas extendidas</th>   
                                 <th>Dia</th>
                                 <th width="20%">Ações</th>
                             </tr>

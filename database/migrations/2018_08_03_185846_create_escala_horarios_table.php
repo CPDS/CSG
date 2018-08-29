@@ -12,15 +12,16 @@ class CreateEscalaHorariosTable extends Migration
      * @return void
      */
     public function up()
-    {
+    { 
         Schema::create('escala_horarios', function (Blueprint $table) {
             $table->increments('id');
             $table->time('horario_inicio');
-            $table->time('horario_pausa');
-            $table->time('horario_pos_pausa');
             $table->time('horario_termino');
-            $table->integer('fk_servidor')->unsigned();
-            $table->foreign('fk_servidor')->references('id')->on('servidors');
+            $table->string('dia_semana');
+            $table->integer('fk_user')->unsigned();
+            $table->foreign('fk_user')->references('id')->on('users');  
+            $table->integer('fk_setor')->unsigned();
+            $table->foreign('fk_setor')->references('id')->on('setors');
             $table->string('status');       
             $table->timestamps();
         });

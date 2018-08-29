@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHoraExtrasTable extends Migration
+class CreateMaterialEntradasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateHoraExtrasTable extends Migration
      */
     public function up()
     { 
-        Schema::create('hora_extras', function (Blueprint $table) {
+        Schema::create('material_entradas', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('horas_excedidas');
-            $table->date('dia');
+            $table->integer('quantidade');
             $table->integer('fk_user')->unsigned();
             $table->foreign('fk_user')->references('id')->on('users');
-            $table->string('status');  
+            $table->integer('fk_material')->unsigned();
+            $table->foreign('fk_material')->references('id')->on('materials');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateHoraExtrasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hora_extras');
+        Schema::dropIfExists('material_entradas');
     }
 }

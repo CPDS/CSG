@@ -10,7 +10,8 @@ use Response;
 use DataTables;
 use DB;
 use Auth;
-use App\Servidor;
+use App\User;
+use App\Setor;
 use App\EscalaHorario;
 
 
@@ -18,19 +19,19 @@ class EscalaHorarioController extends Controller
 {
     public function index()
     {
-        $servidores = Servidor::where('status','Ativo')->get();
-        return view('escala_horario.index',compact('servidores'));    
+        $users = User::where('status','Ativo')->get();
+        $setors = Setor::where('status','Ativo')->get();
+        return view('escala_horario.index',compact('users','setors'));    
     } 
 
     public function list()
     {
         
-        $escala_horario = EscalaHorario::JOIN('servidors','escala_horarios.fk_servidor','=','servidors.id')
+        $escala_horario = EscalaHorario::JOIN('users','escala_horarios.fk_user','=','users.id')
+        ->JOIN('setors','setors.id','=','escala_horarios.fk_setor')
         ->where('escala_horarios.status','Ativo')
-        ->select('escala_horarios.id','escala_horarios.horario_inicio','escala_horarios.horario_pausa','escala_horarios.horario_pos_pausa','escala_horarios.horario_termino', 'servidors.nome as nome_servidor', 'servidors.id as fk_servidor')
+        ->select('escala_horarios.id','escala_horarios.horario_inicio','escala_horarios.dia_semana','escala_horarios.horario_termino', 'users.name as nome_funcionario', 'users.id as fk_user','setors.nome as nome_setor' , 'escala_horarios.fk_setor')
         ->orderBy('escala_horarios.created_at', 'desc')->get();
-
-        dd($escala_horario);
 
         return DataTables::of($escala_horario)
             ->editColumn('acao', function ($escala_horario){
@@ -40,7 +41,7 @@ class EscalaHorarioController extends Controller
     }
 
     private function setBtns(EscalaHorario $escala_horarios){
-        $dados = "data-id_del='$escala_horarios->id' data-id='$escala_horarios->id' data-horario_inicio='$escala_horarios->horario_inicio' data-horario_pausa='$escala_horarios->horario_pausa' data-horario_pos_pausa='$escala_horarios->horario_pos_pausa' data-horario_termino='$escala_horarios->horario_termino' data-nome_servidor='$escala_horarios->nome_servidor' data-fk_servidor='$escala_horarios->fk_servidor' ";
+        $dados = "data-id_del='$escala_horarios->id' data-id='$escala_horarios->id' data-horario_inicio='$escala_horarios->horario_inicio' data-dia_semana='$escala_horarios->dia_semana' data-horario_termino='$escala_horarios->horario_termino' data-nome_servidor='$escala_horarios->nome_funcionario' data-fk_user='$escala_horarios->fk_user' data-nome_setor='$escala_horarios->nome_setor' data-fk_setor='$escala_horarios->fk_setor' ";
 
         $btnVer = "<a class='btn btn-info btn-sm btnVer' data-toggle='tooltip' title='Ver escala_horario' $dados> <i class='fa fa-eye'></i></a> ";
 
@@ -58,17 +59,17 @@ class EscalaHorarioController extends Controller
     {   
         $rules = array(
             'horario_inicio' => 'required',
-            'horario_pausa' => 'required',
-            'horario_pos_pausa' => 'required',
+            'dia_semana' => 'required',
             'horario_termino' => 'required',
-            'fk_servidor' => 'required'
+            'fk_user' => 'required',
+            'fk_setor' => 'required'
         );
         $attributeNames = array(
             'horario_inicio' => 'Horário início',
-            'horario_pausa' => 'Horário pausa',
-            'horario_pos_pausa' => 'Horário pós pausa',
+            'dia_semana' => 'Horário pós pausa',
             'horario_termino' => 'Horário término',
-            'fk_servidor' => 'required'
+            'fk_user' => 'Funcionário',
+            'fk_setor' => 'Setor'
         );
         
         $validator = Validator::make(Input::all(), $rules);
@@ -78,10 +79,10 @@ class EscalaHorarioController extends Controller
         }else {
             $escala_horario = new EscalaHorario();
             $escala_horario->horario_inicio = $request->horario_inicio;
-            $escala_horario->horario_pausa = $request->horario_pausa;
-            $escala_horario->horario_pos_pausa = $request->horario_pos_pausa;
+            $escala_horario->dia_semana = $request->dia_semana;
             $escala_horario->horario_termino = $request->horario_termino;
-            $escala_horario->fk_servidor = $request->fk_servidor;
+            $escala_horario->fk_user = $request->fk_user;
+            $escala_horario->fk_setor = $request->fk_setor;
             $escala_horario->status = 'Ativo';
             $escala_horario->save();
             
@@ -93,10 +94,9 @@ class EscalaHorarioController extends Controller
     {
         $escala_horario = EscalaHorario::find($request->id);
         $escala_horario->horario_inicio = $request->horario_inicio;
-        $escala_horario->horario_pausa = $request->horario_pausa;
-        $escala_horario->horario_pos_pausa = $request->horario_pos_pausa;
+        $escala_horario->dia_semana = $request->dia_semana;
         $escala_horario->horario_termino = $request->horario_termino;
-        $escala_horario->fk_servidor = $request->fk_servidor;
+        $escala_horario->fk_setor = $request->fk_setor;
         $escala_horario->save();
 
         return response()->json($escala_horario);
