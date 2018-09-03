@@ -33,9 +33,8 @@
                             <thead>
                             <tr>
                                 <th>Nº</th>
-                                <th>Código</th>   
                                 <th>Descrição</th>
-                                <th>Quantidade</th>
+                                <th>Tipo</th>
                                 <th>Usuário</th>
                                 <th width="20%">Ações</th>
                             </tr>

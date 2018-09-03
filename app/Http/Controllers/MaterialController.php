@@ -26,10 +26,9 @@ class MaterialController extends Controller
     {
 
         $material = Material::JOIN('users','users.id','=','materials.fk_user')
-        ->select('users.name as nome_usuario','materials.codigo','materials.descricao','materials.quantidade')
-
+        ->select('users.name as nome_usuario','materials.tipo','materials.descricao', 'materials.id')
         ->orderBy('materials.created_at', 'desc')
-        ->where('status','Ativo')->get();
+        ->where('materials.status','Ativo')->get();
 
         return DataTables::of($material)
             ->editColumn('acao', function ($material){
@@ -39,7 +38,7 @@ class MaterialController extends Controller
     }
 
     private function setBtns(Material $materials){
-        $dados = "data-id_del='$materials->id' data-id='$materials->id' data-codigo='$materials->codigo' data-descricao='$materials->descricao'  data-quantidade='$materials->quantidade' ";
+        $dados = "data-id_del='$materials->id' data-id='$materials->id' data-tipo='$materials->tipo' data-descricao='$materials->descricao' data-nome_usuario='$materials->nome_usuario' ";
 
         $btnVer = "<a class='btn btn-info btn-sm btnVer' data-toggle='tooltip' title='Ver material' $dados> <i class='fa fa-eye'></i></a> ";
 
@@ -49,22 +48,18 @@ class MaterialController extends Controller
 
 
         return $btnVer.$btnEditar.$btnDeletar;
-
-
     }
 
     public function store(Request $request)
     {   
       
         $rules = array(
-            'codigo' => 'required',
             'descricao' => 'required',
-            'quantidade' => 'required'
+            'tipo' => 'required'
         );
         $attributeNames = array(
-            'codigo' => 'Código',
             'descricao' => 'Descrição',
-            'quantidade' => 'Quantidade'
+            'tipo' => 'Quantidade'
         );
         
         $validator = Validator::make(Input::all(), $rules);
@@ -74,9 +69,8 @@ class MaterialController extends Controller
         }else {
 
             $material = new Material();
-            $material->codigo = $request->codigo;
             $material->descricao = $request->descricao;
-            $material->quantidade = $request->quantidade;
+            $material->tipo = $request->tipo;
             $material->fk_user = Auth::User()->id;
             $material->status = 'Ativo';
             $material->save();
@@ -87,10 +81,10 @@ class MaterialController extends Controller
 
     public function update(Request $request)
     {
+
         $material = Material::find($request->id);
-        $material->codigo = $request->codigo;
         $material->descricao = $request->descricao;
-        $material->quantidade = $request->quantidade;
+        $material->tipo = $request->tipo;
         $material->save();
 
         return response()->json($material);

@@ -86,7 +86,6 @@ class HoraExtraController extends Controller
         $hora_extra = HoraExtra::find($request->id);
         $hora_extra->horas_excedidas = $request->horas_excedidas;
         $hora_extra->dia = $request->dia;
-        $hora_extra->fk_user = $request->fk_user;
         $hora_extra->save();
 
         return response()->json($hora_extra);

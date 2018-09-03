@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Material extends Model
 {
-    protected $fillable = ['codigo','descricao','fk_user','quantidade'];
+    protected $fillable = ['tipo','descricao','fk_user','status'];
 }

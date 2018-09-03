@@ -19,9 +19,8 @@ $(document).ready(function($) {
             columns: [
       
             { data: null, name: 'order' },
-            { data: 'codigo', name: 'codigo' },
+            { data: 'tipo', name: 'tipo' },
             { data: 'descricao', name: 'descricao' },
-            { data: 'quantidade', name: 'quantidade' },
             { data: 'nome_usuario', name: 'nome_usuario' },
             { data: 'acao', name: 'acao' },
             ],
@@ -262,8 +261,7 @@ $(document).on('click', '.btnAdicionar', function() {
 
         //habilita os campos desabilitados
         $('#descricao').prop('readonly',false);
-        $('#codigo').prop('readonly',false);
-        $('#quantidade').prop('readonly',false);
+        $('#tipo').prop('readonly',false);
 
         $('.modal-title').text('Novo Cadastro de Material');
         $('.callout').addClass("hidden"); 
@@ -281,9 +279,8 @@ $(document).on('click', '.btnVer', function() {
         $('.modal-footer .btn-action').addClass('hidden');
         
         //desabilita os campos
-        $('#codigo]').prop('readonly',true);
+        $('#tipo').prop('readonly',true);
         $('#descricao').prop('readonly',true);
-        $('#quantidade').prop('readonly',true);
 
         $('.callout').addClass("hidden"); //ocultar a div de aviso
         $('.callout').find("p").text(""); //limpar a div de aviso
@@ -308,8 +305,7 @@ $(document).on('click', '.btnEditar', function() {
 
         //habilita os campos desabilitados
         $('#descricao').prop('readonly',false);      
-        $('#quantidade').prop('readonly',false);
-        $('#codigo').prop('readonly',false);
+        $('#tipo').prop('readonly',false);
 
 
         var btnEditar = $(this);

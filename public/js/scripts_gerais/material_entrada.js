@@ -15,14 +15,13 @@ $(document).ready(function($) {
             processing: true,
             serverSide: true,
             deferRender: true,
-            ajax: './gerenciar-escalas/list',
+            ajax: './gerenciar-entradas-materiais/list',
             columns: [ 
             { data: null, name: 'order' },
-            { data: 'nome_funcionario', name: 'nome_funcionario' },
-            { data: 'horario_inicio', name: 'horario_inicio' },
-            { data: 'horario_termino', name: 'horario_termino' },
-            { data: 'dia_semana', name: 'dia_semana' },
-            { data: 'nome_setor', name: 'nome_setor' },
+            { data: 'descricao', name: 'descricao' },
+            { data: 'tipo', name: 'tipo' },
+            { data: 'quantidade', name: 'quantidade' },
+            { data: 'usuario', name: 'usuario' },
             { data: 'acao', name: 'acao' },
             ],
             createdRow : function( row, data, index ) {
@@ -88,7 +87,7 @@ $(document).ready(function($) {
 
         $.ajax({
             type: 'post',
-            url: "/gerenciar-escalas/store",
+            url: "/gerenciar-entradas-materiais/store",
             data: dados,
             processData: false,
             contentType: false,
@@ -147,7 +146,7 @@ $(document).ready(function($) {
 
         $.ajax({
             type: 'post',
-            url: "/gerenciar-escalas/update",
+            url: "/gerenciar-entradas-materiais/update",
             data: dados,
             processData: false,
             contentType: false,
@@ -203,7 +202,7 @@ $(document).ready(function($) {
 
         $.ajax({
             type: 'post',
-            url: "/gerenciar-escalas/delete",
+            url: "/gerenciar-entradas-materiais/delete",
             data: dados,
             processData: false,
             contentType: false,
@@ -259,15 +258,11 @@ $(document).on('click', '.btnAdicionar', function() {
         $('.modal-footer .btn-action').removeClass('hidden');
 
         //habilita os campos desabilitados
-        $('#horario_inicio').prop('readonly',false);
-        $('#horario_termino').prop('readonly',false);
-        $('#dia_semana').prop('readonly',false);
-        $('#fk_setor').prop('disabled',false);
-        $('#fk_user').prop('disabled',false);
-        $('#dia_semana').prop('disabled',false);
+        $('#quantidade').prop('readonly',false);
+        $('#fk_material').prop('disabled',false);
         
 
-        $('.modal-title').text('Novo Cadastro de escala');
+        $('.modal-title').text('Novo Cadastro de Entrada de material');
         $('.callout').addClass("hidden"); 
         $('.callout').find("p").text(""); 
 
@@ -280,16 +275,12 @@ $(document).on('click', '.btnVer', function() {
 
         $('.modal-footer .btn-action').removeClass('edit');
         $('.modal-footer .btn-action').addClass('hidden');
-        $('.modal-title').text('Ver escala de horário');
+        $('.modal-title').text('Ver entrada de material');
         
         //desabilita os campos
-        $('#horario_inicio').prop('readonly',true);
-        $('#horario_termino').prop('readonly',true);
-        $('#dia_semana').prop('readonly',true);
-        $('#fk_user').prop('disabled',true);
-        $('#dia_semana').prop('disabled',true);
-        $('#fk_setor').prop('disabled',true);
-
+        $('#quantidade').prop('readonly',true);
+        $('#fk_material').prop('disabled',true);
+     
         $('.callout').addClass("hidden"); //ocultar a div de aviso
         $('.callout').find("p").text(""); //limpar a div de aviso
 
@@ -307,17 +298,13 @@ $(document).on('click', '.btnEditar', function() {
         $('.modal-footer .btn-action').addClass('edit');
         $('.modal-footer .btn-action').removeClass('hidden');
 
-        $('.modal-title').text('Editar Escala');
+        $('.modal-title').text('Editar Entrada Material');
         $('.callout').addClass("hidden"); //ocultar a div de aviso
         $('.callout').find("p").text(""); //limpar a div de aviso
 
         //habilita os campos desabilitados
-        $('#horario_inicio').prop('readonly',false);
-        $('#horario_termino').prop('readonly',false);
-        $('#dia_semana').prop('readonly',false);
-        $('#fk_user').prop('disabled',true);
-        $('#fk_setor').prop('disabled',false);
-        $('#dia_semana').prop('disabled',false);
+        $('#quantidade').prop('readonly',false);
+        $('#fk_material').prop('disabled',false);
 
         var btnEditar = $(this);
 
@@ -329,7 +316,7 @@ $(document).on('click', '.btnEditar', function() {
         jQuery('#criar_editar-modal').modal('show'); //Abrir o modal
 });
 $(document).on('click', '.btnDeletar', function() {
-   $('.modal-title').text('Deletar Escala');   
+   $('.modal-title').text('Deletar Entrada Material');   
    $('.modal-footer .btn-action').removeClass('add');
    $('.modal-footer .btn-action').removeClass('edit');
    $('.modal-footer .btn-action').addClass('excluir');

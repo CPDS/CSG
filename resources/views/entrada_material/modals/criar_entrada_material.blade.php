@@ -1,5 +1,5 @@
 <div id="criar_editar-modal" class="modal fade bs-example" role="dialog" data-backdrop="static">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
 
       <div class="modal-header">
@@ -14,29 +14,32 @@
         </div>
 
        <form class="form-horizontal" role="form" id="form" >
-                    
-                    <div class="form-group">
+                     <div class="form-group">
                         <div class="col-sm-12">
-                            <strong>Tipo:</strong>
-                            <div class="input-group">
-                                <span data-toggle="tooltip" title="Descrição" class="input-group-addon"><i class="fa fa-barcode"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="tipo"  id="tipo">
-                            </div>       
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <strong>Descrição:</strong>
+                            <strong>Descrição</strong>
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="Descrição" class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="descricao"  id="descricao">
+                                <select class="form-control" name="fk_material" id="fk_material">
+                                    @foreach($materials as $material)
+                                    <option value="{{$material->id}}">{{$material->descricao}}</option>
+                                    @endforeach
+                                </select>
                             </div>       
                         </div>
                     </div>
+                    
 
-                        <input type="hidden" id="id" name="id">
-                </form>
+                    <div class="form-group">
+                        <div class="col-sm-3">
+                            <strong>Quantidade</strong>
+                            <div class="input-group">
+                                <span data-toggle="tooltip" title="Quantidade" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <input type="text" maxlength="254" class="form-control" name="quantidade" id="quantidade">
+                            </div>       
+                        </div>
+                    </div>
+                    <input type="hidden" id="id" name="id"> 
+                </form>                        
 
       </div> <!-- Fim de ModaL Body-->
 

@@ -20,6 +20,7 @@ class CreateMaterialEntradasTable extends Migration
             $table->foreign('fk_user')->references('id')->on('users');
             $table->integer('fk_material')->unsigned();
             $table->foreign('fk_material')->references('id')->on('materials');
+            $table->string('status');
             $table->timestamps();
         });
     }
