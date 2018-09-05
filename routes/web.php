@@ -40,6 +40,14 @@ Route::group(['prefix' => 'gerenciar-setores', 'where' => ['id' => '[0-9]+'], 'm
         Route::post('/store', ['as' => 'gerenciar-setores.store', 'uses' => 'SetorController@store']);
         Route::post('/update', ['as' => 'gerenciar-setores.update', 'uses' => 'SetorController@update']);
         Route::post('/delete', ['as' => 'gerenciar-setores.destroy', 'uses' => 'SetorController@destroy']);
+}); 
+
+Route::group(['prefix' => 'gerenciar-servicos', 'where' => ['id' => '[0-9]+'], 'middleware' => ['role:Administrador']] ,function() {
+        Route::get('', ['as' => 'gerenciar-servicos.index', 'uses' => 'ServicoController@index']);
+        Route::get('/list',['as' => 'gerenciar-servicos.list', 'uses' => 'ServicoController@list']);
+        Route::post('/store', ['as' => 'gerenciar-servicos.store', 'uses' => 'ServicoController@store']);
+        Route::post('/update', ['as' => 'gerenciar-servicos.update', 'uses' => 'ServicoController@update']);
+        Route::post('/delete', ['as' => 'gerenciar-servicos.destroy', 'uses' => 'ServicoController@destroy']);
 });     
 
 Route::group(['prefix' => 'gerenciar-funcionarios', 'where' => ['id' => '[0-9]+'], 'middleware' => ['role:Administrador']] ,function() {
@@ -66,6 +74,14 @@ Route::group(['prefix' => 'gerenciar-horas', 'where' => ['id' => '[0-9]+'], 'mid
         Route::post('/delete', ['as' => 'gerenciar-horas.destroy', 'uses' => 'HoraExtraController@destroy']);
 }); 
 
+Route::group(['prefix' => 'gerenciar-solicitacao-tipos', 'where' => ['id' => '[0-9]+'], 'middleware' => ['role:Administrador']] ,function() {
+        Route::get('', ['as' => 'gerenciar-solicitacao-tipos.index', 'uses' => 'SolicitacaoTipoController@index']);
+        Route::get('/list',['as' => 'gerenciar-solicitacao-tipos.list', 'uses' => 'SolicitacaoTipoController@list']);
+        Route::post('/store', ['as' => 'gerenciar-solicitacao-tipos.store', 'uses' => 'SolicitacaoTipoController@store']);
+        Route::post('/update', ['as' => 'gerenciar-solicitacao-tipos.update', 'uses' => 'SolicitacaoTipoController@update']);
+        Route::post('/delete', ['as' => 'gerenciar-solicitacao-tipos.destroy', 'uses' => 'SolicitacaoTipoController@destroy']);
+}); 
+
 Route::group(['prefix' => 'gerenciar-entradas-materiais', 'where' => ['id' => '[0-9]+'], 'middleware' => ['role:Administrador']] ,function() {
         Route::get('', ['as' => 'gerenciar-entradas-materiais.index', 'uses' => 'EntradaMaterialController@index']);
         Route::get('/list',['as' => 'gerenciar-entradas-materiais.list', 'uses' => 'EntradaMaterialController@list']);
@@ -75,12 +91,12 @@ Route::group(['prefix' => 'gerenciar-entradas-materiais', 'where' => ['id' => '[
 }); 
 
 
-Route::group(['prefix' => 'gerenciar-solicitacao-servicos', 'where' => ['id' => '[0-9]+'], 'middleware' => ['role:Administrador']] ,function() {
-        Route::get('', ['as' => 'gerenciar-solicitacao-servicos.index', 'uses' => 'SolicitacaoServicoController@index']);
-        Route::get('/list',['as' => 'gerenciar-solicitacao-servicos.list', 'uses' => 'SolicitacaoServicoController@list']);
-        Route::post('/store', ['as' => 'gerenciar-solicitacao-servicos.store', 'uses' => 'SolicitacaoServicoController@store']);
-        Route::post('/update', ['as' => 'gerenciar-solicitacao-servicos.update', 'uses' => 'SolicitacaoServicoController@update']);
-        Route::post('/delete', ['as' => 'gerenciar-solicitacao-servicos.destroy', 'uses' => 'SolicitacaoServicoController@destroy']);
+Route::group(['prefix' => 'gerenciar-solicitacoes', 'where' => ['id' => '[0-9]+'], 'middleware' => ['role:Administrador']] ,function() {
+        Route::get('', ['as' => 'gerenciar-solicitacoes.index', 'uses' => 'SolicitacaoController@index']);
+        Route::get('/list',['as' => 'gerenciar-solicitacoes.list', 'uses' => 'SolicitacaoController@list']);
+        Route::post('/store', ['as' => 'gerenciar-solicitacoes.store', 'uses' => 'SolicitacaoController@store']);
+        Route::post('/update', ['as' => 'gerenciar-solicitacoes.update', 'uses' => 'SolicitacaoController@update']);
+        Route::post('/delete', ['as' => 'gerenciar-solicitacoes.destroy', 'uses' => 'SolicitacaoController@destroy']);
 }); 
 
 });

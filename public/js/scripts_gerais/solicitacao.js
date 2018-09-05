@@ -9,23 +9,17 @@ $(document).ready(function($) {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-//'data_solicitacao','data_realizacao', 
+//'data_solicitacoes','data_realizacao', 
 //'nome_setor','nome_servidor','codigo_material','descricao_material','quantidade'
     
     var tabela = $('#table').DataTable({
             processing: true,
             serverSide: true,
             deferRender: true,
-            ajax: './gerenciar-solicitacao-servicos/list',
+            ajax: './gerenciar-solicitacoes/list',
             columns: [
             { data: null, name: 'order' },
-            { data: 'data_solicitacao', name: 'data_solicitacao' },
-            { data: 'data_realizacao', name: 'data_realizacao' },
-            { data: 'nome_servidor', name: 'nome_servidor' },
-            { data: 'nome_setor', name: 'nome_setor' },
-            { data: 'descricao_material', name: 'descricao_material' },
-            { data: 'codigo_material', name: 'codigo_material' },
-            { data: 'quantidade', name: 'quantidade' },
+            { data: 'descricao', name: 'descricao' },
             { data: 'acao', name: 'acao' },
             ],
             createdRow : function( row, data, index ) {
@@ -91,7 +85,7 @@ $(document).ready(function($) {
 
         $.ajax({
             type: 'post',
-            url: "/gerenciar-solicitacao-servicos/store",
+            url: "/gerenciar-solicitacoes/store",
             data: dados,
             processData: false,
             contentType: false,
@@ -150,7 +144,7 @@ $(document).ready(function($) {
 
         $.ajax({
             type: 'post',
-            url: "/gerenciar-solicitacao-servicos/update",
+            url: "/gerenciar-solicitacoes/update",
             data: dados,
             processData: false,
             contentType: false,
@@ -206,7 +200,7 @@ $(document).ready(function($) {
 
         $.ajax({
             type: 'post',
-            url: "/gerenciar-solicitacao-servicos/delete",
+            url: "/gerenciar-solicitacoes/delete",
             data: dados,
             processData: false,
             contentType: false,

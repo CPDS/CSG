@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSolicitacaoTiposTable extends Migration
+class CreateServicosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateSolicitacaoTiposTable extends Migration
      */
     public function up()
     {
-        Schema::create('solicitacao_tipos', function (Blueprint $table) {
+        Schema::create('servicos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
-            $table->string('descricao');
+            $table->integer('fk_user')->nullable();
+            $table->foreign('fk_user')->references('id')->on('users');
             $table->string('status');
             $table->timestamps();
         });
@@ -29,6 +30,6 @@ class CreateSolicitacaoTiposTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('solicitacao_tipos');
+        Schema::dropIfExists('servicos');
     }
 }
