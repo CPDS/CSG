@@ -9,8 +9,7 @@ $(document).ready(function($) {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-//'data_solicitacoes','data_realizacao', 
-//'nome_setor','nome_servidor','codigo_material','descricao_material','quantidade'
+
     
     var tabela = $('#table').DataTable({
             processing: true,
@@ -19,7 +18,14 @@ $(document).ready(function($) {
             ajax: './gerenciar-solicitacoes/list',
             columns: [
             { data: null, name: 'order' },
-            { data: 'descricao', name: 'descricao' },
+            { data: 'descricao_solicitacao', name: 'descricao_solicitacao' },
+            { data: 'data_solicitacao', name: 'data_solicitacao' },
+            { data: 'local_servico', name: 'local_servico' },
+            { data: 'titulo', name: 'titulo' },
+            { data: 'observacao_solicitado', name: 'observacao_solicitado' },
+            { data: 'observacao_solicitante', name: 'observacao_solicitante' },
+            { data: 'descricao_material', name: 'descricao_material' },
+            { data: 'quantidade', name: 'quantidade' },
             { data: 'acao', name: 'acao' },
             ],
             createdRow : function( row, data, index ) {
@@ -77,18 +83,27 @@ $(document).ready(function($) {
     }).draw();
 
 
-
     $('.modal-footer').on('click', '.add', function() {
+        alert($("#fk_solicitacao_tipo").val());
         var dados = new FormData($("#form")[0]); //pega os dados do form
-
-        console.log(dados);
 
         $.ajax({
             type: 'post',
             url: "/gerenciar-solicitacoes/store",
-            data: dados,
-            processData: false,
-            contentType: false,
+             data: {
+                'data_solicitacao': $("#data_solicitacao").val(),
+                'local_servico': $("#local_servico").val(),
+                'titulo': $("#titulo").val(),
+                'descricao': $("#descricao").val(),
+                'observacao_solicitado': $("#observacao_solicitado").val(),
+                'observacao_solicitante': $("#observacao_solicitante").val(),
+                'fk_servico': $("#fk_servico").val(),
+                'fk_user': $("#fk_user").val(),
+                'fk_solicitacao_tipo': $("#fk_solicitacao_tipo").val(),
+                'materiais': materiais
+            },
+            /*processData: false,
+            contentType: false,*/
             beforeSend: function(){
                 jQuery('.add').button('loading');
             },
@@ -252,10 +267,10 @@ $(document).ready(function($) {
   
  var i = 0;
  var materiais = new Array();
-  //Adicionar Equipamento
+  //Adicionar material
   $(document).on('click', '.btnAdcMaterial', function() {
     //verificar se a opção selecionada possiu valor
-    //verificar se a opção selecionada já se encontra no array equipamentos e emitir alerta quando já estiver
+    //verificar se a opção selecionada já se encontra no array materiais e emitir alerta quando já estiver
     
     var cols = '';
     cols = '';
@@ -265,8 +280,8 @@ $(document).ready(function($) {
     var quantidade = $('#quantidade').val();
 
     var novaLinha = '<tr class="'+'linha'+i+'">';
-    //Adc equipamento ao array
-    materiais.push({'fk_material': fk_material});
+    //Adc material ao array
+    materiais.push({'fk_material': fk_material, 'quantidade': quantidade});
 
     
     /* Crian a linha p/ tabela*/
@@ -287,7 +302,7 @@ $(document).ready(function($) {
     console.log(cols);
     });
 
-//Remover Equipamento
+//Remover Material
 $(document).on('click', '.btnRemoverMaterial', function(){
 materiais.splice($(this).data('indexof'),1); //remove do array de acordo com o indice
 $('.linha'+ $(this).data('linha')).remove(); //Remove a linha da tela 

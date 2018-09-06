@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateServicoMaterialsTable extends Migration
+class CreateMaterialSaidasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateServicoMaterialsTable extends Migration
      */
     public function up()
     {
-        Schema::create('servico_materials', function (Blueprint $table) {
+        Schema::create('material_saidas', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('quantidade');
             $table->integer('fk_material')->nullable();
             $table->foreign('fk_material')->references('id')->on('materials');
-            $table->integer('fk_solicitacao_servico')->unsigned();
-            $table->foreign('fk_solicitacao_servico')->references('id')->on('solicitacao_servicos');
+            $table->integer('fk_solicitacao')->unsigned();
+            $table->foreign('fk_solicitacao')->references('id')->on('solicitacaos');
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ class CreateServicoMaterialsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('servico_materials');
+        Schema::dropIfExists('material_saidas');
     }
 }

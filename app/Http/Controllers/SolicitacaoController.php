@@ -13,6 +13,8 @@ use App\Servico;
 use App\Material;
 use App\User;
 use App\Solicitacao;
+use App\MaterialSaida;
+use App\ServicoSaida;
 use App\SolicitacaoTipo;
 
 class SolicitacaoController extends Controller
@@ -32,33 +34,38 @@ class SolicitacaoController extends Controller
 
         return view('solicitacao.index',compact('users','solicitacao_tipos','servicos','materiais'));    
     } 
-
+ 
     public function list()
-    {
-		//'data_solicitacao','data_realizacao', 'nome_setor','nome_servidor','codigo_material','descricao_material','quantidade'
-        $solicitacao = Solicitacao::orderBy('created_at', 'desc')
-        ->where('status','Ativo')->get();
-        /*
-        $solicitacao = Solicitacao::JOIN('setors','solicitacaos.fk_setor','=','setors.id')
-        ->JOIN('servidors','solicitacaos.fk_servidor','=','servidors.id')
-        ->JOIN('servico_materials','servico_materials.fk_solicitacao','=','solicitacaos.id')
-        ->JOIN('materials','servico_materials.fk_material','=','materials.id')
+    {   
+        $solicitacaos = Solicitacao::JOIN('users','users.id','=','solicitacaos.fk_user_solicitante')
+        ->LEFTJOIN('solicitacao_tipos','solicitacaos.id','=','solicitacaos.fk_solicitacao_tipo')
+        ->LEFTJOIN('material_saidas','material_saidas.fk_solicitacao','=','solicitacaos.id')
+        ->LEFTJOIN('servico_saidas','servico_saidas.fk_solicitacao','=','solicitacaos.id')
+        ->LEFTJOIN('servicos','servicos.id','=','servico_saidas.fk_servico')
+        ->LEFTJOIN('materials','materials.id','=','material_saidas.fk_material')
         ->where('solicitacaos.status','Ativo')
-        ->select('solicitacaos.id','solicitacaos.data_solicitacao','solicitacaos.data_realizacao','solicitacaos.fk_servidor','solicitacaos.fk_setor','setors.nome as nome_setor','servidors.nome as nome_servidor',
-        	'servico_materials.quantidade','materials.descricao as descricao_material','materials.codigo as codigo_material'
-    )
-
+        ->select('solicitacaos.id','solicitacaos.data_solicitacao','solicitacaos.local_servico','solicitacaos.titulo','solicitacaos.descricao as descricao_solicitacao','solicitacaos.observacao_solicitado','solicitacaos.observacao_solicitante',
+        	'material_saidas.quantidade','materials.descricao as descricao_material')
         ->orderBy('solicitacaos.created_at', 'desc')->get();
-*/
-        return DataTables::of($solicitacao)
-            ->editColumn('acao', function ($solicitacao){
-                return $this->setBtns($solicitacao);
+
+        return DataTables::of($solicitacaos)
+            ->editColumn('acao', function ($solicitacaos){
+                return $this->setBtns($solicitacaos);
             })->escapeColumns([0])
             ->make(true);
     }
-
+//descricao_solicitacao, data_solicitacao, local_servico, titulo, observacao_solicitado, observacao_solicitante, quantidade, descricao_material
     private function setBtns(Solicitacao $solicitacaos){
-        $dados = "data-id_del='$solicitacaos->id' data-id='$solicitacaos->id' data-descricao='$solicitacaos->descricao' ";
+        $dados = "data-id_del='$solicitacaos->id' 
+        data-id='$solicitacaos->id' 
+        data-descricao_solicitacao='$solicitacaos->descricao_solicitacao'  
+        data-data_solicitacao='$solicitacaos->data_solicitacao 
+        data-local_servico='$solicitacaos->local_servico 
+        data-titulo='$solicitacaos->titulo 
+        data-observacao_solicitado='$solicitacaos->observacao_solicitado 
+        data-observacao_solicitante='$solicitacaos->observacao_solicitante 
+        data-quantidade='$solicitacaos->quantidade  
+        data-descricao_material='$solicitacaos->descricao_material";
 
         $btnVer = "<a class='btn btn-info btn-sm btnVer' data-toggle='tooltip' title='Ver solicitacao' $dados> <i class='fa fa-eye'></i></a> ";
 
@@ -75,14 +82,10 @@ class SolicitacaoController extends Controller
     public function store(Request $request)
     {   
         $rules = array(
-            'data_solicitacao' => 'required',
-            'fk_servidor' => 'required',
-            'fk_setor' => 'required'
+            'data_solicitacao' => 'required'
         );
         $attributeNames = array(
-            'data_solicitacao' => 'Data da solicitação',
-            'fk_servidor' => 'Servidor',
-            'fk_setor' => 'Setor'
+            'data_solicitacao' => 'Data da solicitação'
         );
         
         $validator = Validator::make(Input::all(), $rules);
@@ -92,19 +95,34 @@ class SolicitacaoController extends Controller
         }else { 
             $data = date("Y-m-d");
 
+            $dados = explode(',',$request->fk_user);
+
             $solicitacao = new Solicitacao();
+            $solicitacao->local_servico = $request->local_servico;
+            $solicitacao->titulo = $request->titulo;
+            $solicitacao->descricao = $request->descricao;
             $solicitacao->data_solicitacao = $request->data_solicitacao;
-            $solicitacao->data_realizacao = $request->data_realizacao;
-            $solicitacao->fk_servidor = $request->fk_servidor;
-            $solicitacao->fk_setor = $request->fk_setor;
+            $solicitacao->observacao_solicitado = $request->observacao_solicitado;
+            $solicitacao->observacao_solicitante = $request->observacao_solicitante;
+            $solicitacao->fk_user_solicitante = Auth::User()->id;
+            $solicitacao->fk_user_solicitado = $dados[0];
+            $solicitacao->fk_solicitacao_tipo = $request->fk_solicitacao_tipo;
             $solicitacao->status = 'Ativo';
             $solicitacao->save();
 
-            $servico_material = new ServicoMaterial();
-            $servico_material->quantidade = $request->quantidade;
-            $servico_material->fk_material = $request->fk_material;
-            $servico_material->fk_solicitacao = $solicitacao->id;
-            $servico_material->save();
+            foreach ($request->materiais as $value) {   
+                $material_saida = new MaterialSaida();
+                $material_saida->quantidade = $value['quantidade'];
+                $material_saida->fk_material = $value['fk_material'];
+                $material_saida->fk_solicitacao = $solicitacao->id;
+                $material_saida->save();
+            }
+            $servico_saida = new ServicoSaida();
+            $servico_saida->fk_servico = $request->fk_servico;
+            $servico_saida->fk_solicitacao = $solicitacao->id;
+            $servico_saida->fk_escala = $dados[1];
+            $servico_saida->status = 'Solicitado';
+            $servico_saida->save();
             
             return response()->json($solicitacao);
         }

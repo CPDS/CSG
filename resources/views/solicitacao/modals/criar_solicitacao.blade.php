@@ -64,6 +64,20 @@
 
                     <div class="form-group">
                         <div class="col-sm-12">
+                            <strong>Tipo de Solicitação</strong>
+                            <div class="input-group">
+                                <span data-toggle="tooltip" title="Setor" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <select class="form-control" name="fk_solicitacao_tipo" id="fk_solicitacao_tipo">
+                                    @foreach($solicitacao_tipos as $solicitacao_tipo)
+                                    <option value="{{$solicitacao_tipo->id}}">{{$solicitacao_tipo->nome}}</option>
+                                    @endforeach
+                                </select>
+                            </div>       
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-12">
                             <strong>Observação do Solicitante:</strong>
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="Local do serviço" class="input-group-addon"><i class="fa fa-pencil"></i></span>
@@ -90,6 +104,16 @@
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="Local do serviço" class="input-group-addon"><i class="fa fa-pencil"></i></span>
                                 <input type="text" maxlength="254" class="form-control" name="local_servico"  id="local_servico">
+                            </div>       
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <strong>Descrição:</strong>
+                            <div class="input-group">
+                                <span data-toggle="tooltip" title="Descrição" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <input type="text" maxlength="254" class="form-control" name="descricao"  id="descricao">
                             </div>       
                         </div>
                     </div>

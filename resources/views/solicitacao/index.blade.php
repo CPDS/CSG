@@ -32,12 +32,13 @@
                             <thead>
                             <tr>
                                 <th>Nº</th>
-                                <th>Data solicitação</th>
-                                <th>Data realização</th>   
-                                <th>Nome setor</th>
-                                <th>Nome servidor</th>
-                                <th>Código material</th>
-                                <th>Material</th>
+                                <th>Descrição solicitação</th>
+                                <th>Data solicitação</th>   
+                                <th>Local serviço</th>
+                                <th>Título</th>
+                                <th>Obs solicitado</th>
+                                <th>Obs solicitante</th>
+                                <th>Descrição material</th>
                                 <th>Quantidade</th>
                                 <th width="20%">Ações</th>
                             </tr>

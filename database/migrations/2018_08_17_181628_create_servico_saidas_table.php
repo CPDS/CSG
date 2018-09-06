@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLicitacaosTable extends Migration
+class CreateServicoSaidasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateLicitacaosTable extends Migration
      */
     public function up()
     {
-        Schema::create('licitacaos', function (Blueprint $table) {
+        Schema::create('servico_saidas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('numero');
-            $table->string('termo_aditivo');
-            $table->string('modalidade');
+            $table->integer('fk_servico');
+            $table->foreign('fk_servico')->references('id')->on('servicos');
+            $table->integer('fk_solicitacao');
+            $table->foreign('fk_solicitacao')->references('id')->on('solicitacaos');
+            $table->integer('fk_escala');
             $table->string('status');
             $table->timestamps();
         });
@@ -30,6 +32,6 @@ class CreateLicitacaosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('licitacaos');
+        Schema::dropIfExists('servico_saidas');
     }
 }
