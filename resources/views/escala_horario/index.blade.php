@@ -19,9 +19,7 @@
 
 				<div class="box box-success">
                     <div class="box-header with-border">
-                        @can('editar-escala')<h3 class="box-title">Escala de Horários</h3>
-                          @endcan
-                       
+                        <h3 class="box-title">Escala de Horários</h3>                       
                        <div class="pull-right">      
                             <a class="btnAdicionar btn btn-primary btn-sm" title="Adicionar Material" data-toggle="tooltip"><span class="glyphicon glyphicon-plus"></span>Cadastrar Escala</a>
                         </div>

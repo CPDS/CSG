@@ -131,7 +131,7 @@ $(document).ready(function($) {
                         iziToast.destroy();
                         iziToast.success({
                             title: 'OK',
-                            message: 'Escala adicionado com Sucesso!',
+                            message: 'solicitação adicionado com Sucesso!',
                         });
                     });
 
@@ -190,7 +190,7 @@ $(document).ready(function($) {
                         iziToast.destroy();
                         iziToast.success({
                             title: 'OK',
-                            message: 'Escala alterado com Sucesso!',
+                            message: 'solicitação alterado com Sucesso!',
                         });
                     });
                 }
@@ -246,7 +246,7 @@ $(document).ready(function($) {
                         iziToast.destroy();
                         iziToast.success({
                             title: 'OK',
-                            message: 'Escala deletado com Sucesso!',
+                            message: 'solicitação deletado com Sucesso!',
                         });
                     });
                 }
@@ -323,7 +323,7 @@ $(document).on('click', '.btnAdicionar', function() {
         $('#fk_servidor').prop('disabled',false);
         
 
-        $('.modal-title').text('Novo Cadastro de escala');
+        $('.modal-title').text('Novo Cadastro de solicitação');
         $('.callout').addClass("hidden"); 
         $('.callout').find("p").text(""); 
 
@@ -336,7 +336,7 @@ $(document).on('click', '.btnVer', function() {
 
         $('.modal-footer .btn-action').removeClass('edit');
         $('.modal-footer .btn-action').addClass('hidden');
-        $('.modal-title').text('Ver escala de horário');
+        $('.modal-title').text('Ver solicitação de horário');
         
         //desabilita os campos
         $('#horario_inicio').prop('readonly',true);

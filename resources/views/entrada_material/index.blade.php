@@ -22,7 +22,7 @@
                         <h3 class="box-title">Entrada de Materiais</h3>
                        
                        <div class="pull-right">      
-                            <a class="btnAdicionar btn btn-primary btn-sm" title="Adicionar Material" data-toggle="tooltip"><span class="glyphicon glyphicon-plus"></span>Cadastrar horas extras</a>
+                            <a class="btnAdicionar btn btn-primary btn-sm" title="Adicionar Material" data-toggle="tooltip"><span class="glyphicon glyphicon-plus"></span>Cadastrar Entrada de Materiais</a>
                         </div>
                     </div>
                     <!-- /.box-header -->

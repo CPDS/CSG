@@ -15,7 +15,7 @@
 
        <form class="form-horizontal" role="form" id="form" >
                      <div class="form-group">
-                        <div class="col-sm-12">
+                        <div class="col-sm-9">
                             <strong>Descrição</strong>
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="Descrição" class="input-group-addon"><i class="fa fa-pencil"></i></span>
@@ -26,10 +26,7 @@
                                 </select>
                             </div>       
                         </div>
-                    </div>
-                    
-
-                    <div class="form-group">
+        
                         <div class="col-sm-3">
                             <strong>Quantidade</strong>
                             <div class="input-group">

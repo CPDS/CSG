@@ -1,5 +1,5 @@
 <div id="criar_editar-modal" class="modal fade bs-example" role="dialog" data-backdrop="static">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
 
       <div class="modal-header">
@@ -15,17 +15,16 @@
 
        <form class="form-horizontal" role="form" id="form" >
                      <div class="form-group">
-                        <div class="col-sm-12">
+                        <div class="col-sm-8">
                             <strong>Nome:</strong>
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="Nome" class="input-group-addon"><i class="fa fa-pencil"></i></span>
                                 <input type="text" maxlength="254" class="form-control" name="nome_user"  id="nome_user">
                             </div>       
                         </div>
-                    </div>
+                   
                     
-                    <div class="form-group">
-                        <div class="col-sm-12">
+                        <div class="col-sm-4">
                             <strong>RG:</strong>
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="RG" class="input-group-addon"><i class="fa fa-pencil"></i></span>
@@ -35,17 +34,15 @@
                     </div>
 
                     <div class="form-group">
-                        <div class="col-sm-12">
+                        <div class="col-sm-8">
                             <strong>Endereço:</strong>
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="Endereço" class="input-group-addon"><i class="fa fa-pencil"></i></span>
                                 <input type="text" maxlength="254" class="form-control" name="endereco"  id="endereco">
                             </div>       
                         </div>
-                    </div>
-
-                     <div class="form-group">
-                        <div class="col-sm-12">
+           
+                        <div class="col-sm-4">
                             <strong>Telefone:</strong>
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="Telefone" class="input-group-addon"><i class="fa fa-pencil"></i></span>
@@ -55,18 +52,16 @@
                     </div>
 
                     <div class="form-group">
-                        <div class="col-sm-12">
+                        <div class="col-sm-8">
                             <strong>E-mail:</strong>
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="E-mail" class="input-group-addon"><i class="fa fa-pencil"></i></span>
                                 <input type="email" maxlength="254" class="form-control" name="email"  id="email">
                             </div>       
                         </div>
-                    </div>
-
-                    <div class="form-group" id="senha">
-                        <div class="col-sm-12">
-                            <strong>Password:</strong>
+                   
+                        <div class="col-sm-4">
+                            <strong>Senha:</strong>
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="Password" class="input-group-addon"><i class="fa fa-pencil"></i></span>
                                 <input type="password" maxlength="254" class="form-control" name="password"  id="password">

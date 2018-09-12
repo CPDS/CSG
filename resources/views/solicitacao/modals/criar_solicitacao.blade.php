@@ -18,7 +18,7 @@
                         <div class="col-sm-8">
                             <strong>Título:</strong>
                             <div class="input-group">
-                                <span data-toggle="tooltip" title="Local do serviço" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <span data-toggle="tooltip" title="Local do serviço" class="input-group-addon"><i class="fa fa-bookmark-o"></i></span>
                                 <input type="text" maxlength="254" class="form-control" name="titulo"  id="titulo">
                             </div>       
                         </div>
@@ -27,7 +27,7 @@
                         <div class="col-sm-4">
                             <strong>Data solicitação:</strong>
                             <div class="input-group">
-                                <span data-toggle="tooltip" title="Data solicitação" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <span data-toggle="tooltip" title="Data solicitação" class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                 <input type="date" maxlength="254" class="form-control" name="data_solicitacao"  id="data_solicitacao">
                             </div>       
                         </div>
@@ -36,9 +36,9 @@
 
                     <div class="form-group">
                         <div class="col-sm-12">
-                            <strong>Funcionário</strong>
+                            <strong>Usuários</strong>
                             <div class="input-group">
-                                <span data-toggle="tooltip" title="Funcionário" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <span data-toggle="tooltip" title="Usuários" class="input-group-addon"><i class="fa fa-user"></i></span>
                                 <select class="form-control" name="fk_user" id="fk_user">
                                     @foreach($users as $user)
                                     <option value="{{$user->id}},{{$user->fk_escala}}">{{$user->name}}</option>
@@ -52,7 +52,7 @@
                         <div class="col-sm-12">
                             <strong>Serviço</strong>
                             <div class="input-group">
-                                <span data-toggle="tooltip" title="Setor" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <span data-toggle="tooltip" title="Setor" class="input-group-addon"><i class="fa fa-wrench"></i></span>
                                 <select class="form-control" name="fk_servico" id="fk_servico">
                                     @foreach($servicos as $servico)
                                     <option value="{{$servico->id}}">{{$servico->nome}}</option>
@@ -66,7 +66,7 @@
                         <div class="col-sm-12">
                             <strong>Tipo de Solicitação</strong>
                             <div class="input-group">
-                                <span data-toggle="tooltip" title="Setor" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <span data-toggle="tooltip" title="Setor" class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
                                 <select class="form-control" name="fk_solicitacao_tipo" id="fk_solicitacao_tipo">
                                     @foreach($solicitacao_tipos as $solicitacao_tipo)
                                     <option value="{{$solicitacao_tipo->id}}">{{$solicitacao_tipo->nome}}</option>
@@ -80,7 +80,7 @@
                         <div class="col-sm-12">
                             <strong>Observação do Solicitante:</strong>
                             <div class="input-group">
-                                <span data-toggle="tooltip" title="Local do serviço" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <span data-toggle="tooltip" title="Local do serviço" class="input-group-addon"><i class="fa fa-commenting"></i></span>
                                 <input type="text" maxlength="254" class="form-control" name="observacao_solicitante"  id="observacao_solicitante">
                             </div>       
                         </div>
@@ -90,7 +90,7 @@
                         <div class="col-sm-12">
                             <strong>Observação do Solicitado:</strong>
                             <div class="input-group">
-                                <span data-toggle="tooltip" title="Local do serviço" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <span data-toggle="tooltip" title="Local do serviço" class="input-group-addon"><i class="fa fa-commenting"></i></span>
                                 <input type="text" maxlength="254" class="form-control" name="observacao_solicitado"  id="observacao_solicitado">
                             </div>       
                         </div>
@@ -102,7 +102,7 @@
                         <div class="col-sm-12">
                             <strong>Local do serviço:</strong>
                             <div class="input-group">
-                                <span data-toggle="tooltip" title="Local do serviço" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <span data-toggle="tooltip" title="Local do serviço" class="input-group-addon"><i class="fa fa-university"></i></span>
                                 <input type="text" maxlength="254" class="form-control" name="local_servico"  id="local_servico">
                             </div>       
                         </div>
@@ -122,7 +122,7 @@
                         <div class="col-sm-8">
                             <strong>Material</strong>
                             <div class="input-group">
-                                <span data-toggle="tooltip" title="Material" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <span data-toggle="tooltip" title="Material" class="input-group-addon"><i class="fa fa-cube"></i></span>
                                 <select class="form-control" name="fk_material" id="fk_material">
                                     @foreach($materiais as $material)
                                     <option value="{{$material->id}}">{{$material->descricao}}</option>
@@ -134,7 +134,7 @@
                         <div class="col-sm-3">
                             <strong>Quantidade</strong>
                             <div class="input-group">
-                                <span data-toggle="tooltip" title="Horário pausa" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <span data-toggle="tooltip" title="Horário pausa" class="input-group-addon"><i class="fa fa-bars"></i></span>
                                 <input type="text" maxlength="254" class="form-control" name="quantidade" id="quantidade">
                             </div>       
                         </div>

@@ -119,7 +119,7 @@ $(document).ready(function($) {
                         iziToast.destroy();
                         iziToast.success({
                             title: 'OK',
-                            message: 'Servidor adicionado com Sucesso!',
+                            message: 'Usuário adicionado com Sucesso!',
                         });
                     });
 
@@ -175,7 +175,7 @@ $(document).ready(function($) {
                         iziToast.destroy();
                         iziToast.success({
                             title: 'OK',
-                            message: 'Servidor alterado com Sucesso!',
+                            message: 'Usuário alterado com Sucesso!',
                         });
                     });
 
@@ -232,7 +232,7 @@ $(document).ready(function($) {
                         iziToast.destroy();
                         iziToast.success({
                             title: 'OK',
-                            message: 'Servidor deletado com Sucesso!',
+                            message: 'Usuário deletado com Sucesso!',
                         });
                     });
 
@@ -268,7 +268,7 @@ $(document).on('click', '.btnAdicionar', function() {
         $('#nome_role').prop('readonly',false);
         $('#fk_setor').prop('disabled',false);
 
-        $('.modal-title').text('Novo Cadastro de Servidor');
+        $('.modal-title').text('Novo Cadastro de Usuário');
         $('.callout').addClass("hidden"); 
         $('.callout').find("p").text(""); 
 
@@ -280,7 +280,7 @@ $(document).on('click', '.btnAdicionar', function() {
 $(document).on('click', '.btnVer', function() {
         $('#justifica').addClass('hidden');
         $('.modal-footer .btn-action').removeClass('edit');
-        $('.modal-title').text('Ver Servidor');
+        $('.modal-title').text('Ver Usuário');
         $('.modal-footer .btn-action').addClass('hidden');
         
         //desabilita os campos
@@ -318,7 +318,7 @@ $(document).on('click', '.btnEditar', function() {
         $('.modal-footer .btn-action').addClass('edit');
         $('.modal-footer .btn-action').removeClass('hidden');
 
-        $('.modal-title').text('Editar Servidor');
+        $('.modal-title').text('Editar Usuário');
         $('.callout').addClass("hidden"); //ocultar a div de aviso
         $('.callout').find("p").text(""); //limpar a div de aviso
 
@@ -343,7 +343,7 @@ $(document).on('click', '.btnEditar', function() {
 
 
 $(document).on('click', '.btnDeletar', function() {
-   $('.modal-title').text('Deletar Servidor');   
+   $('.modal-title').text('Deletar Usuário');   
    $('.modal-footer .btn-action').addClass('excluir');
    $('.modal-footer .btn-action').removeClass('add');
    $('.modal-footer .btn-action').removeClass('edit');

@@ -9,7 +9,7 @@
 <script src="{{ asset('js/iziToast.min.js') }}"></script>
 
 @section('htmlheader_title')
-	Gerenciar Licitação
+	Gerenciar Usuários
 @endsection
 
 @section('main-content')
@@ -19,10 +19,10 @@
 
 				<div class="box box-success">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Servidores</h3>
+                        <h3 class="box-title">Usuários</h3>
                        
                        <div class="pull-right">      
-                            <a class="btnAdicionar btn btn-primary btn-sm" title="Adicionar Material" data-toggle="tooltip"><span class="glyphicon glyphicon-plus"></span>Cadastrar Servidor</a>
+                            <a class="btnAdicionar btn btn-primary btn-sm" title="Adicionar Material" data-toggle="tooltip"><span class="glyphicon glyphicon-plus"></span> Cadastrar Usuário</a>
                         </div>
                     </div>
                     <!-- /.box-header -->
