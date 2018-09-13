@@ -2,6 +2,8 @@
 <script src ="{{ asset('/plugins/jQuery/jQuery-3.1.0.min.js') }}" type = "text/javascript" ></script>
 <script src ="{{ asset('/js/scripts_gerais/funcionario.js') }}" type = "text/javascript" ></script>
 <script src="{{ asset('plugins/datatables/jquery.dataTables.js') }}" type = "text/javascript"></script>
+<script src="{{ asset('plugins/mask-input-js/maskinput.js') }}" type = "text/javascript"></script>
+
 
 <script src="{{ asset('plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
 <link rel="stylesheet" href="{{ asset('plugins/datatables/dataTables.bootstrap.css') }}">
@@ -13,20 +15,24 @@
 @endsection
 
 @section('main-content')
-	<div class="container-fluid spark-screen">
-		<div class="row">
-			<div class="col-md-12">
+	   <div class="row">
+            <div class="col-md-12">
+                <div class="pull-left">
+                    <h2><i class="fa fa-clone"></i> Gerenciamento de Usuários</h2>
+                </div>
+                <div class="pull-right">
+                     <a class="btnAdicionar btn btn-primary btn-sm" title="Adicionar Material" data-toggle="tooltip"><span class="glyphicon glyphicon-plus"></span> Cadastrar Usuário</a>           
+                </div>
+            </div>
+        </div>
+<br>
 
-				<div class="box box-success">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Usuários</h3>
-                       
-                       <div class="pull-right">      
-                            <a class="btnAdicionar btn btn-primary btn-sm" title="Adicionar Material" data-toggle="tooltip"><span class="glyphicon glyphicon-plus"></span> Cadastrar Usuário</a>
-                        </div>
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
+                <div class="box box-solid box-primary">
+                    <div class="box-header">
+                      <h3 class="box-title">
+                        <strong>Usuário</strong> 
+                      </h3>
+                </div><!-- /.box-header -->
                     
                         <table class="table" id="table">
                             <thead>
@@ -45,11 +51,6 @@
                         </table>
                     </div>
                     <!-- /.box-body -->
-                </div>
-
-			</div>
-		</div>
-	</div>
 
 @include('funcionario.modals.criar_funcionario')
 @include('funcionario.modals.deletar_funcionario')

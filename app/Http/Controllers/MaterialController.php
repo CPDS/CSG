@@ -12,6 +12,8 @@ use DB;
 use Auth;
 use App\User;
 use App\Material;
+use App\MaterialEntrada;
+use App\MaterialSaida;
 
 
 class MaterialController extends Controller
@@ -25,16 +27,27 @@ class MaterialController extends Controller
     public function list()
     {
 
-        $material = Material::JOIN('users','users.id','=','materials.fk_user')
-        ->select('users.name as nome_usuario','materials.tipo','materials.descricao', 'materials.id')
-        ->orderBy('materials.created_at', 'desc')
-        ->where('materials.status','Ativo')->get();
+       $material =  Material::where('status','Ativo')->get();
 
         return DataTables::of($material)
             ->editColumn('acao', function ($material){
                 return $this->setBtns($material);
+            })->editColumn('quantidade', function ($material){
+                return $this->qtdEstoque($material);
             })->escapeColumns([0])
             ->make(true);
+    }
+   
+    private function qtdEstoque(Material $material){
+        $entradas = MaterialEntrada::where('fk_material', $material->id)
+                                    ->select('quantidade')
+                                    ->sum('quantidade');
+        $saidas = MaterialSaida::where('fk_material', $material->id)
+                                ->select('quantidade')
+                                ->sum('quantidade');
+        $qtd = $entradas-$saidas;
+
+        return $qtd;
     }
 
     private function setBtns(Material $materials){

@@ -18,7 +18,7 @@
                         <div class="col-sm-12">
                             <strong>Funcionário</strong>
                             <div class="input-group">
-                                <span data-toggle="tooltip" title="Funcionário" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <span data-toggle="tooltip" title="Funcionário" class="input-group-addon"><i class="fa fa-user"></i></span>
                                 <select class="form-control" name="fk_user" id="fk_user">
                                     @foreach($users as $user)
                                     <option value="{{$user->id}}">{{$user->name}}</option>
@@ -29,21 +29,19 @@
                     </div>
 
                      <div class="form-group">
-                        <div class="col-sm-12">
+                        <div class="col-sm-6">
                             <strong>Horário início:</strong>
                             <div class="input-group">
-                                <span data-toggle="tooltip" title="Horário início" class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="horario_inicio"  id="horario_inicio">
+                                <span data-toggle="tooltip" title="Horário início" class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                <input type="time" maxlength="254" class="form-control" name="horario_inicio"  id="horario_inicio">
                             </div>       
                         </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <div class="col-sm-12">
+                   
+                        <div class="col-sm-6">
                             <strong>Horário fim:</strong>
                             <div class="input-group">
-                                <span data-toggle="tooltip" title="Horário fim" class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="horario_termino"  id="horario_termino">
+                                <span data-toggle="tooltip" title="Horário fim" class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                <input type="time" maxlength="254" class="form-control" name="horario_termino"  id="horario_termino">
                             </div>       
                         </div>
                     </div>
@@ -52,7 +50,7 @@
                         <div class="col-sm-12">
                             <strong>Dia da semana:</strong>
                             <div class="input-group">
-                                <span data-toggle="tooltip" title="Horário pausa" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <span data-toggle="tooltip" title="Horário pausa" class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                 <select class="form-control" name="dia_semana" id="dia_semana">
                                     <option>Segunda-Feira</option>
                                     <option>Terça-Feira</option>
@@ -69,7 +67,7 @@
                         <div class="col-sm-12">
                             <strong>Setor</strong>
                             <div class="input-group">
-                                <span data-toggle="tooltip" title="Setor" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <span data-toggle="tooltip" title="Setor" class="input-group-addon"><i class="fa fa-university"></i></span>
                                 <select class="form-control" name="fk_setor" id="fk_setor">
                                     @foreach($setors as $setor)
                                     <option value="{{$setor->id}}">{{$setor->nome}}</option>

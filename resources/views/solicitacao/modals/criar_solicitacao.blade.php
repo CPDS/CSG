@@ -143,8 +143,6 @@
                             
                                 <a class="btnAdcMaterial btn btn-sm btn-primary" style="margin-top: 22px; padding: 11px"><i class="glyphicon glyphicon-plus"></i></a>
                         </div>
-                                 
-                    
                     </div>
 
                             <div class="col-md-12">

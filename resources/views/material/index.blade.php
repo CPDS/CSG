@@ -35,7 +35,7 @@
                                 <th>Nº</th>
                                 <th>Descrição</th>
                                 <th>Tipo</th>
-                                <th>Usuário</th>
+                                <th>Quantidade disponível</th>
                                 <th width="20%">Ações</th>
                             </tr>
                             </thead>

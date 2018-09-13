@@ -262,7 +262,7 @@ $(document).on('click', '.btnAdicionar', function() {
         $('#fk_material').prop('disabled',false);
         
 
-        $('.modal-title').text('Novo Cadastro de Entrada de material');
+        $('.modal-title').text('Novo Cadastro de Entrada de Material');
         $('.callout').addClass("hidden"); 
         $('.callout').find("p").text(""); 
 

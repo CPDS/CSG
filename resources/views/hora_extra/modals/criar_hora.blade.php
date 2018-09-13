@@ -18,7 +18,7 @@
                         <div class="col-sm-12">
                             <strong>Funcionário</strong>
                             <div class="input-group">
-                                <span data-toggle="tooltip" title="Servidor" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <span data-toggle="tooltip" title="Servidor" class="input-group-addon"><i class="fa fa-user"></i></span>
                                 <select class="form-control" name="fk_user" id="fk_user">
                                     @foreach($users as $user)
                                     <option value="{{$user->id}}">{{$user->name}}</option>
@@ -32,7 +32,7 @@
                         <div class="col-sm-12">
                             <strong>Horas extendidas:</strong>
                             <div class="input-group">
-                                <span data-toggle="tooltip" title="Horas excedidas" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <span data-toggle="tooltip" title="Horas excedidas" class="input-group-addon"><i class="fa fa-clock-o"></i></span>
                                 <input type="text" maxlength="254" class="form-control" name="horas_excedidas"  id="horas_excedidas">
                             </div>       
                         </div>
@@ -42,7 +42,7 @@
                         <div class="col-sm-12">
                             <strong>Data:</strong>
                             <div class="input-group">
-                                <span data-toggle="tooltip" title="Horário pausa" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <span data-toggle="tooltip" title="Horário pausa" class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                 <input type="date" maxlength="254" class="form-control" name="dia"  id="dia">
                             </div>       
                         </div>

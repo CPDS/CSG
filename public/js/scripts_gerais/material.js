@@ -21,7 +21,7 @@ $(document).ready(function($) {
             { data: null, name: 'order' },
             { data: 'tipo', name: 'tipo' },
             { data: 'descricao', name: 'descricao' },
-           // { data: 'nome_usuario', name: 'nome_usuario' },
+            { data: 'quantidade', name: 'quantidade' },
             { data: 'acao', name: 'acao' },
             ],
             createdRow : function( row, data, index ) {

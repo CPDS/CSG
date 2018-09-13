@@ -117,7 +117,7 @@ $(document).ready(function($) {
                         iziToast.destroy();
                         iziToast.success({
                             title: 'OK',
-                            message: 'Hora adicionado com Sucesso!',
+                            message: 'Hora extra adicionado com Sucesso!',
                         });
                     });
 
@@ -176,7 +176,7 @@ $(document).ready(function($) {
                         iziToast.destroy();
                         iziToast.success({
                             title: 'OK',
-                            message: 'Hora alterado com Sucesso!',
+                            message: 'Hora extra alterado com Sucesso!',
                         });
                     });
                 }
@@ -232,7 +232,7 @@ $(document).ready(function($) {
                         iziToast.destroy();
                         iziToast.success({
                             title: 'OK',
-                            message: 'Hora deletado com Sucesso!',
+                            message: 'Hora extra deletado com Sucesso!',
                         });
                     });
                 }
@@ -262,7 +262,7 @@ $(document).on('click', '.btnAdicionar', function() {
         $('#fk_user').prop('disabled',false);
         
 
-        $('.modal-title').text('Novo Cadastro de Hora');
+        $('.modal-title').text('Novo Cadastro de Hora Extra');
         $('.callout').addClass("hidden"); 
         $('.callout').find("p").text(""); 
 
@@ -275,7 +275,7 @@ $(document).on('click', '.btnVer', function() {
 
         $('.modal-footer .btn-action').removeClass('edit');
         $('.modal-footer .btn-action').addClass('hidden');
-        $('.modal-title').text('Ver Hora de horário');
+        $('.modal-title').text('Ver hora extra');
         
         //desabilita os campos
         $('#horas_excedidas').prop('readonly',true);
@@ -299,7 +299,7 @@ $(document).on('click', '.btnEditar', function() {
         $('.modal-footer .btn-action').addClass('edit');
         $('.modal-footer .btn-action').removeClass('hidden');
 
-        $('.modal-title').text('Editar Setor');
+        $('.modal-title').text('Editar hora extra');
         $('.callout').addClass("hidden"); //ocultar a div de aviso
         $('.callout').find("p").text(""); //limpar a div de aviso
 

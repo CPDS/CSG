@@ -30,7 +30,7 @@
                         <div class="col-sm-3">
                             <strong>Quantidade</strong>
                             <div class="input-group">
-                                <span data-toggle="tooltip" title="Quantidade" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <span data-toggle="tooltip" title="Quantidade" class="input-group-addon"><i class="fa fa-bars"></i></span>
                                 <input type="text" maxlength="254" class="form-control" name="quantidade" id="quantidade">
                             </div>       
                         </div>

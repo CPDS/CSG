@@ -13,19 +13,26 @@
 @endsection
 
 @section('main-content')
-	<div class="container-fluid spark-screen">
+
 		<div class="row">
 			<div class="col-md-12">
+                <div class="pull-left">
+                    <h2><i class="fa fa-clone"></i> Gerenciamento de Solicitação</h2>
+                </div>
+                <div class="pull-right">
+                     <a class="btnAdicionar btn btn-primary btn-sm" title="Adicionar Material" data-toggle="tooltip"><span class="glyphicon glyphicon-plus"></span> Cadastrar Solicitação</a>           
+                </div>
+            </div>
+        </div>
+<br>
 
-				<div class="box box-success">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Solicitação</h3>
-                       
-                       <div class="pull-right">      
-                            <a class="btnAdicionar btn btn-primary btn-sm" title="Adicionar Material" data-toggle="tooltip"><span class="glyphicon glyphicon-plus"></span>Cadastrar Solicitação</a>
-                        </div>
-                    </div>
-                    <!-- /.box-header -->
+                <div class="box box-solid box-primary">
+                    <div class="box-header">
+                      <h3 class="box-title">
+                        <strong>Solicitações</strong> 
+                      </h3>
+                </div><!-- /.box-header -->
+
                     <div class="box-body">
 
                         <table class="table" id="table">
@@ -49,9 +56,7 @@
                     <!-- /.box-body -->
                 </div>
 
-			</div>
-		</div>
-	</div>
+	
 
 @include('solicitacao.modals.criar_solicitacao')
 @include('solicitacao.modals.deletar_solicitacao')

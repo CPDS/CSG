@@ -1,5 +1,7 @@
 $(document).ready(function($) {
-    
+
+    $("#telefone").mask("(99) 9?9999-9999");
+
     var base_url = 'http://' + window.location.host.toString();
     var base_url = location.protocol + '//' + window.location.host.toString();
 
@@ -338,3 +340,4 @@ $(document).on('click', '.btnDeletar', function() {
     jQuery('#criar_deletar-modal').modal('show'); //Abrir o modal 
 
 });
+
