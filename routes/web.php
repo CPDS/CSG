@@ -90,6 +90,14 @@ Route::group(['prefix' => 'gerenciar-entradas-materiais', 'where' => ['id' => '[
         Route::post('/delete', ['as' => 'gerenciar-entradas-materiais.destroy', 'uses' => 'EntradaMaterialController@destroy']);
 }); 
 
+Route::group(['prefix' => 'gerenciar-encaminhamentos', 'where' => ['id' => '[0-9]+'], 'middleware' => ['role:Administrador']] ,function() {
+        Route::get('', ['as' => 'gerenciar-encaminhamentos.index', 'uses' => 'EncaminhamentoController@index']);
+        Route::get('/list',['as' => 'gerenciar-encaminhamentos.list', 'uses' => 'EncaminhamentoController@list']);
+        Route::post('/store', ['as' => 'gerenciar-encaminhamentos.store', 'uses' => 'EncaminhamentoController@store']);
+        Route::post('/update', ['as' => 'gerenciar-encaminhamentos.update', 'uses' => 'EncaminhamentoController@update']);
+        Route::post('/delete', ['as' => 'gerenciar-encaminhamentos.destroy', 'uses' => 'EncaminhamentoController@destroy']);
+}); 
+
 
 Route::group(['prefix' => 'gerenciar-solicitacoes', 'where' => ['id' => '[0-9]+'], 'middleware' => ['role:Administrador']] ,function() {
         Route::get('', ['as' => 'gerenciar-solicitacoes.index', 'uses' => 'SolicitacaoController@index']);

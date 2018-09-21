@@ -17,7 +17,7 @@ $(document).ready(function($) {
             processing: true,
             serverSide: true,
             deferRender: true,
-            ajax: './gerenciar-setores/list',
+            ajax: './gerenciar-encaminhamentoes/list',
             columns: [
             
             { data: null, name: 'order' },
@@ -25,7 +25,6 @@ $(document).ready(function($) {
             { data: 'sigla', name: 'sigla' },
             { data: 'email', name: 'email' },
             { data: 'telefone', name: 'telefone' },
-            { data: 'img', name: 'img' },
             { data: 'acao', name: 'acao' },
             ],
             createdRow : function( row, data, index ) {
@@ -72,11 +71,7 @@ $(document).ready(function($) {
               { targets : [2], sortable : false },
               { "width": "5%", "targets": 0 }, //nº
               { "width": "20%", "targets": 1 },//nome
-              { "width": "10%", "targets": 2 },//ação
-              { "width": "5%", "targets": 3 }, //nº
-              { "width": "20%", "targets": 4 },//nome
-              { "width": "10%", "targets": 5 },//ação
-              { "width": "10%", "targets": 6 }//ação
+              { "width": "10%", "targets": 2 }//ação
             ]
     });
 
@@ -95,7 +90,7 @@ $(document).ready(function($) {
 
         $.ajax({
             type: 'post',
-            url: "/gerenciar-setores/store",
+            url: "/gerenciar-encaminhamentoes/store",
             data: dados,
             processData: false,
             contentType: false,
@@ -126,7 +121,7 @@ $(document).ready(function($) {
                         iziToast.destroy();
                         iziToast.success({
                             title: 'OK',
-                            message: 'Setor adicionado com Sucesso!',
+                            message: 'encaminhamento adicionado com Sucesso!',
                         });
                     });
 
@@ -154,7 +149,7 @@ $(document).ready(function($) {
 
         $.ajax({
             type: 'post',
-            url: "/gerenciar-setores/update",
+            url: "/gerenciar-encaminhamentoes/update",
             data: dados,
             processData: false,
             contentType: false,
@@ -185,7 +180,7 @@ $(document).ready(function($) {
                         iziToast.destroy();
                         iziToast.success({
                             title: 'OK',
-                            message: 'Setor alterado com Sucesso!',
+                            message: 'encaminhamento alterado com Sucesso!',
                         });
                     });
                 }
@@ -210,7 +205,7 @@ $(document).ready(function($) {
 
         $.ajax({
             type: 'post',
-            url: "/gerenciar-setores/delete",
+            url: "/gerenciar-encaminhamentoes/delete",
             data: dados,
             processData: false,
             contentType: false,
@@ -241,7 +236,7 @@ $(document).ready(function($) {
                         iziToast.destroy();
                         iziToast.success({
                             title: 'OK',
-                            message: 'Setor deletado com Sucesso!',
+                            message: 'encaminhamento deletado com Sucesso!',
                         });
                     });
                 }
@@ -272,7 +267,7 @@ $(document).on('click', '.btnAdicionar', function() {
         $('#telefone').prop('readonly',false);
         
 
-        $('.modal-title').text('Novo Cadastro de Setor');
+        $('.modal-title').text('Novo Cadastro de encaminhamento');
         $('.callout').addClass("hidden"); 
         $('.callout').find("p").text(""); 
 
@@ -285,7 +280,7 @@ $(document).on('click', '.btnVer', function() {
 
         $('.modal-footer .btn-action').removeClass('edit');
         $('.modal-footer .btn-action').addClass('hidden');
-        $('.modal-title').text('Ver Setor');
+        $('.modal-title').text('Ver encaminhamento');
         
         //desabilita os campos
         $('#nome').prop('readonly',true);
@@ -310,7 +305,7 @@ $(document).on('click', '.btnEditar', function() {
         $('.modal-footer .btn-action').addClass('edit');
         $('.modal-footer .btn-action').removeClass('hidden');
 
-        $('.modal-title').text('Editar Setor');
+        $('.modal-title').text('Editar encaminhamento');
         $('.callout').addClass("hidden"); //ocultar a div de aviso
         $('.callout').find("p").text(""); //limpar a div de aviso
 
@@ -330,7 +325,7 @@ $(document).on('click', '.btnEditar', function() {
         jQuery('#criar_editar-modal').modal('show'); //Abrir o modal
 });
 $(document).on('click', '.btnDeletar', function() {
-   $('.modal-title').text('Deletar Setor');   
+   $('.modal-title').text('Deletar encaminhamento');   
    $('.modal-footer .btn-action').removeClass('add');
    $('.modal-footer .btn-action').removeClass('edit');
    $('.modal-footer .btn-action').addClass('excluir');

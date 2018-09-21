@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 <script src ="{{ asset('/plugins/jQuery/jQuery-3.1.0.min.js') }}" type = "text/javascript" ></script>
-<script src ="{{ asset('/js/scripts_gerais/setor.js') }}" type = "text/javascript" ></script>
+<script src ="{{ asset('/js/scripts_gerais/encaminhamento.js') }}" type = "text/javascript" ></script>
 <script src="{{ asset('plugins/datatables/jquery.dataTables.js') }}" type = "text/javascript"></script>
 <script src="{{ asset('plugins/mask-input-js/maskinput.js') }}" type = "text/javascript"></script>
 
@@ -10,7 +10,7 @@
 <script src="{{ asset('js/iziToast.min.js') }}"></script>
 
 @section('htmlheader_title')
-	Gerenciar Setor
+	Gerenciar Encaminhamento
 @endsection
 
 @section('main-content')
@@ -20,10 +20,10 @@
 
 				<div class="box box-success">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Setores</h3>
+                        <h3 class="box-title">Encaminhamento</h3>
                        
                        <div class="pull-right">      
-                            <a class="btnAdicionar btn btn-primary btn-sm" title="Adicionar Material" data-toggle="tooltip"><span class="glyphicon glyphicon-plus"></span> Cadastrar Setor</a>
+                            <a class="btnAdicionar btn btn-primary btn-sm" title="Adicionar Material" data-toggle="tooltip"><span class="glyphicon glyphicon-plus"></span> Cadastrar Encaminhamento</a>
                         </div>
                     </div>
                     <!-- /.box-header -->
@@ -38,7 +38,6 @@
                                 <th>Sigla</th>
                                 <th>E-mail</th>
                                 <th>Telefone</th>
-                                <th>Img</th>
                                 <th width="20%">Ações</th>
                             </tr>
                             </thead>
@@ -52,6 +51,6 @@
 		</div>
 	</div>
 
-@include('setor.modals.criar_setor')
-@include('setor.modals.deletar_setor')
+@include('encaminhamento.modals.criar_encaminhamento')
+@include('encaminhamento.modals.deletar_encaminhamento')
 @endsection
