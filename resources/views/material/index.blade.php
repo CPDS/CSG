@@ -11,7 +11,7 @@
 @section('htmlheader_title')
 	Gerenciar Materiais
 @endsection
-
+@section('material', 'active')
  
 @section('main-content')
 	<div class="container-fluid spark-screen">

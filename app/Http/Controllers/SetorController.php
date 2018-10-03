@@ -30,15 +30,7 @@ class SetorController extends Controller
             })->escapeColumns([0])
             ->make(true);
 
-        
-        return DataTables::of($setor)
-            ->editColumn('acao', function ($setor){
-                return $this->setBtns($setor);
-            })
-            ->editColumn('img', function ($setor){
-                return '<img src="https://www.google.com.br/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwj0v5Pp4szdAhXHXSwKHaSQBr4QjRx6BAgBEAU&url=https%3A%2F%2Fwww.saudedica.com.br%2Fos-beneficios-do-cha-verde-para-saude%2F&psig=AOvVaw2l93Hhx_4KeTS7MIfFUQDc&ust=1537642496133458" />';
-            })->escapeColumns([0])
-            ->make(true);
+       
     }
 
     private function setBtns(setor $setors){

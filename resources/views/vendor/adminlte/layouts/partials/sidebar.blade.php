@@ -35,16 +35,19 @@
             <!-- Optionally, you can add icons to the links -->
         
             
-            <li class="active"><a href="{{ url('gerenciar-setores') }}"><i class='fa fa-university'></i> <span>Setores</span></a></li>
+            <li  class="@yield('setor') | '' " ><a href="{{ url('gerenciar-setores') }}"><i class='fa fa-university'></i> <span>Setores</span></a></li>
 
-             <li class="treeview">
+             <li class="treeview" class="active">
+                
                 <a href="#"><i class='fa fa-users'></i> <span>Gerenciar Usuários</span> <i class="fa fa-angle-left pull-right"></i></a>
+
                 <ul class="treeview-menu">
                     <li><a href="{{ url('gerenciar-funcionarios') }}"><i class='fa fa-user'></i> <span>Usuários</span></a></li>
                    <li><a href="{{ url('gerenciar-escalas') }}"><i class='fa fa-user'></i> <span>Escala</span></a></li>
                    <li><a href="{{ url('gerenciar-horas') }}"><i class='fa fa-clock-o'></i> <span>Horas Extras</span></a></li>
                 </ul>
             </li>
+
             <li class="treeview">
                 <a href="#"><i class='fa fa-cubes'></i> <span>Gerenciar Material</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">

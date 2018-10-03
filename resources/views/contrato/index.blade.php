@@ -48,6 +48,6 @@
 		</div>
 	</div>
 
-@include('solicitacao_tipo.modals.criar_solicitacao_tipo')
-@include('solicitacao_tipo.modals.deletar_solicitacao_tipo')
+@include('contrato.modals.criar_contrato')
+@include('contrato.modals.deletar_contrato')
 @endsection

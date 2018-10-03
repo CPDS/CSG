@@ -9,7 +9,7 @@
 <script src="{{ asset('js/iziToast.min.js') }}"></script>
 
 @section('htmlheader_title')
-	Gerenciar Tipo de Solicitação
+	Gerenciar Contratada
 @endsection
 
 @section('main-content')
@@ -48,6 +48,6 @@
 		</div>
 	</div>
 
-@include('solicitacao_tipo.modals.criar_solicitacao_tipo')
-@include('solicitacao_tipo.modals.deletar_solicitacao_tipo')
+@include('contratada.modals.criar_contratada')
+@include('contratada.modals.deletar_contratada')
 @endsection

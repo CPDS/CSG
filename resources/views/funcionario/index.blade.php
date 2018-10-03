@@ -4,7 +4,6 @@
 <script src="{{ asset('plugins/datatables/jquery.dataTables.js') }}" type = "text/javascript"></script>
 <script src="{{ asset('plugins/mask-input-js/maskinput.js') }}" type = "text/javascript"></script>
 
-
 <script src="{{ asset('plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
 <link rel="stylesheet" href="{{ asset('plugins/datatables/dataTables.bootstrap.css') }}">
 <link rel="stylesheet" href="{{ asset('css/iziToast.min.css') }}">
@@ -13,6 +12,7 @@
 @section('htmlheader_title')
 	Gerenciar Usuários
 @endsection
+@section('usuario', 'active')
 
 @section('main-content')
 	   <div class="row">

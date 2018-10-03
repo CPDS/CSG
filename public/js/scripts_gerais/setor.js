@@ -25,7 +25,6 @@ $(document).ready(function($) {
             { data: 'sigla', name: 'sigla' },
             { data: 'email', name: 'email' },
             { data: 'telefone', name: 'telefone' },
-            { data: 'img', name: 'img' },
             { data: 'acao', name: 'acao' },
             ],
             createdRow : function( row, data, index ) {

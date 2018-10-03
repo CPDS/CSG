@@ -15,6 +15,14 @@ Route::get('/', function () {
     return view('material.index');
 });
 
+Route::get('/contratada', function () {
+    return view('contratada.index');
+});
+
+Route::get('/contrato', function () {
+    return view('contrato.index');
+});
+
 Route::group(['middleware' => 'auth'], function () {
 
 Route::group(['prefix' => 'gerenciar-materiais', 'where' => ['id' => '[0-9]+'], 'middleware' => ['role:Administrador']] ,function() {

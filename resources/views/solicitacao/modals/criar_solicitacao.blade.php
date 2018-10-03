@@ -145,18 +145,18 @@
                         </div>
                     </div>
 
-                            <div class="col-md-12">
-                            <br>
-                                <table class="table table-bordered table-responsive" id="materiais">
-                                    <tr>
-                                        <th>Material</th>
-                                        <th>Quantidade</th>
-                                        <th>Ações</th>
-                                    </tr>
-                                    <tbody id="material_id">
-                                    </tbody>
-                                </table>
-                            </div>
+                    <div class="col-md-12">
+                    <br>
+                        <table class="table table-bordered table-responsive" id="materiais">
+                            <tr>
+                                <th>Material</th>
+                                <th>Quantidade</th>
+                                <th>Ações</th>
+                            </tr>
+                            <tbody id="material_id">
+                            </tbody>
+                        </table>
+                    </div>
 
 
                             <input type="hidden" id="id" name="id">
