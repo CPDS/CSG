@@ -69,6 +69,19 @@
         </div>
 
         <div class="form-group">
+          <div class="col-sm-12">
+              <strong>TIPO:</strong>
+              <div class="input-group">
+                  <span data-toggle="tooltip" title="E-mail" class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                 <select class="form-control">
+                   <option>INTERNO</option>
+                   <option>EXTERNO</option>
+                 </select>
+              </div>       
+          </div>
+        </div>
+
+        <div class="form-group">
             <div class="col-sm-6">
                 <strong>Itens:</strong>
                 <div class="input-group">
