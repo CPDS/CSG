@@ -14,7 +14,7 @@
         </div>
 
        <form class="form-horizontal" role="form" id="form" >
-                     <div class="form-group">
+                    <div class="form-group">
                         <div class="col-sm-6">
                             <strong>Nº:</strong>
                             <div class="input-group">
@@ -32,17 +32,6 @@
                             </div>       
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <strong>Serviços:</strong>
-                            <div class="input-group">
-                                <span data-toggle="tooltip" title="Serviços
-                                " class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="servico"  id="servico">
-                            </div>       
-                        </div>
-                    </div> 
 
                     <div class="form-group">
                         <div class="col-sm-6">

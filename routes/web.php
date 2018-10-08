@@ -74,6 +74,14 @@ Route::group(['prefix' => 'gerenciar-escalas', 'where' => ['id' => '[0-9]+'], 'm
         Route::post('/delete', ['as' => 'gerenciar-escalas.destroy', 'uses' => 'EscalaHorarioController@destroy']);
 }); 
 
+Route::group(['prefix' => 'gerenciar-itens', 'where' => ['id' => '[0-9]+'], 'middleware' => ['role:Administrador']] ,function() {
+        Route::get('', ['as' => 'gerenciar-itens.index', 'uses' => 'ItemContratoController@index']);
+        Route::get('/list',['as' => 'gerenciar-itens.list', 'uses' => 'ItemContratoController@list']);
+        Route::post('/store', ['as' => 'gerenciar-itens.store', 'uses' => 'ItemContratoController@store']);
+        Route::post('/update', ['as' => 'gerenciar-itens.update', 'uses' => 'ItemContratoController@update']);
+        Route::post('/delete', ['as' => 'gerenciar-itens.destroy', 'uses' => 'ItemContratoController@destroy']);
+}); 
+
 Route::group(['prefix' => 'gerenciar-horas', 'where' => ['id' => '[0-9]+'], 'middleware' => ['role:Administrador']] ,function() {
         Route::get('', ['as' => 'gerenciar-horas.index', 'uses' => 'HoraExtraController@index']);
         Route::get('/list',['as' => 'gerenciar-horas.list', 'uses' => 'HoraExtraController@list']);

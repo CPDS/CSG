@@ -19,7 +19,7 @@ class CreateEncaminhamentosTable extends Migration
             $table->date('data_retorno');
             $table->integer('quantidade');
             $table->integer('valor_unitario');
-            $table->descricao('descricao');
+            $table->string('descricao');
             $table->timestamps();
         });
     }
