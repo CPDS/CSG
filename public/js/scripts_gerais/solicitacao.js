@@ -265,8 +265,8 @@ $(document).ready(function($) {
   
 
   
- var i = 0;
- var materiais = new Array();
+     var i = 0;
+     var materiais = new Array();
   //Adicionar material
   $(document).on('click', '.btnAdcMaterial', function() {
     //verificar se a opção selecionada possiu valor
@@ -298,9 +298,7 @@ $(document).ready(function($) {
 
     $('#quantidade').val('');
 
-    
-    console.log(cols);
-    });
+});
 
 //Remover Material
 $(document).on('click', '.btnRemoverMaterial', function(){

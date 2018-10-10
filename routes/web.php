@@ -19,9 +19,6 @@ Route::get('/contratada', function () {
     return view('contratada.index');
 });
 
-Route::get('/contrato', function () {
-    return view('contrato.index');
-});
 
 Route::group(['middleware' => 'auth'], function () {
 
@@ -39,6 +36,14 @@ Route::group(['prefix' => 'gerenciar-licitacoes', 'where' => ['id' => '[0-9]+'],
         Route::post('/store', ['as' => 'gerenciar-licitacoes.store', 'uses' => 'LicitacaoController@store']);
         Route::post('/update', ['as' => 'gerenciar-licitacoes.update', 'uses' => 'LicitacaoController@update']);
         Route::post('/delete', ['as' => 'gerenciar-licitacoes.destroy', 'uses' => 'LicitacaoController@destroy']);
+});     
+
+Route::group(['prefix' => 'gerenciar-contratos', 'where' => ['id' => '[0-9]+'], 'middleware' => ['role:Administrador']] ,function() {
+        Route::get('', ['as' => 'gerenciar-contratos.index', 'uses' => 'ContratoController@index']);
+        Route::get('/list',['as' => 'gerenciar-contratos.list', 'uses' => 'ContratoController@list']);
+        Route::post('/store', ['as' => 'gerenciar-contratos.store', 'uses' => 'ContratoController@store']);
+        Route::post('/update', ['as' => 'gerenciar-contratos.update', 'uses' => 'ContratoController@update']);
+        Route::post('/delete', ['as' => 'gerenciar-contratos.destroy', 'uses' => 'ContratoController@destroy']);
 }); 	
 
 
@@ -128,6 +133,6 @@ Route::group(['prefix' => 'gerenciar-solicitacoes', 'where' => ['id' => '[0-9]+'
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
 

@@ -1,7 +1,5 @@
 $(document).ready(function($) {
 
-    $("#telefone").mask("(99) 9?9999-9999");
-
     var base_url = 'http://' + window.location.host.toString();
     var base_url = location.protocol + '//' + window.location.host.toString();
 
@@ -17,15 +15,14 @@ $(document).ready(function($) {
             processing: true,
             serverSide: true,
             deferRender: true,
-            ajax: './gerenciar-setores/list',
+            ajax: './gerenciar-contratos/list',
             columns: [
             
             { data: null, name: 'order' },
-            { data: 'nome', name: 'nome' },
-            { data: 'sigla', name: 'sigla' },
-            { data: 'email', name: 'email' },
-            { data: 'telefone', name: 'telefone' },
-            { data: 'img', name: 'img' },
+            { data: 'numero', name: 'numero' },
+            { data: 'valor_total', name: 'valor_total' },
+            { data: 'data_inicio', name: 'data_inicio' },
+            { data: 'data_fim', name: 'data_fim' },
             { data: 'acao', name: 'acao' },
             ],
             createdRow : function( row, data, index ) {
@@ -72,11 +69,9 @@ $(document).ready(function($) {
               { targets : [2], sortable : false },
               { "width": "5%", "targets": 0 }, //nº
               { "width": "20%", "targets": 1 },//nome
-              { "width": "10%", "targets": 2 },//ação
-              { "width": "5%", "targets": 3 }, //nº
-              { "width": "20%", "targets": 4 },//nome
-              { "width": "10%", "targets": 5 },//ação
-              { "width": "10%", "targets": 6 }//ação
+              { "width": "8%", "targets": 2 },//ação
+              { "width": "15%", "targets": 3 }, //nº
+              { "width": "15%", "targets": 4 },//nome
             ]
     });
 
@@ -95,7 +90,7 @@ $(document).ready(function($) {
 
         $.ajax({
             type: 'post',
-            url: "/gerenciar-setores/store",
+            url: "/gerenciar-contratos/store",
             data: dados,
             processData: false,
             contentType: false,
@@ -154,7 +149,7 @@ $(document).ready(function($) {
 
         $.ajax({
             type: 'post',
-            url: "/gerenciar-setores/update",
+            url: "/gerenciar-contratos/update",
             data: dados,
             processData: false,
             contentType: false,
@@ -210,7 +205,7 @@ $(document).ready(function($) {
 
         $.ajax({
             type: 'post',
-            url: "/gerenciar-setores/delete",
+            url: "/gerenciar-contratos/delete",
             data: dados,
             processData: false,
             contentType: false,
@@ -257,7 +252,48 @@ $(document).ready(function($) {
 
         });
     });
-  
+
+    var i = 0;
+    var itens = new Array();
+  //Adicionar material
+  $(document).on('click', '.btnAdcItem', function() {
+    //verificar se a opção selecionada possiu valor
+    //verificar se a opção selecionada já se encontra no array itens e emitir alerta quando já estiver
+    
+    var cols = '';
+    cols = '';
+    novaLinha = null; 
+    var fk_item = $('#fk_item :selected').val();
+    var descricao_material = $('#fk_item :selected').text();
+    var quantidade = $('#quantidade').val();
+
+    var novaLinha = '<tr class="'+'linha'+i+'">';
+    //Adc material ao array
+    itens.push({'fk_item': fk_item, 'quantidade': quantidade});
+
+    
+    /* Crian a linha p/ tabela*/
+    
+    cols += '<td>'+descricao_material+'</td>';
+    cols += '<td>'+quantidade+'</td>';
+    cols += '<td class="text-left"><a class="btnRemoverItem btn btn-xs btn-danger" data-indexof="'+itens.indexOf(itens[i])+'" data-linha="'+i+'"><i class="fa fa-trash"></i> Remover</a></td>';
+    novaLinha += cols + '</tr>';
+    
+
+
+    $('#item_id').append(novaLinha); /*Adc a linha  tabela*/
+    i+=1;
+
+    $('#quantidade').val('');
+  });
+
+
+    //Remover Item
+    $(document).on('click', '.btnRemoverItem', function(){
+    itens.splice($(this).data('indexof'),1); //remove do array de acordo com o indice
+    $('.linha'+ $(this).data('linha')).remove(); //Remove a linha da tela 
+    });
+
 });
 
 $(document).on('click', '.btnAdicionar', function() {

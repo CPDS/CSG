@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 <script src ="{{ asset('/plugins/jQuery/jQuery-3.1.0.min.js') }}" type = "text/javascript" ></script>
-<script src ="{{ asset('/js/scripts_gerais/solicitacao_tipo.js') }}" type = "text/javascript" ></script>
+<script src ="{{ asset('/js/scripts_gerais/contrato.js') }}" type = "text/javascript" ></script>
 <script src="{{ asset('plugins/datatables/jquery.dataTables.js') }}" type = "text/javascript"></script>
 
 <script src="{{ asset('plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
@@ -33,8 +33,10 @@
 
                             <tr>
                                 <th>Nº</th>
-                                <th>Nome</th>   
-                                <th>Descrição</th>
+                                <th>Número</th>   
+                                <th>Valor Total</th>
+                                <th>Data Início</th>
+                                <th>Data Fim</th>
                                 <th width="20%">Ações</th>
                             </tr>
                             </thead>

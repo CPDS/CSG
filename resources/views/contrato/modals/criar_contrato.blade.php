@@ -39,7 +39,7 @@
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="Data início
                                 " class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="data_inicio"  id="data_inicio">
+                                <input type="date" maxlength="254" class="form-control" name="data_inicio"  id="data_inicio">
                             </div>       
                         </div>
                  
@@ -48,7 +48,7 @@
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="Data Fim
                                 " class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="data_fim"  id="data_fim">
+                                <input type="date" maxlength="254" class="form-control" name="data_fim"  id="data_fim">
                             </div>       
                         </div>
                     </div>
@@ -59,10 +59,10 @@
                             <strong>Item</strong>
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="Item" class="input-group-addon"><i class="fa fa-cube"></i></span>
-                                <select class="form-control" name="fk_Item" id="fk_Item">
-                                   
-                                    <option value="">Item</option>
-                                   
+                                <select class="form-control" name="fk_item" id="fk_item">
+                                   @foreach($itens as $item)
+                                    <option value="{{$item->id}}">{{$item->nome}}</option>
+                                   @endforeach
                                 </select>
                             </div>       
                         </div>
@@ -70,32 +70,28 @@
                         <div class="col-sm-3">
                             <strong>Quantidade</strong>
                             <div class="input-group">
-                                <span data-toggle="tooltip" title="Horário pausa" class="input-group-addon"><i class="fa fa-bars"></i></span>
+                                <span data-toggle="tooltip" title="Quantidade" class="input-group-addon"><i class="fa fa-bars"></i></span>
                                 <input type="text" maxlength="254" class="form-control" name="quantidade" id="quantidade">
                             </div>       
                         </div>
 
                         <div class="col-sm-1">
-                            
                                 <a class="btnAdcItem btn btn-sm btn-primary" style="margin-top: 22px; padding: 11px"><i class="glyphicon glyphicon-plus"></i></a>
                         </div>
                     </div>
 
                             <div class="col-md-12">
                             <br>
-                                <table class="table table-bordered table-responsive" id="materiais">
+                                <table class="table table-bordered table-responsive" id="itens">
                                     <tr>
                                         <th>Item</th>
                                         <th>Quantidade</th>
                                         <th>Ações</th>
                                     </tr>
-                                    <tbody id="material_id">
+                                    <tbody id="item_id">
                                     </tbody>
                                 </table>
                             </div>
-
-
-                  
                     <input type="hidden" id="id" name="id">
                 </form>
 
