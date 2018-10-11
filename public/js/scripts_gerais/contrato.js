@@ -1,3 +1,4 @@
+ var itens = new Array();
 $(document).ready(function($) {
 
     var base_url = 'http://' + window.location.host.toString();
@@ -68,7 +69,7 @@ $(document).ready(function($) {
             columnDefs : [
               { targets : [2], sortable : false },
               { "width": "5%", "targets": 0 }, //nº
-              { "width": "20%", "targets": 1 },//nome
+              { "width": "20%", "targets": 1 },//numero
               { "width": "8%", "targets": 2 },//ação
               { "width": "15%", "targets": 3 }, //nº
               { "width": "15%", "targets": 4 },//nome
@@ -86,14 +87,18 @@ $(document).ready(function($) {
     $('.modal-footer').on('click', '.add', function() {
         var dados = new FormData($("#form")[0]); //pega os dados do form
 
-        console.log(dados);
+        console.log(itens);
 
         $.ajax({
             type: 'post',
             url: "/gerenciar-contratos/store",
-            data: dados,
-            processData: false,
-            contentType: false,
+            data: {
+                'numero': $("#numero").val(),
+                'valor_total': $("#valor_total").val(),
+                'data_inicio': $("#data_inicio").val(),
+                'data_fim': $("#data_fim").val(),
+                'itens': itens
+            },
             beforeSend: function(){
                 jQuery('.add').button('loading');
             },
@@ -121,7 +126,7 @@ $(document).ready(function($) {
                         iziToast.destroy();
                         iziToast.success({
                             title: 'OK',
-                            message: 'Setor adicionado com Sucesso!',
+                            message: 'Contrato adicionado com Sucesso!',
                         });
                     });
 
@@ -145,14 +150,19 @@ $(document).ready(function($) {
     $('.modal-footer').on('click', '.edit', function() {
         var dados = new FormData($("#form")[0]); //pega os dados do form
 
-        console.log(dados);
+        console.log(itens);
 
         $.ajax({
             type: 'post',
             url: "/gerenciar-contratos/update",
-            data: dados,
-            processData: false,
-            contentType: false,
+            data: {
+                'id': $("#id").val(),
+                'numero': $("#numero").val(),
+                'valor_total': $("#valor_total").val(),
+                'data_inicio': $("#data_inicio").val(),
+                'data_fim': $("#data_fim").val(),
+                'itens': itens
+            },
             beforeSend: function(){
                 jQuery('.edit').button('loading');
             },
@@ -175,12 +185,11 @@ $(document).ready(function($) {
                     $('#table').DataTable().draw(false);
 
                     jQuery('#criar_editar-modal').modal('hide');
-
                     $(function() {
                         iziToast.destroy();
                         iziToast.success({
                             title: 'OK',
-                            message: 'Setor alterado com Sucesso!',
+                            message: 'Contrato alterado com Sucesso!',
                         });
                     });
                 }
@@ -236,7 +245,7 @@ $(document).ready(function($) {
                         iziToast.destroy();
                         iziToast.success({
                             title: 'OK',
-                            message: 'Setor deletado com Sucesso!',
+                            message: 'Contrato deletado com Sucesso!',
                         });
                     });
                 }
@@ -254,7 +263,6 @@ $(document).ready(function($) {
     });
 
     var i = 0;
-    var itens = new Array();
   //Adicionar material
   $(document).on('click', '.btnAdcItem', function() {
     //verificar se a opção selecionada possiu valor
@@ -302,13 +310,13 @@ $(document).on('click', '.btnAdicionar', function() {
         $('.modal-footer .btn-action').removeClass('hidden');
 
         //habilita os campos desabilitados
-        $('#nome').prop('readonly',false);
-        $('#sigla').prop('readonly',false);
-        $('#email').prop('readonly',false);
-        $('#telefone').prop('readonly',false);
+        $('#numero').prop('readonly',false);
+        $('#valor_total').prop('readonly',false);
+        $('#data_inicio').prop('readonly',false);
+        $('#data_fim').prop('readonly',false);
         
 
-        $('.modal-title').text('Novo Cadastro de Setor');
+        $('.modal-title').text('Novo Cadastro de Contrato');
         $('.callout').addClass("hidden"); 
         $('.callout').find("p").text(""); 
 
@@ -317,17 +325,20 @@ $(document).on('click', '.btnAdicionar', function() {
         jQuery('#criar_editar-modal').modal('show');
 });
 
+var j = 0;
 $(document).on('click', '.btnVer', function() {
-
+        while (itens.length) {
+            itens.pop();
+          }
         $('.modal-footer .btn-action').removeClass('edit');
         $('.modal-footer .btn-action').addClass('hidden');
-        $('.modal-title').text('Ver Setor');
+        $('.modal-title').text('Ver Contrato');
         
         //desabilita os campos
-        $('#nome').prop('readonly',true);
-        $('#sigla').prop('readonly',true);
-        $('#email').prop('readonly',true);
-        $('#telefone').prop('readonly',true);
+        $('#numero').prop('readonly',true);
+        $('#valor_total').prop('readonly',true);
+        $('#data_inicio').prop('readonly',true);
+        $('#data_fim').prop('readonly',true);
 
         $('.callout').addClass("hidden"); //ocultar a div de aviso
         $('.callout').find("p").text(""); //limpar a div de aviso
@@ -338,35 +349,112 @@ $(document).on('click', '.btnVer', function() {
             $('#'+input.id).val($(btnEditar).data(input.id));
         });
 
+         var id = $('#id').val();
+        $.ajax({
+            type: 'get',
+            url: "/gerenciar-contratos/itens/"+id,
+            processData: false,
+            contentType: false,
+              success: function(response) {
+                for(var i = 0; i < response.data.length; i++){
+                    console.log(response.data[i].nome);
+                 
+                var cols = '';
+                cols = '';
+                novaLinha = null; 
+                var fk_item = response.data[i].fk_item;
+                var descricao_item = response.data[i].nome;
+                var quantidade = response.data[i].quantidade;
+
+                var novaLinha = '<tr class="'+'linha'+i+'">';
+                //Adc material ao array
+                itens.push({'fk_item': fk_item, 'quantidade': quantidade});
+
+                
+                /* Crian a linha p/ tabela*/
+                
+                cols += '<td>'+descricao_item+'</td>';
+                cols += '<td>'+quantidade+'</td>';
+                cols += '<td class="text-left"><a class="btnRemoverItem btn btn-xs btn-danger" data-indexof="'+itens.indexOf(itens[j])+'" data-linha="'+j+'"><i class="fa fa-trash"></i> Remover</a></td>';
+                novaLinha += cols + '</tr>';
+
+                $('#item_id').append(novaLinha); /*Adc a linha  tabela*/
+                j+=1;
+
+                $('#quantidade').val('');
+                }
+                
+            },
+        });
+
         
         jQuery('#criar_editar-modal').modal('show');
 });
+
+
 $(document).on('click', '.btnEditar', function() {
         $('.modal-footer .btn-action').removeClass('add');
         $('.modal-footer .btn-action').addClass('edit');
         $('.modal-footer .btn-action').removeClass('hidden');
 
-        $('.modal-title').text('Editar Setor');
+        $('.modal-title').text('Editar Contrato');
         $('.callout').addClass("hidden"); //ocultar a div de aviso
         $('.callout').find("p").text(""); //limpar a div de aviso
 
         //habilita os campos desabilitados
-        $('#nome').prop('readonly',false);
-        $('#sigla').prop('readonly',false);
-        $('#email').prop('readonly',false);
-        $('#telefone').prop('readonly',false);
+        $('#numero').prop('readonly',false);
+        $('#valor_total').prop('readonly',false);
+        $('#data_inicio').prop('readonly',false);
+        $('#data_fim').prop('readonly',false);
 
         var btnEditar = $(this);
 
         $('#form :input').each(function(index,input){
             $('#'+input.id).val($(btnEditar).data(input.id));
+        });
+        var id = $('#id').val();
+        $.ajax({
+            type: 'get',
+            url: "/gerenciar-contratos/itens/"+id,
+            processData: false,
+            contentType: false,
+              success: function(response) {
+                for(var i = 0; i < response.data.length; i++){
+                    console.log(response.data[i].nome);
+                 
+                var cols = '';
+                cols = '';
+                novaLinha = null; 
+                var fk_item = response.data[i].fk_item;
+                var descricao_item = response.data[i].nome;
+                var quantidade = response.data[i].quantidade;
+
+                var novaLinha = '<tr class="'+'linha'+i+'">';
+                //Adc material ao array
+                itens.push({'fk_item': fk_item, 'quantidade': quantidade});
+
+                
+                /* Crian a linha p/ tabela*/
+                
+                cols += '<td>'+descricao_item+'</td>';
+                cols += '<td>'+quantidade+'</td>';
+                cols += '<td class="text-left"><a class="btnRemoverItem btn btn-xs btn-danger" data-indexof="'+itens.indexOf(itens[j])+'" data-linha="'+j+'"><i class="fa fa-trash"></i> Remover</a></td>';
+                novaLinha += cols + '</tr>';
+
+                $('#item_id').append(novaLinha); /*Adc a linha  tabela*/
+                j+=1;
+
+                $('#quantidade').val('');
+                }
+                
+            },
         });
 
         
         jQuery('#criar_editar-modal').modal('show'); //Abrir o modal
 });
 $(document).on('click', '.btnDeletar', function() {
-   $('.modal-title').text('Deletar Setor');   
+   $('.modal-title').text('Deletar Contrato');   
    $('.modal-footer .btn-action').removeClass('add');
    $('.modal-footer .btn-action').removeClass('edit');
    $('.modal-footer .btn-action').addClass('excluir');

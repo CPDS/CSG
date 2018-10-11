@@ -1,6 +1,6 @@
 $(document).ready(function($) {
 
-    $("#valor_unitario").mask('000.000.000.000.000,00', {reverse: true});
+   // $("#valor_unitario").mask('000.000.000.000.000,00', {reverse: true});
 
     var base_url = 'http://' + window.location.host.toString();
     var base_url = location.protocol + '//' + window.location.host.toString();

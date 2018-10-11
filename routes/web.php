@@ -41,6 +41,7 @@ Route::group(['prefix' => 'gerenciar-licitacoes', 'where' => ['id' => '[0-9]+'],
 Route::group(['prefix' => 'gerenciar-contratos', 'where' => ['id' => '[0-9]+'], 'middleware' => ['role:Administrador']] ,function() {
         Route::get('', ['as' => 'gerenciar-contratos.index', 'uses' => 'ContratoController@index']);
         Route::get('/list',['as' => 'gerenciar-contratos.list', 'uses' => 'ContratoController@list']);
+        Route::get('/itens/{id}',['as' => 'gerenciar-contratos.itens', 'uses' => 'ContratoController@itens']);
         Route::post('/store', ['as' => 'gerenciar-contratos.store', 'uses' => 'ContratoController@store']);
         Route::post('/update', ['as' => 'gerenciar-contratos.update', 'uses' => 'ContratoController@update']);
         Route::post('/delete', ['as' => 'gerenciar-contratos.destroy', 'uses' => 'ContratoController@destroy']);
