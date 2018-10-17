@@ -15,7 +15,7 @@
 
        <form class="form-horizontal" role="form" id="form" >
                     <div class="form-group">
-                        <div class="col-sm-6">
+                        <div class="col-sm-3">
                             <strong>Nº:</strong>
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="Número" class="input-group-addon"><i class="fa fa-pencil"></i></span>
@@ -24,6 +24,19 @@
                         </div>
         
                         <div class="col-sm-6">
+                            <strong>Empresa contratada:</strong>
+                            <div class="input-group">
+                                <span data-toggle="tooltip" title="Valor total
+                                " class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                  <select class="form-control" name="fk_user" id="fk_user">
+                                   @foreach($empresas as $empresa)
+                                    <option value="{{$empresa->id}}">{{$empresa->id}}</option>
+                                   @endforeach
+                                </select>
+                            </div>       
+                        </div>
+
+                        <div class="col-sm-3">
                             <strong>Valor Total:</strong>
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="Valor total

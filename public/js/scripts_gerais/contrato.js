@@ -97,6 +97,7 @@ $(document).ready(function($) {
                 'valor_total': $("#valor_total").val(),
                 'data_inicio': $("#data_inicio").val(),
                 'data_fim': $("#data_fim").val(),
+                'fk_user': $("#fk_user").val(),
                 'itens': itens
             },
             beforeSend: function(){
@@ -161,6 +162,7 @@ $(document).ready(function($) {
                 'valor_total': $("#valor_total").val(),
                 'data_inicio': $("#data_inicio").val(),
                 'data_fim': $("#data_fim").val(),
+                'fk_user': $("#fk_user").val(),
                 'itens': itens
             },
             beforeSend: function(){
@@ -252,7 +254,6 @@ $(document).ready(function($) {
             },
 
             error: function() {
-                jQuery('#criar_editar-modal').modal('hide'); //fechar o modal
                 iziToast.error({
                     title: 'Erro Interno',
                     message: 'Operação Cancelada!',

@@ -21,6 +21,8 @@ class CreateContratosTable extends Migration
             $table->date('data_inicio');
             $table->date('data_fim');
             $table->string('status');
+            $table->integer('fk_user')->unsigned();
+            $table->foreign('fk_user')->references('id')->on('users');   
             $table->timestamps();
         });
     }

@@ -13,14 +13,17 @@ use Auth;
 use App\Contrato;
 use App\ItemContrato;
 use App\ContratoItem;
+use App\User;
 
 class ContratoController extends Controller
 {
     public function index()
     {
-    	$itens = ItemContrato::where('status','Ativo')->get();	
+    	$itens = ItemContrato::where('status','Ativo')->get();
         
-        return view('contrato.index',compact('itens'));    
+        $empresas = User::role('empresa')->get();
+        
+        return view('contrato.index',compact('itens','empresas'));    
     } 
 
     public function list()
@@ -87,6 +90,7 @@ class ContratoController extends Controller
             $contrato->data_inicio = $request->data_inicio;
             $contrato->data_fim = $request->data_fim;
             $contrato->numero = $request->numero;
+            $contrato->fk_user = $request->fk_user;
             $contrato->status = 'Ativo';
             $contrato->save();
 

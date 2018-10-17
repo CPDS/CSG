@@ -1,3 +1,4 @@
+
 @extends('adminlte::page')
 <script src ="{{ asset('/plugins/jQuery/jQuery-3.1.0.min.js') }}" type = "text/javascript" ></script>
 <script src ="{{ asset('/js/scripts_gerais/funcionario.js') }}" type = "text/javascript" ></script>
