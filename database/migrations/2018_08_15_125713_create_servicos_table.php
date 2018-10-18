@@ -16,8 +16,6 @@ class CreateServicosTable extends Migration
         Schema::create('servicos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
-            $table->integer('fk_user')->nullable();
-            $table->foreign('fk_user')->references('id')->on('users');
             $table->string('status');
             $table->timestamps();
         });

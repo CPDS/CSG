@@ -72,7 +72,6 @@ class ServicoController extends Controller
 
             $servico = new servico();
             $servico->nome = $request->nome;
-            $servico->fk_user = Auth::User()->id;
             $servico->status = 'Ativo';
             $servico->save();
             

@@ -14,7 +14,7 @@ use App\Material;
 use App\User;
 use App\Solicitacao;
 use App\MaterialSaida;
-use App\ServicoSaida;
+use App\ServicoSolicitacao;
 use App\SolicitacaoTipo;
 
 class SolicitacaoController extends Controller
@@ -38,13 +38,10 @@ class SolicitacaoController extends Controller
     public function list()
     {   
         $solicitacaos = Solicitacao::JOIN('users','users.id','=','solicitacaos.fk_user_solicitante')
-        ->LEFTJOIN('solicitacao_tipos','solicitacaos.id','=','solicitacaos.fk_solicitacao_tipo')
         ->LEFTJOIN('material_saidas','material_saidas.fk_solicitacao','=','solicitacaos.id')
-        ->LEFTJOIN('servico_saidas','servico_saidas.fk_solicitacao','=','solicitacaos.id')
-        ->LEFTJOIN('servicos','servicos.id','=','servico_saidas.fk_servico')
         ->LEFTJOIN('materials','materials.id','=','material_saidas.fk_material')
         ->where('solicitacaos.status','Ativo')
-        ->select('solicitacaos.id','solicitacaos.data_solicitacao','solicitacaos.local_servico','solicitacaos.titulo','solicitacaos.descricao as descricao_solicitacao','solicitacaos.observacao_solicitado','solicitacaos.observacao_solicitante',
+        ->select('solicitacaos.id','solicitacaos.data_solicitacao','solicitacaos.titulo','solicitacaos.descricao as descricao_solicitacao','solicitacaos.observacao_solicitado','solicitacaos.observacao_solicitante',
         	'material_saidas.quantidade','materials.descricao as descricao_material')
         ->orderBy('solicitacaos.created_at', 'desc')->get();
 
@@ -54,13 +51,12 @@ class SolicitacaoController extends Controller
             })->escapeColumns([0])
             ->make(true);
     }
-//descricao_solicitacao, data_solicitacao, local_servico, titulo, observacao_solicitado, observacao_solicitante, quantidade, descricao_material
+
     private function setBtns(Solicitacao $solicitacaos){
         $dados = "data-id_del='$solicitacaos->id' 
         data-id='$solicitacaos->id' 
         data-descricao_solicitacao='$solicitacaos->descricao_solicitacao'  
         data-data_solicitacao='$solicitacaos->data_solicitacao 
-        data-local_servico='$solicitacaos->local_servico 
         data-titulo='$solicitacaos->titulo 
         data-observacao_solicitado='$solicitacaos->observacao_solicitado 
         data-observacao_solicitante='$solicitacaos->observacao_solicitante 
@@ -80,12 +76,12 @@ class SolicitacaoController extends Controller
     }
 
     public function store(Request $request)
-    {   
+    {   dd($request->all());
         $rules = array(
-            'data_solicitacao' => 'required'
+            'titulo' => 'required'
         );
         $attributeNames = array(
-            'data_solicitacao' => 'Data da solicitação'
+            'titulo' => 'Data da solicitação'
         );
         
         $validator = Validator::make(Input::all(), $rules);
@@ -98,15 +94,12 @@ class SolicitacaoController extends Controller
             $dados = explode(',',$request->fk_user);
 
             $solicitacao = new Solicitacao();
-            $solicitacao->local_servico = $request->local_servico;
             $solicitacao->titulo = $request->titulo;
             $solicitacao->descricao = $request->descricao;
-            $solicitacao->data_solicitacao = $request->data_solicitacao;
+            $solicitacao->data_solicitacao = $data;
             $solicitacao->observacao_solicitado = $request->observacao_solicitado;
             $solicitacao->observacao_solicitante = $request->observacao_solicitante;
             $solicitacao->fk_user_solicitante = Auth::User()->id;
-            $solicitacao->fk_user_solicitado = $dados[0];
-            $solicitacao->fk_solicitacao_tipo = $request->fk_solicitacao_tipo;
             $solicitacao->status = 'Ativo';
             $solicitacao->save();
 
@@ -117,12 +110,13 @@ class SolicitacaoController extends Controller
                 $material_saida->fk_solicitacao = $solicitacao->id;
                 $material_saida->save();
             }
-            $servico_saida = new ServicoSaida();
-            $servico_saida->fk_servico = $request->fk_servico;
-            $servico_saida->fk_solicitacao = $solicitacao->id;
-            $servico_saida->fk_escala = $dados[1];
-            $servico_saida->status = 'Solicitado';
-            $servico_saida->save();
+
+            foreach ($request->servicos as $value) {   
+                $servico_solicitacao = new ServicoSolicitacao();
+                $servico_solicitacao->fk_servico = $value['fk_servico'];
+                $servico_solicitacao->fk_solicitacao = $solicitacao->id;
+                $servico_solicitacao->save();
+            }
             
             return response()->json($solicitacao);
         }

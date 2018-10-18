@@ -3,6 +3,11 @@ $(document).ready(function($) {
     var base_url = 'http://' + window.location.host.toString();
     var base_url = location.protocol + '//' + window.location.host.toString();
 
+  $('.js-example-basic-multiple').select2({
+    placeholder: "Selecione",
+    allowClear: true,
+    tags: true,
+  });
 
     $.ajaxSetup({
         headers: {
@@ -20,7 +25,6 @@ $(document).ready(function($) {
             { data: null, name: 'order' },
             { data: 'descricao_solicitacao', name: 'descricao_solicitacao' },
             { data: 'data_solicitacao', name: 'data_solicitacao' },
-            { data: 'local_servico', name: 'local_servico' },
             { data: 'titulo', name: 'titulo' },
             { data: 'observacao_solicitado', name: 'observacao_solicitado' },
             { data: 'observacao_solicitante', name: 'observacao_solicitante' },

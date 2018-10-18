@@ -2,11 +2,17 @@
 <script src ="{{ asset('/plugins/jQuery/jQuery-3.1.0.min.js') }}" type = "text/javascript" ></script>
 <script src ="{{ asset('/js/scripts_gerais/solicitacao.js') }}" type = "text/javascript" ></script>
 <script src="{{ asset('plugins/datatables/jquery.dataTables.js') }}" type = "text/javascript"></script>
-
 <script src="{{ asset('plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
 <link rel="stylesheet" href="{{ asset('plugins/datatables/dataTables.bootstrap.css') }}">
 <link rel="stylesheet" href="{{ asset('css/iziToast.min.css') }}">
 <script src="{{ asset('js/iziToast.min.js') }}"></script>
+
+<script src="{{ asset('plugins/select2/select2.min.js') }}" type = "text/javascript"></script>
+
+
+<link rel="stylesheet" href="{{ asset('plugins/select2/select2.css') }}">
+<link rel="stylesheet" href="{{ asset('plugins/select2/select2.min.css') }}">
+
 
 @section('htmlheader_title')
 	Gerenciar Solicitação
@@ -41,7 +47,6 @@
                                 <th>Nº</th>
                                 <th>Descrição solicitação</th>
                                 <th>Data solicitação</th>   
-                                <th>Local serviço</th>
                                 <th>Título</th>
                                 <th>Obs solicitado</th>
                                 <th>Obs solicitante</th>

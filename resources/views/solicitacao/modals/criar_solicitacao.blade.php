@@ -37,18 +37,17 @@
                     </div>
 
                     <div class="form-group">
-                        <div class="col-sm-12">
+                        <div class="col-md-12">
                             <strong>Tipo de solicitação</strong>
                             <div class="input-group">
-                                
-                                <input type="checkbox" name="" class="form-check-input">TIPO 1
-                                <input type="checkbox" name="" class="form-check-input">TIPO 2
-                                <input type="checkbox" name="" class="form-check-input">TIPO 3
-                                <input type="checkbox" name="" class="form-check-input">TIPO 4
+                                <select name="servicos[]" id="servicos" class="form-control js-example-basic-multiple" style="width:100%" multiple="multiple" id="">
+                                  @foreach($servicos as $servico)
+                                  <option value="{{$servico->id}}">{{$servico->nome}}</option>
+                                  @endforeach
+                                </select>
                             </div>       
                         </div>
-                    </div>
-
+                    </div>     
 
                     <div class="form-group">
                         <div class="col-sm-6">
