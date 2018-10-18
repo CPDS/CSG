@@ -14,11 +14,13 @@ use App\Contrato;
 use App\ItemContrato;
 use App\ContratoItem;
 use App\User;
+use Session;
 
 class ContratoController extends Controller
 {
     public function index()
     {
+        Session::flash('numero', '123456');
     	$itens = ItemContrato::where('status','Ativo')->get();
         
         $empresas = User::role('empresa')->get();
@@ -42,7 +44,7 @@ class ContratoController extends Controller
     {
         $itens = Contrato::join('contrato_items','contrato_items.fk_contrato','=','contratos.id')
         ->join('item_contratos','item_contratos.id','=','contrato_items.fk_item')
-        ->select('contrato_items.quantidade','item_contratos.nome','contrato_items.fk_item')
+        ->select('contrato_items.quantidade','item_contratos.nome','contrato_items.fk_item', 'contrato_items.valor_unitario')
         ->orderBy('contratos.created_at', 'desc')
         ->where('contratos.id',$id)->get();
 
@@ -97,6 +99,7 @@ class ContratoController extends Controller
             foreach ($request->itens as $value) {   
                 $contrato_item = new ContratoItem();
                 $contrato_item->quantidade = $value['quantidade'];
+                $contrato_item->valor_unitario = $value['valor_unitario'];
                 $contrato_item->fk_item = $value['fk_item'];
                 $contrato_item->fk_contrato = $contrato->id;
                 $contrato_item->save();

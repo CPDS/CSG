@@ -36,6 +36,14 @@ Route::group(['prefix' => 'gerenciar-licitacoes', 'where' => ['id' => '[0-9]+'],
         Route::post('/store', ['as' => 'gerenciar-licitacoes.store', 'uses' => 'LicitacaoController@store']);
         Route::post('/update', ['as' => 'gerenciar-licitacoes.update', 'uses' => 'LicitacaoController@update']);
         Route::post('/delete', ['as' => 'gerenciar-licitacoes.destroy', 'uses' => 'LicitacaoController@destroy']);
+});
+
+Route::group(['prefix' => 'gerenciar-baixa-itens', 'where' => ['id' => '[0-9]+'], 'middleware' => ['role:Administrador']] ,function() {
+        Route::get('', ['as' => 'gerenciar-baixa-itens.index', 'uses' => 'BaixaItemController@index']);
+        Route::get('/list',['as' => 'gerenciar-baixa-itens.list', 'uses' => 'BaixaItemController@list']);
+        Route::post('/store', ['as' => 'gerenciar-baixa-itens.store', 'uses' => 'BaixaItemController@store']);
+        Route::post('/update', ['as' => 'gerenciar-baixa-itens.update', 'uses' => 'BaixaItemController@update']);
+        Route::post('/delete', ['as' => 'gerenciar-baixa-itens.destroy', 'uses' => 'BaixaItemController@destroy']);
 });     
 
 Route::group(['prefix' => 'gerenciar-contratos', 'where' => ['id' => '[0-9]+'], 'middleware' => ['role:Administrador']] ,function() {

@@ -22,7 +22,36 @@
                     <input type="text" maxlength="254" class="form-control" name="nome"  id="nome">
                 </div>       
             </div>
-        </div>      
+        </div>
+        
+         <div class="form-group">
+            <div class="col-sm-5">
+                <strong>Sigla:</strong>
+                <div class="input-group">
+                    <span data-toggle="tooltip" title="Sigla" class="input-group-addon"><i class="fa fa-bookmark-o"></i></span>
+                    <input type="text" maxlength="254" class="form-control" name="sigla"  id="sigla">
+                </div>       
+            </div>
+        
+            <div class="col-sm-7">
+                <strong>Telefone:</strong>
+                <div class="input-group">
+                    <span data-toggle="tooltip" title="E-mail" class="input-group-addon"><i class="fa fa-phone"></i></span>
+                    <input type="text" maxlength="254" class="form-control" name="telefone"  id="telefone">
+                </div>       
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-12">
+                <strong>E-mail:</strong>
+                <div class="input-group">
+                    <span data-toggle="tooltip" title="E-mail" class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                    <input type="text" maxlength="254" class="form-control" name="email"  id="email">
+                </div>       
+            </div>
+        </div>
+      
         <input type="hidden" id="id" name="id">
       </form>
 

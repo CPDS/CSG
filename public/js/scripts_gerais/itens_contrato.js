@@ -22,7 +22,6 @@ $(document).ready(function($) {
             
             { data: null, name: 'order' },
             { data: 'nome', name: 'nome' },
-            { data: 'valor_unitario', name: 'valor_unitario' },
             { data: 'acao', name: 'acao' },
             ],
             createdRow : function( row, data, index ) {
@@ -256,7 +255,6 @@ $(document).on('click', '.btnAdicionar', function() {
 
         //habilita os campos desabilitados
         $('#nome').prop('readonly',false);
-        $('#valor_unitario').prop('readonly',false);
 
         $('.modal-title').text('Novo Cadastro de Item');
         $('.callout').addClass("hidden"); 
@@ -275,7 +273,6 @@ $(document).on('click', '.btnVer', function() {
         
         //desabilita os campos
         $('#nome').prop('readonly',true);
-        $('#valor_unitario').prop('readonly',true);
 
         $('.callout').addClass("hidden"); //ocultar a div de aviso
         $('.callout').find("p").text(""); //limpar a div de aviso
@@ -300,7 +297,6 @@ $(document).on('click', '.btnEditar', function() {
 
         //habilita os campos desabilitados
         $('#nome').prop('readonly',false);
-        $('#valor_unitario').prop('readonly',false);
 
         var btnEditar = $(this);
 

@@ -16,7 +16,6 @@ class CreateItemContratosTable extends Migration
         Schema::create('item_contratos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
-            $table->decimal('valor_unitario',8,2);
             $table->string('status');
             $table->timestamps();
         });

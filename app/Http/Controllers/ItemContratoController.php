@@ -32,7 +32,7 @@ class ItemContratoController  extends Controller
     }
 
     private function setBtns(ItemContrato $item_contratos){
-        $dados = "data-id_del='$item_contratos->id' data-id='$item_contratos->id' data-nome='$item_contratos->nome' data-valor_unitario='$item_contratos->valor_unitario'";
+        $dados = "data-id_del='$item_contratos->id' data-id='$item_contratos->id' data-nome='$item_contratos->nome'";
 
         $btnVer = "<a class='btn btn-info btn-sm btnVer' data-toggle='tooltip' title='Ver item_contrato' $dados> <i class='fa fa-eye'></i></a> ";
 
@@ -50,11 +50,9 @@ class ItemContratoController  extends Controller
     {   
         $rules = array(
             'nome' => 'required',
-            'valor_unitario' => 'required'
         );
         $attributeNames = array(
             'nome' => 'Nome',
-            'valor_unitario' => 'Valor unitário'
         );
         
         $validator = Validator::make(Input::all(), $rules);
@@ -65,7 +63,6 @@ class ItemContratoController  extends Controller
 
             $item_contrato = new ItemContrato();
             $item_contrato->nome = $request->nome;
-            $item_contrato->valor_unitario = $request->valor_unitario;
             $item_contrato->status = 'Ativo';
             $item_contrato->save();
             
@@ -77,7 +74,6 @@ class ItemContratoController  extends Controller
     {
         $item_contrato = ItemContrato::find($request->id);
         $item_contrato->nome = $request->nome;
-        $item_contrato->valor_unitario = $request->valor_unitario;
         $item_contrato->save();
 
         return response()->json($item_contrato);

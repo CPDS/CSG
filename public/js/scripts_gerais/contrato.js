@@ -275,16 +275,18 @@ $(document).ready(function($) {
     var fk_item = $('#fk_item :selected').val();
     var descricao_material = $('#fk_item :selected').text();
     var quantidade = $('#quantidade').val();
+    var valor_unitario = $('#valor_unitario').val();
 
     var novaLinha = '<tr class="'+'linha'+i+'">';
     //Adc material ao array
-    itens.push({'fk_item': fk_item, 'quantidade': quantidade});
+    itens.push({'fk_item': fk_item, 'quantidade': quantidade, 'valor_unitario': valor_unitario});
 
     
     /* Crian a linha p/ tabela*/
     
     cols += '<td>'+descricao_material+'</td>';
     cols += '<td>'+quantidade+'</td>';
+    cols += '<td>'+valor_unitario+'</td>';
     cols += '<td class="text-left"><a class="btnRemoverItem btn btn-xs btn-danger" data-indexof="'+itens.indexOf(itens[i])+'" data-linha="'+i+'"><i class="fa fa-trash"></i> Remover</a></td>';
     novaLinha += cols + '</tr>';
     
@@ -294,6 +296,7 @@ $(document).ready(function($) {
     i+=1;
 
     $('#quantidade').val('');
+    $('#valor_unitario').val('');
   });
 
 
@@ -366,6 +369,7 @@ $(document).on('click', '.btnVer', function() {
                 var fk_item = response.data[i].fk_item;
                 var descricao_item = response.data[i].nome;
                 var quantidade = response.data[i].quantidade;
+                var valor_unitario = response.data[i].valor_unitario;
 
                 var novaLinha = '<tr class="'+'linha'+i+'">';
                 //Adc material ao array
@@ -376,6 +380,7 @@ $(document).on('click', '.btnVer', function() {
                 
                 cols += '<td>'+descricao_item+'</td>';
                 cols += '<td>'+quantidade+'</td>';
+                cols += '<td>'+valor_unitario+'</td>';
                 cols += '<td class="text-left"><a class="btnRemoverItem btn btn-xs btn-danger" data-indexof="'+itens.indexOf(itens[j])+'" data-linha="'+j+'"><i class="fa fa-trash"></i> Remover</a></td>';
                 novaLinha += cols + '</tr>';
 
@@ -383,6 +388,7 @@ $(document).on('click', '.btnVer', function() {
                 j+=1;
 
                 $('#quantidade').val('');
+                $('#valor_unitario').val('');
                 }
                 
             },

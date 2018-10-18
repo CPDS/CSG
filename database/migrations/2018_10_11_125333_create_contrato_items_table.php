@@ -16,6 +16,7 @@ class CreateContratoItemsTable extends Migration
         Schema::create('contrato_items', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('quantidade');
+            $table->decimal('valor_unitario',8,2);
             $table->integer('fk_item')->unsigned();
             $table->foreign('fk_item')->references('id')->on('item_contratos');   
             $table->integer('fk_contrato')->unsigned();

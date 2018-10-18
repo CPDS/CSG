@@ -17,8 +17,8 @@ class CreateContratosTable extends Migration
         Schema::create('contratos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('numero');
-            $table->decimal('valor_total',8,2);
             $table->date('data_inicio');
+            $table->decimal('valor_total',8,2);
             $table->date('data_fim');
             $table->string('status');
             $table->integer('fk_user')->unsigned();

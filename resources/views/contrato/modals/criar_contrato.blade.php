@@ -30,7 +30,7 @@
                                 " class="input-group-addon"><i class="fa fa-pencil"></i></span>
                                   <select class="form-control" name="fk_user" id="fk_user">
                                    @foreach($empresas as $empresa)
-                                    <option value="{{$empresa->id}}">{{$empresa->id}}</option>
+                                    <option value="{{$empresa->id}}">{{$empresa->name}}</option>
                                    @endforeach
                                 </select>
                             </div>       
@@ -68,7 +68,7 @@
                     
 
                     <div class="form-group">
-                        <div class="col-sm-8">
+                        <div class="col-sm-6">
                             <strong>Item</strong>
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="Item" class="input-group-addon"><i class="fa fa-cube"></i></span>
@@ -80,6 +80,14 @@
                             </div>       
                         </div>
                     
+                        <div class="col-sm-3">
+                            <strong>Valor</strong>
+                            <div class="input-group">
+                                <span data-toggle="tooltip" title="Valor" class="input-group-addon"><i class="fa fa-bars"></i></span>
+                                <input type="text" maxlength="254" class="form-control" name="valor_unitario" id="valor_unitario">
+                            </div>       
+                        </div>
+
                         <div class="col-sm-3">
                             <strong>Quantidade</strong>
                             <div class="input-group">
