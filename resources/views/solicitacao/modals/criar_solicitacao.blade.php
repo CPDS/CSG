@@ -13,7 +13,7 @@
                 <p></p>
         </div>
 
-       <form class="form-horizontal" role="form" id="form" >
+       <form class="form-horizontal" role="form" id="form"  >
                    <div class="form-group">
                         <div class="col-sm-6">
                             <strong>Título:</strong>
@@ -27,10 +27,10 @@
                             <strong>STATUS:</strong>
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="Local do serviço" class="input-group-addon"><i class="fa fa-bookmark-o"></i></span>
-                                 <select class="form-control" name="fk_material" id="fk_material">
-                                    <option value="">ATENDIDO</option>
-                                    <option value="">NÃO ATENDIDO</option>
-                                    <option value="">PARCIALMENTE ATENDIDO</option>
+                                 <select class="form-control" name="status" id="status">
+                                    <option>ATENDIDO</option>
+                                    <option>NÃO ATENDIDO</option>
+                                    <option>PARCIALMENTE ATENDIDO</option>
                                 </select>                            
                             </div>       
                         </div>
@@ -40,7 +40,7 @@
                         <div class="col-md-12">
                             <strong>Tipo de solicitação</strong>
                             <div class="input-group">
-                                <select name="servicos[]" id="servicos" class="form-control js-example-basic-multiple" style="width:100%" multiple="multiple" id="">
+                                <select name="servicos[]" id="servicos" class="form-control js-example-basic-multiple" style="width:100%" multiple="multiple">
                                   @foreach($servicos as $servico)
                                   <option value="{{$servico->id}}">{{$servico->nome}}</option>
                                   @endforeach

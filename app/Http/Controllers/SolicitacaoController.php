@@ -40,7 +40,6 @@ class SolicitacaoController extends Controller
         $solicitacaos = Solicitacao::JOIN('users','users.id','=','solicitacaos.fk_user_solicitante')
         ->LEFTJOIN('material_saidas','material_saidas.fk_solicitacao','=','solicitacaos.id')
         ->LEFTJOIN('materials','materials.id','=','material_saidas.fk_material')
-        ->where('solicitacaos.status','Ativo')
         ->select('solicitacaos.id','solicitacaos.data_solicitacao','solicitacaos.titulo','solicitacaos.descricao as descricao_solicitacao','solicitacaos.observacao_solicitado','solicitacaos.observacao_solicitante',
         	'material_saidas.quantidade','materials.descricao as descricao_material')
         ->orderBy('solicitacaos.created_at', 'desc')->get();
@@ -53,15 +52,15 @@ class SolicitacaoController extends Controller
     }
 
     private function setBtns(Solicitacao $solicitacaos){
-        $dados = "data-id_del='$solicitacaos->id' 
+        $dados = "
+        data-id_del='$solicitacaos->id' 
         data-id='$solicitacaos->id' 
         data-descricao_solicitacao='$solicitacaos->descricao_solicitacao'  
-        data-data_solicitacao='$solicitacaos->data_solicitacao 
-        data-titulo='$solicitacaos->titulo 
-        data-observacao_solicitado='$solicitacaos->observacao_solicitado 
-        data-observacao_solicitante='$solicitacaos->observacao_solicitante 
-        data-quantidade='$solicitacaos->quantidade  
-        data-descricao_material='$solicitacaos->descricao_material";
+        data-titulo='$solicitacaos->titulo' 
+        data-observacao_solicitado='$solicitacaos->observacao_solicitado' 
+        data-observacao_solicitante='$solicitacaos->observacao_solicitante'
+        data-quantidade='$solicitacaos->quantidade' 
+         ";
 
         $btnVer = "<a class='btn btn-info btn-sm btnVer' data-toggle='tooltip' title='Ver solicitacao' $dados> <i class='fa fa-eye'></i></a> ";
 
@@ -76,7 +75,7 @@ class SolicitacaoController extends Controller
     }
 
     public function store(Request $request)
-    {   dd($request->all());
+    {   
         $rules = array(
             'titulo' => 'required'
         );
@@ -100,7 +99,7 @@ class SolicitacaoController extends Controller
             $solicitacao->observacao_solicitado = $request->observacao_solicitado;
             $solicitacao->observacao_solicitante = $request->observacao_solicitante;
             $solicitacao->fk_user_solicitante = Auth::User()->id;
-            $solicitacao->status = 'Ativo';
+            $solicitacao->status = $request->status;
             $solicitacao->save();
 
             foreach ($request->materiais as $value) {   
@@ -113,7 +112,7 @@ class SolicitacaoController extends Controller
 
             foreach ($request->servicos as $value) {   
                 $servico_solicitacao = new ServicoSolicitacao();
-                $servico_solicitacao->fk_servico = $value['fk_servico'];
+                $servico_solicitacao->fk_servico = $value;
                 $servico_solicitacao->fk_solicitacao = $solicitacao->id;
                 $servico_solicitacao->save();
             }

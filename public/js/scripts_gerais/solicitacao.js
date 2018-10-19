@@ -88,7 +88,6 @@ $(document).ready(function($) {
 
 
     $('.modal-footer').on('click', '.add', function() {
-        alert($("#fk_solicitacao_tipo").val());
         var dados = new FormData($("#form")[0]); //pega os dados do form
 
         $.ajax({
@@ -104,6 +103,8 @@ $(document).ready(function($) {
                 'fk_servico': $("#fk_servico").val(),
                 'fk_user': $("#fk_user").val(),
                 'fk_solicitacao_tipo': $("#fk_solicitacao_tipo").val(),
+                'servicos': $("#servicos").val(),
+                'status': $("#status :selected").val(),
                 'materiais': materiais
             },
             /*processData: false,
