@@ -11,41 +11,53 @@ use DataTables;
 use DB;
 use Auth;
 use App\Setor;
+use App\Solicitacao;
 
 class BaixaItemController extends Controller
 {
     public function index()
     {
+
         return view('baixa_item.index');    
     } 
 
     public function list()
     {
 
-        $setor = Setor::orderBy('created_at', 'desc')
-        ->where('status','Ativo')->get();
-        return DataTables::of($setor)
-            ->editColumn('acao', function ($setor){
-                return $this->setBtns($setor);
-            })->escapeColumns([0])
-            ->make(true);
+        $solicitacaos = Solicitacao::JOIN('users','users.id','=','solicitacaos.fk_user_solicitante')
+        ->LEFTJOIN('material_saidas','material_saidas.fk_solicitacao','=','solicitacaos.id')
+        ->LEFTJOIN('materials','materials.id','=','material_saidas.fk_material')
+        ->select('solicitacaos.id','solicitacaos.data_solicitacao','solicitacaos.titulo','solicitacaos.descricao as descricao_solicitacao','solicitacaos.observacao_solicitado','solicitacaos.observacao_solicitante',
+            'material_saidas.quantidade','materials.descricao as descricao_material','materials.id as id_material')
+        ->orderBy('solicitacaos.created_at', 'desc')->get();
 
-       
+
+        return DataTables::of($solicitacaos)
+            ->editColumn('acao', function ($solicitacaos){
+                return $this->setBtns($solicitacaos);
+            })->escapeColumns([0])
+            ->make(true); 
     }
 
-    private function setBtns(setor $setors){
-        $dados = "data-id_del='$setors->id' data-id='$setors->id' data-nome='$setors->nome' data-sigla='$setors->sigla' data-email='$setors->email' data-telefone='$setors->telefone'";
+    private function setBtns(Solicitacao $solicitacaos){
+        $dados = "
+        data-id_del='$solicitacaos->id_material' 
+        data-id='$solicitacaos->id' 
+        data-descricao_solicitacao='$solicitacaos->descricao_solicitacao'  
+        data-titulo='$solicitacaos->titulo' 
+        data-observacao_solicitado='$solicitacaos->observacao_solicitado' 
+        data-observacao_solicitante='$solicitacaos->observacao_solicitante'
+        data-quantidade='$solicitacaos->quantidade' 
+         ";
 
-        $btnVer = "<a class='btn btn-info btn-sm btnVer' data-toggle='tooltip' title='Ver setor' $dados> <i class='fa fa-eye'></i></a> ";
+        $btnVer = "<a class='btn btn-info btn-sm btnVer' data-toggle='tooltip' title='Ver solicitacao' $dados> <i class='fa fa-eye'></i></a> ";
 
-        $btnEditar = "<a class='btn btn-primary btn-sm btnEditar' data-toggle='tooltip' title='Editar setor' $dados> <i class='fa fa-edit'></i></a> ";
+        $btnEditar = "<a class='btn btn-primary btn-sm btnEditar' data-toggle='tooltip' title='Editar solicitacao' $dados> <i class='fa fa-edit'></i></a> ";
 
-        $btnDeletar = "<a class='btn btn-danger btn-sm btnDeletar' data-toggle='tooltip' title='Deletar setor' $dados><i class='fa fa-trash'></i></a>";
+        $btnDeletar = "<a class='btn btn-danger btn-sm btnDeletar' data-toggle='tooltip' title='Deletar solicitacao' $dados><i class='fa fa-trash'></i></a>";
 
 
         return $btnVer.$btnEditar.$btnDeletar;
-
-
     }
 
     public function store(Request $request)

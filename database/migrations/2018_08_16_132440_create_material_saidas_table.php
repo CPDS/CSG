@@ -16,7 +16,9 @@ class CreateMaterialSaidasTable extends Migration
         Schema::create('material_saidas', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('quantidade');
+            $table->integer('quantidade_atendida')->nullable();
             $table->integer('fk_material')->nullable();
+            $table->string('status')->nullable()->default('SOLICITADO');
             $table->foreign('fk_material')->references('id')->on('materials');
             $table->integer('fk_solicitacao')->unsigned();
             $table->foreign('fk_solicitacao')->references('id')->on('solicitacaos');

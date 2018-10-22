@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 <script src ="{{ asset('/plugins/jQuery/jQuery-3.1.0.min.js') }}" type = "text/javascript" ></script>
-<script src ="{{ asset('/js/scripts_gerais/setor.js') }}" type = "text/javascript" ></script>
+<script src ="{{ asset('/js/scripts_gerais/baixa_item.js') }}" type = "text/javascript" ></script>
 <script src="{{ asset('plugins/datatables/jquery.dataTables.js') }}" type = "text/javascript"></script>
 <script src="{{ asset('plugins/mask-input-js/maskinput.js') }}" type = "text/javascript"></script>
 
@@ -34,10 +34,10 @@
 
                             <tr>
                                 <th>Nº</th>
-                                <th>Nome</th>   
-                                <th>Sigla</th>
-                                <th>E-mail</th>
-                                <th>Telefone</th>
+                                <th>Data solicitação</th>   
+                                <th>Título</th>
+                                <th>Descrição material</th>
+                                <th>Quantidade</th>
                                 <th width="20%">Ações</th>
                             </tr>
                             </thead>
@@ -51,6 +51,6 @@
 		</div>
 	</div>
 
-@include('setor.modals.criar_setor')
-@include('setor.modals.deletar_setor')
+@include('baixa_item.modals.criar_setor')
+@include('baixa_item.modals.deletar_setor')
 @endsection

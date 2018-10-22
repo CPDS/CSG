@@ -70,8 +70,6 @@ class SolicitacaoController extends Controller
 
 
         return $btnVer.$btnEditar.$btnDeletar;
-
-
     }
 
     public function store(Request $request)

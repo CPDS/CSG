@@ -15,7 +15,7 @@
 
        <form class="form-horizontal" role="deletar" id="deletar">             
     
-             <input type="hidden" id="id_del" name="id_del">
+             <input type="text" id="id_del" name="id_del">
         </form>
 
       <h3>Deseja realmente deletar esse setor?</h3>                
