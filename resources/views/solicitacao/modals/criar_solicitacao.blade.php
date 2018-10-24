@@ -36,11 +36,11 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <strong>Tipo de solicitação</strong>
+                    <div class="form-group" style="width: 500px;">
+                        <div class="col-md-12" style="width: 500px;">
+                            <strong>Tipo de seviços</strong>
                             <div class="input-group">
-                                <select name="servicos[]" id="servicos" class="form-control js-example-basic-multiple" style="width:100%" multiple="multiple">
+                                <select style="width: 500px;" name="servicos[]" id="servicos" class="form-control js-example-basic-multiple" style="width:100%" multiple="multiple">
                                   @foreach($servicos as $servico)
                                   <option value="{{$servico->id}}">{{$servico->nome}}</option>
                                   @endforeach

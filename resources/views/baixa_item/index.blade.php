@@ -37,7 +37,8 @@
                                 <th>Data solicitação</th>   
                                 <th>Título</th>
                                 <th>Descrição material</th>
-                                <th>Quantidade</th>
+                                <th>Quantidade Solicitada</th>
+                                <th>Status</th>
                                 <th width="20%">Ações</th>
                             </tr>
                             </thead>
@@ -51,6 +52,6 @@
 		</div>
 	</div>
 
-@include('baixa_item.modals.criar_setor')
-@include('baixa_item.modals.deletar_setor')
+@include('baixa_item.modals.criar_baixa_item')
+@include('baixa_item.modals.deletar_baixa_item')
 @endsection

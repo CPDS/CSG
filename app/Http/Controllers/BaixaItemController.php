@@ -12,6 +12,7 @@ use DB;
 use Auth;
 use App\Setor;
 use App\Solicitacao;
+use App\MaterialSaida;
 
 class BaixaItemController extends Controller
 {
@@ -28,7 +29,7 @@ class BaixaItemController extends Controller
         ->LEFTJOIN('material_saidas','material_saidas.fk_solicitacao','=','solicitacaos.id')
         ->LEFTJOIN('materials','materials.id','=','material_saidas.fk_material')
         ->select('solicitacaos.id','solicitacaos.data_solicitacao','solicitacaos.titulo','solicitacaos.descricao as descricao_solicitacao','solicitacaos.observacao_solicitado','solicitacaos.observacao_solicitante',
-            'material_saidas.quantidade','materials.descricao as descricao_material','materials.id as id_material')
+            'material_saidas.quantidade as quantidade_solicitada','material_saidas.status' ,'materials.descricao as descricao_material','materials.id as id_material', 'material_saidas.id as id_material_saida','material_saidas.quantidade_atendida')
         ->orderBy('solicitacaos.created_at', 'desc')->get();
 
 
@@ -41,13 +42,15 @@ class BaixaItemController extends Controller
 
     private function setBtns(Solicitacao $solicitacaos){
         $dados = "
-        data-id_del='$solicitacaos->id_material' 
+        data-id_material_saida='$solicitacaos->id_material_saida' 
         data-id='$solicitacaos->id' 
         data-descricao_solicitacao='$solicitacaos->descricao_solicitacao'  
         data-titulo='$solicitacaos->titulo' 
         data-observacao_solicitado='$solicitacaos->observacao_solicitado' 
         data-observacao_solicitante='$solicitacaos->observacao_solicitante'
-        data-quantidade='$solicitacaos->quantidade' 
+        data-status='$solicitacaos->status'
+        data-quantidade_solicitada='$solicitacaos->quantidade_solicitada' 
+        data-quantidade_atendida='$solicitacaos->quantidade_atendida' 
          ";
 
         $btnVer = "<a class='btn btn-info btn-sm btnVer' data-toggle='tooltip' title='Ver solicitacao' $dados> <i class='fa fa-eye'></i></a> ";
@@ -60,49 +63,14 @@ class BaixaItemController extends Controller
         return $btnVer.$btnEditar.$btnDeletar;
     }
 
-    public function store(Request $request)
-    {   
-        $rules = array(
-            'nome' => 'required',
-            'sigla' => 'required',
-            'telefone' => 'required',
-            'email' => 'required'
-        );
-        $attributeNames = array(
-            'nome' => 'Nome',
-            'sigla' => 'Sigla',
-            'email' => 'E-mail',
-            'telefone' => 'Telefone'
-        );
-        
-        $validator = Validator::make(Input::all(), $rules);
-        $validator->setAttributeNames($attributeNames);
-        if ($validator->fails()){
-                return Response::json(array('errors' => $validator->getMessageBag()->toArray()));
-        }else {
-
-            $setor = new Setor();
-            $setor->nome = $request->nome;
-            $setor->sigla = $request->sigla;
-            $setor->email = $request->email;
-            $setor->telefone = $request->telefone;
-            $setor->status = 'Ativo';
-            $setor->save();
-            
-            return response()->json($setor);
-        }
-    }
-
     public function update(Request $request)
     {
-        $setor = Setor::find($request->id);
-        $setor->nome = $request->nome;
-        $setor->sigla = $request->sigla;
-        $setor->email = $request->email;
-        $setor->telefone = $request->telefone;
-        $setor->save();
+        $material_saidas = MaterialSaida::find($request->id_material_saida);
+        $material_saidas->status = $request->status;
+        $material_saidas->quantidade_atendida = $request->quantidade_atendida;
+        $material_saidas->save();
 
-        return response()->json($setor);
+        return response()->json($material_saidas);
     }
 
     public function destroy(Request $request)

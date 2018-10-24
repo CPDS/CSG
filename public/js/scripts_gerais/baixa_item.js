@@ -20,7 +20,8 @@ $(document).ready(function($) {
             { data: 'data_solicitacao', name: 'data_solicitacao' },
             { data: 'titulo', name: 'titulo' },
             { data: 'descricao_material', name: 'descricao_material' },
-            { data: 'quantidade', name: 'quantidade' },
+            { data: 'quantidade_solicitada', name: 'quantidade_solicitada' },
+            { data: 'status', name: 'status' },
             { data: 'acao', name: 'acao' },
             ],
             createdRow : function( row, data, index ) {
@@ -67,8 +68,9 @@ $(document).ready(function($) {
               { targets : [2], sortable : false },
               { "width": "5%", "targets": 0 }, //nº
               { "width": "20%", "targets": 1 },//nome
-              { "width": "20%", "targets": 2 },//ação
-              { "width": "40%", "targets": 3 }//ação
+              { "width": "10%", "targets": 2 },//ação
+              { "width": "20%", "targets": 3 },//ação
+              { "width": "20%", "targets": 4 }//ação
             ]
     });
 
@@ -79,84 +81,11 @@ $(document).ready(function($) {
     }).draw();
 
 
-    $('.modal-footer').on('click', '.add', function() {
-        var dados = new FormData($("#form")[0]); //pega os dados do form
-
-        $.ajax({
-            type: 'post',
-            url: "/gerenciar-solicitacoes/store",
-             data: {
-                'data_solicitacao': $("#data_solicitacao").val(),
-                'local_servico': $("#local_servico").val(),
-                'titulo': $("#titulo").val(),
-                'descricao': $("#descricao").val(),
-                'observacao_solicitado': $("#observacao_solicitado").val(),
-                'observacao_solicitante': $("#observacao_solicitante").val(),
-                'fk_servico': $("#fk_servico").val(),
-                'fk_user': $("#fk_user").val(),
-                'fk_solicitacao_tipo': $("#fk_solicitacao_tipo").val(),
-                'servicos': $("#servicos").val(),
-                'status': $("#status :selected").val(),
-                'materiais': materiais
-            },
-            /*processData: false,
-            contentType: false,*/
-            beforeSend: function(){
-                jQuery('.add').button('loading');
-            },
-            complete: function() {
-                jQuery('.add').button('reset');
-            },
-            success: function(data) {
-                 //Verificar os erros de preenchimento
-                if ((data.errors)) {
-
-                    $('.callout').removeClass('hidden'); //exibe a div de erro
-                    $('.callout').find('p').text(""); //limpa a div para erros successivos
-
-                    $.each(data.errors, function(nome, mensagem) {
-                            $('.callout').find("p").append(mensagem + "</br>");
-                    });
-
-                } else {
-                    
-                    $('#table').DataTable().draw(false);
-
-                    jQuery('#criar_editar-modal').modal('hide');
-
-                    $(function() {
-                        iziToast.destroy();
-                        iziToast.success({
-                            title: 'OK',
-                            message: 'solicitação adicionado com Sucesso!',
-                        });
-                    });
-
-                
-                }
-            },
-
-            error: function() {
-                jQuery('#criar_editar-modal').modal('hide'); //fechar o modal
-
-                iziToast.error({
-                    title: 'Erro Interno',
-                    message: 'Operação Cancelada!',
-                });
-            },
-
-        });
-    });
-
-
     $('.modal-footer').on('click', '.edit', function() {
         var dados = new FormData($("#form")[0]); //pega os dados do form
-
-        console.log(dados);
-
         $.ajax({
             type: 'post',
-            url: "/gerenciar-solicitacoes/update",
+            url: "/gerenciar-baixa-itens/update",
             data: dados,
             processData: false,
             contentType: false,
@@ -212,7 +141,7 @@ $(document).ready(function($) {
 
         $.ajax({
             type: 'post',
-            url: "/gerenciar-solicitacoes/delete",
+            url: "/gerenciar-baixa-itens/delete",
             data: dados,
             processData: false,
             contentType: false,
