@@ -68,7 +68,7 @@
                     
 
                     <div class="form-group">
-                        <div class="col-sm-6">
+                        <div class="col-sm-5">
                             <strong>Item</strong>
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="Item" class="input-group-addon"><i class="fa fa-cube"></i></span>

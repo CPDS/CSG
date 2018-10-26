@@ -57,10 +57,7 @@ class BaixaItemController extends Controller
 
         $btnEditar = "<a class='btn btn-primary btn-sm btnEditar' data-toggle='tooltip' title='Editar solicitacao' $dados> <i class='fa fa-edit'></i></a> ";
 
-        $btnDeletar = "<a class='btn btn-danger btn-sm btnDeletar' data-toggle='tooltip' title='Deletar solicitacao' $dados><i class='fa fa-trash'></i></a>";
-
-
-        return $btnVer.$btnEditar.$btnDeletar;
+        return $btnVer.$btnEditar;
     }
 
     public function update(Request $request)

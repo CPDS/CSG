@@ -10,7 +10,7 @@
 <script src="{{ asset('js/iziToast.min.js') }}"></script>
 
 @section('htmlheader_title')
-	Gerenciar Setor
+	Gerenciar Baixa de itens
 @endsection
 
 @section('main-content')
@@ -20,11 +20,7 @@
 
 				<div class="box box-success">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Setores</h3>
-                       
-                       <div class="pull-right">      
-                            <a class="btnAdicionar btn btn-primary btn-sm" title="Adicionar Material" data-toggle="tooltip"><span class="glyphicon glyphicon-plus"></span> Cadastrar Setor</a>
-                        </div>
+                        <h3 class="box-title">Baixa de itens</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -35,9 +31,9 @@
                             <tr>
                                 <th>Nº</th>
                                 <th>Data solicitação</th>   
-                                <th>Título</th>
                                 <th>Descrição material</th>
-                                <th>Quantidade Solicitada</th>
+                                <th>Quantidade solicitada</th>
+                                <th>Quantidade atendida</th>
                                 <th>Status</th>
                                 <th width="20%">Ações</th>
                             </tr>

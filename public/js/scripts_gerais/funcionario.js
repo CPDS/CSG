@@ -1,6 +1,8 @@
 $(document).ready(function($) {
     
-    $("#telefone").mask("(99) 9?9999-9999");
+    $("#telefone").mask("(99) 9?9999-9999"); 
+    $("#cpf").mask("999.999.999-99");
+    $("#cnpj").mask(" 99.999.999/9999-99");
 
     var base_url = 'http://' + window.location.host.toString();
     var base_url = location.protocol + '//' + window.location.host.toString();
@@ -11,7 +13,6 @@ $(document).ready(function($) {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-
     
     var tabela = $('#table').DataTable({
             processing: true,

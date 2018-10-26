@@ -22,6 +22,7 @@
                     <select name="status"  id="status" class="form-control">
                       <option>AGUARDANDO FORNECIMENTO</option>
                       <option>SOLICITADO</option>
+                      <option>ATENDIDO</option>
                       <option>NÃO ATENDIDO</option>
                     </select>
                 </div>       

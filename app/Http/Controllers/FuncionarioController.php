@@ -61,15 +61,13 @@ class FuncionarioController extends Controller
             'nome_user' => 'required',
             'rg' => 'required',
             'telefone' => 'required',
-            'endereco' => 'required',
-            'fk_setor' => 'required'
+            'endereco' => 'required'
         );
         $attributeNames = array(
             'nome_user' => 'Nome',
             'rg' => 'RG',
             'telefone' => 'Telefone',
-            'endereco' => 'Telefone',
-            'fk_setor' => 'Setor'
+            'endereco' => 'Telefone'
         );
         
         $validator = Validator::make(Input::all(), $rules);
@@ -88,6 +86,9 @@ class FuncionarioController extends Controller
             $user->telefone = $request->telefone;
             $user->endereco = $request->endereco;
             $user->fk_setor = $request->fk_setor;
+            $user->cnpj = $request->cnpj;
+            $user->responsavel = $request->responsavel;
+            $user->contato = $request->fk_setor;
             $user->status = 'Ativo';
             $user->save();
 

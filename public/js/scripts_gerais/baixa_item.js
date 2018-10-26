@@ -18,9 +18,9 @@ $(document).ready(function($) {
             columns: [
             { data: null, name: 'order' },
             { data: 'data_solicitacao', name: 'data_solicitacao' },
-            { data: 'titulo', name: 'titulo' },
             { data: 'descricao_material', name: 'descricao_material' },
             { data: 'quantidade_solicitada', name: 'quantidade_solicitada' },
+            { data: 'quantidade_atendida', name: 'quantidade_atendida' },
             { data: 'status', name: 'status' },
             { data: 'acao', name: 'acao' },
             ],
@@ -240,11 +240,8 @@ $(document).on('click', '.btnAdicionar', function() {
         $('.modal-footer .btn-action').removeClass('hidden');
 
         //habilita os campos desabilitados
-        $('#horario_inicio').prop('readonly',false);
-        $('#horario_pausa').prop('readonly',false);
-        $('#horario_pos_pausa').prop('readonly',false);
-        $('#horario_termino').prop('readonly',false);
-        $('#fk_servidor').prop('disabled',false);
+         $('#status').prop('disabled',false);
+        $('#quantidade_atendida').prop('readonly',false);
         
 
         $('.modal-title').text('Novo Cadastro de solicitação');
@@ -263,11 +260,8 @@ $(document).on('click', '.btnVer', function() {
         $('.modal-title').text('Ver solicitação de horário');
         
         //desabilita os campos
-        $('#horario_inicio').prop('readonly',true);
-        $('#horario_pausa').prop('readonly',true);
-        $('#horario_pos_pausa').prop('readonly',true);
-        $('#horario_termino').prop('readonly',true);
-        $('#fk_servidor').prop('disabled',true);
+        $('#status').prop('disabled',true);
+        $('#quantidade_atendida').prop('readonly',true);
 
         $('.callout').addClass("hidden"); //ocultar a div de aviso
         $('.callout').find("p").text(""); //limpar a div de aviso
@@ -290,12 +284,9 @@ $(document).on('click', '.btnEditar', function() {
         $('.callout').addClass("hidden"); //ocultar a div de aviso
         $('.callout').find("p").text(""); //limpar a div de aviso
 
-        //habilita os campos desabilitados
-        $('#horario_inicio').prop('readonly',false);
-        $('#horario_pausa').prop('readonly',false);
-        $('#horario_pos_pausa').prop('readonly',false);
-        $('#horario_termino').prop('readonly',false);
-        $('#fk_servidor').prop('disabled',false);
+        //habilita os campos desabilitadosdisabled
+       $('#status').prop('disabled',false);
+       $('#quantidade_atendida').prop('readonly',false);
 
         var btnEditar = $(this);
 

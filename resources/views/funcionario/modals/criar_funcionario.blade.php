@@ -22,15 +22,41 @@
                                 <input type="text" maxlength="254" class="form-control" name="nome_user"  id="nome_user">
                             </div>       
                         </div>
-                   
-                    
+
                         <div class="col-sm-4">
-                            <strong>RG:</strong>
+                            <strong>CPF:</strong>
                             <div class="input-group">
-                                <span data-toggle="tooltip" title="RG" class="input-group-addon"><i class="fa fa-sort-numeric-asc"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="rg"  id="rg">
+                                <span data-toggle="tooltip" title="CPF" class="input-group-addon"><i class="fa fa-sort-numeric-asc"></i></span>
+                                <input type="text" maxlength="254" class="form-control" name="cpf"  id="cpf">
                             </div>       
                         </div>
+                    </div>
+
+                     <div class="form-group">
+                        <div class="col-sm-4">
+                            <strong>CNPJ:</strong>
+                            <div class="input-group">
+                                <span data-toggle="tooltip" title="CNPJ" class="input-group-addon"><i class="fa fa-home"></i></span>
+                                <input type="text" maxlength="254" class="form-control" name="cnpj"  id="cnpj">
+                            </div>       
+                        </div>
+                       
+                        <div class="col-sm-4">
+                            <strong>Responsavel:</strong>
+                            <div class="input-group">
+                                <span data-toggle="tooltip" title="Responsavel" class="input-group-addon"><i class="fa fa-home"></i></span>
+                                <input type="text" maxlength="254" class="form-control" name="responsavel"  id="responsavel">
+                            </div>       
+                        </div>
+
+                        <div class="col-sm-4">
+                            <strong>Contato:</strong>
+                            <div class="input-group">
+                                <span data-toggle="tooltip" title="Contato" class="input-group-addon"><i class="fa fa-home"></i></span>
+                                <input type="text" maxlength="254" class="form-control" name="contato"  id="contato">
+                            </div>       
+                        </div>
+
                     </div>
 
                     <div class="form-group">

@@ -56,14 +56,21 @@
                 </ul>
             </li> 
             
-            <li><a href="{{ url('gerenciar-servicos') }}"><i class='fa fa-wrench'></i> <span>Serviços</span></a></li>
+            <li class="treeview">
+                <a href="#"><i class='fa fa-clone'></i> <span>Gerenciar Contratos</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ url('gerenciar-contratos') }}"><i class='fa fa-wrench'></i> <span>Contrato</span></a></li>
+                    <li><a href="{{ url('gerenciar-itens') }}"><i class='fa fa-wrench'></i> <span>Itens</span></a></li>
+               </ul>
+            </li>     
 
             <li class="treeview">
                 <a href="#"><i class='fa fa-clone'></i> <span>Gerenciar Solicitação</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                    <li><a href="{{ url('gerenciar-solicitacoes') }}"><i class='fa fa-sticky-note-o'></i> <span>Solicitação</span></a></li>
-                   <li><a href="{{ url('gerenciar-solicitacao-tipos') }}"><i class='fa fa-pencil-square-o'></i> <span>Tipo</span></a></li>
-
+                   <li><a href="{{ url('gerenciar-servicos') }}"><i class='fa fa-wrench'></i> <span>Servicos</span></a></li>
+                   <li><a href="{{ url('gerenciar-baixa-itens') }}"><i class='fa fa-wrench'></i> <span>Baixa de material</span></a></li>
+                  <!-- <li><a href="{{ url('gerenciar-solicitacao-tipos') }}"><i class='fa fa-pencil-square-o'></i> <span>Tipo</span></a></li> -->
                 </ul>
             </li>
         </ul><!-- /.sidebar-menu -->
