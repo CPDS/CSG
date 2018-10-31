@@ -118,6 +118,8 @@
                                 <select class="form-control" name="nome_role" id="nome_role">
                                     <option>Servidor</option>
                                     <option value="Ag-limpeza">Agente de limpeza</option>
+                                    <option value="Empresa">Empresa</option>
+                                    <option value="Servidor">Servidor</option>
                                 </select>
                             </div>       
                         </div>

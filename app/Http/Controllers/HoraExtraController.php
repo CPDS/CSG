@@ -17,7 +17,7 @@ class HoraExtraController extends Controller
 {
     public function index()
     {
-        $users = User::where('status','Ativo')->get();
+        $users = User::role(['Servidor','Ag-limpeza'])->where('status','Ativo')->get();
         return view('hora_extra.index',compact('users'));    
     } 
 

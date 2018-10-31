@@ -18,20 +18,17 @@ $(document).ready(function($) {
             processing: true,
             serverSide: true,
             deferRender: true,
-            ajax: './gerenciar-funcionarios/list',
+            ajax: './gerenciar-users/list',
             columns: [
             { data: null, name: 'order' },
             { data: 'nome_user', name: 'nome_user' },
-            { data: 'rg', name: 'rg' },
             { data: 'nome_role', name: 'nome_role' },
             { data: 'telefone', name: 'telefone' },
-            { data: 'nome_setor', name: 'nome_setor' },
             { data: 'acao', name: 'acao' },
             ],
             createdRow : function( row, data, index ) {
                 row.id = "item-" + data.id;   
             },
-
             paging: true,
             lengthChange: true,
             searching: true,
@@ -91,7 +88,7 @@ $(document).ready(function($) {
 
         $.ajax({
             type: 'post',
-            url: "/gerenciar-funcionarios/store",
+            url: "/gerenciar-users/store",
             data: dados,
             processData: false,
             contentType: false,
@@ -147,7 +144,7 @@ $(document).ready(function($) {
 
        $.ajax({
             type: 'post',
-            url: "/gerenciar-funcionarios/update",
+            url: "/gerenciar-users/update",
             data: dados,
             processData: false,
             contentType: false,
@@ -204,7 +201,7 @@ $(document).ready(function($) {
 
         $.ajax({
             type: 'post',
-            url: "/gerenciar-funcionarios/delete",
+            url: "/gerenciar-users/delete",
             data: dados,
             processData: false,
             contentType: false,
@@ -263,12 +260,13 @@ $(document).on('click', '.btnAdicionar', function() {
 
         //habilita os campos desabilitados
         $('#nome_user').prop('readonly',false);
-        $('#nome_setor').prop('readonly',false);
-        $('#rg').prop('readonly',false);
-        $('#nome_setor').prop('readonly',false);
+        $('#contato').prop('readonly',false);
+        $('#responsavel').prop('readonly',false);
         $('#telefone').prop('readonly',false);
         $('#email').prop('readonly',false);
         $('#nome_role').prop('readonly',false);
+        $('#cpf').prop('readonly',false);
+        $('#cnpj').prop('readonly',false);
         $('#fk_setor').prop('disabled',false);
 
         $('.modal-title').text('Novo Cadastro de Usuário');
@@ -288,11 +286,13 @@ $(document).on('click', '.btnVer', function() {
         
         //desabilita os campos
         $('#nome_user').prop('readonly',true);
-        $('#rg').prop('readonly',true);
-        $('#nome_setor').prop('readonly',true);
+        $('#responsavel').prop('readonly',true);
+        $('#contato').prop('readonly',true);
         $('#endereco').prop('readonly',true);
         $('#telefone').prop('readonly',true);
         $('#email').prop('readonly',true);
+        $('#cpf').prop('readonly',true);
+        $('#cnpj').prop('readonly',true);
         $('#fk_setor').prop('disabled',true);
         $('#nome_role').prop('disabled',true);
         $('#senha').addClass("hidden"); //ocultar a div de aviso
@@ -327,10 +327,12 @@ $(document).on('click', '.btnEditar', function() {
 
         //habilita os campos desabilitados
         $('#nome_user').prop('readonly',false);
-        $('#rg').prop('readonly',false);
-        $('#nome_setor').prop('readonly',false);
+        $('#responsavel').prop('readonly',false);
+        $('#contato').prop('readonly',false);
         $('#nome_role').prop('readonly',false);
         $('#email').prop('readonly',false);
+        $('#cpf').prop('readonly',false);
+        $('#cnpj').prop('readonly',false);
         $('#fk_setor').prop('disabled',false);
 
         var btnEditar = $(this);

@@ -27,18 +27,9 @@ class RoleSeeder extends Seeder
         ]);
 
         DB::table('roles')->insert([
-            'name' => 'empresa',
+            'name' => 'Empresa',
             'guard_name' => 'CSG',
         ]);
-
-        /*DB::table('roles')->insert([
-            'name' => 'Funcionario',
-            'guard_name' => 'Funcionario',
-         ]);
-         DB::table('roles')->insert([
-            'name' => 'Professor',
-            'guard_name' => 'Professor',
-         ]);*/
 
     }
 }

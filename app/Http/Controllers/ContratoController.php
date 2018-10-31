@@ -23,7 +23,7 @@ class ContratoController extends Controller
         Session::flash('numero', '123456');
     	$itens = ItemContrato::where('status','Ativo')->get();
         
-        $empresas = User::role('empresa')->get();
+        $empresas = User::role('Empresa')->get();
         
         return view('contrato.index',compact('itens','empresas'));    
     } 

@@ -1,7 +1,7 @@
 
 @extends('adminlte::page')
 <script src ="{{ asset('/plugins/jQuery/jQuery-3.1.0.min.js') }}" type = "text/javascript" ></script>
-<script src ="{{ asset('/js/scripts_gerais/funcionario.js') }}" type = "text/javascript" ></script>
+<script src ="{{ asset('/js/scripts_gerais/user.js') }}" type = "text/javascript" ></script>
 <script src="{{ asset('plugins/datatables/jquery.dataTables.js') }}" type = "text/javascript"></script>
 <script src="{{ asset('plugins/mask-input-js/maskinput.js') }}" type = "text/javascript"></script>
 
@@ -41,10 +41,8 @@
                             <tr>
                                 <th>Nº</th>
                                 <th>Nome</th>
-                                <th>RG</th>   
-                                <th>Cargo</th>
+                                <th>Tipo de usuário</th>
                                 <th>Telefone</th>
-                                <th>Setor</th>
                                 <th width="20%">Ações</th>
                             </tr>
                             </thead>
@@ -53,6 +51,6 @@
                     </div>
                     <!-- /.box-body -->
 
-@include('funcionario.modals.criar_funcionario')
-@include('funcionario.modals.deletar_funcionario')
+@include('user.modals.criar_user')
+@include('user.modals.deletar_user')
 @endsection

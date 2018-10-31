@@ -72,12 +72,12 @@ Route::group(['prefix' => 'gerenciar-servicos', 'where' => ['id' => '[0-9]+'], '
         Route::post('/delete', ['as' => 'gerenciar-servicos.destroy', 'uses' => 'ServicoController@destroy']);
 });     
 
-Route::group(['prefix' => 'gerenciar-funcionarios', 'where' => ['id' => '[0-9]+'], 'middleware' => ['role:Administrador']] ,function() {
-        Route::get('', ['as' => 'gerenciar-funcionarios.index', 'uses' => 'FuncionarioController@index']);
-        Route::get('/list',['as' => 'gerenciar-funcionarios.list', 'uses' => 'FuncionarioController@list']);
-        Route::post('/store', ['as' => 'gerenciar-funcionarios.store', 'uses' => 'FuncionarioController@store']);
-        Route::post('/update', ['as' => 'gerenciar-funcionarios.update', 'uses' => 'FuncionarioController@update']);
-        Route::post('/delete', ['as' => 'gerenciar-funcionarios.destroy', 'uses' => 'FuncionarioController@destroy']);
+Route::group(['prefix' => 'gerenciar-users', 'where' => ['id' => '[0-9]+'], 'middleware' => ['role:Administrador']] ,function() {
+        Route::get('', ['as' => 'gerenciar-users.index', 'uses' => 'UserController@index']);
+        Route::get('/list',['as' => 'gerenciar-users.list', 'uses' => 'UserController@list']);
+        Route::post('/store', ['as' => 'gerenciar-users.store', 'uses' => 'UserController@store']);
+        Route::post('/update', ['as' => 'gerenciar-users.update', 'uses' => 'UserController@update']);
+        Route::post('/delete', ['as' => 'gerenciar-users.destroy', 'uses' => 'UserController@destroy']);
 });    
 
 Route::group(['prefix' => 'gerenciar-escalas', 'where' => ['id' => '[0-9]+'], 'middleware' => ['role:Administrador']] ,function() {

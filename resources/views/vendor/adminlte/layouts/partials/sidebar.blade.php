@@ -17,18 +17,6 @@
                 </div>
             </div>
         @endif
-
-        <!-- search form (Optional) -->
-        <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="{{ trans('adminlte_lang::message.search') }}..."/>
-              <span class="input-group-btn">
-                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
-              </span>
-            </div>
-        </form>
-        <!-- /.search form -->
-
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
             <li class="header">{{ trans('adminlte_lang::message.header') }}</li>
@@ -42,7 +30,7 @@
                 <a href="#"><i class='fa fa-users'></i> <span>Gerenciar Usuários</span> <i class="fa fa-angle-left pull-right"></i></a>
 
                 <ul class="treeview-menu">
-                    <li><a href="{{ url('gerenciar-funcionarios') }}"><i class='fa fa-user'></i> <span>Usuários</span></a></li>
+                    <li><a href="{{ url('gerenciar-users') }}"><i class='fa fa-user'></i> <span>Usuários</span></a></li>
                    <li><a href="{{ url('gerenciar-escalas') }}"><i class='fa fa-user'></i> <span>Escala</span></a></li>
                    <li><a href="{{ url('gerenciar-horas') }}"><i class='fa fa-clock-o'></i> <span>Horas Extras</span></a></li>
                 </ul>

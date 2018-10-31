@@ -19,8 +19,8 @@ class EscalaHorarioController extends Controller
 {
     public function index()
     {
-        $users = User::where('status','Ativo')->get();
         $setors = Setor::where('status','Ativo')->get();
+        $users = User::role(['Servidor','Ag-limpeza'])->where('status','Ativo')->get();
         return view('escala_horario.index',compact('users','setors'));    
     } 
 

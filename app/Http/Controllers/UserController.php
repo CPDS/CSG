@@ -15,23 +15,24 @@ use App\Setor;
 use App\AlocacaoFuncionario;
 
 
-class FuncionarioController extends Controller
+class UserController extends Controller
 {
     public function index()
     {
         $setores = Setor::where('status','Ativo')->get();
-        return view('funcionario.index',compact('setores'));    
+        return view('user.index',compact('setores'));    
     } 
 
     public function list()
     {
 
-        $user = User::JOIN('setors','users.fk_setor','=','setors.id')
+        $user = User::LEFTJOIN('setors','users.fk_setor','=','setors.id')
         ->JOIN('model_has_roles','model_has_roles.model_id','=','users.id')
         ->JOIN('roles','model_has_roles.role_id','=','roles.id')
         ->where('users.status','Ativo')
-        ->select('users.id','users.name as nome_user','users.rg','users.telefone','users.endereco','setors.nome as nome_setor','setors.sigla','users.email', 'setors.id as fk_setor','roles.name as nome_role')
+        ->select('users.id','users.name as nome_user','users.cpf','users.telefone','users.endereco','setors.nome as nome_setor','setors.sigla','users.email', 'setors.id as fk_setor','roles.name as nome_role' , 'users.cpf', 'users.cnpj', 'users.responsavel', 'users.contato')
         ->orderBy('users.created_at', 'desc')->get();
+
 
         return DataTables::of($user)
             ->editColumn('acao', function ($user){
@@ -41,7 +42,20 @@ class FuncionarioController extends Controller
     }
 
     private function setBtns(User $users){
-        $dados = "data-id_del='$users->id' data-id='$users->id' data-nome_user='$users->nome_user' data-rg='$users->rg' data-telefone='$users->telefone' data-email='$users->email' data-fk_setor='$users->fk_setor' data-endereco='$users->endereco' data-nome_role='$users->nome_role' data-nome_setor='$users->nome_setor' data-sigla='$users->sigla' ";
+        $dados = "data-id_del='$users->id' 
+        data-id='$users->id' 
+        data-nome_user='$users->nome_user' 
+        data-cpf='$users->cpf' 
+        data-cnpj='$users->cnpj' 
+        data-responsavel='$users->responsavel' 
+        data-contato='$users->contato' 
+        data-telefone='$users->telefone' 
+        data-email='$users->email' 
+        data-fk_setor='$users->fk_setor' 
+        data-endereco='$users->endereco' 
+        data-nome_role='$users->nome_role' 
+        data-nome_setor='$users->nome_setor' 
+        data-sigla='$users->sigla' ";
 
         $btnVer = "<a class='btn btn-info btn-sm btnVer' data-toggle='tooltip' title='Ver user' $dados> <i class='fa fa-eye'></i></a> ";
 
@@ -51,21 +65,17 @@ class FuncionarioController extends Controller
 
 
         return $btnVer.$btnEditar.$btnDeletar;
-
-
     }
 
     public function store(Request $request)
     {   
         $rules = array(
             'nome_user' => 'required',
-            'rg' => 'required',
             'telefone' => 'required',
             'endereco' => 'required'
         );
         $attributeNames = array(
             'nome_user' => 'Nome',
-            'rg' => 'RG',
             'telefone' => 'Telefone',
             'endereco' => 'Telefone'
         );
@@ -82,7 +92,7 @@ class FuncionarioController extends Controller
             $user->name = $request->nome_user;
             $user->email = $request->email;
             $user->password = bcrypt($request->password);
-            $user->rg = $request->rg;
+            $user->cpf = $request->cpf;
             $user->telefone = $request->telefone;
             $user->endereco = $request->endereco;
             $user->fk_setor = $request->fk_setor;

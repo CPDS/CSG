@@ -9,7 +9,7 @@
 <script src="{{ asset('js/iziToast.min.js') }}"></script>
 
 @section('htmlheader_title')
-	Gerenciar Tipo de Solicitação
+	Gerenciar Contratos
 @endsection
 
 @section('main-content')
@@ -19,10 +19,10 @@
 
 				<div class="box box-success">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Tipos de Solicitações</h3>
+                        <h3 class="box-title">Contratos</h3>
                        
                        <div class="pull-right">      
-                            <a class="btnAdicionar btn btn-primary btn-sm" title="Adicionar Material" data-toggle="tooltip"><span class="glyphicon glyphicon-plus"></span> Cadastrar Tipos de Solicitações</a>
+                            <a class="btnAdicionar btn btn-primary btn-sm" title="Adicionar Material" data-toggle="tooltip"><span class="glyphicon glyphicon-plus"></span> Cadastrar Contrato</a>
                         </div>
                     </div>
                     <!-- /.box-header -->

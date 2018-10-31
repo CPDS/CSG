@@ -74,8 +74,7 @@ $(document).ready(function($) {
               { "width": "10%", "targets": 2 },//ação
               { "width": "5%", "targets": 3 }, //nº
               { "width": "20%", "targets": 4 },//nome
-              { "width": "10%", "targets": 5 },//ação
-              { "width": "10%", "targets": 6 }//ação
+              { "width": "10%", "targets": 5 }
             ]
     });
 
