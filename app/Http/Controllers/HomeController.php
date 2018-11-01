@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\MaterialEntrada;
+use App\MaterialSaida;
+use App\Solicitacao;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard.index');
+        $entradas = MaterialEntrada::select('quantidade')
+                    ->sum('quantidade');
+        $saidas = MaterialSaida::select('quantidade')
+                    ->sum('quantidade');                    
+        $material = $entradas-$saidas;
+
+        $solicitacao = Solicitacao::where('status','')
+                       ->select('id')
+                       ->count('id');  
+
+        return view('dashboard.index',compact('material','solicitacao'));
     }
 }

@@ -26,8 +26,8 @@
     <div class="small-box bg-disabled" style="color: black;">
       <div class="inner">
         <h3>Geral</h3>
-        <p>Equipamentos Total/Disponíveis: </p>
-        <p>Ambientes Total/Disponíveis: </p>
+        <p>Materiais Total/Disponíveis: {{ $material }}</p>
+        <p>Solicitações Total/Em aberto: {{ $solicitacao }}</p>
       </div>
 
       <div class="icon">
@@ -42,13 +42,13 @@
     <div class="small-box bg-green">
       <div class="inner">
         <h3>X</h3>
-        <p>Reserva(s) de laboratório(s) agendadas para hoje</p>
+        <p>Contrato(s)</p>
         <br>
       </div>
       <div class="icon">
-        <i class="fa fa-calendar-check-o"></i>
+        <i class="fa fa-clone"></i>
       </div>
-      <a href="{{url('reserva-ambiente')}}" class="small-box-footer">Exibir reserva(s) <i class="fa fa-arrow-circle-right"></i></a>
+      <a href="{{url('gerenciar-contratos')}}" class="small-box-footer">Exibir contrato(s) <i class="fa fa-arrow-circle-right"></i></a>
     </div>
   </div>
 </div>
@@ -61,12 +61,12 @@
     <div class="small-box bg-red">
       <div class="inner">
         <h3>X</h3>
-        <p>Equipamento(s) com defeito</p>
+        <p>Solicitação(s)</p>
       </div>
       <div class="icon">
-        <i class="glyphicon glyphicon-thumbs-down"></i>
+        <i class="fa fa-clone"></i>
       </div>
-      <a href="{{ url('equipamentos') }}" class="small-box-footer">Exibir <i class="fa fa-arrow-circle-right"></i></a>
+      <a href="{{ url('gerenciar-solicitacoes') }}" class="small-box-footer">Exibir solicitação <i class="fa fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <!-- ./col -->
@@ -75,12 +75,12 @@
     <div class="small-box bg-aqua">
       <div class="inner">
         <h3>X</h3>
-        <p>Reserva(s) de equipamento(s) aguardando retirada hoje</p>
+        <p>Material(s)</p>
       </div>
       <div class="icon">
-        <i class="fa fa-calendar-check-o "></i>
+        <i class="fa fa-cubes"></i>
       </div>
-      <a href="#" class="small-box-footer">Exibir reserva(s) <i class="fa fa-arrow-circle-right"></i></a>
+      <a href="{{ url('gerenciar-materiais') }}" class="small-box-footer">Exibir material(s) <i class="fa fa-arrow-circle-right"></i></a>
     </div>
   </div>  
 </div>
@@ -92,12 +92,12 @@
     <div class="small-box bg-aqua">
       <div class="inner">
         <h3>X</h3>
-        <p>Retirada(s) de equipamento em andamento</p>
+        <p>usuário(s)</p>
       </div>
       <div class="icon">
-        <i class="glyphicon glyphicon-check"></i>
+        <i class="fa fa-users"></i>
       </div>
-      <a href="#" class="small-box-footer">Exibir Retirada(s) <i class="fa fa-arrow-circle-right"></i></a>
+      <a href="{{ url('gerenciar-users') }}" class="small-box-footer">Exibir usuário(s) <i class="fa fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <!-- ./col -->
@@ -106,12 +106,12 @@
     <div class="small-box bg-green">
       <div class="inner">
         <h3>X</h3>
-        <p>Laboratório(s) em uso</p>
+        <p>Setor(s)</p>
       </div>
       <div class="icon">
-        <i class="glyphicon glyphicon-ok"></i>
+        <i class="fa fa-university"></i>
       </div>
-      <a href="{{ url('equipamentos') }}" class="small-box-footer">Exibir <i class="fa fa-arrow-circle-right"></i></a>
+      <a href="{{ url('gerenciar-setores') }}" class="small-box-footer"> Exibir setor <i class="fa fa-arrow-circle-right"></i></a>
     </div>
   </div>
 </div>

@@ -23,6 +23,7 @@
             <!-- Optionally, you can add icons to the links -->
         
             
+            <li  class="@yield('setor') | '' " ><a href="{{ url('home') }}"><i class='fa fa-dashboard '></i> <span>Dashboard</span></a></li>
             <li  class="@yield('setor') | '' " ><a href="{{ url('gerenciar-setores') }}"><i class='fa fa-university'></i> <span>Setores</span></a></li>
 
              <li class="treeview" class="active">

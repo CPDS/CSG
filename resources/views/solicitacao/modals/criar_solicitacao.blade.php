@@ -28,6 +28,7 @@
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="Local do serviço" class="input-group-addon"><i class="fa fa-bookmark-o"></i></span>
                                  <select class="form-control" name="status" id="status">
+                                    <option></option>
                                     <option>ATENDIDO</option>
                                     <option>NÃO ATENDIDO</option>
                                     <option>PARCIALMENTE ATENDIDO</option>
