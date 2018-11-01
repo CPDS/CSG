@@ -18,7 +18,7 @@
                         <div class="col-sm-3">
                             <strong>Nº:</strong>
                             <div class="input-group">
-                                <span data-toggle="tooltip" title="Número" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <span data-toggle="tooltip" title="Número" class="input-group-addon"><i class="fa fa-sort-numeric-desc"></i></span>
                                 <input type="text" maxlength="254" class="form-control" name="numero"  id="numero">
                             </div>       
                         </div>
@@ -27,7 +27,7 @@
                             <strong>Empresa contratada:</strong>
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="Valor total
-                                " class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                " class="input-group-addon"><i class="fa fa-university"></i></span>
                                   <select class="form-control" name="fk_user" id="fk_user">
                                    @foreach($empresas as $empresa)
                                     <option value="{{$empresa->id}}">{{$empresa->name}}</option>
@@ -40,7 +40,7 @@
                             <strong>Valor Total:</strong>
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="Valor total
-                                " class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                " class="input-group-addon"><i class="fa fa-dollar"></i></span>
                                 <input type="text" maxlength="254" class="form-control" name="valor_total"  id="valor_total">
                             </div>       
                         </div>
@@ -51,7 +51,7 @@
                             <strong>Data início:</strong>
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="Data início
-                                " class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                " class="input-group-addon"><i class="fa fa-calendar-minus-o"></i></span>
                                 <input type="date" maxlength="254" class="form-control" name="data_inicio"  id="data_inicio">
                             </div>       
                         </div>
@@ -60,7 +60,7 @@
                             <strong>Data Fim:</strong>
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="Data Fim
-                                " class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                " class="input-group-addon"><i class="fa fa-calendar-plus-o"></i></span>
                                 <input type="date" maxlength="254" class="form-control" name="data_fim"  id="data_fim">
                             </div>       
                         </div>
@@ -83,7 +83,7 @@
                         <div class="col-sm-3">
                             <strong>Valor</strong>
                             <div class="input-group">
-                                <span data-toggle="tooltip" title="Valor" class="input-group-addon"><i class="fa fa-bars"></i></span>
+                                <span data-toggle="tooltip" title="Valor" class="input-group-addon"><i class="fa fa-dollar"></i></span>
                                 <input type="text" maxlength="254" class="form-control" name="valor_unitario" id="valor_unitario">
                             </div>       
                         </div>
