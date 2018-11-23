@@ -92,7 +92,7 @@
     <div class="small-box bg-aqua">
       <div class="inner">
         <h3>X</h3>
-        <p>usuário(s)</p>
+        <p>Usuário(s)</p>
       </div>
       <div class="icon">
         <i class="fa fa-users"></i>
