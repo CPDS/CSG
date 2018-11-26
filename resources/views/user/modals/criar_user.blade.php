@@ -116,7 +116,6 @@
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="Setor" class="input-group-addon"><i class="fa fa-user"></i></span>
                                 <select class="form-control" name="nome_role" id="nome_role">
-                                    <option>Servidor</option>
                                     <option value="Ag-limpeza">Agente de limpeza</option>
                                     <option value="Empresa">Empresa</option>
                                     <option value="Servidor">Servidor</option>

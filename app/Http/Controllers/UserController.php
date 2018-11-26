@@ -111,19 +111,18 @@ class UserController extends Controller
        
         $user = User::find($request->id);
 
-
         $role = $user->getRoleNames();
 
-        $user->removeRole($role);
-
-        return response()->json($permissions);
+        $user->removeRole($role[0]);
 
         $user->name = $request->nome_user;
         $user->email = $request->email;
-        $user->rg = $request->rg;
+        $user->cpf = $request->cpf;
+        $user->cnpj = $request->cnpj;
         $user->telefone = $request->telefone;
         $user->endereco = $request->endereco;
         $user->fk_setor = $request->fk_setor;
+        $user->responsavel = $request->responsavel;
         $user->assignRole($request->nome_role);
         $user->save();
     

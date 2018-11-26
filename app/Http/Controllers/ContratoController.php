@@ -22,8 +22,17 @@ class ContratoController extends Controller
     {
         Session::flash('numero', '123456');
     	$itens = ItemContrato::where('status','Ativo')->get();
+
+
         
-        $empresas = User::role('Empresa')->get();
+        $empresas = User::WHERE('users.status','=','Inativo')
+        ->join('model_has_roles','model_has_roles','=','users.model_id')
+        ->join('roles','roles.id','=','model_has_roles.role.id')
+        ->role('Empresa')
+        ->select('*')
+        ->get();
+
+        dd($empresas);
         
         return view('contrato.index',compact('itens','empresas'));    
     } 
@@ -46,7 +55,8 @@ class ContratoController extends Controller
         ->join('item_contratos','item_contratos.id','=','contrato_items.fk_item')
         ->select('contrato_items.quantidade','item_contratos.nome','contrato_items.fk_item', 'contrato_items.valor_unitario')
         ->orderBy('contratos.created_at', 'desc')
-        ->where('contratos.id',$id)->get();
+        ->where('contratos.id',$id)
+        ->get();
 
         return response()->json(['data'=>$itens]);
     }

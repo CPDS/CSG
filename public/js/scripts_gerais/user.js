@@ -264,10 +264,13 @@ $(document).on('click', '.btnAdicionar', function() {
         $('#responsavel').prop('readonly',false);
         $('#telefone').prop('readonly',false);
         $('#email').prop('readonly',false);
-        $('#nome_role').prop('readonly',false);
+        $('#nome_role').prop('disabled',false);
+        $('#endereco').prop('readonly',false);
         $('#cpf').prop('readonly',false);
         $('#cnpj').prop('readonly',false);
         $('#fk_setor').prop('disabled',false);
+        $('#password').prop('readonly',false);
+
 
         $('.modal-title').text('Novo Cadastro de Usuário');
         $('.callout').addClass("hidden"); 
@@ -292,9 +295,11 @@ $(document).on('click', '.btnVer', function() {
         $('#telefone').prop('readonly',true);
         $('#email').prop('readonly',true);
         $('#cpf').prop('readonly',true);
+        $('#endereco').prop('readonly',true);
         $('#cnpj').prop('readonly',true);
         $('#fk_setor').prop('disabled',true);
         $('#nome_role').prop('disabled',true);
+        $('#password').prop('readonly',true);
         $('#senha').addClass("hidden"); //ocultar a div de aviso
 
 
@@ -329,10 +334,13 @@ $(document).on('click', '.btnEditar', function() {
         $('#nome_user').prop('readonly',false);
         $('#responsavel').prop('readonly',false);
         $('#contato').prop('readonly',false);
-        $('#nome_role').prop('readonly',false);
+        $('#nome_role').prop('disabled',false);
+        $('#endereco').prop('readonly',false);
         $('#email').prop('readonly',false);
+        $('#telefone').prop('readonly',false);
         $('#cpf').prop('readonly',false);
         $('#cnpj').prop('readonly',false);
+        $('#password').prop('readonly',false);
         $('#fk_setor').prop('disabled',false);
 
         var btnEditar = $(this);

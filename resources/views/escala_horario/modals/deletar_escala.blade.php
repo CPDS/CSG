@@ -18,7 +18,7 @@
              <input type="hidden" id="id_del" name="id_del">
         </form>
 
-      <h3>Deseja realmente deletar essa licitação?</h3>                
+      <h3>Deseja realmente deletar essa escala de horário?</h3>                
 
       </div> <!-- Fim de ModaL Body-->
 
