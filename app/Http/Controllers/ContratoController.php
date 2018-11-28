@@ -23,23 +23,13 @@ class ContratoController extends Controller
         Session::flash('numero', '123456');
     	$itens = ItemContrato::where('status','Ativo')->get();
 
-
-        
-        $empresas = User::WHERE('users.status','=','Inativo')
-        ->join('model_has_roles','model_has_roles','=','users.model_id')
-        ->join('roles','roles.id','=','model_has_roles.role.id')
-        ->role('Empresa')
-        ->select('*')
-        ->get();
-
-        dd($empresas);
+        $empresas = User::role('Empresa')->get();
         
         return view('contrato.index',compact('itens','empresas'));    
     } 
 
     public function list()
     {
-
         $contrato = Contrato::orderBy('created_at', 'desc')
         ->where('status','Ativo')->get();
         return DataTables::of($contrato)
@@ -51,6 +41,7 @@ class ContratoController extends Controller
 
     public function itens($id)
     {
+
         $itens = Contrato::join('contrato_items','contrato_items.fk_contrato','=','contratos.id')
         ->join('item_contratos','item_contratos.id','=','contrato_items.fk_item')
         ->select('contrato_items.quantidade','item_contratos.nome','contrato_items.fk_item', 'contrato_items.valor_unitario')
@@ -62,7 +53,10 @@ class ContratoController extends Controller
     }
 
     private function setBtns(Contrato $contratos){
-        $dados = "data-id_del='$contratos->id' data-id='$contratos->id' data-numero='$contratos->numero' data-valor_total='$contratos->valor_total' data-data_inicio='$contratos->data_inicio' data-data_fim='$contratos->data_fim'";
+
+        $user_name = $contratos->empresa->name;
+
+        $dados = "data-id_del='$contratos->id' data-id='$contratos->id' data-numero='$contratos->numero' data-valor_total='$contratos->valor_total' data-data_inicio='$contratos->data_inicio' data-data_fim='$contratos->data_fim'  data-teste='$user_name' ";
 
         $btnVer = "<a class='btn btn-info btn-sm btnVer' data-toggle='tooltip' title='Ver contrato' $dados> <i class='fa fa-eye'></i></a> ";
 
@@ -96,6 +90,7 @@ class ContratoController extends Controller
         if ($validator->fails()){
                 return Response::json(array('errors' => $validator->getMessageBag()->toArray()));
         }else {
+            //dd($request->fk_user);
 
             $contrato = new Contrato();
             $contrato->valor_total = $request->valor_total;
@@ -129,13 +124,16 @@ class ContratoController extends Controller
         $contrato->save();
 
        if(isset($request->itens)){
+               return;
             DB::table("contrato_items")->where("contrato_items.fk_contrato",$request->id)
                 ->delete();
-            
+
+
             foreach ($request->itens as $value) {   
                 $contrato_item = new ContratoItem();
                 $contrato_item->quantidade = $value['quantidade'];
                 $contrato_item->fk_item = $value['fk_item'];
+                $contrato_item->valor_unitario = $value['valor_unitario'];
                 $contrato_item->fk_contrato = $request->id;
                 $contrato_item->save();
             }

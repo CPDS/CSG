@@ -136,7 +136,6 @@ $(document).ready(function($) {
             },
 
             error: function() {
-                jQuery('#criar_editar-modal').modal('hide'); //fechar o modal
 
                 iziToast.error({
                     title: 'Erro Interno',
@@ -198,8 +197,6 @@ $(document).ready(function($) {
             },
 
             error: function() {
-                jQuery('#criar_editar-modal').modal('hide'); //fechar o modal
-
                 iziToast.error({
                     title: 'Erro Interno',
                     message: 'Operação Cancelada!',
@@ -400,6 +397,12 @@ $(document).on('click', '.btnVer', function() {
 
 
 $(document).on('click', '.btnEditar', function() {
+        while(itens.length > 0) {
+            itens.pop();
+        }
+
+        alert('asdasd');
+
         $('.modal-footer .btn-action').removeClass('add');
         $('.modal-footer .btn-action').addClass('edit');
         $('.modal-footer .btn-action').removeClass('hidden');
@@ -427,24 +430,25 @@ $(document).on('click', '.btnEditar', function() {
             contentType: false,
               success: function(response) {
                 for(var i = 0; i < response.data.length; i++){
-                    console.log(response.data[i].nome);
-                 
+                    
                 var cols = '';
                 cols = '';
                 novaLinha = null; 
                 var fk_item = response.data[i].fk_item;
                 var descricao_item = response.data[i].nome;
                 var quantidade = response.data[i].quantidade;
+                var valor_unitario = response.data[i].valor_unitario;
 
                 var novaLinha = '<tr class="'+'linha'+i+'">';
                 //Adc material ao array
-                itens.push({'fk_item': fk_item, 'quantidade': quantidade});
+                itens.push({'fk_item': fk_item, 'quantidade': quantidade, 'valor_unitario': valor_unitario });
 
                 
                 /* Crian a linha p/ tabela*/
                 
                 cols += '<td>'+descricao_item+'</td>';
                 cols += '<td>'+quantidade+'</td>';
+                cols += '<td>'+valor_unitario+'</td>';
                 cols += '<td class="text-left"><a class="btnRemoverItem btn btn-xs btn-danger" data-indexof="'+itens.indexOf(itens[j])+'" data-linha="'+j+'"><i class="fa fa-trash"></i> Remover</a></td>';
                 novaLinha += cols + '</tr>';
 

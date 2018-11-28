@@ -123,8 +123,6 @@ $(document).ready(function($) {
             },
 
             error: function() {
-                jQuery('#criar_editar-modal').modal('hide'); //fechar o modal
-
                 iziToast.error({
                     title: 'Erro Interno',
                     message: 'Operação Cancelada!',
@@ -179,7 +177,6 @@ $(document).ready(function($) {
             },
 
             error: function() {
-                jQuery('#criar_editar-modal').modal('hide'); //fechar o modal
                 iziToast.error({
                     title: 'Erro Interno',
                     message: 'Operação Cancelada!',

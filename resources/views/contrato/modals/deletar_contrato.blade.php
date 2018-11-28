@@ -18,7 +18,7 @@
              <input type="hidden" id="id_del" name="id_del">
         </form>
 
-      <h3>Deseja realmente deletar esse tipo de solicitação?</h3>                
+      <h3>Deseja realmente deletar esse contrato?</h3>                
 
       </div> <!-- Fim de ModaL Body-->
 

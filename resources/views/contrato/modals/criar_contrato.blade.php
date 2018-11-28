@@ -23,6 +23,7 @@
                             </div>       
                         </div>
         
+
                         <div class="col-sm-6">
                             <strong>Empresa contratada:</strong>
                             <div class="input-group">
@@ -35,6 +36,8 @@
                                 </select>
                             </div>       
                         </div>
+
+                        <input type="hidden" maxlength="254" class="form-control" name="fk_user"  id="fk_user">
 
                         <div class="col-sm-3">
                             <strong>Valor Total:</strong>
@@ -73,6 +76,7 @@
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="Item" class="input-group-addon"><i class="fa fa-cube"></i></span>
                                 <select class="form-control" name="fk_item" id="fk_item">
+                                    <option></option>
                                    @foreach($itens as $item)
                                     <option value="{{$item->id}}">{{$item->nome}}</option>
                                    @endforeach
@@ -107,6 +111,7 @@
                                     <tr>
                                         <th>Item</th>
                                         <th>Quantidade</th>
+                                        <th>Valor unitário</th>
                                         <th>Ações</th>
                                     </tr>
                                     <tbody id="item_id">
