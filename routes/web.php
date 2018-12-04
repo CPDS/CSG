@@ -68,6 +68,7 @@ Route::group(['prefix' => 'gerenciar-setores', 'where' => ['id' => '[0-9]+'], 'm
 Route::group(['prefix' => 'gerenciar-servicos', 'where' => ['id' => '[0-9]+'], 'middleware' => ['role:Administrador|Servidor']] ,function() {
         Route::get('', ['as' => 'gerenciar-servicos.index', 'uses' => 'ServicoController@index']);
         Route::get('/list',['as' => 'gerenciar-servicos.list', 'uses' => 'ServicoController@list']);
+        Route::get('/servicos/{id}',['as' => 'gerenciar-servicos.servicos', 'uses' => 'ServicoController@servicos']);
         Route::post('/store', ['as' => 'gerenciar-servicos.store', 'uses' => 'ServicoController@store']);
         Route::post('/update', ['as' => 'gerenciar-servicos.update', 'uses' => 'ServicoController@update']);
         Route::post('/delete', ['as' => 'gerenciar-servicos.destroy', 'uses' => 'ServicoController@destroy']);
@@ -136,6 +137,8 @@ Route::group(['prefix' => 'gerenciar-solicitacoes', 'where' => ['id' => '[0-9]+'
         Route::post('/store', ['as' => 'gerenciar-solicitacoes.store', 'uses' => 'SolicitacaoController@store']);
         Route::post('/update', ['as' => 'gerenciar-solicitacoes.update', 'uses' => 'SolicitacaoController@update']);
         Route::post('/delete', ['as' => 'gerenciar-solicitacoes.destroy', 'uses' => 'SolicitacaoController@destroy']);
+        Route::get('/materiais/{id}',['as' => 'gerenciar-solicitacoes.materiais', 'uses' => 'SolicitacaoController@materiais']);
+
 }); 
 
 });

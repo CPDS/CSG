@@ -88,6 +88,21 @@ class ServicoController extends Controller
         return response()->json($servico);
     }
 
+    public function servicos($id)
+    {
+        $servico = Servico::LEFTJOIN('servico_solicitacaos','servico_solicitacaos.fk_servico','=','servicos.id')
+            ->LEFTJOIN('solicitacaos','solicitacaos.id','servico_solicitacaos.fk_solicitacao')
+            ->SELECT('servicos.id')
+            ->GET();
+        $servicos = array();
+        
+        foreach ($servico as $value) {
+            array_push($servicos, $value->id);
+        }
+
+        return response()->json($servicos);
+    }
+
     public function destroy(Request $request)
     {
         $servico = Servico::find($request->id_del);

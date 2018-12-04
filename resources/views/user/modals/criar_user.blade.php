@@ -14,6 +14,20 @@
         </div>
 
        <form class="form-horizontal" role="form" id="form" >
+         <div class="form-group">
+                        <div class="col-sm-12">
+                            <strong>Tipo de funcionário:</strong>
+                            <div class="input-group">
+                                <span data-toggle="tooltip" title="Setor" class="input-group-addon"><i class="fa fa-user"></i></span>
+                                <select class="form-control" name="nome_role" id="nome_role">
+                                    <option value="Ag-limpeza">Agente de limpeza</option>
+                                    <option value="Empresa">Empresa</option>
+                                    <option value="Servidor">Servidor</option>
+                                </select>
+                            </div>       
+                        </div>
+                    </div>
+                    
                      <div class="form-group">
                         <div class="col-sm-8">
                             <strong>Nome:</strong>
@@ -109,22 +123,8 @@
                             </div>       
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <strong>Tipo de funcionário:</strong>
-                            <div class="input-group">
-                                <span data-toggle="tooltip" title="Setor" class="input-group-addon"><i class="fa fa-user"></i></span>
-                                <select class="form-control" name="nome_role" id="nome_role">
-                                    <option value="Ag-limpeza">Agente de limpeza</option>
-                                    <option value="Empresa">Empresa</option>
-                                    <option value="Servidor">Servidor</option>
-                                </select>
-                            </div>       
-                        </div>
-                    </div>
         
-                            <input type="hidden" id="id" name="id">
+                    <input type="hidden" id="id" name="id">
                 </form>
 
       </div> <!-- Fim de ModaL Body-->

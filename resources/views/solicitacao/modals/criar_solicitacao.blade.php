@@ -54,6 +54,7 @@
                         <div class="col-sm-6">
                             <strong>Observação do Solicitante:</strong>
                             <div class="input-group">
+                              
                                 <span data-toggle="tooltip" title="Local do serviço" class="input-group-addon"><i class="fa fa-commenting"></i></span>
                                 <input type="text" maxlength="254" class="form-control" name="observacao_solicitante"  id="observacao_solicitante">
                             </div>       
@@ -118,9 +119,7 @@
                             </tbody>
                         </table>
                     </div>
-
-
-                            <input type="hidden" id="id" name="id">
+                <input type="hidden" id="id" name="id">
                 </form>
 
       </div> <!-- Fim de ModaL Body-->

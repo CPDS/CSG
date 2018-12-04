@@ -422,6 +422,7 @@ $(document).on('click', '.btnEditar', function() {
         $('#form :input').each(function(index,input){
             $('#'+input.id).val($(btnEditar).data(input.id));
         });
+        
         var id = $('#id').val();
         $.ajax({
             type: 'get',

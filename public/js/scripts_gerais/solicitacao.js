@@ -1,13 +1,13 @@
-$(document).ready(function($) {
+$(document).ready(function($){
     
     var base_url = 'http://' + window.location.host.toString();
     var base_url = location.protocol + '//' + window.location.host.toString();
 
-  $('.js-example-basic-multiple').select2({
-    placeholder: "Selecione",
-    allowClear: true,
-    tags: true,
-  });
+    $('.js-example-basic-multiple').select2({
+        placeholder: "Selecione",
+        allowClear: true,
+        tags: true,
+      });
 
     $.ajaxSetup({
         headers: {
@@ -163,9 +163,22 @@ $(document).ready(function($) {
         $.ajax({
             type: 'post',
             url: "/gerenciar-solicitacoes/update",
-            data: dados,
-            processData: false,
-            contentType: false,
+             data: {
+                'data_solicitacao': $("#data_solicitacao").val(),
+                'local_servico': $("#local_servico").val(),
+                'titulo': $("#titulo").val(),
+                'descricao': $("#descricao").val(),
+                'observacao_solicitado': $("#observacao_solicitado").val(),
+                'observacao_solicitante': $("#observacao_solicitante").val(),
+                'fk_servico': $("#fk_servico").val(),
+                'fk_user': $("#fk_user").val(),
+                'fk_solicitacao_tipo': $("#fk_solicitacao_tipo").val(),
+                'servicos': $("#servicos").val(),
+                'status': $("#status :selected").val(),
+                'materiais': materiais
+            },
+            /*processData: false,
+            contentType: false,*/
             beforeSend: function(){
                 jQuery('.edit').button('loading');
             },
@@ -267,132 +280,178 @@ $(document).ready(function($) {
   
      var i = 0;
      var materiais = new Array();
-  //Adicionar material
-  $(document).on('click', '.btnAdcMaterial', function() {
-    //verificar se a opção selecionada possiu valor
-    //verificar se a opção selecionada já se encontra no array materiais e emitir alerta quando já estiver
-    
-    var cols = '';
-    cols = '';
-    novaLinha = null; 
-    var fk_material = $('#fk_material :selected').val();
-    var descricao_material = $('#fk_material :selected').text();
-    var quantidade = $('#quantidade').val();
-
-    var novaLinha = '<tr class="'+'linha'+i+'">';
-    //Adc material ao array
-    materiais.push({'fk_material': fk_material, 'quantidade': quantidade});
-
-    
-    /* Crian a linha p/ tabela*/
-    
-    cols += '<td>'+descricao_material+'</td>';
-    cols += '<td>'+quantidade+'</td>';
-    cols += '<td class="text-left"><a class="btnRemoverMaterial btn btn-xs btn-danger" data-indexof="'+materiais.indexOf(materiais[i])+'" data-linha="'+i+'"><i class="fa fa-trash"></i> Remover</a></td>';
-    novaLinha += cols + '</tr>';
-    
-
-
-    $('#material_id').append(novaLinha); /*Adc a linha  tabela*/
-    i+=1;
-
-    $('#quantidade').val('');
-
-});
-
-//Remover Material
-$(document).on('click', '.btnRemoverMaterial', function(){
-materiais.splice($(this).data('indexof'),1); //remove do array de acordo com o indice
-$('.linha'+ $(this).data('linha')).remove(); //Remove a linha da tela 
-});
-
-});
-
-$(document).on('click', '.btnAdicionar', function() {
-        $('.modal-footer .btn-action').removeClass('edit');
-        $('.modal-footer .btn-action').addClass('add');
-        $('.modal-footer .btn-action').removeClass('hidden');
-
-        //habilita os campos desabilitados
-        $('#horario_inicio').prop('readonly',false);
-        $('#horario_pausa').prop('readonly',false);
-        $('#horario_pos_pausa').prop('readonly',false);
-        $('#horario_termino').prop('readonly',false);
-        $('#fk_servidor').prop('disabled',false);
+    //Adicionar material
+    $(document).on('click', '.btnAdcMaterial', function() {
+        //verificar se a opção selecionada possiu valor
+        //verificar se a opção selecionada já se encontra no array materiais e emitir alerta quando já estiver
         
+        var cols = '';
+        cols = '';
+        novaLinha = null; 
+        var fk_material = $('#fk_material :selected').val();
+        var descricao_material = $('#fk_material :selected').text();
+        var quantidade = $('#quantidade').val();
 
-        $('.modal-title').text('Novo Cadastro de solicitação');
-        $('.callout').addClass("hidden"); 
-        $('.callout').find("p").text(""); 
-
-        $('#form')[0].reset();
-
-        jQuery('#criar_editar-modal').modal('show');
-});
-
-$(document).on('click', '.btnVer', function() {
-
-        $('.modal-footer .btn-action').removeClass('edit');
-        $('.modal-footer .btn-action').addClass('hidden');
-        $('.modal-title').text('Ver solicitação de horário');
-        
-        //desabilita os campos
-        $('#horario_inicio').prop('readonly',true);
-        $('#horario_pausa').prop('readonly',true);
-        $('#horario_pos_pausa').prop('readonly',true);
-        $('#horario_termino').prop('readonly',true);
-        $('#fk_servidor').prop('disabled',true);
-
-        $('.callout').addClass("hidden"); //ocultar a div de aviso
-        $('.callout').find("p").text(""); //limpar a div de aviso
-
-        var btnEditar = $(this);
-
-        $('#form :input').each(function(index,input){
-            $('#'+input.id).val($(btnEditar).data(input.id));
-        });
+        var novaLinha = '<tr class="'+'linha'+i+'">';
+        //Adc material ao array
+        materiais.push({'fk_material': fk_material, 'quantidade': quantidade});
 
         
-        jQuery('#criar_editar-modal').modal('show');
-});
-$(document).on('click', '.btnEditar', function() {
-        $('.modal-footer .btn-action').removeClass('add');
-        $('.modal-footer .btn-action').addClass('edit');
-        $('.modal-footer .btn-action').removeClass('hidden');
-
-        $('.modal-title').text('Editar Setor');
-        $('.callout').addClass("hidden"); //ocultar a div de aviso
-        $('.callout').find("p").text(""); //limpar a div de aviso
-
-        //habilita os campos desabilitados
-        $('#horario_inicio').prop('readonly',false);
-        $('#horario_pausa').prop('readonly',false);
-        $('#horario_pos_pausa').prop('readonly',false);
-        $('#horario_termino').prop('readonly',false);
-        $('#fk_servidor').prop('disabled',false);
-
-        var btnEditar = $(this);
-
-        $('#form :input').each(function(index,input){
-            $('#'+input.id).val($(btnEditar).data(input.id));
-        });
-
+        /* Crian a linha p/ tabela*/
         
-        jQuery('#criar_editar-modal').modal('show'); //Abrir o modal
-});
-$(document).on('click', '.btnDeletar', function() {
-   $('.modal-title').text('Deletar Setor');   
-   $('.modal-footer .btn-action').removeClass('add');
-   $('.modal-footer .btn-action').removeClass('edit');
-   $('.modal-footer .btn-action').addClass('excluir');
-   $('.modal-footer .btn-action').removeClass('hidden');
-   
-   var btnExcluir = $(this);
+        cols += '<td>'+descricao_material+'</td>';
+        cols += '<td>'+quantidade+'</td>';
+        cols += '<td class="text-left"><a class="btnRemoverMaterial btn btn-xs btn-danger" data-indexof="'+materiais.indexOf(materiais[i])+'" data-linha="'+i+'"><i class="fa fa-trash"></i> Remover</a></td>';
+        novaLinha += cols + '</tr>';
+        
 
-    $('#deletar :input').each(function(index,input){
-        $('#'+input.id).val($(btnExcluir).data(input.id));
+
+        $('#material_id').append(novaLinha); /*Adc a linha  tabela*/
+        i+=1;
+
+        $('#quantidade').val('');
+
     });
 
-    jQuery('#criar_deletar-modal').modal('show'); //Abrir o modal 
+    //Remover Material
+    $(document).on('click', '.btnRemoverMaterial', function(){
+        materiais.splice($(this).data('indexof'),1); //remove do array de acordo com o indice
+        $('.linha'+ $(this).data('linha')).remove(); //Remove a linha da tela 
+    });
 
+
+
+    $(document).on('click', '.btnAdicionar', function() {
+            $('.modal-footer .btn-action').removeClass('edit');
+            $('.modal-footer .btn-action').addClass('add');
+            $('.modal-footer .btn-action').removeClass('hidden');
+
+            //habilita os campos desabilitados
+            $('#horario_inicio').prop('readonly',false);
+            $('#horario_pausa').prop('readonly',false);
+            $('#horario_pos_pausa').prop('readonly',false);
+            $('#horario_termino').prop('readonly',false);
+            $('#fk_servidor').prop('disabled',false);
+            
+
+            $('.modal-title').text('Novo Cadastro de solicitação');
+            $('.callout').addClass("hidden"); 
+            $('.callout').find("p").text(""); 
+
+            $('#form')[0].reset();
+
+            jQuery('#criar_editar-modal').modal('show');
+    });
+
+    $(document).on('click', '.btnVer', function() {
+
+            $('.modal-footer .btn-action').removeClass('edit');
+            $('.modal-footer .btn-action').addClass('hidden');
+            $('.modal-title').text('Ver solicitação de horário');
+            
+            //desabilita os campos
+            $('#horario_inicio').prop('readonly',true);
+            $('#horario_pausa').prop('readonly',true);
+            $('#horario_pos_pausa').prop('readonly',true);
+            $('#horario_termino').prop('readonly',true);
+            $('#fk_servidor').prop('disabled',true);
+
+            $('.callout').addClass("hidden"); //ocultar a div de aviso
+            $('.callout').find("p").text(""); //limpar a div de aviso
+
+            var btnEditar = $(this);
+
+            $('#form :input').each(function(index,input){
+                $('#'+input.id).val($(btnEditar).data(input.id));
+            });
+
+            
+            jQuery('#criar_editar-modal').modal('show');
+    });
+    $(document).on('click', '.btnEditar', function() {
+            $('.modal-footer .btn-action').removeClass('add');
+            $('.modal-footer .btn-action').addClass('edit');
+            $('.modal-footer .btn-action').removeClass('hidden');
+
+            $('.modal-title').text('Editar Setor');
+            $('.callout').addClass("hidden"); //ocultar a div de aviso
+            $('.callout').find("p").text(""); //limpar a div de aviso
+
+            $('#servicos').val('').trigger('change');
+
+            var btnEditar = $(this);
+            $.ajax({
+                type:'get',
+                url: './gerenciar-servicos/servicos/'+btnEditar.data('id'),
+                success: function(data){
+                    $('#servicos').val(data);
+                    $('#servicos').trigger('change');
+                }
+            });
+
+            $('#id').val(btnEditar.data('id'));
+            $('#titulo').val(btnEditar.data('titulo'));
+            $('#status').val(btnEditar.data('status'));
+            $('#observacao_solicitante').val(btnEditar.data('observacao_solicitante'));
+            $('#observacao_solicitado').val(btnEditar.data('observacao_solicitado'));
+            $('#descricao').val(btnEditar.data('descricao_solicitacao'));
+
+        var id = $('#id').val();
+        $.ajax({
+            type: 'get',
+            url: "/gerenciar-solicitacoes/materiais/"+id,
+            processData: false,
+            contentType: false,
+              success: function(response) {
+                for(var i = 0; i < response.data.length; i++){
+                    
+                var cols = '';
+                cols = '';
+                novaLinha = null; 
+                var fk_material = response.data[i].id;
+                var descricao_material = response.data[i].descricao;
+                var quantidade = response.data[i].quantidade;
+
+                var novaLinha = '<tr class="'+'linha'+i+'">';
+                //Adc material ao array
+                materiais.push({'fk_material': fk_material, 'quantidade': quantidade});
+
+                
+                /* Crian a linha p/ tabela*/
+                
+                cols += '<td>'+descricao_material+'</td>';
+                cols += '<td>'+quantidade+'</td>';
+                cols += '<td class="text-left"><a class="btnRemoverMaterial btn btn-xs btn-danger" data-indexof="'+materiais.indexOf(materiais[i])+'" data-linha="'+i+'"><i class="fa fa-trash"></i> Remover</a></td>';
+                novaLinha += cols + '</tr>';
+                
+
+
+                $('#material_id').append(novaLinha); /*Adc a linha  tabela*/
+                i+=1;
+
+                $('#quantidade').val('');
+                }
+                
+            },
+        });
+
+            
+            jQuery('#criar_editar-modal').modal('show'); //Abrir o modal
+    });
+    $(document).on('click', '.btnDeletar', function() {
+       $('.modal-title').text('Deletar Setor');   
+       $('.modal-footer .btn-action').removeClass('add');
+       $('.modal-footer .btn-action').removeClass('edit');
+       $('.modal-footer .btn-action').addClass('excluir');
+       $('.modal-footer .btn-action').removeClass('hidden');
+       
+       var btnExcluir = $(this);
+
+        $('#deletar :input').each(function(index,input){
+            $('#'+input.id).val($(btnExcluir).data(input.id));
+        });
+
+        jQuery('#criar_deletar-modal').modal('show'); //Abrir o modal 
+
+    });
 });

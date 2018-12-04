@@ -119,14 +119,47 @@ class SolicitacaoController extends Controller
         }
     }
 
+     public function materiais($id)
+    {
+
+        $itens = Solicitacao::LEFTJOIN('material_saidas','material_saidas.fk_solicitacao','=','solicitacaos.id')
+            ->LEFTJOIN('materials','materials.id','=','material_saidas.fk_material')
+            ->select('materials.id','material_saidas.quantidade', 'materials.descricao')
+            ->orderBy('solicitacaos.created_at', 'desc')
+            ->where('solicitacaos.id',$id)
+            ->get();
+
+        return response()->json(['data'=>$itens]);
+    }
+
     public function update(Request $request)
     {
-        $solicitacao = Solicitacao::find($request->id);
-        $solicitacao->data_solicitacao = $request->data_solicitacao;
-        $solicitacao->data_realizacao = $request->data_realizacao;
-        $solicitacao->fk_servidor = $request->fk_servidor;
-        $solicitacao->fk_setor = $request->fk_setor;
+
+        $solicitacao = Solicitacao::find($request->id);  
+        $solicitacao->titulo = $request->titulo;
+        $solicitacao->descricao = $request->descricao;
         $solicitacao->save();
+
+        DB::table("material_saidas")->where("material_saidas.fk_solicitacao",$request->id)
+                ->delete();
+
+        foreach ($request->materiais as $value) {   
+            $material_saida = new MaterialSaida();
+            $material_saida->quantidade = $value['quantidade'];
+            $material_saida->fk_material = $value['fk_material'];
+            $material_saida->fk_solicitacao = $solicitacao->id;
+            $material_saida->save();
+        }
+
+        DB::table("servico_solicitacaos")->where("servico_solicitacaos.fk_solicitacao",$request->id)
+                ->delete();
+
+        foreach ($request->servicos as $value) {   
+            $servico_solicitacao = new ServicoSolicitacao();
+            $servico_solicitacao->fk_servico = $value;
+            $servico_solicitacao->fk_solicitacao = $solicitacao->id;
+            $servico_solicitacao->save();
+        }
         
         return response()->json($solicitacao);
     }

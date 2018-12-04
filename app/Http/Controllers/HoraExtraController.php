@@ -31,6 +31,9 @@ class HoraExtraController extends Controller
 
 
         return DataTables::of($hora_extra)
+             ->editColumn('dia', function($hora_extra){
+                return date("d/m/y",strtotime($hora_extra->dia));
+            })
             ->editColumn('acao', function ($hora_extra){
                 return $this->setBtns($hora_extra);
             })->escapeColumns([0])
