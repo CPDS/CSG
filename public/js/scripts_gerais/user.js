@@ -7,6 +7,17 @@ $(document).ready(function($) {
     var base_url = 'http://' + window.location.host.toString();
     var base_url = location.protocol + '//' + window.location.host.toString();
 
+    $('#nome_role').change(function(){
+       
+        if($("#nome_role :selected").text() == 'Empresa'){
+            $('.user').addClass('hidden');
+            $('.empresa').removeClass('hidden'); 
+
+        }else{
+            $('.user').removeClass('hidden'); 
+            $('.empresa').addClass('hidden'); 
+        }    
+    });
 
     $.ajaxSetup({
         headers: {
@@ -251,6 +262,7 @@ $(document).on('click', '.btnAdicionar', function() {
         $('.modal-footer .btn-action').removeClass('edit');
         $('.modal-footer .btn-action').addClass('add');
         $('.modal-footer .btn-action').removeClass('hidden');
+
 
         //habilita os campos desabilitados
         $('#nome_user').prop('readonly',false);

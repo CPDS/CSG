@@ -8,8 +8,6 @@
 <script src="{{ asset('js/iziToast.min.js') }}"></script>
 
 <script src="{{ asset('plugins/select2/select2.min.js') }}" type = "text/javascript"></script>
-
-
 <link rel="stylesheet" href="{{ asset('plugins/select2/select2.css') }}">
 <link rel="stylesheet" href="{{ asset('plugins/select2/select2.min.css') }}">
 
@@ -43,8 +41,6 @@
                                 <th>Título</th>
                                 <th>Obs solicitado</th>
                                 <th>Obs solicitante</th>
-                                <th>Descrição material</th>
-                                <th>Quantidade</th>
                                 <th width="20%">Ações</th>
                             </tr>
                             </thead>

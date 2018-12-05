@@ -37,7 +37,7 @@
                             </div>       
                         </div>
 
-                        <div class="col-sm-4">
+                        <div class="col-sm-4 user">
                             <strong>CPF:</strong>
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="CPF" class="input-group-addon"><i class="fa fa-sort-numeric-asc"></i></span>
@@ -46,7 +46,7 @@
                         </div>
                     </div>
 
-                     <div class="form-group">
+                     <div class="form-group empresa">
                         <div class="col-sm-4">
                             <strong>CNPJ:</strong>
                             <div class="input-group">
@@ -55,7 +55,7 @@
                             </div>       
                         </div>
                        
-                        <div class="col-sm-4">
+                        <div class="col-sm-4 empresa">
                             <strong>Responsavel:</strong>
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="Responsavel" class="input-group-addon"><i class="fa fa-home"></i></span>
@@ -110,7 +110,7 @@
                     </div>
 
 
-                    <div class="form-group">
+                    <div class="form-group user">
                         <div class="col-sm-12">
                             <strong>Setor:</strong>
                             <div class="input-group">

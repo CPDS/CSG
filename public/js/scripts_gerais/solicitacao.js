@@ -2,12 +2,14 @@ $(document).ready(function($){
     
     var base_url = 'http://' + window.location.host.toString();
     var base_url = location.protocol + '//' + window.location.host.toString();
+    var materiais = new Array();
+    
 
     $('.js-example-basic-multiple').select2({
         placeholder: "Selecione",
         allowClear: true,
         tags: true,
-      });
+    });
 
     $.ajaxSetup({
         headers: {
@@ -28,8 +30,6 @@ $(document).ready(function($){
             { data: 'titulo', name: 'titulo' },
             { data: 'observacao_solicitado', name: 'observacao_solicitado' },
             { data: 'observacao_solicitante', name: 'observacao_solicitante' },
-            { data: 'descricao_material', name: 'descricao_material' },
-            { data: 'quantidade', name: 'quantidade' },
             { data: 'acao', name: 'acao' },
             ],
             createdRow : function( row, data, index ) {
@@ -172,6 +172,7 @@ $(document).ready(function($){
                 'observacao_solicitante': $("#observacao_solicitante").val(),
                 'fk_servico': $("#fk_servico").val(),
                 'fk_user': $("#fk_user").val(),
+                'id': $("#id").val(),
                 'fk_solicitacao_tipo': $("#fk_solicitacao_tipo").val(),
                 'servicos': $("#servicos").val(),
                 'status': $("#status :selected").val(),
@@ -279,7 +280,7 @@ $(document).ready(function($){
 
   
      var i = 0;
-     var materiais = new Array();
+     
     //Adicionar material
     $(document).on('click', '.btnAdcMaterial', function() {
         //verificar se a opção selecionada possiu valor
@@ -397,41 +398,40 @@ $(document).ready(function($){
             $('#descricao').val(btnEditar.data('descricao_solicitacao'));
 
         var id = $('#id').val();
+        j = 0;
         $.ajax({
             type: 'get',
             url: "/gerenciar-solicitacoes/materiais/"+id,
             processData: false,
             contentType: false,
               success: function(response) {
-                for(var i = 0; i < response.data.length; i++){
-                    
-                var cols = '';
-                cols = '';
-                novaLinha = null; 
-                var fk_material = response.data[i].id;
-                var descricao_material = response.data[i].descricao;
-                var quantidade = response.data[i].quantidade;
 
-                var novaLinha = '<tr class="'+'linha'+i+'">';
-                //Adc material ao array
-                materiais.push({'fk_material': fk_material, 'quantidade': quantidade});
+                if(response.data[0].id != null){ 
+                    for(var i = 0; i < response.data.length; i++){
+                        var cols = '';
+                        cols = '';
+                        novaLinha = null; 
+                        var fk_material = response.data[i].id;
+                        var descricao_material = response.data[i].descricao;
+                        var quantidade = response.data[i].quantidade;
 
-                
-                /* Crian a linha p/ tabela*/
-                
-                cols += '<td>'+descricao_material+'</td>';
-                cols += '<td>'+quantidade+'</td>';
-                cols += '<td class="text-left"><a class="btnRemoverMaterial btn btn-xs btn-danger" data-indexof="'+materiais.indexOf(materiais[i])+'" data-linha="'+i+'"><i class="fa fa-trash"></i> Remover</a></td>';
-                novaLinha += cols + '</tr>';
-                
+                        var novaLinha = '<tr class="'+'linha'+j+'">';
+                        //Adc material ao array
+                        materiais.push({'fk_material': fk_material, 'quantidade': quantidade});
+                        
+                        /* Crian a linha p/ tabela*/
+                        
+                        cols += '<td>'+descricao_material+'</td>';
+                        cols += '<td>'+quantidade+'</td>';
+                        cols += '<td class="text-left"><a class="btnRemoverMaterial btn btn-xs btn-danger" data-indexof="'+materiais.indexOf(materiais[i])+'" data-linha="'+j+'"><i class="fa fa-trash"></i> Remover</a></td>';
+                        novaLinha += cols + '</tr>';
 
+                        $('#material_id').append(novaLinha); /*Adc a linha  tabela*/
+                        j+=1;
 
-                $('#material_id').append(novaLinha); /*Adc a linha  tabela*/
-                i+=1;
-
-                $('#quantidade').val('');
-                }
-                
+                        $('#quantidade').val('');
+                    }
+                }    
             },
         });
 
