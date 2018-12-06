@@ -21,6 +21,7 @@
 </div>
 <!-- row -->
 <div class="row">
+
   <div class="col-lg-4 col-xs-4">
     <!-- small box -->
     <div class="small-box bg-disabled" style="color: black;">
@@ -30,7 +31,7 @@
         <p>Solicitações Total/Em aberto: {{ $solicitacao }}</p>
       </div>
 
-      <div class="icon">
+      <div class="icon">  
         <i class="glyphicon glyphicon-eye-open"></i>
       </div>
       <span class="small-box-footer" ><br></span>

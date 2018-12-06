@@ -12,6 +12,7 @@ use DB;
 use Auth;
 use App\User;
 use App\Setor;
+use App\Permission;
 use App\AlocacaoFuncionario;
 
 
@@ -21,6 +22,13 @@ class UserController extends Controller
     {
         $setores = Setor::where('status','Ativo')->get();
         return view('user.index',compact('setores'));    
+    }  
+
+    public function permissions()
+    {
+        $permissions = Permission::all();
+
+        return view('user.permission',compact('permissions'));    
     } 
 
     public function list()
