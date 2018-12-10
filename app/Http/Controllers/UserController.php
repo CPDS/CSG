@@ -14,7 +14,7 @@ use App\User;
 use App\Setor;
 use App\Permission;
 use App\AlocacaoFuncionario;
-use App\ModelHasRole;
+use App\ModelHasPermission;
 use App\Role;
 
 
@@ -37,14 +37,14 @@ class UserController extends Controller
     public function createPermissions(Request $request){
        
         foreach ($request->permissao as $value) {
-            $model_has_roles =  new ModelHasRole();
-            $model_has_roles->role_id = $value;
-            $model_has_roles->model_id = $request->fk_model;
-            $model_has_roles->model_type = 'App\User';
-            $model_has_roles->save();
+            $ModelHasPermission = new ModelHasPermission();
+            $ModelHasPermission->permission_id = $value;
+            $ModelHasPermission->model_id = $request->fk_model;
+            $ModelHasPermission->model_type = 'App\User';
+            $ModelHasPermission->save();
         }
 
-        return response()->json($model_has_roles);
+        return response()->json($ModelHasPermission);
     } 
 
     public function list()
