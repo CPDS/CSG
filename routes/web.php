@@ -81,6 +81,7 @@ Route::group(['prefix' => 'gerenciar-users', 'where' => ['id' => '[0-9]+'], 'mid
         Route::post('/store', ['as' => 'gerenciar-users.store', 'uses' => 'UserController@store']);
         Route::post('/update', ['as' => 'gerenciar-users.update', 'uses' => 'UserController@update']);
         Route::post('/delete', ['as' => 'gerenciar-users.destroy', 'uses' => 'UserController@destroy']);
+        Route::post('/permission', ['as' => 'gerenciar-users.post.permission', 'uses' => 'UserController@createPermissions']);
 });    
 
 Route::group(['prefix' => 'gerenciar-escalas', 'where' => ['id' => '[0-9]+'], 'middleware' => ['role:Administrador|Servidor']] ,function() {

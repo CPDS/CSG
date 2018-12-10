@@ -26,10 +26,26 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">  
-                        @foreach($permissions as $permission)
-                        {{ $permission->name }}
-                        @endforeach
+                        <form id="form">
+                      
+                         <select name="fk_model" class="form-control">
+                              @foreach($models as $model)
+                            <option value="{{ $model->id }}">{{ $model->name }}
+                                  @endforeach
+                        </select>
+                       
 
+
+                        @foreach($permissions as $permission)
+                        <label>
+                            <input type="checkbox" name="permissao[]" value="{{ $permission->id }}"> {{ $permission->name }}
+                        </label>
+                        <br>
+                        @endforeach
+                          <button type="button" class="btn btn-action btn-success permission" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> &nbsp Aguarde...">
+                              <i class="fa fa-floppy-o"> </i>
+                            </button>
+                        </form>
                     @can('criar-setor')
                         asdasd
                     @endcan

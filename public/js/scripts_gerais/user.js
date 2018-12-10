@@ -147,6 +147,58 @@ $(document).ready(function($) {
         });
     });
 
+    $(document).on('click', '.permission', function() {
+        var dados = new FormData($("#form")[0]); //pega os dados do form
+
+        console.log(dados);
+
+        $.ajax({
+            type: 'post',
+            url: "/gerenciar-users/permission",
+            data: dados,
+            processData: false,
+            contentType: false,
+            beforeSend: function(){
+                jQuery('.add').button('loading');
+            },
+            complete: function() {
+                jQuery('.add').button('reset');
+            },
+            success: function(data) {
+                 //Verificar os erros de preenchimento
+                if ((data.errors)) {
+
+                    $('.callout').removeClass('hidden'); //exibe a div de erro
+                    $('.callout').find('p').text(""); //limpa a div para erros successivos
+
+                    $.each(data.errors, function(nome, mensagem) {
+                            $('.callout').find("p").append(mensagem + "</br>");
+                    });
+
+                } else {
+
+
+                    $(function() {
+                        iziToast.destroy();
+                        iziToast.success({
+                            title: 'OK',
+                            message: 'Usuário adicionado com Sucesso!',
+                        });
+                    });
+
+                }
+            },
+
+            error: function() {
+                iziToast.error({
+                    title: 'Erro Interno',
+                    message: 'Operação Cancelada!',
+                });
+            },
+
+        });
+    });
+
 
     $('.modal-footer').on('click', '.edit', function() {
         var dados = new FormData($("#form")[0]); //pega os dados do form

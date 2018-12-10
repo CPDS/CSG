@@ -2,7 +2,7 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquente\Model;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\Permission\Traits\HasRoles;
 
 
