@@ -76,6 +76,9 @@ Route::group(['prefix' => 'gerenciar-servicos', 'where' => ['id' => '[0-9]+'], '
 
 Route::group(['prefix' => 'gerenciar-users', 'where' => ['id' => '[0-9]+'], 'middleware' => ['role:Administrador|Servidor']] ,function() {
         Route::get('/permissions', ['as' => 'gerenciar-users.permissions', 'uses' => 'UserController@permissions']);
+
+        Route::get('/get-permissions/{papel}', ['as' => 'gerenciar-users.permissions', 'uses' => 'UserController@getPermissions']);
+
         Route::get('', ['as' => 'gerenciar-users.index', 'uses' => 'UserController@index']);
         Route::get('/list',['as' => 'gerenciar-users.list', 'uses' => 'UserController@list']);
         Route::post('/store', ['as' => 'gerenciar-users.store', 'uses' => 'UserController@store']);

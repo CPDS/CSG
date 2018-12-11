@@ -34,8 +34,17 @@ class UserController extends Controller
         return view('user.permission',compact('permissions','models'));    
     }
 
+    public function getPermissions($papel)
+    {
+        $permissions = ModelHasPermission::where('model_id',$papel)->get();
+
+        return response()->json(['data' => $permissions ]);    
+    }
+
     public function createPermissions(Request $request){
        
+        ModelHasPermission::where('model_id',$request->fk_model)->delete();
+
         foreach ($request->permissao as $value) {
             $ModelHasPermission = new ModelHasPermission();
             $ModelHasPermission->permission_id = $value;
@@ -148,11 +157,7 @@ class UserController extends Controller
         $user->fk_setor = $request->fk_setor;
         $user->responsavel = $request->responsavel;
         $user->assignRole($request->nome_role);
-        $user->save();
-    
-       
-
-        
+        $user->save();        
         return response()->json($user);
     }
 

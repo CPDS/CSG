@@ -350,7 +350,7 @@ $(document).on('click', '.btnVer', function() {
             $('#'+input.id).val($(btnEditar).data(input.id));
         });
 
-         var id = $('#id').val();
+        var id = $('#id').val();
         $.ajax({
             type: 'get',
             url: "/gerenciar-contratos/itens/"+id,
