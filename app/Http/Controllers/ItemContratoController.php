@@ -34,16 +34,20 @@ class ItemContratoController  extends Controller
     private function setBtns(ItemContrato $item_contratos){
         $dados = "data-id_del='$item_contratos->id' data-id='$item_contratos->id' data-nome='$item_contratos->nome'";
 
+        $btnEditar = '';
+        $btnDeletar = '';
+
         $btnVer = "<a class='btn btn-info btn-sm btnVer' data-toggle='tooltip' title='Ver item_contrato' $dados> <i class='fa fa-eye'></i></a> ";
 
-        $btnEditar = "<a class='btn btn-primary btn-sm btnEditar' data-toggle='tooltip' title='Editar item_contrato' $dados> <i class='fa fa-edit'></i></a> ";
+        if(Auth::user()->can('editar-item-contrato')){
+            $btnEditar = "<a class='btn btn-primary btn-sm btnEditar' data-toggle='tooltip' title='Editar item_contrato' $dados> <i class='fa fa-edit'></i></a> ";
+        }
 
-        $btnDeletar = "<a class='btn btn-danger btn-sm btnDeletar' data-toggle='tooltip' title='Deletar item_contrato' $dados><i class='fa fa-trash'></i></a>";
-
+        if(Auth::user()->can('excluir-item-contrato')){
+            $btnDeletar = "<a class='btn btn-danger btn-sm btnDeletar' data-toggle='tooltip' title='Deletar item_contrato' $dados><i class='fa fa-trash'></i></a>";
+        }
 
         return $btnVer.$btnEditar.$btnDeletar;
-
-
     }
 
     public function store(Request $request)

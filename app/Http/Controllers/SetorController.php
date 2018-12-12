@@ -36,16 +36,21 @@ class SetorController extends Controller
     private function setBtns(setor $setors){
         $dados = "data-id_del='$setors->id' data-id='$setors->id' data-nome='$setors->nome' data-sigla='$setors->sigla' data-email='$setors->email' data-telefone='$setors->telefone'";
 
+        $btnEditar = '';
+        $btnDeletar = '';
+
         $btnVer = "<a class='btn btn-info btn-sm btnVer' data-toggle='tooltip' title='Ver setor' $dados> <i class='fa fa-eye'></i></a> ";
+        
+        if(Auth::user()->can('editar-setor')){
+            $btnEditar = "<a class='btn btn-primary btn-sm btnEditar' data-toggle='tooltip' title='Editar setor' $dados> <i class='fa fa-edit'></i></a> ";
+        }
 
-        $btnEditar = "<a class='btn btn-primary btn-sm btnEditar' data-toggle='tooltip' title='Editar setor' $dados> <i class='fa fa-edit'></i></a> ";
-
-        $btnDeletar = "<a class='btn btn-danger btn-sm btnDeletar' data-toggle='tooltip' title='Deletar setor' $dados><i class='fa fa-trash'></i></a>";
+        if(Auth::user()->can('excluir-setor')){
+            $btnDeletar = "<a class='btn btn-danger btn-sm btnDeletar' data-toggle='tooltip' title='Deletar setor' $dados><i class='fa fa-trash'></i></a>";
+        }
 
 
         return $btnVer.$btnEditar.$btnDeletar;
-
-
     }
 
     public function store(Request $request)

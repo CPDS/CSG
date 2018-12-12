@@ -35,6 +35,9 @@ class EncaminhamentoController extends Controller
 
     private function setBtns(encaminhamento $encaminhamentos){
         $dados = "data-id_del='$encaminhamentos->id' data-id='$encaminhamentos->id' data-nome='$encaminhamentos->nome' data-sigla='$encaminhamentos->sigla' data-email='$encaminhamentos->email' data-telefone='$encaminhamentos->telefone'";
+        
+        $btnEditar = '';
+        $btnDeletar = '';
 
         $btnVer = "<a class='btn btn-info btn-sm btnVer' data-toggle='tooltip' title='Ver encaminhamento' $dados> <i class='fa fa-eye'></i></a> ";
 

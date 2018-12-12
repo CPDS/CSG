@@ -41,6 +41,8 @@ class BaixaItemController extends Controller
     }
 
     private function setBtns(Solicitacao $solicitacaos){
+        $btnDeletar = '';
+
         $dados = "
         data-id_material_saida='$solicitacaos->id_material_saida' 
         data-id='$solicitacaos->id' 
@@ -53,9 +55,17 @@ class BaixaItemController extends Controller
         data-quantidade_atendida='$solicitacaos->quantidade_atendida' 
          ";
 
-        $btnVer = "<a class='btn btn-info btn-sm btnVer' data-toggle='tooltip' title='Ver solicitacao' $dados> <i class='fa fa-eye'></i></a> ";
+        $btnEditar = '';
+        $btnDeletar = '';
 
-        $btnEditar = "<a class='btn btn-primary btn-sm btnEditar' data-toggle='tooltip' title='Editar solicitacao' $dados> <i class='fa fa-edit'></i></a> ";
+
+        if(Auth::user()->can('ver-baixa-material')){
+           $btnVer = "<a class='btn btn-info btn-sm btnVer' data-toggle='tooltip' title='Ver solicitacao' $dados> <i class='fa fa-eye'></i></a> ";
+        }
+
+        if(Auth::user()->can('editar-baixa-material')){
+            $btnEditar = "<a class='btn btn-primary btn-sm btnEditar' data-toggle='tooltip' title='Editar baixa item' $dados> <i class='fa fa-edit'></i></a> ";
+        }
 
         return $btnVer.$btnEditar;
     }

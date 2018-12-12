@@ -43,11 +43,16 @@ class HoraExtraController extends Controller
     private function setBtns(HoraExtra $hora_extras){
         $dados = "data-id_del='$hora_extras->id' data-id='$hora_extras->id' data-horas_excedidas='$hora_extras->horas_excedidas' data-dia='$hora_extras->dia' data-nome_funcionario='$hora_extras->nome_funcionario' data-fk_user='$hora_extras->fk_user' ";
 
+        $btnEditar = '';
+        $btnDeletar = '';
+
         $btnVer = "<a class='btn btn-info btn-sm btnVer' data-toggle='tooltip' title='Ver hora_extra' $dados> <i class='fa fa-eye'></i></a> ";
-
-        $btnEditar = "<a class='btn btn-primary btn-sm btnEditar' data-toggle='tooltip' title='Editar hora_extra' $dados> <i class='fa fa-edit'></i></a> ";
-
-        $btnDeletar = "<a class='btn btn-danger btn-sm btnDeletar' data-toggle='tooltip' title='Deletar hora_extra' $dados><i class='fa fa-trash'></i></a>";
+        if(Auth::user()->can('editar-horas-extras')){
+             $btnEditar = "<a class='btn btn-primary btn-sm btnEditar' data-toggle='tooltip' title='Editar hora_extra' $dados> <i class='fa fa-edit'></i></a> ";
+        }
+        if(Auth::user()->can('excluir-horas-extras')){
+            $btnDeletar = "<a class='btn btn-danger btn-sm btnDeletar' data-toggle='tooltip' title='Deletar hora_extra' $dados><i class='fa fa-trash'></i></a>";
+        }
 
 
         return $btnVer.$btnEditar.$btnDeletar;
