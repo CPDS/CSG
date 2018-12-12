@@ -19,6 +19,35 @@ $(document).ready(function($) {
         }    
     });
 
+
+    $('#papel').change(function(){
+   
+        var papel = $("#papel :selected").val();
+        $.ajax({
+            type: 'get',
+            url: "/gerenciar-users/get-permissions/"+papel,
+            processData: false,
+            contentType: false,
+              success: function(response) {
+               
+                $('input[id="permissao"]').each(function() {
+                    $(this).prop('checked', false);
+                    for(var i = 0; i < response.data.length; i++){
+                        if(response.data[i].permission_id == this.value){
+                            $(this).prop('checked', true);
+                            return;
+                        }else{
+                            $(this).prop('checked', false);
+                        }
+                    }
+                });  
+            },
+        });
+    });
+
+
+
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
