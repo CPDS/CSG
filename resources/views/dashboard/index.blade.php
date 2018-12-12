@@ -25,12 +25,12 @@
   <div class="col-lg-4 col-xs-4">
     <!-- small box -->
     <div class="small-box bg-disabled" style="color: black;">
+     
       <div class="inner">
         <h3>Geral</h3>
         <p>Materiais Total/Disponíveis: {{ $material }}</p>
         <p>Solicitações Total/Em aberto: {{ $solicitacao }}</p>
       </div>
-
       <div class="icon">  
         <i class="glyphicon glyphicon-eye-open"></i>
       </div>

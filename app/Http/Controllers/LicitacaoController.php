@@ -33,11 +33,18 @@ class LicitacaoController extends Controller
     private function setBtns(Licitacao $licitacaos){
         $dados = "data-id_del='$licitacaos->id' data-id='$licitacaos->id' data-numero='$licitacaos->numero' data-termo_aditivo='$licitacaos->termo_aditivo' data-modalidade='$licitacaos->modalidade'";
 
+        $btnEditar = '';
+        $btnDeletar = '';
+
         $btnVer = "<a class='btn btn-info btn-sm btnVer' data-toggle='tooltip' title='Ver licitacao' $dados> <i class='fa fa-eye'></i></a> ";
 
-        $btnEditar = "<a class='btn btn-primary btn-sm btnEditar' data-toggle='tooltip' title='Editar licitacao' $dados> <i class='fa fa-edit'></i></a> ";
+        if(Auth::user()->can('editar-licitacao')){
+            $btnEditar = "<a class='btn btn-primary btn-sm btnEditar' data-toggle='tooltip' title='Editar licitacao' $dados> <i class='fa fa-edit'></i></a> ";
+        }
 
-        $btnDeletar = "<a class='btn btn-danger btn-sm btnDeletar' data-toggle='tooltip' title='Deletar licitacao' $dados><i class='fa fa-trash'></i></a>";
+        if(Auth::user()->can('excluir-licitacao')){
+            $btnDeletar = "<a class='btn btn-danger btn-sm btnDeletar' data-toggle='tooltip' title='Deletar licitacao' $dados><i class='fa fa-trash'></i></a>";
+        }
 
 
         return $btnVer.$btnEditar.$btnDeletar;

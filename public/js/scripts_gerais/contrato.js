@@ -1,4 +1,4 @@
-var itens = new Array();
+ var itens = new Array();
 $(document).ready(function($) {
 
     var base_url = 'http://' + window.location.host.toString();
@@ -481,3 +481,4 @@ $(document).on('click', '.btnDeletar', function() {
     jQuery('#criar_deletar-modal').modal('show'); //Abrir o modal 
 
 });
+

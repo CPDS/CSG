@@ -43,12 +43,18 @@ class EntradaMaterialController extends Controller
     private function setBtns(Material $material_entradas){
         $dados = "data-id_del='$material_entradas->id' data-id='$material_entradas->id' data-quantidade='$material_entradas->quantidade' data-descricao='$material_entradas->descricao' data-usuario='$material_entradas->usuario' data-tipo='$material_entradas->tipo'  data-fk_material='$material_entradas->fk_material' ";
 
+        $btnEditar = '';
+        $btnDeletar = '';
+
         $btnVer = "<a class='btn btn-info btn-sm btnVer' data-toggle='tooltip' title='Ver material_entradas' $dados> <i class='fa fa-eye'></i></a> ";
 
-        $btnEditar = "<a class='btn btn-primary btn-sm btnEditar' data-toggle='tooltip' title='Editar material_entradas' $dados> <i class='fa fa-edit'></i></a> ";
-
-        $btnDeletar = "<a class='btn btn-danger btn-sm btnDeletar' data-toggle='tooltip' title='Deletar material_entradas' $dados><i class='fa fa-trash'></i></a>";
-
+        if(Auth::user()->can('editar-estoque')){
+            $btnEditar = "<a class='btn btn-primary btn-sm btnEditar' data-toggle='tooltip' title='Editar material_entradas' $dados> <i class='fa fa-edit'></i></a> ";
+        }
+        
+        if(Auth::user()->can('excluir-estoque')){
+            $btnDeletar = "<a class='btn btn-danger btn-sm btnDeletar' data-toggle='tooltip' title='Deletar material_entradas' $dados><i class='fa fa-trash'></i></a>";
+        }
 
         return $btnVer.$btnEditar.$btnDeletar;
 

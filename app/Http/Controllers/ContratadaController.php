@@ -41,6 +41,8 @@ class ContratadaController extends Controller
 
     private function setBtns(contratada $contratadas){
         $dados = "data-id_del='$contratadas->id' data-id='$contratadas->id' data-nome='$contratadas->nome' data-sigla='$contratadas->sigla' data-email='$contratadas->email' data-telefone='$contratadas->telefone'";
+        $btnEditar = '';
+        $btnDeletar = '';
 
         $btnVer = "<a class='btn btn-info btn-sm btnVer' data-toggle='tooltip' title='Ver contratada' $dados> <i class='fa fa-eye'></i></a> ";
 

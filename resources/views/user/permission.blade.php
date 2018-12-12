@@ -1,3 +1,4 @@
+
 @extends('adminlte::page')
 <script src ="{{ asset('/plugins/jQuery/jQuery-3.1.0.min.js') }}" type = "text/javascript" ></script>
 <script src ="{{ asset('/js/scripts_gerais/user.js') }}" type = "text/javascript" ></script>
@@ -10,12 +11,12 @@
 <script src="{{ asset('js/iziToast.min.js') }}"></script>
 
 @section('htmlheader_title')
-    Gerenciar Permissões
+	Gerenciar Permissões
 @endsection
 @section('usuario', 'active')
 
 @section('main-content')
-      <div class="container-fluid spark-screen">
+	  <div class="container-fluid spark-screen">
         <div class="row">
             <div class="col-md-12">
 

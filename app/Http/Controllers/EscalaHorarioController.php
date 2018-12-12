@@ -43,11 +43,18 @@ class EscalaHorarioController extends Controller
     private function setBtns(EscalaHorario $escala_horarios){
         $dados = "data-id_del='$escala_horarios->id' data-id='$escala_horarios->id' data-horario_inicio='$escala_horarios->horario_inicio' data-dia_semana='$escala_horarios->dia_semana' data-horario_termino='$escala_horarios->horario_termino' data-nome_servidor='$escala_horarios->nome_funcionario' data-fk_user='$escala_horarios->fk_user' data-nome_setor='$escala_horarios->nome_setor' data-fk_setor='$escala_horarios->fk_setor' ";
 
+        $btnEditar = '';
+        $btnDeletar = '';
+
         $btnVer = "<a class='btn btn-info btn-sm btnVer' data-toggle='tooltip' title='Ver escala_horario' $dados> <i class='fa fa-eye'></i></a> ";
+        
+        if(Auth::user()->can('editar-escala')){
+            $btnEditar = "<a class='btn btn-primary btn-sm btnEditar' data-toggle='tooltip' title='Editar escala_horario' $dados> <i class='fa fa-edit'></i></a> ";
+        }
 
-        $btnEditar = "<a class='btn btn-primary btn-sm btnEditar' data-toggle='tooltip' title='Editar escala_horario' $dados> <i class='fa fa-edit'></i></a> ";
-
-        $btnDeletar = "<a class='btn btn-danger btn-sm btnDeletar' data-toggle='tooltip' title='Deletar escala_horario' $dados><i class='fa fa-trash'></i></a>";
+        if(Auth::user()->can('excluir-escala')){
+            $btnDeletar = "<a class='btn btn-danger btn-sm btnDeletar' data-toggle='tooltip' title='Deletar escala_horario' $dados><i class='fa fa-trash'></i></a>";
+        }
 
 
         return $btnVer.$btnEditar.$btnDeletar;

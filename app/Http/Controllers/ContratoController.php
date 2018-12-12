@@ -57,12 +57,19 @@ class ContratoController extends Controller
         $user_name = $contratos->empresa->name;
 
         $dados = "data-id_del='$contratos->id' data-id='$contratos->id' data-numero='$contratos->numero' data-valor_total='$contratos->valor_total' data-data_inicio='$contratos->data_inicio' data-data_fim='$contratos->data_fim'  data-teste='$user_name' ";
+        
+        $btnEditar = '';
+        $btnDeletar = '';
 
         $btnVer = "<a class='btn btn-info btn-sm btnVer' data-toggle='tooltip' title='Ver contrato' $dados> <i class='fa fa-eye'></i></a> ";
 
-        $btnEditar = "<a class='btn btn-primary btn-sm btnEditar' data-toggle='tooltip' title='Editar contrato' $dados> <i class='fa fa-edit'></i></a> ";
-
-        $btnDeletar = "<a class='btn btn-danger btn-sm btnDeletar' data-toggle='tooltip' title='Deletar contrato' $dados><i class='fa fa-trash'></i></a>";
+        if(Auth::user()->can('editar-contrato')){
+            $btnEditar = "<a class='btn btn-primary btn-sm btnEditar' data-toggle='tooltip' title='Editar contrato' $dados> <i class='fa fa-edit'></i></a> ";
+        }
+        
+        if(Auth::user()->can('excluir-contrato')){
+            $btnDeletar = "<a class='btn btn-danger btn-sm btnDeletar' data-toggle='tooltip' title='Deletar contrato' $dados><i class='fa fa-trash'></i></a>";
+        }
 
 
         return $btnVer.$btnEditar.$btnDeletar;

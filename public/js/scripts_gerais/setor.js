@@ -11,15 +11,13 @@ $(document).ready(function($) {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-
     
     var tabela = $('#table').DataTable({
             processing: true,
             serverSide: true,
             deferRender: true,
             ajax: './gerenciar-setores/list',
-            columns: [
-            
+            columns: [            
             { data: null, name: 'order' },
             { data: 'nome', name: 'nome' },
             { data: 'sigla', name: 'sigla' },
@@ -30,7 +28,6 @@ $(document).ready(function($) {
             createdRow : function( row, data, index ) {
                 row.id = "item-" + data.id;   
             },
-
             paging: true,
             lengthChange: true,
             searching: true,

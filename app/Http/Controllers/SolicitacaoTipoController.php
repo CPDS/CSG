@@ -41,16 +41,16 @@ class SolicitacaoTipoController extends Controller
     private function setBtns(SolicitacaoTipo $solicitacao_tipos){
         $dados = "data-id_del='$solicitacao_tipos->id' data-id='$solicitacao_tipos->id' data-nome='$solicitacao_tipos->nome' data-descricao='$solicitacao_tipos->descricao'";
 
+        $btnEditar = '';
+        $btnDeletar = '';
+
         $btnVer = "<a class='btn btn-info btn-sm btnVer' data-toggle='tooltip' title='Ver solicitacao_tipo' $dados> <i class='fa fa-eye'></i></a> ";
 
         $btnEditar = "<a class='btn btn-primary btn-sm btnEditar' data-toggle='tooltip' title='Editar solicitacao_tipo' $dados> <i class='fa fa-edit'></i></a> ";
 
         $btnDeletar = "<a class='btn btn-danger btn-sm btnDeletar' data-toggle='tooltip' title='Deletar solicitacao_tipo' $dados><i class='fa fa-trash'></i></a>";
 
-
         return $btnVer.$btnEditar.$btnDeletar;
-
-
     }
 
     public function store(Request $request)

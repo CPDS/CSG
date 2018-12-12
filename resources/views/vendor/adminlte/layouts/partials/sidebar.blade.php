@@ -34,7 +34,6 @@
                     <li><a href="{{ url('gerenciar-users') }}"><i class='fa fa-user'></i> <span>Usuários</span></a></li>
                    <li><a href="{{ url('gerenciar-escalas') }}"><i class='fa fa-user'></i> <span>Escala</span></a></li>
                    <li><a href="{{ url('gerenciar-horas') }}"><i class='fa fa-clock-o'></i> <span>Horas Extras</span></a></li>
-                   <li><a href="{{ route('gerenciar-users.permissions') }}"><i class='fa fa-group'></i> <span>Permissões</span></a></li>
                 </ul>
             </li>
 

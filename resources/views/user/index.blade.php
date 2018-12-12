@@ -1,4 +1,3 @@
-
 @extends('adminlte::page')
 <script src ="{{ asset('/plugins/jQuery/jQuery-3.1.0.min.js') }}" type = "text/javascript" ></script>
 <script src ="{{ asset('/js/scripts_gerais/user.js') }}" type = "text/javascript" ></script>
@@ -16,25 +15,18 @@
 @section('usuario', 'active')
 
 @section('main-content')
-	   <div class="row">
+    <div class="container-fluid spark-screen">
+        <div class="row">
             <div class="col-md-12">
-                <div class="pull-left">
-                    <h2><i class="fa fa-clone"></i> Gerenciamento de Usuários</h2>
-                </div>
-                <div class="pull-right">
-                     <a class="btnAdicionar btn btn-primary btn-sm" title="Adicionar Material" data-toggle="tooltip"><span class="glyphicon glyphicon-plus"></span> Cadastrar Usuário</a>           
-                </div>
-            </div>
-        </div>
-<br>
-
-                <div class="box box-solid box-primary">
-                    <div class="box-header">
-                      <h3 class="box-title">
-                        <strong>Usuário</strong> 
-                      </h3>
-                </div><!-- /.box-header -->
-                    
+                <div class="box box-success">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Usuários</h3>
+                        <div class="pull-right">      
+                            <a class="btnAdicionar btn btn-primary btn-sm" title="Adicionar Material" data-toggle="tooltip"><span class="glyphicon glyphicon-plus"></span> Cadastrar Setor</a>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
                         <table class="table" id="table">
                             <thead>
 
@@ -49,7 +41,13 @@
                             
                         </table>
                     </div>
-                    <!-- /.box-body -->
+                </div>
+                <!-- /.box-body -->
+            </div>
+
+        </div>
+    </div>
+</div>
 
 @include('user.modals.criar_user')
 @include('user.modals.deletar_user')

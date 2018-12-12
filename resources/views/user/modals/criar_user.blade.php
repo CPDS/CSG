@@ -13,119 +13,121 @@
                 <p></p>
         </div>
 
-       <form class="form-horizontal" role="form" id="form" >
-         <div class="form-group">
-                        <div class="col-sm-12">
-                            <strong>Tipo de funcionário:</strong>
-                            <div class="input-group">
-                                <span data-toggle="tooltip" title="Setor" class="input-group-addon"><i class="fa fa-user"></i></span>
-                                <select class="form-control" name="nome_role" id="nome_role">
-                                    <option value="Ag-limpeza">Agente de limpeza</option>
-                                    <option value="Empresa">Empresa</option>
-                                    <option value="Servidor">Servidor</option>
-                                </select>
-                            </div>       
-                        </div>
-                    </div>
-                    
-                     <div class="form-group">
-                        <div class="col-sm-8">
-                            <strong>Nome:</strong>
-                            <div class="input-group">
-                                <span data-toggle="tooltip" title="Nome" class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="nome_user"  id="nome_user">
-                            </div>       
-                        </div>
+        <form class="form-horizontal" role="form" id="form" >
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <strong>Tipo de funcionário:</strong>
+                    <div class="input-group">
+                        <span data-toggle="tooltip" title="Setor" class="input-group-addon"><i class="fa fa-user"></i></span>
+                        <select class="form-control" name="nome_role" id="nome_role">
+                            <option value=""> - </option>
+                            <option value="Ag-limpeza">Agente de limpeza</option>
+                            <option value="Empresa">Empresa</option>
+                            <option value="Servidor">Servidor</option>
+                        </select>
+                    </div>       
+                </div>
+            </div>
+                        
+             <div class="form-group">
+                <div class="col-sm-8">
+                    <strong>Nome:</strong>
+                    <div class="input-group">
+                        <span data-toggle="tooltip" title="Nome" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                        <input type="text" maxlength="254" class="form-control" name="nome_user"  id="nome_user">
+                    </div>       
+                </div>
 
-                        <div class="col-sm-4 user">
-                            <strong>CPF:</strong>
-                            <div class="input-group">
-                                <span data-toggle="tooltip" title="CPF" class="input-group-addon"><i class="fa fa-sort-numeric-asc"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="cpf"  id="cpf">
-                            </div>       
-                        </div>
-                    </div>
+                <div class="col-sm-4 user">
+                    <strong>CPF:</strong>
+                    <div class="input-group">
+                        <span data-toggle="tooltip" title="CPF" class="input-group-addon"><i class="fa fa-sort-numeric-asc"></i></span>
+                        <input type="text" maxlength="254" class="form-control" name="cpf"  id="cpf">
+                    </div>       
+                </div>
 
-                     <div class="form-group empresa">
-                        <div class="col-sm-4">
-                            <strong>CNPJ:</strong>
-                            <div class="input-group">
-                                <span data-toggle="tooltip" title="CNPJ" class="input-group-addon"><i class="fa fa-home"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="cnpj"  id="cnpj">
-                            </div>       
-                        </div>
-                       
-                        <div class="col-sm-4 empresa">
-                            <strong>Responsavel:</strong>
-                            <div class="input-group">
-                                <span data-toggle="tooltip" title="Responsavel" class="input-group-addon"><i class="fa fa-home"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="responsavel"  id="responsavel">
-                            </div>       
-                        </div>
+                <div class="col-sm-4 empresa">
+                    <strong>CNPJ:</strong>
+                    <div class="input-group">
+                        <span data-toggle="tooltip" title="CNPJ" class="input-group-addon"><i class="fa fa-home"></i></span>
+                        <input type="text" maxlength="254" class="form-control" name="cnpj"  id="cnpj">
+                    </div>       
+                </div>
 
-                        <div class="col-sm-4">
-                            <strong>Contato:</strong>
-                            <div class="input-group">
-                                <span data-toggle="tooltip" title="Contato" class="input-group-addon"><i class="fa fa-home"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="contato"  id="contato">
-                            </div>       
-                        </div>
+            </div>
 
-                    </div>
+             <div class="form-group empresa">               
+                <div class="col-sm-8">
+                    <strong>Responsavel:</strong>
+                    <div class="input-group">
+                        <span data-toggle="tooltip" title="Responsavel" class="input-group-addon"><i class="fa fa-home"></i></span>
+                        <input type="text" maxlength="254" class="form-control" name="responsavel"  id="responsavel">
+                    </div>       
+                </div>
 
-                    <div class="form-group">
-                        <div class="col-sm-8">
-                            <strong>Endereço:</strong>
-                            <div class="input-group">
-                                <span data-toggle="tooltip" title="Endereço" class="input-group-addon"><i class="fa fa-home"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="endereco"  id="endereco">
-                            </div>       
-                        </div>
+                <div class="col-sm-4">
+                    <strong>Contato:</strong>
+                    <div class="input-group">
+                        <span data-toggle="tooltip" title="Contato" class="input-group-addon"><i class="fa fa-home"></i></span>
+                        <input type="text" maxlength="254" class="form-control" name="contato"  id="contato">
+                    </div>       
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-8">
+                    <strong>Endereço:</strong>
+                    <div class="input-group">
+                        <span data-toggle="tooltip" title="Endereço" class="input-group-addon"><i class="fa fa-home"></i></span>
+                        <input type="text" maxlength="254" class="form-control" name="endereco"  id="endereco">
+                    </div>       
+                </div>
+
+                <div class="col-sm-4">
+                    <strong>Telefone:</strong>
+                    <div class="input-group">
+                        <span data-toggle="tooltip" title="Telefone" class="input-group-addon"><i class="fa fa-phone"></i></span>
+                        <input type="text" maxlength="254" class="form-control" name="telefone"  id="telefone">
+                    </div>       
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-8">
+                    <strong>E-mail:</strong>
+                    <div class="input-group">
+                        <span data-toggle="tooltip" title="E-mail" class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                        <input type="email" maxlength="254" class="form-control" name="email"  id="email">
+                    </div>       
+                </div>
            
-                        <div class="col-sm-4">
-                            <strong>Telefone:</strong>
-                            <div class="input-group">
-                                <span data-toggle="tooltip" title="Telefone" class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="telefone"  id="telefone">
-                            </div>       
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-sm-8">
-                            <strong>E-mail:</strong>
-                            <div class="input-group">
-                                <span data-toggle="tooltip" title="E-mail" class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
-                                <input type="email" maxlength="254" class="form-control" name="email"  id="email">
-                            </div>       
-                        </div>
-                   
-                        <div class="col-sm-4">
-                            <strong>Senha:</strong>
-                            <div class="input-group">
-                                <span data-toggle="tooltip" title="Password" class="input-group-addon"><i class="fa fa-key"></i></span>
-                                <input type="password" maxlength="254" class="form-control" name="password"  id="password">
-                            </div>       
-                        </div>
-                    </div>
+                <div class="col-sm-4">
+                    <strong>Senha:</strong>
+                    <div class="input-group">
+                        <span data-toggle="tooltip" title="Password" class="input-group-addon"><i class="fa fa-key"></i></span>
+                        <input type="password" maxlength="254" class="form-control" name="password"  id="password">
+                    </div>       
+                </div>
+            </div>
 
 
-                    <div class="form-group user">
-                        <div class="col-sm-12">
-                            <strong>Setor:</strong>
-                            <div class="input-group">
-                                <span data-toggle="tooltip" title="Setor" class="input-group-addon"><i class="fa fa-university"></i></span>
-                                <select class="form-control" name="fk_setor" id="fk_setor">
-                                    @foreach($setores as $setor)
-                                    <option value="{{$setor->id}}">{{$setor->nome}}</option>
-                                    @endforeach
-                                </select>
-                            </div>       
-                        </div>
-                    </div>
+            <div class="form-group user">
+                <div class="col-sm-12">
+                    <strong>Setor:</strong>
+                    <div class="input-group">
+                        <span data-toggle="tooltip" title="Setor" class="input-group-addon"><i class="fa fa-university"></i></span>
+                        <select class="form-control" name="fk_setor" id="fk_setor">
+                            @foreach($setores as $setor)
+                            <option value="{{$setor->id}}">{{$setor->nome}}</option>
+                            @endforeach
+                        </select>
+                    </div>       
+                </div>
+            </div>
         
-                    <input type="hidden" id="id" name="id">
-                </form>
+            <input type="hidden" id="id" name="id">
+        </form>
 
       </div> <!-- Fim de ModaL Body-->
 
