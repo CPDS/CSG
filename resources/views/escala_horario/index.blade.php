@@ -35,7 +35,6 @@
                                 <th>H. de início</th>   
                                 <th>H. Fim</th>
                                 <th>Dia da semana</th>
-                                <th>Setor</th>
                                 <th width="20%">Ações</th>
                               
                             </tr>

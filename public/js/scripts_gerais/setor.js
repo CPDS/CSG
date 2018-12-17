@@ -65,13 +65,13 @@ $(document).ready(function($) {
                 }
             },
             columnDefs : [
-              { targets : [2], sortable : false },
+              { targets : [5], sortable : false },
               { "width": "5%", "targets": 0 }, //nº
-              { "width": "20%", "targets": 1 },//nome
-              { "width": "10%", "targets": 2 },//ação
-              { "width": "5%", "targets": 3 }, //nº
+              { "width": "35%", "targets": 1 },//nome
+              { "width": "5%", "targets": 2 },//ação
+              { "width": "30%", "targets": 3 }, //nº
               { "width": "20%", "targets": 4 },//nome
-              { "width": "10%", "targets": 5 }
+              { "width": "5%", "targets": 5 }
             ]
     });
 

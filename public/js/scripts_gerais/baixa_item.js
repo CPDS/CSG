@@ -65,12 +65,14 @@ $(document).ready(function($) {
                 }
             },
             columnDefs : [
-              { targets : [2], sortable : false },
+              { targets : [6], sortable : false },
               { "width": "5%", "targets": 0 }, //nº
-              { "width": "20%", "targets": 1 },//nome
-              { "width": "10%", "targets": 2 },//ação
-              { "width": "20%", "targets": 3 },//ação
-              { "width": "20%", "targets": 4 }//ação
+              { "width": "10%", "targets": 1 },//nome
+              { "width": "36%", "targets": 2 }, //nº
+              { "width": "17%", "targets": 3 },//nome
+              { "width": "17%", "targets": 4 }, //nº
+              { "width": "10%", "targets": 5 },//nome
+              { "width": "5%", "targets": 6 }//ação
             ]
     });
 

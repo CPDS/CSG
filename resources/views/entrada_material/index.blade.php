@@ -32,11 +32,10 @@
                             <thead>
                             <tr>
                                 <th>Nº</th>
-                                <th>Descrição</th>
-                                <th>Tipo</th>   
+                                <th>Nome do Material</th>
                                 <th>Quantidade</th>
                                 <th>Usuário</th>
-                                <th width="20%">Ações</th>
+                                <th>Ações</th>
                             </tr>
                             </thead>
                             

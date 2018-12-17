@@ -22,7 +22,6 @@ $(document).ready(function($) {
             { data: 'horario_inicio', name: 'horario_inicio' },
             { data: 'horario_termino', name: 'horario_termino' },
             { data: 'dia_semana', name: 'dia_semana' },
-            { data: 'nome_setor', name: 'nome_setor' },
             { data: 'acao', name: 'acao' },
             ],
             createdRow : function( row, data, index ) {
@@ -66,10 +65,13 @@ $(document).ready(function($) {
                 }
             },
             columnDefs : [
-              { targets : [2], sortable : false },
-              { "width": "5%", "targets": 0 }, //nº
-              { "width": "20%", "targets": 1 },//nome
-              { "width": "10%", "targets": 2 }//ação
+              { targets : [5], sortable : false },
+              { "width": "4%", "targets": 0 }, 
+              { "width": "55%", "targets": 1 },
+              { "width": "13%", "targets": 2 }, 
+              { "width": "13%", "targets": 3 },
+              { "width": "20%", "targets": 4 }, 
+              { "width": "5%", "targets": 5 }
             ]
     });
 

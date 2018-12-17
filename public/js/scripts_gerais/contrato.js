@@ -67,12 +67,13 @@ $(document).ready(function($) {
                 }
             },
             columnDefs : [
-              { targets : [2], sortable : false },
+              { targets : [5], sortable : false },
               { "width": "5%", "targets": 0 }, //nº
-              { "width": "20%", "targets": 1 },//numero
-              { "width": "8%", "targets": 2 },//ação
-              { "width": "15%", "targets": 3 }, //nº
-              { "width": "15%", "targets": 4 },//nome
+              { "width": "25%", "targets": 1 },//numero
+              { "width": "21%", "targets": 2 },//ação
+              { "width": "22%", "targets": 3 }, //nº
+              { "width": "22%", "targets": 4 }, //nº
+              { "width": "5%", "targets": 5 },//nome
             ]
     });
 

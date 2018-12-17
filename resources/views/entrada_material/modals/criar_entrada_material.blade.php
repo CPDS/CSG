@@ -16,7 +16,7 @@
        <form class="form-horizontal" role="form" id="form" >
                      <div class="form-group">
                         <div class="col-sm-9">
-                            <strong>Descrição</strong>
+                            <strong>Nome do Material</strong>
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="Descrição" class="input-group-addon"><i class="fa fa-pencil"></i></span>
                                 <select class="form-control" name="fk_material" id="fk_material">

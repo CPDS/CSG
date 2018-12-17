@@ -65,8 +65,8 @@ $(document).ready(function($) {
             columnDefs : [
               { targets : [2], sortable : false },
               { "width": "5%", "targets": 0 }, //nº
-              { "width": "20%", "targets": 1 },//nome
-              { "width": "10%", "targets": 2 }//ação
+              { "width": "90%", "targets": 1 },//nome
+              { "width": "5%", "targets": 2 }//ação
             ]
     });
 

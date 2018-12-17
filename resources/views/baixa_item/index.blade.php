@@ -30,10 +30,10 @@
 
                             <tr>
                                 <th>Nº</th>
-                                <th>Data solicitação</th>   
+                                <th>Solicitação</th>   
                                 <th>Descrição material</th>
-                                <th>Quantidade solicitada</th>
-                                <th>Quantidade atendida</th>
+                                <th>Quant solicitada</th>
+                                <th>Quant atendida</th>
                                 <th>Status</th>
                                 <th width="20%">Ações</th>
                             </tr>

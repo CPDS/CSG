@@ -64,10 +64,12 @@ $(document).ready(function($) {
                 }
             },
             columnDefs : [
-              { targets : [2], sortable : false },
-              { "width": "5%", "targets": 0 }, //nº
-              { "width": "20%", "targets": 1 },//nome
-              { "width": "10%", "targets": 2 }//ação
+              { targets : [4], sortable : false },
+              { "width": "5%", "targets": 0 }, 
+              { "width": "55%", "targets": 1 },
+              { "width": "20%", "targets": 2 }, 
+              { "width": "10%", "targets": 3 },
+              { "width": "10%", "targets": 4 }
             ]
     });
 

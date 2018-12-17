@@ -19,7 +19,6 @@ $(document).ready(function($) {
             columns: [ 
             { data: null, name: 'order' },
             { data: 'descricao', name: 'descricao' },
-            { data: 'tipo', name: 'tipo' },
             { data: 'quantidade', name: 'quantidade' },
             { data: 'usuario', name: 'usuario' },
             { data: 'acao', name: 'acao' },
@@ -65,10 +64,12 @@ $(document).ready(function($) {
                 }
             },
             columnDefs : [
-              { targets : [2], sortable : false },
+              { targets : [4], sortable : false },
               { "width": "5%", "targets": 0 }, //nº
-              { "width": "20%", "targets": 1 },//nome
-              { "width": "10%", "targets": 2 }//ação
+              { "width": "40%", "targets": 1 },//nome
+              { "width": "15%", "targets": 2 },//ação
+              { "width": "30%", "targets": 3 }, //nº
+              { "width": "5%", "targets": 4 },//nome
             ]
     });
 

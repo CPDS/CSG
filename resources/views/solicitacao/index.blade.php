@@ -37,11 +37,11 @@
                              <tr>
                                 <th>Nº</th>
                                 <th>Descrição solicitação</th>
-                                <th>Data solicitação</th>   
+                                <th>Solicitação</th>   
                                 <th>Título</th>
                                 <th>Obs solicitado</th>
                                 <th>Obs solicitante</th>
-                                <th width="20%">Ações</th>
+                                <th>Ações</th>
                             </tr>
                             </thead>
                             

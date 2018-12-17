@@ -33,9 +33,9 @@
                             <thead>
                             <tr>
                                 <th>Nº</th>
+                                <th>Nome do material</th>
                                 <th>Descrição</th>
-                                <th>Tipo</th>
-                                <th>Quantidade disponível</th>
+                                <th>Quant. disponível</th>
                                 <th width="20%">Ações</th>
                             </tr>
                             </thead>

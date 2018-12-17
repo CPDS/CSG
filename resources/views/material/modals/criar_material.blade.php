@@ -14,23 +14,23 @@
         </div>
 
        <form class="form-horizontal" role="form" id="form" >
-                    
+
                     <div class="form-group">
                         <div class="col-sm-12">
-                            <strong>Tipo:</strong>
+                            <strong>Nome do Material:</strong>
                             <div class="input-group">
-                                <span data-toggle="tooltip" title="Descrição" class="input-group-addon"><i class="fa fa-barcode"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="tipo"  id="tipo">
+                                <span data-toggle="tooltip" title="Descrição" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                <input type="text" maxlength="254" class="form-control" name="descricao"  id="descricao">
                             </div>       
                         </div>
                     </div>
-
+                    
                     <div class="form-group">
                         <div class="col-sm-12">
                             <strong>Descrição:</strong>
                             <div class="input-group">
-                                <span data-toggle="tooltip" title="Descrição" class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="descricao"  id="descricao">
+                                <span data-toggle="tooltip" title="Descrição" class="input-group-addon"><i class="fa fa-barcode"></i></span>
+                                <input type="text" maxlength="254" class="form-control" name="tipo"  id="tipo">
                             </div>       
                         </div>
                     </div>
