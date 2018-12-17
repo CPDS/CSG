@@ -41,8 +41,6 @@ class BaixaItemController extends Controller
     }
 
     private function setBtns(Solicitacao $solicitacaos){
-        $btnDeletar = '';
-
         $dados = "
         data-id_material_saida='$solicitacaos->id_material_saida' 
         data-id='$solicitacaos->id' 
@@ -56,6 +54,7 @@ class BaixaItemController extends Controller
          ";
 
         $btnEditar = '';
+        $btnVer = '';
         $btnDeletar = '';
 
 

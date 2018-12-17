@@ -53,6 +53,27 @@ class PermissionSeeder extends Seeder
             'guard_name' => 'CSG',
         ]);
 
+        //PERMISSION
+        DB::table('permissions')->insert([
+            'name' => 'criar-permission',
+            'guard_name' => 'CSG',
+        ]);
+
+        DB::table('permissions')->insert([
+            'name' => 'editar-permission',
+            'guard_name' => 'CSG',
+        ]);
+
+        DB::table('permissions')->insert([
+            'name' => 'ver-permission',
+            'guard_name' => 'CSG',
+        ]);
+
+        DB::table('permissions')->insert([
+            'name' => 'excluir-permission',
+            'guard_name' => 'CSG',
+        ]);
+
         //ESCALA
 
          DB::table('permissions')->insert([

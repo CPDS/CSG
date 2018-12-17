@@ -5,6 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use PDF;
 use App\Solicitacao;
+use App\User;
+use App\Contrato;
+use App\EscalaHorario;
+use App\HoraExtra;
+use App\Material;
+use App\Setor;
 
 class RelatorioController extends Controller
 {
@@ -18,6 +24,69 @@ class RelatorioController extends Controller
         ->orderBy('solicitacaos.created_at', 'desc')->get();
    
         $pdf = PDF::loadView('baixa_item.relatorio', ['solicitacaos' => $solicitacaos])->setPaper('a4', 'portrait');
+        
+        return $pdf->stream();   
+    }
+
+    public function usuarios(){
+        
+        $usuarios = User::orderBy('created_at', 'desc')->get();
+   
+        $pdf = PDF::loadView('user.relatorio', ['usuarios' => $usuarios])->setPaper('a4', 'portrait');
+        
+        return $pdf->stream();   
+    }
+
+    public function contratos(){
+        
+        $contratos = Contrato::orderBy('created_at', 'desc')->get();
+   
+        $pdf = PDF::loadView('contrato.relatorio', ['contratos' => $contratos])->setPaper('a4', 'portrait');
+        
+        return $pdf->stream();   
+    }
+
+    public function escalas(){
+        
+        $escala_horarios = EscalaHorario::orderBy('created_at', 'desc')->get();
+   
+        $pdf = PDF::loadView('user.relatorio', ['escala_horarios' => $escala_horarios])->setPaper('a4', 'portrait');
+        
+        return $pdf->stream();   
+    }
+
+    public function horas(){
+        
+        $horas_extras = HoraExtra::orderBy('created_at', 'desc')->get();
+   
+        $pdf = PDF::loadView('user.relatorio', ['horas_extras' => $horas_extras])->setPaper('a4', 'portrait');
+        
+        return $pdf->stream();   
+    }
+
+    public function materiais(){
+        
+        $materiais = Material::orderBy('created_at', 'desc')->get();
+   
+        $pdf = PDF::loadView('material.relatorio', ['materiais' => $materiais])->setPaper('a4', 'portrait');
+        
+        return $pdf->stream();   
+    }
+
+    public function setores(){
+        
+        $setores = Setor::orderBy('created_at', 'desc')->get();
+   
+        $pdf = PDF::loadView('setor.relatorio', ['setores' => $setores])->setPaper('a4', 'portrait');
+        
+        return $pdf->stream();   
+    }
+
+    public function solicitacaos(){
+        
+        $solicitacaos = Solicitacao::orderBy('created_at', 'desc')->get();
+   
+        $pdf = PDF::loadView('solicitacao.relatorio', ['solicitacaos' => $solicitacaos])->setPaper('a4', 'portrait');
         
         return $pdf->stream();   
     }
