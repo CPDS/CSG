@@ -67,11 +67,11 @@ $(document).ready(function($) {
             columnDefs : [
               { targets : [5], sortable : false },
               { "width": "4%", "targets": 0 }, 
-              { "width": "55%", "targets": 1 },
+              { "width": "38%", "targets": 1 },
               { "width": "13%", "targets": 2 }, 
               { "width": "13%", "targets": 3 },
               { "width": "20%", "targets": 4 }, 
-              { "width": "5%", "targets": 5 }
+              { "width": "12%", "targets": 5 }
             ]
     });
 

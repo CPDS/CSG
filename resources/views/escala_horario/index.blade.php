@@ -35,7 +35,7 @@
                                 <th>H. de início</th>   
                                 <th>H. Fim</th>
                                 <th>Dia da semana</th>
-                                <th width="20%">Ações</th>
+                                <th>Ações</th>
                               
                             </tr>
                             </thead>

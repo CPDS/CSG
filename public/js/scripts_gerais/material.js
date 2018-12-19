@@ -68,9 +68,9 @@ $(document).ready(function($) {
               { targets : [4], sortable : false },
               { "width": "5%", "targets": 0 }, //nº
               { "width": "20%", "targets": 1 },//nome
-              { "width": "50%", "targets": 2 },//ação
+              { "width": "43%", "targets": 2 },//ação
               { "width": "20%", "targets": 3 },//nome
-              { "width": "5%", "targets": 4 }
+              { "width": "12%", "targets": 4 }
             ]
     });
 

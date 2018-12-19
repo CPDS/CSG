@@ -69,9 +69,9 @@ $(document).ready(function($) {
               { "width": "5%", "targets": 0 }, //nº
               { "width": "35%", "targets": 1 },//nome
               { "width": "5%", "targets": 2 },//ação
-              { "width": "30%", "targets": 3 }, //nº
-              { "width": "20%", "targets": 4 },//nome
-              { "width": "5%", "targets": 5 }
+              { "width": "27%", "targets": 3 }, //nº
+              { "width": "15%", "targets": 4 },//nome
+              { "width": "12%", "targets": 5 }
             ]
     });
 

@@ -66,10 +66,10 @@ $(document).ready(function($) {
             columnDefs : [
               { targets : [4], sortable : false },
               { "width": "5%", "targets": 0 }, 
-              { "width": "55%", "targets": 1 },
+              { "width": "53%", "targets": 1 },
               { "width": "20%", "targets": 2 }, 
               { "width": "10%", "targets": 3 },
-              { "width": "10%", "targets": 4 }
+              { "width": "12%", "targets": 4 }
             ]
     });
 
