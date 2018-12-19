@@ -27,7 +27,7 @@
             <li  class="@yield('setor') | '' " ><a href="{{ url('gerenciar-setores') }}"><i class='fa fa-university'></i> <span>Setores</span></a></li>
 
            @can('ver-relatorio-setor')
-            <li><a href="{{ url('gerenciar-setores/relatorio') }}"><i class='fa fa-wrench'></i> <span>Relatório</span></a></li>
+            <li><a href="{{ url('gerenciar-setores/relatorio') }}" target="_blank"><i class='fa fa-wrench'></i> <span>Relatório dos setores</span></a></li>
             @endcan
             
             @if(Auth::user()->HasAnyPermission(['ver-usuario','ver-escala','ver-horas-extras']))
@@ -52,7 +52,15 @@
                    @endcan
 
                    @can('ver-relatorio-hora')
-                    <li><a href="{{ url('gerenciar-horas/relatorio') }}"><i class='fa fa-wrench'></i> <span>Relatório</span></a></li>
+                    <li><a href="{{ url('gerenciar-horas/relatorio') }}" target="_blank"><i class='fa fa-wrench'></i> <span>Relatório horas extras</span></a></li>
+                   @endcan
+
+                    @can('ver-relatorio-hora')
+                    <li><a href="{{ url('gerenciar-users/relatorio') }}" target="_blank"><i class='fa fa-wrench'></i> <span>Relatório Usuários</span></a></li>
+                   @endcan 
+
+                    @can('ver-relatorio-escala')
+                    <li><a href="{{ url('gerenciar-escalas/relatorio') }}" target="_blank"><i class='fa fa-wrench'></i> <span>Relatório Escala</span></a></li>
                     @endcan
                 </ul>
             </li>
@@ -71,7 +79,7 @@
                    @endcan
 
                    @can('ver-relatorio-material')
-                    <li><a href="{{ url('gerenciar-materiais/relatorio') }}"><i class='fa fa-wrench'></i> <span>Relatório</span></a></li>
+                    <li><a href="{{ url('gerenciar-materiais/relatorio') }}" target="_blank"><i class='fa fa-wrench'></i> <span>Relatório</span></a></li>
                     @endcan
                 </ul>
             </li>
@@ -90,7 +98,7 @@
                     @endcan
 
                     @can('ver-relatorio-contrato')
-                    <li><a href="{{ url('gerenciar-contratos/relatorio') }}"><i class='fa fa-wrench'></i> <span>Relatório</span></a></li>
+                    <li><a href="{{ url('gerenciar-contratos/relatorio') }}" target="_blank"><i class='fa fa-wrench'></i> <span>Relatório</span></a></li>
                     @endcan
                </ul>
             </li>     
@@ -111,6 +119,11 @@
                    @can('ver-baixa-material')
                    <li><a href="{{ url('gerenciar-baixa-itens') }}"><i class='fa fa-wrench'></i> <span>Baixa de material</span></a></li>
                    @endcan 
+                    
+                   @can('ver-relatorio-solicitacao')
+                    <li><a href="{{ url('gerenciar-solicitacoes/relatorio') }}" target="_blank"><i class='fa fa-wrench'></i> <span>Relatório</span></a></li>
+                   @endcan
+
             </li>
             @endif
 

@@ -29,7 +29,6 @@
 				<th class="tg-q19q">Nome</th>
 				<th class="tg-q19q">Telefone</th>	
 				<th class="tg-q19q">Papel</th>
-
 			</tr>
 
 		@foreach($escala_horarios as $escala)
