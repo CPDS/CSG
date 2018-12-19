@@ -4,7 +4,7 @@
           .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 20px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
           .tg .tg-q19q{font-size:16px;vertical-align:top}
           .tg .tg-ox40{font-weight:bold;font-size:14px;text-align:left;vertical-align:top;}
-      .tc  {border-collapse:collapse;border-spacing:0; width: 70%;margin-left: 120px}
+          .tc  {border-collapse:collapse;border-spacing:0; width: 70%;margin-left: 120px}
           .tc td{font-family:Arial, sans-serif;font-size:14px;padding:10px 20px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
           .tc th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 20px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
           .tc .tc-q19q{font-size:16px;vertical-align:top}
