@@ -24,7 +24,7 @@
 
   <div class="col-lg-4 col-xs-4">
     <!-- small box -->
-    <div class="small-box bg-disabled" style="color: black;">
+    <div class="small-box bg-primary text-white">
      
       <div class="inner">
         <h3>Geral</h3>
@@ -42,7 +42,7 @@
     <!-- small box -->
     <div class="small-box bg-green">
       <div class="inner">
-        <h3>X</h3>
+        <h3>{{ $contratos }}</h3>
         <p>Contrato(s)</p>
         <br>
       </div>
@@ -57,7 +57,7 @@
     <!-- small box -->
     <div class="small-box bg-red">
       <div class="inner">
-        <h3>X</h3>
+        <h3>{{ $solicitacao }}</h3>
         <p>Solicitação(s)</p>
         <br>
       </div>
@@ -75,9 +75,9 @@
   <!-- ./col -->
   <div class="col-lg-4 col-xs-4">
     <!-- small box -->
-    <div class="small-box bg-aqua">
+    <div class="small-box bg-yellow">
       <div class="inner">
-        <h3>X</h3>
+        <h3>{{ $materiais }}</h3>
         <p>Material(s)</p>
       </div>
       <div class="icon">
@@ -91,7 +91,7 @@
     <!-- small box -->
     <div class="small-box bg-aqua">
       <div class="inner">
-        <h3>X</h3>
+        <h3>{{ $usuario }}</h3>
         <p>Usuário(s)</p>
       </div>
       <div class="icon">
@@ -103,9 +103,9 @@
   <!-- ./col -->
   <div class="col-lg-4 col-xs-4">
     <!-- small box -->
-    <div class="small-box bg-green">
+    <div class="small-box bg-maroon">
       <div class="inner">
-        <h3>X</h3>
+        <h3>{{ $setor }}</h3>
         <p>Setor(s)</p>
       </div>
       <div class="icon">

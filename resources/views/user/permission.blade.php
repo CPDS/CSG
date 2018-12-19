@@ -44,9 +44,6 @@
                               <i class="fa fa-floppy-o"> </i>
                             </button>
                         </form>
-                    @can('criar-setor')
-                        asdasd
-                    @endcan
                     </div>
                     <!-- /.box-body -->
                 </div>

@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\MaterialEntrada;
 use App\MaterialSaida;
+use App\Material;
 use App\Solicitacao;
+use App\Contrato;
+use App\User;
+use App\Setor;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendMailUser;
 
@@ -28,21 +32,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-
-       /*
-        MAIL_DRIVER=smtp
-        MAIL_HOST=smtp.gmail.com
-        MAIL_PORT=465
-        MAIL_USERNAME=fabricacpds@gmail.com
-        MAIL_PASSWORD=Tsi<C0Uh
-        MAIL_ENCRYPTION=ssl
-
-        php artisan make:mail SendMailUser
-
-       //Mail::to('marlon.batista02@gmail.com')
-        ->send(new SendMailUser());
-    */
-
         $entradas = MaterialEntrada::select('quantidade')
                     ->sum('quantidade');
         $saidas = MaterialSaida::select('quantidade')
@@ -51,8 +40,16 @@ class HomeController extends Controller
 
         $solicitacao = Solicitacao::where('status','')
                        ->select('id')
-                       ->count('id');  
-
-        return view('dashboard.index',compact('material','solicitacao'));
+                       ->count('id'); 
+        $contratos = Contrato::select('id')
+                        ->count('id'); 
+        $usuario = User::where('status','Ativo')
+                        ->select('id')
+                        ->count('id'); 
+        $setor = Setor::select('id')
+                        ->count('id'); 
+        $materiais = Material::select('id')
+                        ->count('id');
+        return view('dashboard.index',compact('material','solicitacao','contratos','usuario','setor','materiais'));
     }
 }

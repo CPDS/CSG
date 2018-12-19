@@ -402,8 +402,6 @@ $(document).on('click', '.btnEditar', function() {
             itens.pop();
         }
 
-        alert('asdasd');
-
         $('.modal-footer .btn-action').removeClass('add');
         $('.modal-footer .btn-action').addClass('edit');
         $('.modal-footer .btn-action').removeClass('hidden');

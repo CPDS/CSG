@@ -13,7 +13,6 @@
                 <p></p>
         </div>
 
-<<<<<<< HEAD
         <form class="form-horizontal" role="form" id="form" >
             <div class="form-group">
                 <div class="col-sm-12">
@@ -102,78 +101,7 @@
                         <input type="email" maxlength="254" class="form-control" name="email"  id="email">
                     </div>       
                 </div>
-=======
-       <form class="form-horizontal" role="form" id="form" >
-         <div class="form-group">
-                        <div class="col-sm-12">
-                            <strong>Tipo de funcionário:</strong>
-                            <div class="input-group">
-                                <span data-toggle="tooltip" title="Setor" class="input-group-addon"><i class="fa fa-user"></i></span>
-                                <select class="form-control" name="nome_role" id="nome_role">
-                                    <option value=""> - </option>
-                                    <option value="Ag-limpeza">Agente de limpeza</option>
-                                    <option value="Empresa">Empresa</option>
-                                    <option value="Servidor">Servidor</option>
-                                </select>
-                            </div>       
-                        </div>
-                    </div>
-                    
-                     <div class="form-group">
-                        <div class="col-sm-8">
-                            <strong>Nome:</strong>
-                            <div class="input-group">
-                                <span data-toggle="tooltip" title="Nome" class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="nome_user"  id="nome_user">
-                            </div>       
-                        </div>
 
-                        <div class="col-sm-4 user">
-                            <strong>CPF:</strong>
-                            <div class="input-group">
-                                <span data-toggle="tooltip" title="CPF" class="input-group-addon"><i class="fa fa-sort-numeric-asc"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="cpf"  id="cpf">
-                            </div>       
-                        </div>
-                    </div>
-
-                     <div class="form-group empresa">
-                        <div class="col-sm-4">
-                            <strong>CNPJ:</strong>
-                            <div class="input-group">
-                                <span data-toggle="tooltip" title="CNPJ" class="input-group-addon"><i class="fa fa-home"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="cnpj"  id="cnpj">
-                            </div>       
-                        </div>
-                       
-                        <div class="col-sm-4 empresa">
-                            <strong>Responsavel:</strong>
-                            <div class="input-group">
-                                <span data-toggle="tooltip" title="Responsavel" class="input-group-addon"><i class="fa fa-home"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="responsavel"  id="responsavel">
-                            </div>       
-                        </div>
-
-                        <div class="col-sm-4">
-                            <strong>Contato:</strong>
-                            <div class="input-group">
-                                <span data-toggle="tooltip" title="Contato" class="input-group-addon"><i class="fa fa-home"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="contato"  id="contato">
-                            </div>       
-                        </div>
-
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-sm-8">
-                            <strong>Endereço:</strong>
-                            <div class="input-group">
-                                <span data-toggle="tooltip" title="Endereço" class="input-group-addon"><i class="fa fa-home"></i></span>
-                                <input type="text" maxlength="254" class="form-control" name="endereco"  id="endereco">
-                            </div>       
-                        </div>
->>>>>>> 0fc78b1ac71ad766480dfceb6a9058c39e3a24fc
-           
                 <div class="col-sm-4">
                     <strong>Senha:</strong>
                     <div class="input-group">
