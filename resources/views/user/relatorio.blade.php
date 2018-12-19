@@ -26,17 +26,17 @@
       </div>
 		<table class="tg">
 			<tr>
-				<th class="tg-q19q">Título</th>
-				<th class="tg-q19q">Descrição</th>	
-				<th class="tg-q19q">Quantidade Solicitada</th>
+				<th class="tg-q19q">Nome</th>
+				<th class="tg-q19q">Telefone</th>	
+				<th class="tg-q19q">Papel</th>
 
 			</tr>
 
-		@foreach($usarios as $usuario)
+		@foreach($usuarios as $usuario)
 			<tr>	
-				<td class="tg-q19q">{{$usuario->titulo}}</td>
-				<td class="tg-q19q">{{$usuario->descricao_material}}</td>
-				<td class="tg-q19q">{{$usuario->quantidade_solicitada}}</td>
+				<td class="tg-q19q">{{$usuario->nome_user}}</td>
+				<td class="tg-q19q">{{$usuario->telefone}}</td>
+				<td class="tg-q19q">{{$usuario->nome_role}}</td>
 			</tr>			
 		@endforeach
 		</table>

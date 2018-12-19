@@ -29,8 +29,6 @@ class SetorController extends Controller
                 return $this->setBtns($setor);
             })->escapeColumns([0])
             ->make(true);
-
-       
     }
 
     private function setBtns(setor $setors){

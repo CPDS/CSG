@@ -26,7 +26,6 @@ class EscalaHorarioController extends Controller
 
     public function list()
     {
-        
         $escala_horario = EscalaHorario::JOIN('users','escala_horarios.fk_user','=','users.id')
         ->JOIN('setors','setors.id','=','escala_horarios.fk_setor')
         ->where('escala_horarios.status','Ativo')

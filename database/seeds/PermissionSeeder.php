@@ -32,6 +32,11 @@ class PermissionSeeder extends Seeder
             'guard_name' => 'CSG',
         ]);
 
+        DB::table('permissions')->insert([
+            'name' => 'ver-relatorio-setor',
+            'guard_name' => 'CSG',
+        ]);
+
         //USUARIO
         DB::table('permissions')->insert([
             'name' => 'criar-usuario',
@@ -50,6 +55,11 @@ class PermissionSeeder extends Seeder
 
         DB::table('permissions')->insert([
             'name' => 'excluir-usuario',
+            'guard_name' => 'CSG',
+        ]);
+
+        DB::table('permissions')->insert([
+            'name' => 'ver-relatorio-usuario',
             'guard_name' => 'CSG',
         ]);
 
@@ -96,6 +106,11 @@ class PermissionSeeder extends Seeder
             'guard_name' => 'CSG',
         ]);
 
+        DB::table('permissions')->insert([
+            'name' => 'ver-relatorio-escala',
+            'guard_name' => 'CSG',
+        ]);
+
         //HORAS EXTRAS
 
          DB::table('permissions')->insert([
@@ -115,6 +130,11 @@ class PermissionSeeder extends Seeder
 
         DB::table('permissions')->insert([
             'name' => 'excluir-horas-extras',
+            'guard_name' => 'CSG',
+        ]);
+
+        DB::table('permissions')->insert([
+            'name' => 'ver-relatorio-hora',
             'guard_name' => 'CSG',
         ]);
 
@@ -140,6 +160,11 @@ class PermissionSeeder extends Seeder
             'guard_name' => 'CSG',
         ]);
 
+        DB::table('permissions')->insert([
+            'name' => 'ver-relatorio-material',
+            'guard_name' => 'CSG',
+        ]);
+
         //ESTQQUE
 
          DB::table('permissions')->insert([
@@ -159,6 +184,11 @@ class PermissionSeeder extends Seeder
 
         DB::table('permissions')->insert([
             'name' => 'excluir-estoque',
+            'guard_name' => 'CSG',
+        ]);
+
+        DB::table('permissions')->insert([
+            'name' => 'ver-relatorio-estoque',
             'guard_name' => 'CSG',
         ]);
 
@@ -184,6 +214,11 @@ class PermissionSeeder extends Seeder
             'guard_name' => 'CSG',
         ]);
 
+        DB::table('permissions')->insert([
+            'name' => 'ver-relatorio-contrato',
+            'guard_name' => 'CSG',
+        ]);
+
         //ITENS DO CONTRATO
 
          DB::table('permissions')->insert([
@@ -203,6 +238,11 @@ class PermissionSeeder extends Seeder
 
         DB::table('permissions')->insert([
             'name' => 'excluir-item-contrato',
+            'guard_name' => 'CSG',
+        ]);
+
+        DB::table('permissions')->insert([
+            'name' => 'ver-relatorio-item-contrato',
             'guard_name' => 'CSG',
         ]);
 
@@ -228,6 +268,11 @@ class PermissionSeeder extends Seeder
             'guard_name' => 'CSG',
         ]);
 
+        DB::table('permissions')->insert([
+            'name' => 'ver-relatorio-solicitacao',
+            'guard_name' => 'CSG',
+        ]);
+
         //SERVICO SOLICITÇÃO
 
          DB::table('permissions')->insert([
@@ -250,6 +295,11 @@ class PermissionSeeder extends Seeder
             'guard_name' => 'CSG',
         ]);
 
+        DB::table('permissions')->insert([
+            'name' => 'ver-relatorio-solicitacao',
+            'guard_name' => 'CSG',
+        ]);
+
         //BAIXA MATERIAL
 
          DB::table('permissions')->insert([
@@ -269,6 +319,11 @@ class PermissionSeeder extends Seeder
 
         DB::table('permissions')->insert([
             'name' => 'excluir-baixa-material',
+            'guard_name' => 'CSG',
+        ]);
+
+        DB::table('permissions')->insert([
+            'name' => 'ver-relatorio-baixa-material',
             'guard_name' => 'CSG',
         ]);
 

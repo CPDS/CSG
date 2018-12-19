@@ -42,8 +42,11 @@ class RelatorioController extends Controller
     }
 
     public function contratos(){
-        
-        $contratos = Contrato::orderBy('created_at', 'desc')->get();
+        $contratos = Contrato::join('contrato_items','contrato_items.fk_contrato','=','contratos.id')
+        ->join('item_contratos','item_contratos.id','=','contrato_items.fk_item')
+        ->select('contrato_items.quantidade','item_contratos.nome','contrato_items.fk_item', 'contrato_items.valor_unitario')
+        ->orderBy('contratos.created_at', 'desc')
+        ->get();
    
         $pdf = PDF::loadView('contrato.relatorio', ['contratos' => $contratos])->setPaper('a4', 'portrait');
         
@@ -51,8 +54,12 @@ class RelatorioController extends Controller
     }
 
     public function escalas(){
-        
-        $escala_horarios = EscalaHorario::orderBy('created_at', 'desc')->get();
+
+        $escala_horarios = EscalaHorario::JOIN('users','escala_horarios.fk_user','=','users.id')
+        ->JOIN('setors','setors.id','=','escala_horarios.fk_setor')
+        ->where('escala_horarios.status','Ativo')
+        ->select('escala_horarios.id','escala_horarios.horario_inicio','escala_horarios.dia_semana','escala_horarios.horario_termino', 'users.name as nome_funcionario', 'users.id as fk_user','setors.nome as nome_setor' , 'escala_horarios.fk_setor')
+        ->orderBy('escala_horarios.created_at', 'desc')->get();
    
         $pdf = PDF::loadView('user.relatorio', ['escala_horarios' => $escala_horarios])->setPaper('a4', 'portrait');
         
@@ -60,10 +67,12 @@ class RelatorioController extends Controller
     }
 
     public function horas(){
-        
-        $horas_extras = HoraExtra::orderBy('created_at', 'desc')->get();
+        $horas_extras = HoraExtra::JOIN('users','hora_extras.fk_user','=','users.id')
+        ->where('hora_extras.status','Ativo')
+        ->select('hora_extras.id','hora_extras.horas_excedidas','hora_extras.dia','users.name as nome_funcionario', 'users.id as fk_user')
+        ->orderBy('hora_extras.created_at', 'desc')->get();
    
-        $pdf = PDF::loadView('user.relatorio', ['horas_extras' => $horas_extras])->setPaper('a4', 'portrait');
+        $pdf = PDF::loadView('user.relatorio_horas', ['horas_extras' => $horas_extras])->setPaper('a4', 'portrait');
         
         return $pdf->stream();   
     }
@@ -87,8 +96,10 @@ class RelatorioController extends Controller
     }
 
     public function solicitacaos(){
-        
-        $solicitacaos = Solicitacao::orderBy('created_at', 'desc')->get();
+
+        $solicitacaos = Solicitacao::JOIN('users','users.id','=','solicitacaos.fk_user_solicitante')
+        ->select('solicitacaos.id','solicitacaos.data_solicitacao','solicitacaos.titulo','solicitacaos.descricao as descricao_solicitacao','solicitacaos.observacao_solicitado','solicitacaos.observacao_solicitante')
+        ->orderBy('solicitacaos.created_at', 'desc')->get();
    
         $pdf = PDF::loadView('solicitacao.relatorio', ['solicitacaos' => $solicitacaos])->setPaper('a4', 'portrait');
         
