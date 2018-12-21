@@ -26,17 +26,19 @@
       </div>
 		<table class="tg">
 			<tr>
-				<th class="tg-q19q">Nome</th>
-				<th class="tg-q19q">Telefone</th>	
-				<th class="tg-q19q">Papel</th>
+				<th class="tg-q19q">Funcionário</th>
+				<th class="tg-q19q">Horas excedidas</th>	
+				<th class="tg-q19q">Dia</th>
 
 			</tr>
 
 		@foreach($horas_extras as $hora)
 			<tr>	
-				<td class="tg-q19q">{{$hora->nome_user}}</td>
-				<td class="tg-q19q">{{$hora->telefone}}</td>
-				<td class="tg-q19q">{{$hora->nome_role}}</td>
+				<td class="tg-q19q">{{$hora->nome_funcionario}}</td>
+				<td class="tg-q19q">{{$hora->horas_excedidas}}</td>
+				<td class="tg-q19q"> <?php 
+        $date=date_create($hora->dia);
+        echo date_format($date,'d/m/Y') ?></td>
 			</tr>			
 		@endforeach
 		</table>

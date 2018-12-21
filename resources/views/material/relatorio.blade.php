@@ -28,7 +28,6 @@
 			<tr>
 				<th class="tg-q19q">NOME DO MATERIAL</th>
 				<th class="tg-q19q">TIPO</th>	
-				<th class="tg-q19q">Quantidade Solicitada</th>
 
 			</tr>
 

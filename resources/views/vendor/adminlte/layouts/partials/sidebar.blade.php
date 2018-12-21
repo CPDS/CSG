@@ -24,7 +24,9 @@
         
             
             <li  class="@yield('setor') | '' " ><a href="{{ url('home') }}"><i class='fa fa-dashboard '></i> <span>Dashboard</span></a></li>
+             @can('ver-setor')
             <li  class="@yield('setor') | '' " ><a href="{{ url('gerenciar-setores') }}"><i class='fa fa-university'></i> <span>Setores</span></a></li>
+             @endcan
 
            @can('ver-relatorio-setor')
             <li><a href="{{ url('gerenciar-setores/relatorio') }}" target="_blank"><i class='fa fa-wrench'></i> <span>Relatório dos setores</span></a></li>

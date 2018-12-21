@@ -1,12 +1,12 @@
 @extends('adminlte::page')
-<script src ="{{ asset('/plugins/jQuery/jQuery-3.1.0.min.js') }}" type = "text/javascript" ></script>
-<script src ="{{ asset('/js/scripts_gerais/contrato.js') }}" type = "text/javascript" ></script>
-<script src="{{ asset('plugins/datatables/jquery.dataTables.js') }}" type = "text/javascript"></script>
+<script src ="{{ asset('/plugins/jQuery/jQuery-3.1.0.min.js') . '?update=' . str_random(3)}}" type = "text/javascript" ></script>
+<script src ="{{ asset('/js/scripts_gerais/contrato.js') . '?update=' . str_random(3)}}" type = "text/javascript" ></script>
+<script src="{{ asset('plugins/datatables/jquery.dataTables.js') . '?update=' . str_random(3) }}" type = "text/javascript"></script>
 
 <script src="{{ asset('plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
-<link rel="stylesheet" href="{{ asset('plugins/datatables/dataTables.bootstrap.css') }}">
-<link rel="stylesheet" href="{{ asset('css/iziToast.min.css') }}">
-<script src="{{ asset('js/iziToast.min.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('plugins/datatables/dataTables.bootstrap.css') . '?update=' . str_random(3)}}">
+<link rel="stylesheet" href="{{ asset('css/iziToast.min.css') . '?update=' . str_random(3)}}">
+<script src="{{ asset('js/iziToast.min.js'). '?update=' . str_random(3) }}"></script>
 
 @section('htmlheader_title')
 	Gerenciar Contratos

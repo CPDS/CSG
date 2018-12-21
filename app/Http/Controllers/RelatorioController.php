@@ -44,7 +44,7 @@ class RelatorioController extends Controller
     public function contratos(){
         $contratos = Contrato::join('contrato_items','contrato_items.fk_contrato','=','contratos.id')
         ->join('item_contratos','item_contratos.id','=','contrato_items.fk_item')
-        ->select('contrato_items.quantidade','item_contratos.nome','contrato_items.fk_item', 'contrato_items.valor_unitario')
+        ->select('contrato_items.quantidade','item_contratos.nome','contrato_items.fk_item', 'contrato_items.valor_unitario','contratos.numero','contratos.valor_total', 'contratos.data_inicio', 'contratos.data_fim')
         ->orderBy('contratos.created_at', 'desc')
         ->get();
    

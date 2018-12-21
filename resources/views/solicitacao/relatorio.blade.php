@@ -34,7 +34,7 @@
 		@foreach($solicitacaos as $solicitacao)
 			<tr>	
 				<td class="tg-q19q">{{$solicitacao->titulo}}</td>
-				<td class="tg-q19q">{{$solicitacao->descricao}}</td>
+				<td class="tg-q19q">{{$solicitacao->descricao_solicitacao}}</td>
 			</tr>			
 		@endforeach
 		</table>

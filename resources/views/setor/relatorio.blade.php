@@ -28,7 +28,8 @@
 			<tr>
         <th class="tg-q19q">Nome</th>
 				<th class="tg-q19q">sigla</th>
-				<th class="tg-q19q">Telefone</th>
+        <th class="tg-q19q">Telefone</th>
+				<th class="tg-q19q">E-mail</th>
 
 			</tr>
 
@@ -36,7 +37,8 @@
 			<tr>	
         <td class="tg-q19q">{{$setor->nome}}</td>
 				<td class="tg-q19q">{{$setor->sigla}}</td>
-				<td class="tg-q19q">{{$setor->telefone}}</td>
+        <td class="tg-q19q">{{$setor->telefone}}</td>
+				<td class="tg-q19q">{{$setor->email}}</td>
 			</tr>			
 		@endforeach
 		</table>

@@ -16,27 +16,29 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Saída de itens</title>
+        <title>CONTRATOS</title>
     </head>
 <body>
     <div>
 
     <div style="text-align: center; margin-top: 50px">
-      	<h3>RELATÓRIO DE SAIDA DE ITENS</h3>
+      	<h3>RELATÓRIO DOS CONTRATOS</h3>
       </div>
 		<table class="tg">
 			<tr>
 				<th class="tg-q19q">Número</th>
 				<th class="tg-q19q">Data início</th>	
 				<th class="tg-q19q">Data fim</th>
-
 			</tr>
 
 		@foreach($contratos as $contrato)
 			<tr>	
 				<td class="tg-q19q">{{$contrato->numero}}</td>
-				<td class="tg-q19q">{{$contrato->data_inicio}}</td>
-				<td class="tg-q19q">{{$contrato->data_fim}}</td>
+				<td class="tg-q19q">
+          <?php  $date = date_create($contrato->data_inicio) ?>
+          {{ date_format($date,'d/m/Y') }}</td>
+          <?php  $date = date_create($contrato->data_fim) ?>
+				<td class="tg-q19q">{{ date_format($date,'d/m/Y') }}</td>
 			</tr>			
 		@endforeach
 		</table>
