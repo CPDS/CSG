@@ -24,6 +24,9 @@
                             <option value="Ag-limpeza">Agente de limpeza</option>
                             <option value="Empresa">Empresa</option>
                             <option value="Servidor">Servidor</option>
+                            <option value="Coordenador">Coordenador</option>
+                            <option value="Tecnico">Tecnico</option>
+                            <option value="Professor">Professor</option>
                         </select>
                     </div>       
                 </div>
