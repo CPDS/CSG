@@ -59,7 +59,7 @@ class BaixaItemController extends Controller
 
 
         if(Auth::user()->can('ver-baixa-material')){
-           $btnVer = "<a class='btn btn-info btn-sm btnVer' data-toggle='tooltip' title='Ver solicitacao' $dados> <i class='fa fa-eye'></i></a> ";
+           $btnVer = "<a class='btn btn-info btn-sm btnVer' data-toggle='tooltip' title='Ver baixa item' $dados> <i class='fa fa-eye'></i></a> ";
         }
 
         if(Auth::user()->can('editar-baixa-material')){

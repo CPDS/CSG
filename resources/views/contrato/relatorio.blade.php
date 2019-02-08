@@ -16,29 +16,33 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>CONTRATOS</title>
+        <title>Saída de itens</title>
     </head>
 <body>
     <div>
 
     <div style="text-align: center; margin-top: 50px">
-      	<h3>RELATÓRIO DOS CONTRATOS</h3>
+      	<h3>RELATÓRIO DE SAIDA DE ITENS</h3>
       </div>
 		<table class="tg">
 			<tr>
-				<th class="tg-q19q">Número</th>
-				<th class="tg-q19q">Data início</th>	
-				<th class="tg-q19q">Data fim</th>
+				<th class="tg-ox40">Contrato</th>
+				<th class="tg-ox40">Data início</th>	
+        <th class="tg-ox40">Data fim</th>
+        <th class="tg-ox40">Item</th>
+        <th class="tg-ox40">Valor</th>
+        <th class="tg-ox40">Quantidade</th>
+
 			</tr>
 
 		@foreach($contratos as $contrato)
 			<tr>	
 				<td class="tg-q19q">{{$contrato->numero}}</td>
-				<td class="tg-q19q">
-          <?php  $date = date_create($contrato->data_inicio) ?>
-          {{ date_format($date,'d/m/Y') }}</td>
-          <?php  $date = date_create($contrato->data_fim) ?>
-				<td class="tg-q19q">{{ date_format($date,'d/m/Y') }}</td>
+				<td class="tg-q19q">{{$contrato->data_inicio}}</td>
+        <td class="tg-q19q">{{$contrato->data_fim}}</td>
+        <td class="tg-q19q">{{$contrato->item}}</td>
+        <td class="tg-q19q">{{$contrato->valor}}</td>
+        <td class="tg-q19q">{{$contrato->quantidade}}</td>
 			</tr>			
 		@endforeach
 		</table>

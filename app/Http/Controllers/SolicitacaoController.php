@@ -37,6 +37,7 @@ class SolicitacaoController extends Controller
  
     public function list()
     {   
+
         $solicitacaos = Solicitacao::JOIN('users','users.id','=','solicitacaos.fk_user_solicitante')
         ->select('solicitacaos.id','solicitacaos.data_solicitacao','solicitacaos.titulo','solicitacaos.descricao as descricao_solicitacao','solicitacaos.observacao_solicitado','solicitacaos.observacao_solicitante')
         ->orderBy('solicitacaos.created_at', 'desc')->get();

@@ -14,30 +14,32 @@
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Material</title>
-    </head>
-<body>
+  <head>
+      <meta charset="UTF-8">
+      <title>Material</title>
+  </head>
+  <body>
     <div>
 
-    <div style="text-align: center; margin-top: 50px">
-      	<h3>RELATÓRIO DE MATERIAL</h3>
-      </div>
-		<table class="tg">
-			<tr>
-				<th class="tg-q19q">NOME DO MATERIAL</th>
-				<th class="tg-q19q">TIPO</th>	
+      <div style="text-align: center; margin-top: 50px">
+        	<h3>RELATÓRIO DE MATERIAL</h3>
+        </div>
+  		<table class="tg">
+  			<tr>
+  				<th class="tg-ox40">NOME DO MATERIAL</th>
+  				<th class="tg-ox40">DESCRIÇÃO</th>	
+  				<th class="tg-ox40">QUANTIDADE</th>
 
-			</tr>
+  			</tr>
 
-		@foreach($materiais as $material)
-			<tr>	
-				<td class="tg-q19q">{{$material->descricao}}</td>
-				<td class="tg-q19q">{{$material->tipo}}</td>
-			</tr>			
-		@endforeach
-		</table>
-</div>
-</body>
+  		@foreach($materials as $material)
+  			<tr>	
+  				<td class="tg-q19q">{{$material->descricao}}</td>
+  				<td class="tg-q19q">{{$material->tipo}}</td>
+          <td class="tg-q19q">{{$material->entrada - $material->saida}}</td>
+  			</tr>			
+  		@endforeach
+  		</table>
+    </div>
+  </body>
 </html>

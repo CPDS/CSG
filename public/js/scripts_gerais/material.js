@@ -19,8 +19,8 @@ $(document).ready(function($) {
             columns: [
       
             { data: null, name: 'order' },
-            { data: 'tipo', name: 'tipo' },
             { data: 'descricao', name: 'descricao' },
+            { data: 'tipo', name: 'tipo' },
             { data: 'quantidade', name: 'quantidade' },
             { data: 'acao', name: 'acao' },
             ],
@@ -49,7 +49,7 @@ $(document).ready(function($) {
                 "sInfoPostFix": "",
                 "sInfoThousands": ".",
                 "sLengthMenu": "_MENU_ resultados por página",
-                "sLoadingRecords": "Carregando...",
+                "scarregandoRecords": "Carregando...",
                 "sProcessing": "<div><i class='fa fa-circle-o-notch fa-spin' style='font-size:38px;'></i> <span style='font-size:20px; margin-left: 5px'> Carregando...</span></div>",
                 "sZeroRecords": "Nenhum registro encontrado",
                 "sSearch": "Pesquisar",
@@ -94,10 +94,10 @@ $(document).ready(function($) {
             processData: false,
             contentType: false,
             beforeSend: function(){
-                jQuery('.add').button('loading');
+                jQuery('.add').button('carregando');
             },
             complete: function() {
-                jQuery('.add').button('reset');
+                jQuery('.add').button('redefinido');
             },
             success: function(data) {
                  //Verificar os erros de preenchimento
@@ -150,10 +150,10 @@ $(document).ready(function($) {
             processData: false,
             contentType: false,
             beforeSend: function(){
-                jQuery('.edit').button('loading');
+                jQuery('.edit').button('carregando');
             },
             complete: function() {
-                jQuery('.edit').button('reset');
+                jQuery('.edit').button('redefinido');
             },
             success: function(data) {
                  //Verificar os erros de preenchimento
@@ -205,10 +205,10 @@ $(document).ready(function($) {
             processData: false,
             contentType: false,
             beforeSend: function(){
-                jQuery('.excluir').button('loading');
+                jQuery('.excluir').button('carregando');
             },
             complete: function() {
-                jQuery('.excluir').button('reset');
+                jQuery('.excluir').button('redefinido');
             },
             success: function(data) {
                  //Verificar os erros de preenchimento
@@ -263,7 +263,7 @@ $(document).on('click', '.btnAdicionar', function() {
         $('.callout').addClass("hidden"); 
         $('.callout').find("p").text(""); 
 
-        $('#form')[0].reset();
+        $('#form')[0].redefinido();
 
         jQuery('#criar_editar-modal').modal('show');
 });

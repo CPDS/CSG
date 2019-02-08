@@ -28,7 +28,7 @@ Route::group(['prefix' => 'gerenciar-materiais', 'where' => ['id' => '[0-9]+'], 
         Route::post('/store', ['as' => 'gerenciar-materiais.store', 'uses' => 'MaterialController@store']);
         Route::post('/update', ['as' => 'gerenciar-materiais.update', 'uses' => 'MaterialController@update']);
         Route::post('/delete', ['as' => 'gerenciar-materiais.destroy', 'uses' => 'MaterialController@destroy']);
-        Route::get('/relatorio',['as' => 'gerenciar-materiais.relatorio', 'uses' => 'RelatorioController@materiais']);
+        Route::get('/relatorio',['as' => 'gerenciar-materiais.relatorio', 'uses' => 'RelatorioController@materials']);
 }); 	
 
 Route::group(['prefix' => 'gerenciar-licitacoes', 'where' => ['id' => '[0-9]+'], 'middleware' => ['role:Administrador|Servidor|Coordenador|Tecnico|Ag-limpeza|Professor']] ,function() {

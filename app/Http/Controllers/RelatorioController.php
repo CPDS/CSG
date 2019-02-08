@@ -42,10 +42,11 @@ class RelatorioController extends Controller
     }
 
     public function contratos(){
-        $contratos = Contrato::join('contrato_items','contrato_items.fk_contrato','=','contratos.id')
-        ->join('item_contratos','item_contratos.id','=','contrato_items.fk_item')
-        ->select('contrato_items.quantidade','item_contratos.nome','contrato_items.fk_item', 'contrato_items.valor_unitario','contratos.numero','contratos.valor_total', 'contratos.data_inicio', 'contratos.data_fim')
-        ->orderBy('contratos.created_at', 'desc')
+        $contratos = Contrato::leftjoin('contrato_items','contrato_items.fk_contrato','=','contratos.id')
+        ->leftjoin('item_contratos','item_contratos.id','=','contrato_items.fk_item')
+        ->select('contratos.*','contrato_items.quantidade as quantidade','item_contratos.nome as item','contrato_items.fk_item', 'contrato_items.valor_unitario as valor')
+        ->where('contratos.status','Ativo')
+        ->orderBy('contratos.id', 'asc')
         ->get();
    
         $pdf = PDF::loadView('contrato.relatorio', ['contratos' => $contratos])->setPaper('a4', 'portrait');
@@ -77,11 +78,14 @@ class RelatorioController extends Controller
         return $pdf->stream();   
     }
 
-    public function materiais(){
+    public function materials(){
         
-        $materiais = Material::orderBy('created_at', 'desc')->get();
+        $materials = Material::LEFTJOIN('material_entradas','material_entradas.fk_material','=','materials.id')
+        ->LEFTJOIN('material_saidas','material_saidas.fk_material','=','materials.id')
+        ->select('materials.*','material_entradas.quantidade as entrada','material_saidas.quantidade as saida')
+        ->orderBy('created_at', 'desc')->get();
    
-        $pdf = PDF::loadView('material.relatorio', ['materiais' => $materiais])->setPaper('a4', 'portrait');
+        $pdf = PDF::loadView('material.relatorio', ['materials' => $materials])->setPaper('a4', 'portrait');
         
         return $pdf->stream();   
     }

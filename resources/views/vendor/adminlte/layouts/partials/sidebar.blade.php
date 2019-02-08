@@ -23,13 +23,11 @@
             <!-- Optionally, you can add icons to the links -->
         
             
-            <li  class="@yield('setor') | '' " ><a href="{{ url('home') }}"><i class='fa fa-dashboard '></i> <span>Dashboard</span></a></li>
-             @can('ver-setor')
+            <li  class="@yield('setor') | '' " ><a href="{{ url('home') }}"><i class='fa fa-dashboard '></i> <span>Painel de Controle</span></a></li>
             <li  class="@yield('setor') | '' " ><a href="{{ url('gerenciar-setores') }}"><i class='fa fa-university'></i> <span>Setores</span></a></li>
-             @endcan
 
            @can('ver-relatorio-setor')
-            <li><a href="{{ url('gerenciar-setores/relatorio') }}" target="_blank"><i class='fa fa-wrench'></i> <span>Relatório dos setores</span></a></li>
+            <li><a href="{{ url('gerenciar-setores/relatorio') }}" target="_blank"><i class='fa fa-file-text'></i> <span>Relatório dos setores</span></a></li>
             @endcan
             
             @if(Auth::user()->HasAnyPermission(['ver-usuario','ver-escala','ver-horas-extras']))
@@ -42,7 +40,7 @@
                     @endcan
 
                     @can('ver-permission')
-                    <li><a href="{{ url('gerenciar-users/permissions') }}"><i class='fa fa-user'></i> <span>Permission</span></a></li>
+                    <li><a href="{{ url('gerenciar-users/permissions') }}"><i class='fa fa-user'></i> <span>Permissão</span></a></li>
                     @endcan
                    
                    @can('ver-escala')
@@ -54,15 +52,15 @@
                    @endcan
 
                    @can('ver-relatorio-hora')
-                    <li><a href="{{ url('gerenciar-horas/relatorio') }}" target="_blank"><i class='fa fa-wrench'></i> <span>Relatório horas extras</span></a></li>
+                    <li><a href="{{ url('gerenciar-horas/relatorio') }}" target="_blank"><i class='fa fa-file-text'></i> <span>Relatório horas extras</span></a></li>
                    @endcan
 
                     @can('ver-relatorio-hora')
-                    <li><a href="{{ url('gerenciar-users/relatorio') }}" target="_blank"><i class='fa fa-wrench'></i> <span>Relatório Usuários</span></a></li>
+                    <li><a href="{{ url('gerenciar-users/relatorio') }}" target="_blank"><i class='fa fa-file-text'></i> <span>Relatório Usuários</span></a></li>
                    @endcan 
 
                     @can('ver-relatorio-escala')
-                    <li><a href="{{ url('gerenciar-escalas/relatorio') }}" target="_blank"><i class='fa fa-wrench'></i> <span>Relatório Escala</span></a></li>
+                    <li><a href="{{ url('gerenciar-escalas/relatorio') }}" target="_blank"><i class='fa fa-file-text'></i> <span>Relatório Escala</span></a></li>
                     @endcan
                 </ul>
             </li>
@@ -81,7 +79,7 @@
                    @endcan
 
                    @can('ver-relatorio-material')
-                    <li><a href="{{ url('gerenciar-materiais/relatorio') }}" target="_blank"><i class='fa fa-wrench'></i> <span>Relatório</span></a></li>
+                    <li><a href="{{ url('gerenciar-materiais/relatorio') }}" target="_blank"><i class='fa fa-file-text'></i> <span>Relatório</span></a></li>
                     @endcan
                 </ul>
             </li>
@@ -100,7 +98,7 @@
                     @endcan
 
                     @can('ver-relatorio-contrato')
-                    <li><a href="{{ url('gerenciar-contratos/relatorio') }}" target="_blank"><i class='fa fa-wrench'></i> <span>Relatório</span></a></li>
+                    <li><a href="{{ url('gerenciar-contratos/relatorio') }}" target="_blank"><i class='fa fa-file-text'></i> <span>Relatório</span></a></li>
                     @endcan
                </ul>
             </li>     
@@ -123,7 +121,7 @@
                    @endcan 
                     
                    @can('ver-relatorio-solicitacao')
-                    <li><a href="{{ url('gerenciar-solicitacoes/relatorio') }}" target="_blank"><i class='fa fa-wrench'></i> <span>Relatório</span></a></li>
+                    <li><a href="{{ url('gerenciar-solicitacoes/relatorio') }}" target="_blank"><i class='fa fa-file-text'></i> <span>Relatório</span></a></li>
                    @endcan
 
             </li>
