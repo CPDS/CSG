@@ -51,8 +51,8 @@ $(document).ready(function($) {
                 "sInfoPostFix": "",
                 "sInfoThousands": ".",
                 "sLengthMenu": "_MENU_ resultados por página",
-                "scarregandoRecords": "Carregando...",
-                "sProcessing": "<div><i class='fa fa-circle-o-notch fa-spin' style='font-size:38px;'></i> <span style='font-size:20px; margin-left: 5px'> Carregando...</span></div>",
+                "sloadingRecords": "loading...",
+                "sProcessing": "<div><i class='fa fa-circle-o-notch fa-spin' style='font-size:38px;'></i> <span style='font-size:20px; margin-left: 5px'> loading...</span></div>",
                 "sZeroRecords": "Nenhum registro encontrado",
                 "sSearch": "Pesquisar",
                 "oPaginate": {
@@ -102,10 +102,10 @@ $(document).ready(function($) {
                 'itens': itens
             },
             beforeSend: function(){
-                jQuery('.add').button('carregando');
+                jQuery('.add').button('loading');
             },
             complete: function() {
-                jQuery('.add').button('redefinido');
+                jQuery('.add').button('reset');
             },
             success: function(data) {
                  //Verificar os erros de preenchimento
@@ -166,10 +166,10 @@ $(document).ready(function($) {
                 'itens': itens
             },
             beforeSend: function(){
-                jQuery('.edit').button('carregando');
+                jQuery('.edit').button('loading');
             },
             complete: function() {
-                jQuery('.edit').button('redefinido');
+                jQuery('.edit').button('reset');
             },
             success: function(data) {
                  //Verificar os erros de preenchimento
@@ -219,10 +219,10 @@ $(document).ready(function($) {
             processData: false,
             contentType: false,
             beforeSend: function(){
-                jQuery('.excluir').button('carregando');
+                jQuery('.excluir').button('loading');
             },
             complete: function() {
-                jQuery('.excluir').button('redefinido');
+                jQuery('.excluir').button('reset');
             },
             success: function(data) {
                  //Verificar os erros de preenchimento
@@ -322,7 +322,7 @@ $(document).on('click', '.btnAdicionar', function() {
         $('.callout').addClass("hidden"); 
         $('.callout').find("p").text(""); 
 
-        $('#form')[0].redefinido();
+        $('#form')[0].reset();
 
         jQuery('#criar_editar-modal').modal('show');
 });
