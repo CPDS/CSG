@@ -9,8 +9,8 @@
     <div id="app">
         <div class="login-box">
             <div class="login-logo">
-                <b>Serviços Gerais</b>
-                <center><h5>Sistema Serviços Gerais</h5></center>
+                <img class="img-fluid" style="width: 100px" src="{!! asset('img/logo.png')!!}" />
+                <h3><b>Serviços Gerais</b></h3>
             </div><!-- /.login-logo -->
 
         @if (count($errors) > 0)
@@ -60,6 +60,7 @@
 
     </div><!-- /.login-box-body -->
 
+    <center><h5>Sistema Serviços Gerais</h5></center>
     </div><!-- /.login-box -->
     </div>
     @include('adminlte::layouts.partials.scripts_auth')

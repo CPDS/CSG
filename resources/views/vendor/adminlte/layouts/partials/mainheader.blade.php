@@ -4,9 +4,10 @@
     <!-- Logo -->
     <a href="{{ url('/home') }}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>A</b>LT</span>
+
+        <span class="logo-mini"><img class="img-fluid" src="{!! asset('img/logo-mini.png')!!}" /></span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg">CSG</span>
+        <span class="logo-lg">Serviços Gerais </span>
     </a>
 
     <!-- Header Navbar -->

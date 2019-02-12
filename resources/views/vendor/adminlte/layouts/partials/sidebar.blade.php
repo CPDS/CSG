@@ -13,22 +13,28 @@
                 <div class="pull-left info">
                     <p>{{ Auth::user()->name }}</p>
                     <!-- Status -->
-                    <a href="#"><i class="fa fa-circle text-success"></i> {{ trans('adminlte_lang::message.online') }}</a>
+                    <a href="#"><i class="fa fa-circle text-success"></i> </a>
                 </div>
             </div>
         @endif
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
-            <li class="header">{{ trans('adminlte_lang::message.header') }}</li>
-            <!-- Optionally, you can add icons to the links -->
-        
-            
-            <li  class="@yield('setor') | '' " ><a href="{{ url('home') }}"><i class='fa fa-dashboard '></i> <span>Painel de Controle</span></a></li>
-            <li  class="@yield('setor') | '' " ><a href="{{ url('gerenciar-setores') }}"><i class='fa fa-university'></i> <span>Setores</span></a></li>
 
-           @can('ver-relatorio-setor')
-            <li><a href="{{ url('gerenciar-setores/relatorio') }}" target="_blank"><i class='fa fa-file-text'></i> <span>Relatório dos setores</span></a></li>
-            @endcan
+            <li  class="@yield('setor') | '' " ><a href="{{ url('home') }}"><i class='fa fa-dashboard '></i> <span>Painel de Controle</span></a>
+            </li>
+            <li class="treeview" class="active">   
+                <a href="#"><i class='fa fa-users'></i> <span>Gerenciar Setores</span> <i class="fa fa-angle-left pull-right"></i></a>
+
+                <ul class="treeview-menu">
+                    <li  class="@yield('setor') | '' " ><a href="{{ url('gerenciar-setores') }}"><i class='fa fa-university'></i> <span>Setores</span></a>
+                    </li>
+
+                   @can('ver-relatorio-setor')
+                    <li><a href="{{ url('gerenciar-setores/relatorio') }}" target="_blank"><i class='fa fa-file-text'></i> <span>Relatório dos setores</span></a>
+                    </li>
+                    @endcan
+                </ul>
+            </li>
             
             @if(Auth::user()->HasAnyPermission(['ver-usuario','ver-escala','ver-horas-extras']))
              <li class="treeview" class="active">   

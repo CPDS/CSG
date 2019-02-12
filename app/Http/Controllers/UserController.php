@@ -108,12 +108,16 @@ class UserController extends Controller
         $rules = array(
             'nome_user' => 'required',
             'telefone' => 'required',
-            'endereco' => 'required'
+            'endereco' => 'required',
+            'email' => 'required',
+            'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
+            'password_confirmation' => 'min:6',
         );
         $attributeNames = array(
             'nome_user' => 'Nome',
             'telefone' => 'Telefone',
-            'endereco' => 'Telefone'
+            'endereco' => 'Endereco',
+            'email' => 'E-mail',
         );
         
         $validator = Validator::make(Input::all(), $rules);

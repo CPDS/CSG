@@ -47,7 +47,7 @@
 
         </div>
     </div>
-</div>
+
 
 @include('user.modals.criar_user')
 @include('user.modals.deletar_user')

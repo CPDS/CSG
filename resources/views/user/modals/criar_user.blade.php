@@ -16,7 +16,7 @@
         <form class="form-horizontal" role="form" id="form" >
             <div class="form-group">
                 <div class="col-sm-12">
-                    <strong>Tipo de funcionário:</strong>
+                    <strong>Tipo de usuário:</strong>
                     <div class="input-group">
                         <span data-toggle="tooltip" title="Setor" class="input-group-addon"><i class="fa fa-user"></i></span>
                         <select class="form-control" name="nome_role" id="nome_role">
@@ -112,11 +112,21 @@
                         <input type="password" maxlength="254" class="form-control" name="password"  id="password">
                     </div>       
                 </div>
+
             </div>
 
 
             <div class="form-group user">
-                <div class="col-sm-12">
+
+                <div class="col-sm-4">
+                    <strong>Confirmar Senha:</strong>
+                    <div class="input-group">
+                        <span data-toggle="tooltip" title="Password" class="input-group-addon"><i class="fa fa-key"></i></span>
+                        <input type="password" maxlength="254" class="form-control" name="password_confirmation"  id="password_confirmation">
+                    </div>       
+                </div>
+
+                <div class="col-sm-8">
                     <strong>Setor:</strong>
                     <div class="input-group">
                         <span data-toggle="tooltip" title="Setor" class="input-group-addon"><i class="fa fa-university"></i></span>
