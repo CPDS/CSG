@@ -21,6 +21,8 @@ class CreateEmpenhoItemsTable extends Migration
             $table->foreign('fk_item')->references('id')->on('item_contratos');
             $table->decimal('valor',10,2);
             $table->integer('qtd');
+            $table->string('status');
+            $table->date('data');
             $table->timestamps();
         });
     }

@@ -39,6 +39,14 @@ Route::group(['prefix' => 'gerenciar-licitacoes', 'where' => ['id' => '[0-9]+'],
         Route::post('/delete', ['as' => 'gerenciar-licitacoes.destroy', 'uses' => 'LicitacaoController@destroy']);
 });
 
+Route::group(['prefix' => 'gerenciar-empenhos', 'where' => ['id' => '[0-9]+'], 'middleware' => ['role:Administrador|Servidor|Coordenador|Tecnico|Ag-limpeza|Professor']] ,function() {
+        Route::get('', ['as' => 'gerenciar-empenhos.index', 'uses' => 'EmpenhoController@index']);
+        Route::get('/list',['as' => 'gerenciar-empenhos.list', 'uses' => 'EmpenhoController@list']);
+        Route::post('/store', ['as' => 'gerenciar-empenhos.store', 'uses' => 'EmpenhoController@store']);
+        Route::post('/update', ['as' => 'gerenciar-empenhos.update', 'uses' => 'EmpenhoController@update']);
+        Route::post('/delete', ['as' => 'gerenciar-empenhos.destroy', 'uses' => 'EmpenhoController@destroy']);
+});
+
 Route::group(['prefix' => 'gerenciar-baixa-itens', 'where' => ['id' => '[0-9]+'], 'middleware' => ['role:Administrador|Coordenador|Tecnico']] ,function() {
         Route::get('', ['as' => 'gerenciar-baixa-itens.index', 'uses' => 'BaixaItemController@index']);
         Route::get('/list',['as' => 'gerenciar-baixa-itens.list', 'uses' => 'BaixaItemController@list']);

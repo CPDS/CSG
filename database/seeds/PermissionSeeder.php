@@ -112,8 +112,7 @@ class PermissionSeeder extends Seeder
         ]);
 
         //HORAS EXTRAS
-
-         DB::table('permissions')->insert([
+        DB::table('permissions')->insert([
             'name' => 'criar-horas-extras',
             'guard_name' => 'CSG',
         ]);
@@ -135,6 +134,32 @@ class PermissionSeeder extends Seeder
 
         DB::table('permissions')->insert([
             'name' => 'ver-relatorio-hora',
+            'guard_name' => 'CSG',
+        ]);
+
+         //EMPENHO
+        DB::table('permissions')->insert([
+            'name' => 'criar-empenho',
+            'guard_name' => 'CSG',
+        ]);
+
+        DB::table('permissions')->insert([
+            'name' => 'editar-empenho',
+            'guard_name' => 'CSG',
+        ]);
+
+        DB::table('permissions')->insert([
+            'name' => 'ver-empenho',
+            'guard_name' => 'CSG',
+        ]);
+
+        DB::table('permissions')->insert([
+            'name' => 'excluir-empenho',
+            'guard_name' => 'CSG',
+        ]);
+
+        DB::table('permissions')->insert([
+            'name' => 'ver-relatorio-empenho',
             'guard_name' => 'CSG',
         ]);
 
