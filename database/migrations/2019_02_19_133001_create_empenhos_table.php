@@ -17,6 +17,8 @@ class CreateEmpenhosTable extends Migration
             $table->increments('id');
             $table->decimal('valor',10,2);
             $table->integer('fk_contrato')->unsigned();
+            $table->date('data');
+            $table->string('status')->nullable();
             $table->foreign('fk_contrato')->references('id')->on('contratos');
             $table->timestamps();
         });

@@ -35,7 +35,11 @@ class EmpenhoController extends Controller
     }
 
     private function setBtns(Empenho $empenhos){
-        $dados = "data-id_del='$empenhos->id' data-id='$empenhos->id' data-valor='$empenhos->valor'  data-valor='$empenhos->data' ";
+        $dados = "data-id_del='$empenhos->id' 
+        data-id='$empenhos->id' 
+        data-valor='$empenhos->valor'
+        data-fk_contrato='$empenhos->fk_contrato'  
+        data-valor='$empenhos->data' ";
 
         $btnEditar = '';
         $btnDeletar = '';
@@ -74,6 +78,7 @@ class EmpenhoController extends Controller
             $empenho = new Empenho();
             $empenho->valor = $request->valor;
             $empenho->data = $request->data;
+            $empenho->fk_contrato = $request->fk_contrato;
             $empenho->status = 'Ativo';
             $empenho->save();
             

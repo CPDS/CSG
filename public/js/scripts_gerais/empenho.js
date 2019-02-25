@@ -16,7 +16,7 @@ $(document).ready(function($) {
             processing: true,
             serverSide: true,
             deferRender: true,
-            ajax: './gerenciar-setores/list',
+            ajax: './gerenciar-empenhos/list',
             columns: [            
             { data: null, name: 'order' },
             { data: 'valor', name: 'valor' },
@@ -63,13 +63,10 @@ $(document).ready(function($) {
                 }
             },
             columnDefs : [
-              { targets : [5], sortable : false },
+              { targets : [2], sortable : false },
               { "width": "5%", "targets": 0 }, //nº
               { "width": "35%", "targets": 1 },//nome
               { "width": "5%", "targets": 2 },//ação
-              { "width": "27%", "targets": 3 }, //nº
-              { "width": "15%", "targets": 4 },//nome
-              { "width": "12%", "targets": 5 }
             ]
     });
 
@@ -88,7 +85,7 @@ $(document).ready(function($) {
 
         $.ajax({
             type: 'post',
-            url: "/gerenciar-setores/store",
+            url: "/gerenciar-empenhos/store",
             data: dados,
             processData: false,
             contentType: false,
@@ -119,7 +116,7 @@ $(document).ready(function($) {
                         iziToast.destroy();
                         iziToast.success({
                             title: 'OK',
-                            message: 'Setor adicionado com Sucesso!',
+                            message: 'Empenho adicionado com Sucesso!',
                         });
                     });
 
@@ -145,7 +142,7 @@ $(document).ready(function($) {
 
         $.ajax({
             type: 'post',
-            url: "/gerenciar-setores/update",
+            url: "/gerenciar-empenhos/update",
             data: dados,
             processData: false,
             contentType: false,
@@ -176,7 +173,7 @@ $(document).ready(function($) {
                         iziToast.destroy();
                         iziToast.success({
                             title: 'OK',
-                            message: 'Setor alterado com Sucesso!',
+                            message: 'Empenho alterado com Sucesso!',
                         });
                     });
                 }
@@ -199,7 +196,7 @@ $(document).ready(function($) {
 
         $.ajax({
             type: 'post',
-            url: "/gerenciar-setores/delete",
+            url: "/gerenciar-empenhos/delete",
             data: dados,
             processData: false,
             contentType: false,
@@ -230,7 +227,7 @@ $(document).ready(function($) {
                         iziToast.destroy();
                         iziToast.success({
                             title: 'OK',
-                            message: 'Setor deletado com Sucesso!',
+                            message: 'Empenho deletado com Sucesso!',
                         });
                     });
                 }
@@ -256,10 +253,11 @@ $(document).on('click', '.btnAdicionar', function() {
         //habilita os campos desabilitados
         $('#valor').prop('readonly',false);
         $('#data').prop('readonly',false);
+        $('#fk_contrato').prop('readonly',false);
        
         
 
-        $('.modal-title').text('Novo Cadastro de Setor');
+        $('.modal-title').text('Novo Cadastro de Empenho');
         $('.callout').addClass("hidden"); 
         $('.callout').find("p").text(""); 
 
@@ -272,11 +270,12 @@ $(document).on('click', '.btnVer', function() {
 
         $('.modal-footer .btn-action').removeClass('edit');
         $('.modal-footer .btn-action').addClass('hidden');
-        $('.modal-title').text('Ver Setor');
+        $('.modal-title').text('Ver Empenho');
         
         //desabilita os campos
         $('#valor').prop('readonly',true);
         $('#data').prop('readonly',true);
+        $('#fk_contrato').prop('readonly',true);
         
 
         $('.callout').addClass("hidden"); //ocultar a div de aviso
@@ -296,27 +295,25 @@ $(document).on('click', '.btnEditar', function() {
         $('.modal-footer .btn-action').addClass('edit');
         $('.modal-footer .btn-action').removeClass('hidden');
 
-        $('.modal-title').text('Editar Setor');
+        $('.modal-title').text('Editar Empenho');
         $('.callout').addClass("hidden"); //ocultar a div de aviso
         $('.callout').find("p").text(""); //limpar a div de aviso
 
         //habilita os campos desabilitados
         $('#nome').prop('readonly',false);
         $('#sigla').prop('readonly',false);
-        $('#email').prop('readonly',false);
-        $('#telefone').prop('readonly',false);
+        $('#fk_contrato').prop('readonly',false);
 
         var btnEditar = $(this);
 
         $('#form :input').each(function(index,input){
             $('#'+input.id).val($(btnEditar).data(input.id));
         });
-
         
         jQuery('#criar_editar-modal').modal('show'); //Abrir o modal
 });
 $(document).on('click', '.btnDeletar', function() {
-   $('.modal-title').text('Deletar Setor');   
+   $('.modal-title').text('Deletar Empenho');   
    $('.modal-footer .btn-action').removeClass('add');
    $('.modal-footer .btn-action').removeClass('edit');
    $('.modal-footer .btn-action').addClass('excluir');

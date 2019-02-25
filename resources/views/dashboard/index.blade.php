@@ -24,17 +24,29 @@
 
   <div class="col-lg-4 col-xs-4">
     <!-- small box -->
-    <div class="small-box bg-primary text-white">
-     
+    <div class="small-box bg-red">
       <div class="inner">
-        <h3>Geral</h3>
-        <p>Materiais Total/Disponíveis: {{ $material }}</p>
-        <p>Solicitações Total/Em aberto: {{ $solicitacao }}</p>
+        <h3>{{ $solicitacao }}</h3>
+        <p>Solicitação(s)</p>
       </div>
-      <div class="icon">  
-        <i class="glyphicon glyphicon-eye-open"></i>
+      <div class="icon">
+        <i class="fa fa-clone"></i>
       </div>
-      <span class="small-box-footer" ><br></span>
+      <a href="{{ url('gerenciar-solicitacoes') }}" class="small-box-footer">Exibir solicitação <i class="fa fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+
+  <div class="col-lg-4 col-xs-4">
+    <!-- small box -->
+    <div class="small-box bg-primary text-white">
+     <div class="inner">
+        <h3>{{ $servicos }}</h3>
+        <p>Serviço(s)</p>
+      </div>
+      <div class="icon">
+        <i class="fa fa-clone"></i>
+      </div>
+      <a href="{{url('gerenciar-contratos')}}" class="small-box-footer">Exibir contrato(s) <i class="fa fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <!-- ./col -->
@@ -44,30 +56,14 @@
       <div class="inner">
         <h3>{{ $contratos }}</h3>
         <p>Contrato(s)</p>
-        <br>
       </div>
       <div class="icon">
         <i class="fa fa-clone"></i>
       </div>
       <a href="{{url('gerenciar-contratos')}}" class="small-box-footer">Exibir contrato(s) <i class="fa fa-arrow-circle-right"></i></a>
     </div>
-  </div> 
-
-  <div class="col-lg-4 col-xs-4">
-    <!-- small box -->
-    <div class="small-box bg-red">
-      <div class="inner">
-        <h3>{{ $solicitacao }}</h3>
-        <p>Solicitação(s)</p>
-        <br>
-      </div>
-      <div class="icon">
-        <i class="fa fa-clone"></i>
-      </div>
-      <a href="{{ url('gerenciar-solicitacoes') }}" class="small-box-footer">Exibir solicitação <i class="fa fa-arrow-circle-right"></i></a>
-    </div>
   </div>
-</div>
+</div> 
 
 <!-- row -->
 <div class="row">

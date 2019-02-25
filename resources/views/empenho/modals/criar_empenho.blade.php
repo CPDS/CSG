@@ -31,7 +31,7 @@
                     <span data-toggle="tooltip" title="Valor" class="input-group-addon"><i class="fa fa-pencil"></i></span>
                     <select class="form-control" name="fk_contrato"  id="fk_contrato">
                     @foreach($contratos as $contrato)
-                    <option>{{ $contrato->numero }}</option>
+                    <option value="{{ $contrato->id }}">{{ $contrato->numero }}</option>
                     @endforeach
                     </select> 
                 </div>       

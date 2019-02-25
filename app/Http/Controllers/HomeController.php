@@ -10,6 +10,7 @@ use App\Solicitacao;
 use App\Contrato;
 use App\User;
 use App\Setor;
+use App\Servico;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendMailUser;
 
@@ -50,6 +51,8 @@ class HomeController extends Controller
                         ->count('id'); 
         $materiais = Material::select('id')
                         ->count('id');
-        return view('dashboard.index',compact('material','solicitacao','contratos','usuario','setor','materiais'));
+        $servicos = Servico::select('id')
+                        ->count('id');
+        return view('dashboard.index',compact('material','solicitacao','contratos','usuario','setor','materiais','servicos'));
     }
 }
