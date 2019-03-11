@@ -1,10 +1,19 @@
+ var itens = new Array();
+ var id;
 $(document).ready(function($) {
 
     $("#telefone").mask("(99) 9?9999-9999");
 
+    $("#fk_item").on('change', function() {
+
+        var campo = this.value;
+        var valor = campo.split("|");
+
+        $('#valor_unitario').val(valor[1]);
+    });
+
     var base_url = 'http://' + window.location.host.toString();
     var base_url = location.protocol + '//' + window.location.host.toString();
-
 
     $.ajaxSetup({
         headers: {
@@ -77,15 +86,12 @@ $(document).ready(function($) {
     }).draw();
 
 
-
     $('.modal-footer').on('click', '.add', function() {
         var dados = new FormData($("#form")[0]); //pega os dados do form
 
-        console.log(dados);
-
         $.ajax({
             type: 'post',
-            url: "/gerenciar-empenhos/store",
+            url: "/gerenciar-empenhos/itens",
             data: dados,
             processData: false,
             contentType: false,
@@ -94,6 +100,60 @@ $(document).ready(function($) {
             },
             complete: function() {
                 jQuery('.add').button('reset');
+            },
+            success: function(data) {
+                 //Verificar os erros de preenchimento
+                if ((data.errors)) {
+
+                    $('.callout').removeClass('hidden'); //exibe a div de erro
+                    $('.callout').find('p').text(""); //limpa a div para erros successivos
+
+                    $.each(data.errors, function(nome, mensagem) {
+                            $('.callout').find("p").append(mensagem + "</br>");
+                    });
+
+                } else {
+                    
+                    $('#table').DataTable().draw(false);
+
+                    jQuery('#criar_editar-modal').modal('hide');
+
+                    $(function() {
+                        iziToast.destroy();
+                        iziToast.success({
+                            title: 'OK',
+                            message: 'Empenho adicionado com Sucesso!',
+                        });
+                    });
+
+                
+                }
+            },
+
+            error: function() {
+                iziToast.error({
+                    title: 'Erro Interno',
+                    message: 'Operação Cancelada!',
+                });
+            },
+
+        });
+    });
+
+ $('.modal-footer').on('click', '.addItem', function() {
+        var dados = new FormData($("#form")[0]); //pega os dados do form
+
+        $.ajax({
+            type: 'post',
+            url: "/gerenciar-empenhos/itens",
+             data: {
+                'itens': itens
+            },
+            beforeSend: function(){
+                jQuery('.addItem').button('loading');
+            },
+            complete: function() {
+                jQuery('.addItem').button('reset');
             },
             success: function(data) {
                  //Verificar os erros de preenchimento
@@ -242,6 +302,74 @@ $(document).ready(function($) {
 
         });
     });
+
+var i = 0;
+  //Adicionar material
+  $(document).on('click', '.btnAdcItem', function() {
+    //verificar se a opção selecionada possiu valor
+    //verificar se a opção selecionada já se encontra no array itens e emitir alerta quando já estiver
+    
+    if( $('#fk_item').val() == '' || $('#quantidade').val() == '' ){
+        iziToast.destroy();
+        iziToast.error({
+            title: 'Erro',
+            message: 'Preencha todos campos!',
+        });
+    }else{
+  
+
+    var cols = '';
+    cols = '';
+    novaLinha = null; 
+    var campo = $('#fk_item :selected').val();
+    var fk_item = campo.split("|");
+    var valor_unitario = campo.split("|");
+
+
+    var descricao_material = $('#fk_item :selected').text();
+    var quantidade = $('#quantidade').val();
+
+    var novaLinha = '<tr class="'+'linha'+i+'">';
+    //Adc material ao array
+    itens = [];
+    
+    itens.push({'fk_item': fk_item[0], 'quantidade': quantidade, 'valor_unitario': valor_unitario[1],'fk_empenho': id  } );
+console.log(itens);
+    $.ajax({
+        type: 'post',
+        url: "/gerenciar-empenhos/itens",
+         data: {
+            'itens': itens
+        },
+    });   
+
+    
+    /* Crian a linha p/ tabela*/
+    
+    cols += '<td>'+descricao_material+'</td>';
+    cols += '<td>'+quantidade+'</td>';
+    cols += '<td>'+valor_unitario[1]+'</td>';
+    cols += '<td class="text-left"><a class="btnRemoverItem btn btn-xs btn-danger" data-indexof="'+itens.indexOf(itens[i])+'" data-linha="'+i+'"><i class="fa fa-trash"></i> Remover</a></td>';
+    novaLinha += cols + '</tr>';
+    
+
+
+    $('#item_id').append(novaLinha); /*Adc a linha  tabela*/
+    i+=1;
+
+    $('#quantidade').val('');
+    $('#valor_unitario').val('');
+    $('#fk_item').val('');
+
+    }
+  });
+
+
+    //Remover Item
+    $(document).on('click', '.btnRemoverItem', function(){
+    itens.splice($(this).data('indexof'),1); //remove do array de acordo com o indice
+    $('.linha'+ $(this).data('linha')).remove(); //Remove a linha da tela 
+    });
   
 });
 
@@ -312,6 +440,22 @@ $(document).on('click', '.btnEditar', function() {
         
         jQuery('#criar_editar-modal').modal('show'); //Abrir o modal
 });
+
+$(document).on('click', '.btnAdd', function() {
+        $('.modal-footer .btn-action').removeClass('add');
+        $('.modal-footer .btn-action').removeClass('edit');
+        $('.modal-footer .btn-action').addClass('addItem');
+        $('.modal-footer .btn-action').removeClass('hidden');
+
+        $('.modal-title').text('Editar Empenho');
+        $('.callout').addClass("hidden"); //ocultar a div de aviso
+        $('.callout').find("p").text(""); //limpar a div de aviso
+       
+       id =  $(this).data('id');
+
+        jQuery('#item-modal').modal('show'); //Abrir o modal
+});
+
 $(document).on('click', '.btnDeletar', function() {
    $('.modal-title').text('Deletar Empenho');   
    $('.modal-footer .btn-action').removeClass('add');

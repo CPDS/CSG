@@ -15,14 +15,11 @@ class CreateEmpenhoItemsTable extends Migration
     {
         Schema::create('empenho_items', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('quantidade');
             $table->integer('fk_empenho')->unsigned();
             $table->foreign('fk_empenho')->references('id')->on('empenhos');
-            $table->integer('fk_item')->unsigned();
-            $table->foreign('fk_item')->references('id')->on('item_contratos');
-            $table->decimal('valor',10,2);
-            $table->integer('qtd');
-            $table->string('status');
-            $table->date('data');
+            $table->integer('fk_contrato_item')->unsigned();
+            $table->foreign('fk_contrato_item')->references('id')->on('contrato_items');
             $table->timestamps();
         });
     }

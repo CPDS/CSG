@@ -16,6 +16,7 @@ class CreateEmpenhosTable extends Migration
         Schema::create('empenhos', function (Blueprint $table) {
             $table->increments('id');
             $table->decimal('valor',10,2);
+            $table->decimal('saldo_anterior',10,2)->nullable();
             $table->integer('fk_contrato')->unsigned();
             $table->date('data');
             $table->string('status')->nullable();

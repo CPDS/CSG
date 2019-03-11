@@ -71,9 +71,8 @@ class ContratoController extends Controller
             $btnDeletar = " <a class='btn btn-danger btn-sm btnDeletar' data-toggle='tooltip' title='Deletar contrato' $dados><i class='fa fa-trash'></i></a>";
         }
 
-        $btnAdd = " <a class='btn btn-warning btn-sm btnAdd' data-toggle='tooltip' title='Adicionar itens' $dados><i class='fa fa-plus'></i></a>";
 
-        return $btnVer.$btnEditar.$btnAdd.$btnDeletar;
+        return $btnVer.$btnEditar.$btnDeletar;
     }
 
     public function store(Request $request)

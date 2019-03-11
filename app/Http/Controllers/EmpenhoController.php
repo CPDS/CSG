@@ -12,14 +12,20 @@ use DB;
 use Auth;
 use App\Empenho;
 use App\Contrato;
+use App\EmpenhoItem;
+use App\ContratoItem;
+
 
 class EmpenhoController extends Controller
 {
     public function index()
     {
         $contratos = Contrato::all();
+        $itens = ContratoItem::join('item_contratos','item_contratos.id','=','contrato_items.fk_item')
+         ->get();
 
-        return view('empenho.index',compact('contratos'));    
+
+        return view('empenho.index',compact('contratos','itens'));    
     } 
 
     public function list()
@@ -54,8 +60,10 @@ class EmpenhoController extends Controller
             $btnDeletar = "<a class='btn btn-danger btn-sm btnDeletar' data-toggle='tooltip' title='Deletar empenho' $dados><i class='fa fa-trash'></i></a>";
         }
 
+        $btnAdd = " <a class='btn btn-warning btn-sm btnAdd' data-toggle='tooltip' title='Adicionar itens' $dados><i class='fa fa-plus'></i></a> ";
 
-        return $btnVer.$btnEditar.$btnDeletar;
+
+        return $btnVer.$btnEditar.$btnAdd.$btnDeletar;
     }
 
     public function store(Request $request)
@@ -84,6 +92,19 @@ class EmpenhoController extends Controller
             
             return response()->json($empenho);
         }
+    }
+
+     public function itens(Request $request)
+    {
+        $itens = $request->itens; 
+
+        $empenho = new EmpenhoItem();
+        $empenho->fk_empenho = $itens[0]['fk_empenho'];
+        $empenho->fk_contrato_item = $itens[0]['fk_item'];
+        $empenho->quantidade = $itens[0]['quantidade'];
+        $empenho->save();
+
+        return response()->json($empenho);
     }
 
     public function update(Request $request)
