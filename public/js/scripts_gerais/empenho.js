@@ -1,6 +1,7 @@
- var itens = new Array();
- var id;
+
 $(document).ready(function($) {
+    var itens = new Array();
+    var id;
 
     $("#telefone").mask("(99) 9?9999-9999");
 
@@ -179,8 +180,6 @@ $(document).ready(function($) {
                             message: 'Empenho adicionado com Sucesso!',
                         });
                     });
-
-                
                 }
             },
 
@@ -334,7 +333,7 @@ var i = 0;
     itens = [];
     
     itens.push({'fk_item': fk_item[0], 'quantidade': quantidade, 'valor_unitario': valor_unitario[1],'fk_empenho': id  } );
-console.log(itens);
+    
     $.ajax({
         type: 'post',
         url: "/gerenciar-empenhos/itens",
@@ -383,8 +382,6 @@ $(document).on('click', '.btnAdicionar', function() {
         $('#data').prop('readonly',false);
         $('#fk_contrato').prop('readonly',false);
        
-        
-
         $('.modal-title').text('Novo Cadastro de Empenho');
         $('.callout').addClass("hidden"); 
         $('.callout').find("p").text(""); 
@@ -442,18 +439,59 @@ $(document).on('click', '.btnEditar', function() {
 });
 
 $(document).on('click', '.btnAdd', function() {
-        $('.modal-footer .btn-action').removeClass('add');
-        $('.modal-footer .btn-action').removeClass('edit');
-        $('.modal-footer .btn-action').addClass('addItem');
-        $('.modal-footer .btn-action').removeClass('hidden');
+    $('.modal-footer .btn-action').removeClass('add');
+    $('.modal-footer .btn-action').removeClass('edit');
+    $('.modal-footer .btn-action').addClass('addItem');
+    $('.modal-footer .btn-action').removeClass('hidden');
 
-        $('.modal-title').text('Editar Empenho');
-        $('.callout').addClass("hidden"); //ocultar a div de aviso
-        $('.callout').find("p").text(""); //limpar a div de aviso
-       
-       id =  $(this).data('id');
+    $('.modal-title').text('Editar Empenho');
+    $('.callout').addClass("hidden"); //ocultar a div de aviso
+    $('.callout').find("p").text(""); //limpar a div de aviso
+   
+    id =  $(this).data('id');
+    itens = [];
+    
+    console.log(itens);
 
-        jQuery('#item-modal').modal('show'); //Abrir o modal
+    $.ajax({
+            type: 'get',
+            url: "/gerenciar-empenhos/get/itens/"+id,
+            processData: false,
+            contentType: false,
+              success: function(response) {
+                for(var i = 0; i < response.data.length; i++){
+                 
+                var cols = '';
+                cols = '';
+                novaLinha = null; 
+                var fk_item = response.data[i].fk_contrato_item ;
+                var descricao_item = response.data[i].nome;
+                var quantidade = response.data[i].quantidade;
+                var valor_unitario = response.data[i].valor;
+
+                var novaLinha = '<tr class="'+'linha'+i+'">';
+                
+                //Adc material ao array
+                itens.push({'fk_item': fk_item[0], 'quantidade': quantidade, 'valor_unitario': valor_unitario[1],'fk_empenho': id  } );
+                
+                /* Crian a linha p/ tabela*/
+                cols += '<td>'+descricao_item+'</td>';
+                cols += '<td>'+quantidade+'</td>';
+                cols += '<td>'+valor_unitario[1]+'</td>';
+                cols += '<td class="text-left"><a class="btnRemoverItem btn btn-xs btn-danger" data-indexof="'+itens.indexOf(itens[i])+'" data-linha="'+i+'"><i class="fa fa-trash"></i> Remover</a></td>';
+                novaLinha += cols + '</tr>';
+                
+                $('#item_id').append(novaLinha); /*Adc a linha  tabela*/
+
+                $('#quantidade').val('');
+                $('#valor_unitario').val('');
+                $('#fk_item').val('');
+                }
+                
+            },
+        });
+
+    jQuery('#item-modal').modal('show'); //Abrir o modal
 });
 
 $(document).on('click', '.btnDeletar', function() {

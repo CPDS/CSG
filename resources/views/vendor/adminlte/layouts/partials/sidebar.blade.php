@@ -110,6 +110,13 @@
             </li>     
             @endif
 
+             <li class="treeview">
+                <a href="#"><i class='fa fa-clone'></i> <span>Gerenciar Empenhos</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ url('gerenciar-empenhos') }}"><i class='fa fa-wrench'></i> <span>Empenhos</span></a></li>
+               </ul>
+            </li>     
+
             @if(Auth::user()->HasAnyPermission(['ver-contrato','ver-item-contrato']))
             <li class="treeview">
                 <a href="#"><i class='fa fa-clone'></i> <span>Gerenciar Solicitação</span> <i class="fa fa-angle-left pull-right"></i></a>

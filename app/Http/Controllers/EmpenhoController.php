@@ -94,7 +94,7 @@ class EmpenhoController extends Controller
         }
     }
 
-     public function itens(Request $request)
+    public function itens(Request $request)
     {
         $itens = $request->itens; 
 
@@ -106,6 +106,18 @@ class EmpenhoController extends Controller
 
         return response()->json($empenho);
     }
+
+
+    public function getItens($id)
+    {
+
+        $empenho = EmpenhoItem::join('empenhos','empenhos.id','=','empenho_items.fk_empenho')
+            ->join('item_contratos','item_contratos.id','=','empenho_items.fk_contrato_item')
+            ->get();
+
+        return response()->json(['data'=>$empenho]);
+    }
+
 
     public function update(Request $request)
     {
