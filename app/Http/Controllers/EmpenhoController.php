@@ -68,6 +68,27 @@ class EmpenhoController extends Controller
 
     public function store(Request $request)
     {   
+        $total = 0;
+
+        $empenho_anterior = Empenho::where('fk_contrato', $request->fk_contrato)
+            ->orderBy('created_at', 'desc') 
+            ->first();
+
+        $itens_empenho = EmpenhoItem::join('empenhos','empenhos.id','=','empenho_items.fk_empenho')
+            ->join('item_contratos','item_contratos.id','=','empenho_items.fk_contrato_item')
+            ->join('contrato_items','contrato_items.fk_item','=','item_contratos.id')
+            ->select('contrato_items.valor_unitario', 'empenho_items.quantidade')
+            ->where('empenho_items.fk_empenho', $empenho_anterior->id)
+            ->get();
+
+        foreach ($itens_empenho as $value) {
+            $total += $value->quantidade * $value->valor_unitario;
+        }
+
+        die($total);
+        
+
+        return;
         $rules = array(
             'valor' => 'required',
             'data' => 'required',
@@ -83,6 +104,7 @@ class EmpenhoController extends Controller
                 return Response::json(array('errors' => $validator->getMessageBag()->toArray()));
         }else {
 
+        
             $empenho = new Empenho();
             $empenho->valor = $request->valor;
             $empenho->data = $request->data;
@@ -113,7 +135,18 @@ class EmpenhoController extends Controller
 
         $empenho = EmpenhoItem::join('empenhos','empenhos.id','=','empenho_items.fk_empenho')
             ->join('item_contratos','item_contratos.id','=','empenho_items.fk_contrato_item')
+            ->join('contrato_items','contrato_items.fk_item','=','item_contratos.id')
+            ->select('contrato_items.valor_unitario as valor','empenho_items.quantidade','empenho_items.id','item_contratos.nome')
+            ->where('empenhos.id',$id)
             ->get();
+
+        return response()->json(['data'=>$empenho]);
+    }  
+
+    public function deleteItem($id)
+    {
+
+        $empenho = EmpenhoItem::destroy($id);
 
         return response()->json(['data'=>$empenho]);
     }

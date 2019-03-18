@@ -1,7 +1,9 @@
-
+var id;
+var linhas = 0;
+var itens = new Array();
 $(document).ready(function($) {
-    var itens = new Array();
-    var id;
+  
+  
 
     $("#telefone").mask("(99) 9?9999-9999");
 
@@ -92,7 +94,7 @@ $(document).ready(function($) {
 
         $.ajax({
             type: 'post',
-            url: "/gerenciar-empenhos/itens",
+            url: "/gerenciar-empenhos/store",
             data: dados,
             processData: false,
             contentType: false,
@@ -331,7 +333,7 @@ var i = 0;
     var novaLinha = '<tr class="'+'linha'+i+'">';
     //Adc material ao array
     itens = [];
-    
+    console.log(id);
     itens.push({'fk_item': fk_item[0], 'quantidade': quantidade, 'valor_unitario': valor_unitario[1],'fk_empenho': id  } );
     
     $.ajax({
@@ -365,10 +367,18 @@ var i = 0;
 
 
     //Remover Item
-    $(document).on('click', '.btnRemoverItem', function(){
-    itens.splice($(this).data('indexof'),1); //remove do array de acordo com o indice
-    $('.linha'+ $(this).data('linha')).remove(); //Remove a linha da tela 
+$(document).on('click', '.btnRemoverItem', function(){
+
+    $.ajax({
+        type: 'get',
+        url: "/gerenciar-empenhos/delete/item/"+ itens[$(this).data('indexof')].fk_item,
     });
+   
+    itens.splice($(this).data('indexof'),1); //remove do array de acordo com o indice
+    
+    $('.linha'+ $(this).data('linha')).remove(); //Remove a linha da tela 
+
+});
   
 });
 
@@ -450,9 +460,13 @@ $(document).on('click', '.btnAdd', function() {
    
     id =  $(this).data('id');
     itens = [];
-    
-    console.log(itens);
 
+    for (var i = 0; i < linhas; i++) {
+        $('.linha'+ i).remove(); //Remove a linha da tela 
+    }
+    
+    linhas = 0;
+    
     $.ajax({
             type: 'get',
             url: "/gerenciar-empenhos/get/itens/"+id,
@@ -460,24 +474,24 @@ $(document).on('click', '.btnAdd', function() {
             contentType: false,
               success: function(response) {
                 for(var i = 0; i < response.data.length; i++){
-                 
+                linhas ++;    
                 var cols = '';
                 cols = '';
                 novaLinha = null; 
-                var fk_item = response.data[i].fk_contrato_item ;
+                var fk_item = response.data[i].id ;
                 var descricao_item = response.data[i].nome;
                 var quantidade = response.data[i].quantidade;
                 var valor_unitario = response.data[i].valor;
 
                 var novaLinha = '<tr class="'+'linha'+i+'">';
-                
+
                 //Adc material ao array
-                itens.push({'fk_item': fk_item[0], 'quantidade': quantidade, 'valor_unitario': valor_unitario[1],'fk_empenho': id  } );
+                itens.push({'fk_item': fk_item, 'quantidade': quantidade, 'valor_unitario': valor_unitario,'fk_empenho': id  } );
                 
                 /* Crian a linha p/ tabela*/
                 cols += '<td>'+descricao_item+'</td>';
                 cols += '<td>'+quantidade+'</td>';
-                cols += '<td>'+valor_unitario[1]+'</td>';
+                cols += '<td>'+valor_unitario+'</td>';
                 cols += '<td class="text-left"><a class="btnRemoverItem btn btn-xs btn-danger" data-indexof="'+itens.indexOf(itens[i])+'" data-linha="'+i+'"><i class="fa fa-trash"></i> Remover</a></td>';
                 novaLinha += cols + '</tr>';
                 

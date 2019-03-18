@@ -47,6 +47,7 @@ Route::group(['prefix' => 'gerenciar-empenhos', 'where' => ['id' => '[0-9]+'], '
         Route::post('/delete', ['as' => 'gerenciar-empenhos.destroy', 'uses' => 'EmpenhoController@destroy']);
         Route::post('/itens', ['as' => 'gerenciar-empenhos.itens', 'uses' => 'EmpenhoController@itens']);
         Route::get('/get/itens/{id}', ['as' => 'gerenciar-empenhos.get.itens', 'uses' => 'EmpenhoController@getItens']);
+        Route::get('/delete/item/{id}', ['as' => 'gerenciar-empenhos.get.itens', 'uses' => 'EmpenhoController@deleteItem']);
 });
 
 Route::group(['prefix' => 'gerenciar-baixa-itens', 'where' => ['id' => '[0-9]+'], 'middleware' => ['role:Administrador|Coordenador|Tecnico']] ,function() {
