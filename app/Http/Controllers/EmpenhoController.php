@@ -68,7 +68,7 @@ class EmpenhoController extends Controller
 
     public function store(Request $request)
     {   
-        $total = 0;
+        /*$total = 0;
 
         $empenho_anterior = Empenho::where('fk_contrato', $request->fk_contrato)
             ->orderBy('created_at', 'desc') 
@@ -86,7 +86,7 @@ class EmpenhoController extends Controller
         }
 
         die($total);
-        
+        */
 
         return;
         $rules = array(
