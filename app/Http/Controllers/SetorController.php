@@ -22,8 +22,8 @@ class SetorController extends Controller
     public function list()
     {
 
-        $setor = Setor::orderBy('created_at', 'desc')
-        ->where('status','Ativo')->get();
+        $setor = Setor::where('status','Ativo')
+        ->orderBy('created_at', 'desc')->get();
         return DataTables::of($setor)
             ->editColumn('acao', function ($setor){
                 return $this->setBtns($setor);
@@ -54,10 +54,10 @@ class SetorController extends Controller
     public function store(Request $request)
     {   
         $rules = array(
-            'nome' => 'required',
-            'sigla' => 'required',
+            'nome' => 'required|regex:/^[\pL\s\-]+$/u',
+            'sigla' => 'required|regex:/^[\pL\s\-]+$/u|max:5',
             'telefone' => 'required',
-            'email' => 'required'
+            'email' => 'required|email|unique:users,email,null,id,status,Ativo'
         );
         $attributeNames = array(
             'nome' => 'Nome',
@@ -86,12 +86,31 @@ class SetorController extends Controller
 
     public function update(Request $request)
     {
-        $setor = Setor::find($request->id);
-        $setor->nome = $request->nome;
-        $setor->sigla = $request->sigla;
-        $setor->email = $request->email;
-        $setor->telefone = $request->telefone;
-        $setor->save();
+        $rules = array(
+            'nome' => 'required|regex:/^[\pL\s\-]+$/u',
+            'sigla' => 'required|regex:/^[\pL\s\-]+$/u|max:5',
+            'telefone' => 'required',
+            'email' => 'required|email|unique:users,email,null,id,status,Ativo'
+        );
+        $attributeNames = array(
+            'nome' => 'Nome',
+            'sigla' => 'Sigla',
+            'email' => 'E-mail',
+            'telefone' => 'Telefone'
+        );
+        
+        $validator = Validator::make(Input::all(), $rules);
+        $validator->setAttributeNames($attributeNames);
+        if ($validator->fails()){
+                return Response::json(array('errors' => $validator->getMessageBag()->toArray()));
+        }else {
+            $setor = Setor::find($request->id);
+            $setor->nome = $request->nome;
+            $setor->sigla = $request->sigla;
+            $setor->email = $request->email;
+            $setor->telefone = $request->telefone;
+            $setor->save();
+        }
 
         return response()->json($setor);
     }

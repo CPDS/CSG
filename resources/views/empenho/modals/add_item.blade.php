@@ -14,6 +14,9 @@
         </div>
 
       <form class="form-horizontal" role="form" id="form" >
+      Valor do contrato R$: <span id="valor_contrato"></span><br>
+      Valor total do empenho R$:  <span id="valor_empenho"></span><br>
+      Subtotal do empenho R$: <span id="subtotal"></span>
 
        <div class="form-group col-sm-12">
         <div class="col-sm-5">

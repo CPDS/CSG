@@ -1,6 +1,9 @@
 var id;
 var linhas = 0;
 var itens = new Array();
+var qtd_itens = 0;
+var soma_total_itens = 0;
+var i = 0;
 $(document).ready(function($) {
   
   
@@ -304,7 +307,7 @@ $(document).ready(function($) {
         });
     });
 
-var i = 0;
+
   //Adicionar material
   $(document).on('click', '.btnAdcItem', function() {
     //verificar se a opção selecionada possiu valor
@@ -332,15 +335,18 @@ var i = 0;
 
     var novaLinha = '<tr class="'+'linha'+i+'">';
     //Adc material ao array
-    itens = [];
-    console.log(id);
+    
+    console.log(fk_item[0]);
     itens.push({'fk_item': fk_item[0], 'quantidade': quantidade, 'valor_unitario': valor_unitario[1],'fk_empenho': id  } );
+   
+    var itens_aux = new Array();
+    itens_aux.push({'fk_item': fk_item[0], 'quantidade': quantidade, 'valor_unitario': valor_unitario[1],'fk_empenho': id  } );
     
     $.ajax({
         type: 'post',
         url: "/gerenciar-empenhos/itens",
          data: {
-            'itens': itens
+            'itens': itens_aux
         },
     });   
 
@@ -353,6 +359,9 @@ var i = 0;
     cols += '<td class="text-left"><a class="btnRemoverItem btn btn-xs btn-danger" data-indexof="'+itens.indexOf(itens[i])+'" data-linha="'+i+'"><i class="fa fa-trash"></i> Remover</a></td>';
     novaLinha += cols + '</tr>';
     
+   let valor = $('#subtotal').text();
+
+    $('#subtotal').text( parseFloat(valor) - parseFloat(valor_unitario[1] * quantidade));
 
 
     $('#item_id').append(novaLinha); /*Adc a linha  tabela*/
@@ -368,7 +377,7 @@ var i = 0;
 
     //Remover Item
 $(document).on('click', '.btnRemoverItem', function(){
-
+console.log( itens[$(this).data('indexof')]);
     $.ajax({
         type: 'get',
         url: "/gerenciar-empenhos/delete/item/"+ itens[$(this).data('indexof')].fk_item,
@@ -459,6 +468,9 @@ $(document).on('click', '.btnAdd', function() {
     $('.callout').find("p").text(""); //limpar a div de aviso
    
     id =  $(this).data('id');
+    $('#valor_empenho').text($(this).data('valor'));
+    $('#subtotal').text($(this).data('valor'));
+    $('#valor_contrato').text($(this).data('valor_contrato'));
     itens = [];
 
     for (var i = 0; i < linhas; i++) {
@@ -466,7 +478,7 @@ $(document).on('click', '.btnAdd', function() {
     }
     
     linhas = 0;
-    
+
     $.ajax({
             type: 'get',
             url: "/gerenciar-empenhos/get/itens/"+id,
@@ -474,7 +486,7 @@ $(document).on('click', '.btnAdd', function() {
             contentType: false,
               success: function(response) {
                 for(var i = 0; i < response.data.length; i++){
-                linhas ++;    
+                linhas ++; 
                 var cols = '';
                 cols = '';
                 novaLinha = null; 
@@ -482,7 +494,8 @@ $(document).on('click', '.btnAdd', function() {
                 var descricao_item = response.data[i].nome;
                 var quantidade = response.data[i].quantidade;
                 var valor_unitario = response.data[i].valor;
-
+                soma_total_itens +=  parseFloat(valor_unitario) * quantidade; 
+                qtd_itens +=  parseInt(quantidade); 
                 var novaLinha = '<tr class="'+'linha'+i+'">';
 
                 //Adc material ao array
@@ -501,10 +514,12 @@ $(document).on('click', '.btnAdd', function() {
                 $('#valor_unitario').val('');
                 $('#fk_item').val('');
                 }
+                let valor = $('#subtotal').text();
+
+                $('#subtotal').text( parseFloat(valor) - soma_total_itens);
                 
             },
         });
-
     jQuery('#item-modal').modal('show'); //Abrir o modal
 });
 

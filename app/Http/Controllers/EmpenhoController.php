@@ -41,10 +41,12 @@ class EmpenhoController extends Controller
     }
 
     private function setBtns(Empenho $empenhos){
+        $contrato = $empenhos->contrato->valor_total;
         $dados = "data-id_del='$empenhos->id' 
         data-id='$empenhos->id' 
         data-valor='$empenhos->valor'
         data-fk_contrato='$empenhos->fk_contrato'  
+        data-valor_contrato='$contrato'  
         data-valor='$empenhos->data' ";
 
         $btnEditar = '';
@@ -68,27 +70,31 @@ class EmpenhoController extends Controller
 
     public function store(Request $request)
     {   
-        /*$total = 0;
+        $total = 0;
+        $soma_total = 0;
 
         $empenho_anterior = Empenho::where('fk_contrato', $request->fk_contrato)
             ->orderBy('created_at', 'desc') 
             ->first();
 
-        $itens_empenho = EmpenhoItem::join('empenhos','empenhos.id','=','empenho_items.fk_empenho')
-            ->join('item_contratos','item_contratos.id','=','empenho_items.fk_contrato_item')
-            ->join('contrato_items','contrato_items.fk_item','=','item_contratos.id')
-            ->select('contrato_items.valor_unitario', 'empenho_items.quantidade')
-            ->where('empenho_items.fk_empenho', $empenho_anterior->id)
-            ->get();
+        if($empenho_anterior){
 
-        foreach ($itens_empenho as $value) {
-            $total += $value->quantidade * $value->valor_unitario;
+            $itens_empenho = EmpenhoItem::join('empenhos','empenhos.id','=','empenho_items.fk_empenho')
+                ->join('item_contratos','item_contratos.id','=','empenho_items.fk_contrato_item')
+                ->join('contrato_items','contrato_items.fk_item','=','item_contratos.id')
+                ->select('contrato_items.valor_unitario', 'empenho_items.quantidade')
+                ->where('empenho_items.fk_empenho', $empenho_anterior->id)
+                ->get();
+
+            foreach ($itens_empenho as $value) {
+                $total += $value->quantidade * $value->valor_unitario;
+            }
+
+            if( $empenho_anterior->valor > $total ){
+                $soma_total = $empenho_anterior->valor - $total;
+            }
         }
 
-        die($total);
-        */
-
-        return;
         $rules = array(
             'valor' => 'required',
             'data' => 'required',
@@ -108,6 +114,7 @@ class EmpenhoController extends Controller
             $empenho = new Empenho();
             $empenho->valor = $request->valor;
             $empenho->data = $request->data;
+            $empenho->saldo_anterior = $soma_total;
             $empenho->fk_contrato = $request->fk_contrato;
             $empenho->status = 'Ativo';
             $empenho->save();
