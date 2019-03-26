@@ -3,7 +3,9 @@ var linhas = 0;
 var itens = new Array();
 var qtd_itens = 0;
 var soma_total_itens = 0;
+var soma_total_empenho = 0;
 var i = 0;
+var fk_item_global;
 $(document).ready(function($) {
   
   
@@ -320,7 +322,6 @@ $(document).ready(function($) {
             message: 'Preencha todos campos!',
         });
     }else{
-  
 
     var cols = '';
     cols = '';
@@ -328,16 +329,30 @@ $(document).ready(function($) {
     var campo = $('#fk_item :selected').val();
     var fk_item = campo.split("|");
     var valor_unitario = campo.split("|");
-
-
     var descricao_material = $('#fk_item :selected').text();
     var quantidade = $('#quantidade').val();
-
-    var novaLinha = '<tr class="'+'linha'+i+'">';
+    var novaLinha = '<tr class="'+'linha'+linhas+'">';
     //Adc material ao array
     
-    console.log(fk_item[0]);
-    itens.push({'fk_item': fk_item[0], 'quantidade': quantidade, 'valor_unitario': valor_unitario[1],'fk_empenho': id  } );
+
+    let valor1 = $('#subtotal').text();
+
+     var verifica_soma = parseFloat(valor1) - parseFloat(valor_unitario[1] * quantidade)
+    console.log(verifica_soma);
+    if(verifica_soma < 0){
+        iziToast.destroy();
+        iziToast.error({
+            title: 'Erro',
+            message: 'Você não tem mais saldo nesse empenho!',
+        });
+
+        return;
+    }
+
+    fk_item_global++;
+    console.log('fk'+fk_item_global);
+
+    itens.push({'fk_item': fk_item_global, 'quantidade': quantidade, 'valor_unitario': valor_unitario[1],'fk_empenho': id  } );
    
     var itens_aux = new Array();
     itens_aux.push({'fk_item': fk_item[0], 'quantidade': quantidade, 'valor_unitario': valor_unitario[1],'fk_empenho': id  } );
@@ -356,16 +371,17 @@ $(document).ready(function($) {
     cols += '<td>'+descricao_material+'</td>';
     cols += '<td>'+quantidade+'</td>';
     cols += '<td>'+valor_unitario[1]+'</td>';
-    cols += '<td class="text-left"><a class="btnRemoverItem btn btn-xs btn-danger" data-indexof="'+itens.indexOf(itens[i])+'" data-linha="'+i+'"><i class="fa fa-trash"></i> Remover</a></td>';
+    cols += '<td class="text-left"><a class="btnRemoverItem btn btn-xs btn-danger" data-indexof="'+linhas+'" data-linha="'+linhas+'"><i class="fa fa-trash"></i> Remover</a></td>';
     novaLinha += cols + '</tr>';
     
-   let valor = $('#subtotal').text();
+    let valor = $('#subtotal').text();
 
     $('#subtotal').text( parseFloat(valor) - parseFloat(valor_unitario[1] * quantidade));
 
 
     $('#item_id').append(novaLinha); /*Adc a linha  tabela*/
     i+=1;
+    linhas++;
 
     $('#quantidade').val('');
     $('#valor_unitario').val('');
@@ -377,15 +393,21 @@ $(document).ready(function($) {
 
     //Remover Item
 $(document).on('click', '.btnRemoverItem', function(){
-console.log( itens[$(this).data('indexof')]);
+    console.log( itens[$(this).data('indexof')]);
+    
     $.ajax({
         type: 'get',
         url: "/gerenciar-empenhos/delete/item/"+ itens[$(this).data('indexof')].fk_item,
     });
+
+    let valor = parseFloat( (itens[$(this).data('indexof')].valor_unitario) * (itens[$(this).data('indexof')].quantidade))  + parseFloat($('#subtotal').text());
+
+    $('#subtotal').text(valor);
    
     itens.splice($(this).data('indexof'),1); //remove do array de acordo com o indice
     
     $('.linha'+ $(this).data('linha')).remove(); //Remove a linha da tela 
+    linhas--;
 
 });
   
@@ -468,7 +490,15 @@ $(document).on('click', '.btnAdd', function() {
     $('.callout').find("p").text(""); //limpar a div de aviso
    
     id =  $(this).data('id');
-    $('#valor_empenho').text($(this).data('valor'));
+    soma_total_empenho =  $('#valor_empenho').text();
+    let saldo_anterior = parseFloat($(this).data('saldo_anterior'));
+
+    if(Number.isNaN(saldo_anterior)){
+        saldo_anterior = 0;
+    }
+
+    let subtotal = parseFloat($(this).data('valor')) +  saldo_anterior; 
+    $('#valor_empenho').text(subtotal);
     $('#subtotal').text($(this).data('valor'));
     $('#valor_contrato').text($(this).data('valor_contrato'));
     itens = [];
@@ -486,11 +516,11 @@ $(document).on('click', '.btnAdd', function() {
             contentType: false,
               success: function(response) {
                 for(var i = 0; i < response.data.length; i++){
-                linhas ++; 
                 var cols = '';
                 cols = '';
                 novaLinha = null; 
                 var fk_item = response.data[i].id ;
+                fk_item_global = parseInt(fk_item); 
                 var descricao_item = response.data[i].nome;
                 var quantidade = response.data[i].quantidade;
                 var valor_unitario = response.data[i].valor;
@@ -505,11 +535,11 @@ $(document).on('click', '.btnAdd', function() {
                 cols += '<td>'+descricao_item+'</td>';
                 cols += '<td>'+quantidade+'</td>';
                 cols += '<td>'+valor_unitario+'</td>';
-                cols += '<td class="text-left"><a class="btnRemoverItem btn btn-xs btn-danger" data-indexof="'+itens.indexOf(itens[i])+'" data-linha="'+i+'"><i class="fa fa-trash"></i> Remover</a></td>';
+                cols += '<td class="text-left"><a class="btnRemoverItem btn btn-xs btn-danger" data-indexof="'+itens.indexOf(itens[linhas])+'" data-linha="'+linhas+'"><i class="fa fa-trash"></i> Remover</a></td>';
                 novaLinha += cols + '</tr>';
                 
                 $('#item_id').append(novaLinha); /*Adc a linha  tabela*/
-
+                linhas ++; 
                 $('#quantidade').val('');
                 $('#valor_unitario').val('');
                 $('#fk_item').val('');

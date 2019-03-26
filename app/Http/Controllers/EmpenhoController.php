@@ -46,6 +46,7 @@ class EmpenhoController extends Controller
         data-id='$empenhos->id' 
         data-valor='$empenhos->valor'
         data-fk_contrato='$empenhos->fk_contrato'  
+        data-saldo_anterior='$empenhos->saldo_anterior'  
         data-valor_contrato='$contrato'  
         data-valor='$empenhos->data' ";
 
@@ -145,6 +146,7 @@ class EmpenhoController extends Controller
             ->join('contrato_items','contrato_items.fk_item','=','item_contratos.id')
             ->select('contrato_items.valor_unitario as valor','empenho_items.quantidade','empenho_items.id','item_contratos.nome')
             ->where('empenhos.id',$id)
+            ->orderBy('empenho_items.created_at','ASC')
             ->get();
 
         return response()->json(['data'=>$empenho]);
