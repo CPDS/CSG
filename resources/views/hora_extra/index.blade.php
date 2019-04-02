@@ -33,7 +33,7 @@
                             <tr>
                                 <th>Nº</th>
                                 <th>Funcionário</th>
-                                <th>Horas extendidas</th>   
+                                <th>Horas estendidas</th>   
                                 <th>Dia</th>
                                 <th width="20%">Ações</th>
                             </tr>

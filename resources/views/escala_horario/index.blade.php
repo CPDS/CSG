@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 <script src ="{{ asset('/plugins/jQuery/jQuery-3.1.0.min.js') }}" type = "text/javascript" ></script>
 <script src ="{{ asset('/js/scripts_gerais/escala_horario.js') }}" type = "text/javascript" ></script>
-<script src="{{ asset('plugins/datatables/jquery.dataTables.js') }}" type = "text/javascript"></script>
+<script src="{{ asset('plugins/datatables/jquery.dataTables.js' ) . '?update=' . str_random(3) }}" type = "text/javascript"></script>
 
 <script src="{{ asset('plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
 <link rel="stylesheet" href="{{ asset('plugins/datatables/dataTables.bootstrap.css') }}">
@@ -32,11 +32,7 @@
                             <tr>
                                 <th>Nº</th>
                                 <th>Funcionário</th>
-                                <th>H. de início</th>   
-                                <th>H. Fim</th>
-                                <th>Dia da semana</th>
                                 <th>Ações</th>
-                              
                             </tr>
                             </thead>
                             
@@ -51,4 +47,5 @@
 
 @include('escala_horario.modals.criar_escala')
 @include('escala_horario.modals.deletar_escala')
+@include('escala_horario.modals.escalas')
 @endsection

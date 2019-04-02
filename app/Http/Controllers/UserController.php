@@ -103,9 +103,56 @@ class UserController extends Controller
         return $btnVer.$btnEditar.$btnDeletar;
     }
 
+    private function validar_cpf($cpf)
+    {
+        $cpf = preg_replace('/[^0-9]/', '', (string) $cpf);
+        // Valida tamanho
+        if (strlen($cpf) != 11)
+            return false;
+        // Calcula e confere primeiro dígito verificador
+        for ($i = 0, $j = 10, $soma = 0; $i < 9; $i++, $j--)
+            $soma += $cpf{$i} * $j;
+        $resto = $soma % 11;
+        if ($cpf{9} != ($resto < 2 ? 0 : 11 - $resto))
+            return false;
+        // Calcula e confere segundo dígito verificador
+        for ($i = 0, $j = 11, $soma = 0; $i < 10; $i++, $j--)
+            $soma += $cpf{$i} * $j;
+        $resto = $soma % 11;
+        if ((integer)$cpf{10} == ($resto < 2 ? 0 : 11 - $resto))
+            return true;
+        else
+            return false;
+    }
+    function validar_cnpj($cnpj)
+    {
+        $cnpj = preg_replace('/[^0-9]/', '', (string) $cnpj);
+        // Valida tamanho
+        if (strlen($cnpj) != 14)
+            return false;
+        // Valida primeiro dígito verificador
+        for ($i = 0, $j = 5, $soma = 0; $i < 12; $i++)
+        {
+            $soma += $cnpj{$i} * $j;
+            $j = ($j == 2) ? 9 : $j - 1;
+        }
+        $resto = $soma % 11;
+        if ($cnpj{12} != ($resto < 2 ? 0 : 11 - $resto))
+            return false;
+        // Valida segundo dígito verificador
+        for ($i = 0, $j = 6, $soma = 0; $i < 13; $i++)
+        {
+            $soma += $cnpj{$i} * $j;
+            $j = ($j == 2) ? 9 : $j - 1;
+        }
+        $resto = $soma % 11;
+        return $cnpj{13} == ($resto < 2 ? 0 : 11 - $resto);
+    }
+
     public function store(Request $request)
-    {   
+    { 
         $rules = array(
+            'nome_role' => 'required',
             'nome_user' => 'required',
             'telefone' => 'required',
             'endereco' => 'required',
@@ -113,18 +160,30 @@ class UserController extends Controller
             'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
             'password_confirmation' => 'min:6',
         );
+        if ($request->nome_role == "Empresa")
+            $rules = $rules + ['cnpj' => 'required|unique:users,cnpj,null,id',];
+        else
+            $rules = $rules + ['cpf' => 'required|unique:users,cpf,null,id',];
         $attributeNames = array(
+            'nome_role' => 'Tipo',
             'nome_user' => 'Nome',
             'telefone' => 'Telefone',
+            'cpf' => 'CPF',
+            'cnpj' => 'CNPJ',
             'endereco' => 'Endereco',
             'email' => 'E-mail',
         );
         
         $validator = Validator::make(Input::all(), $rules);
         $validator->setAttributeNames($attributeNames);
-        if ($validator->fails()){
-                return Response::json(array('errors' => $validator->getMessageBag()->toArray()));
-        }else { 
+        if (!$this->validar_cpf($request->cpf) and !$this->validar_cnpj($request->cnpj)) {
+                return Response::json(array('errors' => ['CPF/CNPJ Inválido']));
+        }
+        else if ($validator->fails())
+        {
+           return Response::json(array('errors' => $validator->getMessageBag()->toArray())); 
+        }
+        else { 
 
             $data = date("Y-m-d");
  
@@ -138,7 +197,7 @@ class UserController extends Controller
             $user->fk_setor = $request->fk_setor;
             $user->cnpj = $request->cnpj;
             $user->responsavel = $request->responsavel;
-            $user->contato = $request->fk_setor;
+            $user->contato = $request->contato;
             $user->status = 'Ativo';
             $user->save();
 
@@ -148,24 +207,57 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
-       
-        $user = User::find($request->id);
+        $rules = array(
+            'nome_role' => 'required',
+            'nome_user' => 'required',
+            'telefone' => 'required',
+            'endereco' => 'required',
+            'email' => 'required',
+            'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
+            'password_confirmation' => 'min:6',
+        );                
+        if ($request->nome_role == "Empresa")
+            $rules = $rules + ['cnpj' => 'required|unique:users,cnpj,' . $request->id.',id',];
+        else
+            $rules = $rules + ['cpf' => 'required|unique:users,cpf,' . $request->id.',id',];
+        // dd($rules);
+        $attributeNames = array(
+            'nome_role' => 'Tipo',
+            'nome_user' => 'Nome',
+            'telefone' => 'Telefone',
+            'cpf' => 'CPF',
+            'cnpj' => 'CNPJ',
+            'endereco' => 'Endereco',
+            'email' => 'E-mail',
+        );
 
-        $role = $user->getRoleNames();
+        $validator = Validator::make(Input::all(), $rules);
+        $validator->setAttributeNames($attributeNames);
+        if (!$this->validar_cpf($request->cpf) and !$this->validar_cnpj($request->cnpj)) {
+                return Response::json(array('errors' => ['CPF/CNPJ Inválido']));
+        }
+        else if ($validator->fails())
+        {
+           return Response::json(array('errors' => $validator->getMessageBag()->toArray())); 
+        }
+        else { 
 
-        $user->removeRole($role[0]);
-
-        $user->name = $request->nome_user;
-        $user->email = $request->email;
-        $user->cpf = $request->cpf;
-        $user->cnpj = $request->cnpj;
-        $user->telefone = $request->telefone;
-        $user->endereco = $request->endereco;
-        $user->fk_setor = $request->fk_setor;
-        $user->responsavel = $request->responsavel;
-        $user->assignRole($request->nome_role);
-        $user->save();        
-        return response()->json($user);
+            $data = date("Y-m-d");
+ 
+            $user = User::find($request->id);
+            $user->name = $request->nome_user;
+            $user->email = $request->email;
+            $user->password = bcrypt($request->password);
+            $user->cpf = $request->cpf;
+            $user->telefone = $request->telefone;
+            $user->endereco = $request->endereco;
+            $user->fk_setor = $request->fk_setor;
+            $user->cnpj = $request->cnpj;
+            $user->responsavel = $request->responsavel;
+            $user->contato = $request->contato;
+            $user->status = 'Ativo';
+            $user->save();
+        }
     }
 
     public function destroy(Request $request)

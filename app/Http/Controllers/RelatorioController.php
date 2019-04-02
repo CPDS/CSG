@@ -98,6 +98,7 @@ class RelatorioController extends Controller
         $materials = Material::LEFTJOIN('material_entradas','material_entradas.fk_material','=','materials.id')
         ->LEFTJOIN('material_saidas','material_saidas.fk_material','=','materials.id')
         ->select('materials.*','material_entradas.quantidade as entrada','material_saidas.quantidade as saida')
+        ->where('material_entradas.status','Ativo')
         ->orderBy('created_at', 'desc')->get();
    
         

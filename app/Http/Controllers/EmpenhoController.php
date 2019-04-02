@@ -78,6 +78,19 @@ class EmpenhoController extends Controller
             ->orderBy('created_at', 'desc') 
             ->first();
 
+        $contrato = Contrato::find($request->fk_contrato);
+
+        $sum_empenho = Empenho::where('fk_contrato', $request->fk_contrato)
+            ->where('status','!=','Inativo')
+            ->select('valor') 
+            ->sum('valor');
+        $sum_empenho += $request->valor;
+
+        
+        if($sum_empenho > $contrato->valor_total){
+            return response()->json('O valor do empenho ultrapassa o valor disponível do contrato',500);
+        }
+
         if($empenho_anterior){
 
             $itens_empenho = EmpenhoItem::join('empenhos','empenhos.id','=','empenho_items.fk_empenho')

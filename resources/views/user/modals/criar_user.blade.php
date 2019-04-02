@@ -60,7 +60,7 @@
             </div>
 
              <div class="form-group empresa">               
-                <div class="col-sm-8">
+                <div class="col-sm-6">
                     <strong>Responsavel:</strong>
                     <div class="input-group">
                         <span data-toggle="tooltip" title="Responsavel" class="input-group-addon"><i class="fa fa-home"></i></span>
@@ -68,7 +68,7 @@
                     </div>       
                 </div>
 
-                <div class="col-sm-4">
+                <div class="col-sm-6">
                     <strong>Contato:</strong>
                     <div class="input-group">
                         <span data-toggle="tooltip" title="Contato" class="input-group-addon"><i class="fa fa-home"></i></span>
@@ -116,9 +116,8 @@
             </div>
 
 
-            <div class="form-group user">
-
-                <div class="col-sm-4">
+       <div class="form-group">
+         <div class="col-sm-4">
                     <strong>Confirmar Senha:</strong>
                     <div class="input-group">
                         <span data-toggle="tooltip" title="Password" class="input-group-addon"><i class="fa fa-key"></i></span>
@@ -126,7 +125,7 @@
                     </div>       
                 </div>
 
-                <div class="col-sm-8">
+                <div class="col-sm-8  user">
                     <strong>Setor:</strong>
                     <div class="input-group">
                         <span data-toggle="tooltip" title="Setor" class="input-group-addon"><i class="fa fa-university"></i></span>

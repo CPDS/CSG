@@ -30,7 +30,7 @@
 
                      <div class="form-group">
                         <div class="col-sm-12">
-                            <strong>Horas extendidas:</strong>
+                            <strong>Horas estendidas:</strong>
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="Horas excedidas" class="input-group-addon"><i class="fa fa-clock-o"></i></span>
                                 <input type="text" maxlength="254" class="form-control" name="horas_excedidas"  id="horas_excedidas">

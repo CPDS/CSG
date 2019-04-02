@@ -63,12 +63,12 @@ class HoraExtraController extends Controller
     public function store(Request $request)
     {  
         $rules = array(
-            'horas_excedidas' => 'required',
+            'horas_excedidas' => 'required|numeric|max:99',
             'dia' => 'required',
             'fk_user' => 'required'
         );
         $attributeNames = array(
-            'horas_excedidas' => 'Horas excedidasd',
+            'horas_excedidas' => 'Horas excedidas',
             'dia' => 'Dia',
             'fk_user' => 'required'
         );
@@ -91,12 +91,29 @@ class HoraExtraController extends Controller
 
     public function update(Request $request)
     {
-        $hora_extra = HoraExtra::find($request->id);
-        $hora_extra->horas_excedidas = $request->horas_excedidas;
-        $hora_extra->dia = $request->dia;
-        $hora_extra->save();
+        $rules = array(
+            'horas_excedidas' => 'required|numeric|max:99',
+            'dia' => 'required',
+            'fk_user' => 'required'
+        );
+        $attributeNames = array(
+            'horas_excedidas' => 'Horas excedidas',
+            'dia' => 'Dia',
+            'fk_user' => 'required'
+        );
+        
+        $validator = Validator::make(Input::all(), $rules);
+        $validator->setAttributeNames($attributeNames);
+        if ($validator->fails()){
+                return Response::json(array('errors' => $validator->getMessageBag()->toArray()));
+        }else {
+            $hora_extra = HoraExtra::find($request->id);
+            $hora_extra->horas_excedidas = $request->horas_excedidas;
+            $hora_extra->dia = $request->dia;
+            $hora_extra->save();
 
-        return response()->json($hora_extra);
+            return response()->json($hora_extra);
+        }
     }
 
     public function destroy(Request $request)

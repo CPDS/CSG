@@ -19,9 +19,6 @@ $(document).ready(function($) {
             columns: [ 
             { data: null, name: 'order' },
             { data: 'nome_funcionario', name: 'nome_funcionario' },
-            { data: 'horario_inicio', name: 'horario_inicio' },
-            { data: 'horario_termino', name: 'horario_termino' },
-            { data: 'dia_semana', name: 'dia_semana' },
             { data: 'acao', name: 'acao' },
             ],
             createdRow : function( row, data, index ) {
@@ -65,13 +62,10 @@ $(document).ready(function($) {
                 }
             },
             columnDefs : [
-              { targets : [5], sortable : false },
+              { targets : [2], sortable : false },
               { "width": "4%", "targets": 0 }, 
               { "width": "38%", "targets": 1 },
-              { "width": "13%", "targets": 2 }, 
-              { "width": "13%", "targets": 3 },
-              { "width": "20%", "targets": 4 }, 
-              { "width": "12%", "targets": 5 }
+              { "width": "13%", "targets": 2 },
             ]
     });
 
@@ -275,30 +269,39 @@ $(document).on('click', '.btnAdicionar', function() {
 
 $(document).on('click', '.btnVer', function() {
 
-        $('.modal-footer .btn-action').removeClass('edit');
-        $('.modal-footer .btn-action').addClass('hidden');
-        $('.modal-title').text('Ver escala de horário');
-        
-        //desabilita os campos
-        $('#horario_inicio').prop('readonly',true);
-        $('#horario_termino').prop('readonly',true);
-        $('#dia_semana').prop('readonly',true);
-        $('#fk_user').prop('disabled',true);
-        $('#dia_semana').prop('disabled',true);
-        $('#fk_setor').prop('disabled',true);
-
-        $('.callout').addClass("hidden"); //ocultar a div de aviso
-        $('.callout').find("p").text(""); //limpar a div de aviso
-
         var btnEditar = $(this);
 
-        $('#form :input').each(function(index,input){
-            $('#'+input.id).val($(btnEditar).data(input.id));
+        $('#nome_servidor').text($(this).data('nome_servidor'));
+        $('#id_escala').text($(this).data('id'));
+        var linhas = 0;
+        $.ajax({
+            type: 'get',
+            url: "/gerenciar-escalas/escalas/"+$(this).data('id'),
+            processData: false,
+            contentType: false,
+              success: function(response) {
+                for(var i = 0; i < response.data.length; i++){
+                    var cols = '';
+                    cols = '';
+                    novaLinha = null;
+                    var novaLinha = '<tr class="'+'linha'+i+'">';
+
+                    cols += '<td>'+response.data[i].id+'</td>';
+                    cols += '<td>'+response.data[i].id+'</td>';
+                    cols += '<td>'+response.data[i].id+'</td>';
+                    cols += '<td class="text-left"><a class="btnRemoverItem btn btn-xs btn-danger" data-indexof="'+i+'" data-linha="'+linhas+'"><i class="fa fa-trash"></i> Remover</a></td>';
+                    novaLinha += cols + '</tr>';
+
+                    $('#item_id').append(novaLinha); /*Adc a linha  tabela*/
+                     linhas ++; 
+                }          
+            },
         });
 
-        
-        jQuery('#criar_editar-modal').modal('show');
+    jQuery('#visualizar_modal').modal('show');
 });
+
+
 $(document).on('click', '.btnEditar', function() {
         $('.modal-footer .btn-action').removeClass('add');
         $('.modal-footer .btn-action').addClass('edit');

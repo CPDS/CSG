@@ -113,13 +113,11 @@ $(document).ready(function($) {
                     
                     $('#table').DataTable().draw(false);
 
-                    jQuery('#criar_editar-modal').modal('hide');
-
                     $(function() {
                         iziToast.destroy();
                         iziToast.success({
                             title: 'OK',
-                            message: 'Escala adicionado com Sucesso!',
+                            message: 'Entrada de material adicionado com Sucesso!',
                         });
                     });
 

@@ -29,8 +29,10 @@ class EscalaHorarioController extends Controller
         $escala_horario = EscalaHorario::JOIN('users','escala_horarios.fk_user','=','users.id')
         ->JOIN('setors','setors.id','=','escala_horarios.fk_setor')
         ->where('escala_horarios.status','Ativo')
-        ->select('escala_horarios.id','escala_horarios.horario_inicio','escala_horarios.dia_semana','escala_horarios.horario_termino', 'users.name as nome_funcionario', 'users.id as fk_user','setors.nome as nome_setor' , 'escala_horarios.fk_setor')
-        ->orderBy('escala_horarios.created_at', 'desc')->get();
+        ->select('users.name as nome_funcionario', 'users.id')
+        ->groupBy('users.name')
+        ->groupBy('users.id')
+        ->get();
 
         return DataTables::of($escala_horario)
             ->editColumn('acao', function ($escala_horario){
@@ -40,7 +42,7 @@ class EscalaHorarioController extends Controller
     }
 
     private function setBtns(EscalaHorario $escala_horarios){
-        $dados = "data-id_del='$escala_horarios->id' data-id='$escala_horarios->id' data-horario_inicio='$escala_horarios->horario_inicio' data-dia_semana='$escala_horarios->dia_semana' data-horario_termino='$escala_horarios->horario_termino' data-nome_servidor='$escala_horarios->nome_funcionario' data-fk_user='$escala_horarios->fk_user' data-nome_setor='$escala_horarios->nome_setor' data-fk_setor='$escala_horarios->fk_setor' ";
+        $dados = "data-id_del='$escala_horarios->id' data-id='$escala_horarios->id' data-nome_servidor='$escala_horarios->nome_funcionario' ";
 
         $btnEditar = '';
         $btnDeletar = '';
@@ -55,10 +57,7 @@ class EscalaHorarioController extends Controller
             $btnDeletar = "<a class='btn btn-danger btn-sm btnDeletar' data-toggle='tooltip' title='Deletar escala_horario' $dados><i class='fa fa-trash'></i></a>";
         }
 
-
         return $btnVer.$btnEditar.$btnDeletar;
-
-
     }
 
     public function store(Request $request)
@@ -95,6 +94,19 @@ class EscalaHorarioController extends Controller
             return response()->json($escala_horario);
         }
     }
+
+    public function escalas($id)
+    {
+        $escala_horario = EscalaHorario::JOIN('users','escala_horarios.fk_user','=','users.id')
+        ->JOIN('setors','setors.id','=','escala_horarios.fk_setor')
+        ->where('escala_horarios.status','Ativo')
+        ->select('escala_horarios.id','escala_horarios.horario_inicio','escala_horarios.dia_semana','escala_horarios.horario_termino', 'users.name as nome_funcionario', 'users.id as fk_user','setors.nome as nome_setor' , 'escala_horarios.fk_setor')
+        ->where('users.id',$id)
+        ->orderBy('escala_horarios.created_at', 'desc')
+        ->get();
+
+        return response()->json(['data'=>$escala_horario]);
+    } 
 
     public function update(Request $request)
     {

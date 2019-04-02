@@ -103,6 +103,7 @@ Route::group(['prefix' => 'gerenciar-users', 'where' => ['id' => '[0-9]+'], 'mid
 Route::group(['prefix' => 'gerenciar-escalas', 'where' => ['id' => '[0-9]+'], 'middleware' => ['role:Administrador|Servidor|Coordenador|Tecnico|Ag-limpeza|Professor']] ,function() {
         Route::get('', ['as' => 'gerenciar-escalas.index', 'uses' => 'EscalaHorarioController@index']);
         Route::get('/list',['as' => 'gerenciar-escalas.list', 'uses' => 'EscalaHorarioController@list']);
+        Route::get('/escalas/{id}',['as' => 'eacalas.list', 'uses' => 'EscalaHorarioController@escalas']);
         Route::post('/store', ['as' => 'gerenciar-escalas.store', 'uses' => 'EscalaHorarioController@store']);
         Route::post('/update', ['as' => 'gerenciar-escalas.update', 'uses' => 'EscalaHorarioController@update']);
         Route::post('/delete', ['as' => 'gerenciar-escalas.destroy', 'uses' => 'EscalaHorarioController@destroy']);

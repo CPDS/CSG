@@ -138,10 +138,10 @@ $(document).ready(function($) {
                 }
             },
 
-            error: function() {
+            error: function(data) {
                 iziToast.error({
                     title: 'Erro Interno',
-                    message: 'Operação Cancelada!',
+                    message: data.responseJSON,
                 });
             },
 
