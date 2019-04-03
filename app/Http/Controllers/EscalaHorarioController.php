@@ -57,7 +57,7 @@ class EscalaHorarioController extends Controller
             $btnDeletar = "<a class='btn btn-danger btn-sm btnDeletar' data-toggle='tooltip' title='Deletar escala_horario' $dados><i class='fa fa-trash'></i></a>";
         }
 
-        return $btnVer.$btnEditar.$btnDeletar;
+        return $btnVer.$btnDeletar;
     }
 
     public function store(Request $request)
@@ -119,6 +119,15 @@ class EscalaHorarioController extends Controller
 
         return response()->json($escala_horario);
     }
+
+    public function deleteEscala($id)
+    {
+
+        $escala_horario = EscalaHorario::destroy($id);
+
+
+        return response()->json($escala_horario);
+    } 
 
     public function destroy(Request $request)
     {

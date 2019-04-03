@@ -104,6 +104,7 @@ class SolicitacaoController extends Controller
             $solicitacao->status = $request->status;
             $solicitacao->save();
 
+            
             foreach ($request->materiais as $value) {   
                 $material_saida = new MaterialSaida();
                 $material_saida->quantidade = $value['quantidade'];

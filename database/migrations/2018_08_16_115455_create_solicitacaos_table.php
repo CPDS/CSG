@@ -20,6 +20,7 @@ class CreateSolicitacaosTable extends Migration
             $table->date('data_solicitacao');
             $table->string('observacao_solicitado')->nullable();
             $table->string('observacao_solicitante')->nullable();
+            $table->string('enviado')->nullable();
             $table->integer('fk_user_solicitante')->unsigned();
             $table->foreign('fk_user_solicitante')->references('id')->on('users');   
             $table->string('status')->nullable();

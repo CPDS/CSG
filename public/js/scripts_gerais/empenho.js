@@ -337,7 +337,7 @@ $(document).ready(function($) {
 
     let valor1 = $('#subtotal').text();
 
-     var verifica_soma = parseFloat(valor1) - parseFloat(valor_unitario[1] * quantidade)
+    var verifica_soma = parseFloat(valor1) - parseFloat(valor_unitario[1] * quantidade)
     console.log(verifica_soma);
     if(verifica_soma < 0){
         iziToast.destroy();

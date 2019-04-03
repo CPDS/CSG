@@ -25,13 +25,8 @@
 
 
           <div class="form-group">
-              <strong>Nome funcionário:</strong>
+              <strong>Nome do funcionário:</strong>
               <span id="nome_servidor"></span>
-          </div>
-
-          <div class="form-group">
-              <strong>Ocorrências:</strong>
-              <span id="id_escala"></span>
           </div>
 
         </div> <!--fim da div visualisar -->

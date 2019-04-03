@@ -43,8 +43,8 @@ class MaterialController extends Controller
                                     ->select('quantidade')
                                     ->sum('quantidade');
         $saidas = MaterialSaida::where('fk_material', $material->id)
-                                ->select('quantidade')
-                                ->sum('quantidade');
+                                ->select('quantidade_atendida')
+                                ->sum('quantidade_atendida');
         $qtd = $entradas-$saidas;
 
         return $qtd;

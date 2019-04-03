@@ -1,3 +1,5 @@
+var itens = new Array();
+var linhas = 0;
 $(document).ready(function($) {
     
     var base_url = 'http://' + window.location.host.toString();
@@ -109,7 +111,7 @@ $(document).ready(function($) {
                     
                     $('#table').DataTable().draw(false);
 
-                    jQuery('#criar_editar-modal').modal('hide');
+                   // jQuery('#criar_editar-modal').modal('hide');
 
                     $(function() {
                         iziToast.destroy();
@@ -242,7 +244,7 @@ $(document).ready(function($) {
         });
     });
   
-});
+
 
 $(document).on('click', '.btnAdicionar', function() {
         $('.modal-footer .btn-action').removeClass('edit');
@@ -271,9 +273,14 @@ $(document).on('click', '.btnVer', function() {
 
         var btnEditar = $(this);
 
+        for (var i = 0; i < linhas; i++) {
+            $('.linha'+ i).remove(); //Remove a linha da tela 
+        }
+    
+
         $('#nome_servidor').text($(this).data('nome_servidor'));
         $('#id_escala').text($(this).data('id'));
-        var linhas = 0;
+        linhas = 0;
         $.ajax({
             type: 'get',
             url: "/gerenciar-escalas/escalas/"+$(this).data('id'),
@@ -285,11 +292,13 @@ $(document).on('click', '.btnVer', function() {
                     cols = '';
                     novaLinha = null;
                     var novaLinha = '<tr class="'+'linha'+i+'">';
+                    console.log(response.data[i].id)
+                    itens.push({'id': response.data[i].id});
 
-                    cols += '<td>'+response.data[i].id+'</td>';
-                    cols += '<td>'+response.data[i].id+'</td>';
-                    cols += '<td>'+response.data[i].id+'</td>';
-                    cols += '<td class="text-left"><a class="btnRemoverItem btn btn-xs btn-danger" data-indexof="'+i+'" data-linha="'+linhas+'"><i class="fa fa-trash"></i> Remover</a></td>';
+                    cols += '<td>'+response.data[i].nome_setor+'</td>';
+                    cols += '<td>'+response.data[i].horario_inicio+'</td>';
+                    cols += '<td>'+response.data[i].horario_termino+'</td>';
+                    cols += '<td class="text-left"><a class="btnRemoverItem btn btn-xs btn-danger" data-indexof="'+linhas+'" data-linha="'+linhas+'"><i class="fa fa-trash"></i> Remover</a></td>';
                     novaLinha += cols + '</tr>';
 
                     $('#item_id').append(novaLinha); /*Adc a linha  tabela*/
@@ -299,6 +308,21 @@ $(document).on('click', '.btnVer', function() {
         });
 
     jQuery('#visualizar_modal').modal('show');
+});
+
+$(document).on('click', '.btnRemoverItem', function(){
+    console.log( itens);
+    
+    $.ajax({
+        type: 'get',
+        url: "/gerenciar-escalas/delete/"+ itens[$(this).data('indexof')].id,
+    });
+   
+    itens.splice($(this).data('indexof'),1); //remove do array de acordo com o indice
+    
+    $('.linha'+ $(this).data('linha')).remove(); //Remove a linha da tela 
+    linhas--;
+
 });
 
 
@@ -342,5 +366,7 @@ $(document).on('click', '.btnDeletar', function() {
     });
 
     jQuery('#criar_deletar-modal').modal('show'); //Abrir o modal 
+
+});
 
 });
