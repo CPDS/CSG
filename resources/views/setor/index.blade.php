@@ -19,7 +19,7 @@
 			<div class="col-md-12">
 				<div class="box box-success">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Setores</h3>                       
+                        <h3 class="box-title">Setores</h3>                     
                        <div class="pull-right">      
                             <a class="btnAdicionar btn btn-primary btn-sm" title="Adicionar Material" data-toggle="tooltip"><span class="glyphicon glyphicon-plus"></span> Cadastrar Setor</a>
                         </div>
@@ -35,7 +35,7 @@
                                 <th>Sigla</th>
                                 <th>E-mail</th>
                                 <th>Telefone</th>
-                                <th width="20%">Ações</th>
+                                <th>Ações</th>
                             </tr>
                             </thead>
                             

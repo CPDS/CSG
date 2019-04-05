@@ -42,7 +42,9 @@ class EscalaHorarioController extends Controller
     }
 
     private function setBtns(EscalaHorario $escala_horarios){
-        $dados = "data-id_del='$escala_horarios->id' data-id='$escala_horarios->id' data-nome_servidor='$escala_horarios->nome_funcionario' ";
+        $dados = "data-id_del='$escala_horarios->id' 
+        data-id='$escala_horarios->id' 
+        data-nome_servidor='$escala_horarios->nome_funcionario' ";
 
         $btnEditar = '';
         $btnDeletar = '';

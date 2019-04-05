@@ -30,9 +30,13 @@
                     </li>
 
                    @can('ver-relatorio-setor')
-                    <li><a href="{{ url('gerenciar-setores/relatorio') }}" target="_blank"><i class='fa fa-file-text'></i> <span>Relatório dos setores</span></a>
+                    <li><a href="{{ url('gerenciar-setores/relatorio') }}" target="_blank"><i class=' fa fa-file-text'></i> <span>Relatório dos setores</span></a>
                     </li>
                     @endcan
+                    <!-- @can('ver-relatorio-setor')
+                    <li><a href="#" class="btnRelatorioSetor" data-toggle="tooltip"><i class="fa fa-file-text"></i> Relatório Setor</a>
+                    </li>
+                    @endcan -->
                 </ul>
             </li>
             

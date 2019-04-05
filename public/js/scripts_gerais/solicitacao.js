@@ -1,3 +1,4 @@
+var linhas = 0;
 $(document).ready(function($){
     
     var base_url = 'http://' + window.location.host.toString();
@@ -282,14 +283,10 @@ $(document).ready(function($){
     });
   
 
-  
-     var i = 0;
      
     //Adicionar material
     $(document).on('click', '.btnAdcMaterial', function() {
-        //verificar se a opção selecionada possiu valor
-        //verificar se a opção selecionada já se encontra no array materiais e emitir alerta quando já estiver
-        
+
         var cols = '';
         cols = '';
         novaLinha = null; 
@@ -297,23 +294,20 @@ $(document).ready(function($){
         var descricao_material = $('#fk_material :selected').text();
         var quantidade = $('#quantidade').val();
 
-        var novaLinha = '<tr class="'+'linha'+i+'">';
+        var novaLinha = '<tr class="'+'linha'+linhas+'">';
         //Adc material ao array
         materiais.push({'fk_material': fk_material, 'quantidade': quantidade});
 
         
         /* Crian a linha p/ tabela*/
-        
+       
         cols += '<td>'+descricao_material+'</td>';
         cols += '<td>'+quantidade+'</td>';
-        cols += '<td class="text-left"><a class="btnRemoverMaterial btn btn-xs btn-danger" data-indexof="'+materiais.indexOf(materiais[i])+'" data-linha="'+i+'"><i class="fa fa-trash"></i> Remover</a></td>';
+        cols += '<td class="text-left"><a class="btnRemoverMaterial btn btn-xs btn-danger" data-indexof="'+linhas+'" data-linha="'+linhas+'"><i class="fa fa-trash"></i> Remover</a> <a class="btnEditarMaterial btn btn-xs btn-primary" data-indexof="'+linhas+'" data-linha="'+linhas+'""><i class="fa fa-pencil"> </i> Editar</a></td>';
+        linhas++;
         novaLinha += cols + '</tr>';
         
-
-
         $('#material_id').append(novaLinha); /*Adc a linha  tabela*/
-        i+=1;
-
         $('#quantidade').val('');
 
     });
@@ -378,7 +372,7 @@ $(document).ready(function($){
             $('.modal-footer .btn-action').addClass('edit');
             $('.modal-footer .btn-action').removeClass('hidden');
 
-            $('.modal-title').text('Editar Setor');
+            $('.modal-title').text('Editar solicitação');
             $('.callout').addClass("hidden"); //ocultar a div de aviso
             $('.callout').find("p").text(""); //limpar a div de aviso
 
@@ -402,7 +396,6 @@ $(document).ready(function($){
             $('#descricao').val(btnEditar.data('descricao_solicitacao'));
 
         var id = $('#id').val();
-        j = 0;
         $.ajax({
             type: 'get',
             url: "/gerenciar-solicitacoes/materiais/"+id,
@@ -418,8 +411,8 @@ $(document).ready(function($){
                         var fk_material = response.data[i].id;
                         var descricao_material = response.data[i].descricao;
                         var quantidade = response.data[i].quantidade;
-
-                        var novaLinha = '<tr class="'+'linha'+j+'">';
+                       
+                        var novaLinha = '<tr class="'+'linha'+linhas+'">';
                         //Adc material ao array
                         materiais.push({'fk_material': fk_material, 'quantidade': quantidade});
                         
@@ -427,12 +420,11 @@ $(document).ready(function($){
                         
                         cols += '<td>'+descricao_material+'</td>';
                         cols += '<td>'+quantidade+'</td>';
-                        cols += '<td class="text-left"><a class="btnRemoverMaterial btn btn-xs btn-danger" data-indexof="'+materiais.indexOf(materiais[i])+'" data-linha="'+j+'"><i class="fa fa-trash"></i> Remover</a></td>';
+                        cols += '<td class="text-left"><a class="btnRemoverMaterial btn btn-xs btn-danger" data-indexof="'+linhas+'" data-linha="'+linhas+'"><i class="fa fa-trash"></i> Remover</a> <a class="btnEditarMaterial btn btn-xs btn-primary" data-indexof="'+materiais.indexOf(materiais[i])+'" data-linha="'+linhas+'""><i class="fa fa-pencil"> </i> Editar</a></td>';
+                   
                         novaLinha += cols + '</tr>';
-
+                        linhas++;
                         $('#material_id').append(novaLinha); /*Adc a linha  tabela*/
-                        j+=1;
-
                         $('#quantidade').val('');
                     }
                 }    
@@ -442,6 +434,7 @@ $(document).ready(function($){
             
             jQuery('#criar_editar-modal').modal('show'); //Abrir o modal
     });
+    
     $(document).on('click', '.btnDeletar', function() {
        $('.modal-title').text('Deletar Setor');   
        $('.modal-footer .btn-action').removeClass('add');
@@ -457,5 +450,9 @@ $(document).ready(function($){
 
         jQuery('#criar_deletar-modal').modal('show'); //Abrir o modal 
 
+    });
+
+     $(document).on('click', '.btnEditarMaterial', function(){
+      console.log($(this).data('indexof'));
     });
 });

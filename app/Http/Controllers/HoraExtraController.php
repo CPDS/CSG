@@ -26,7 +26,7 @@ class HoraExtraController extends Controller
         
         $hora_extra = HoraExtra::JOIN('users','hora_extras.fk_user','=','users.id')
         ->where('hora_extras.status','Ativo')
-        ->select('hora_extras.id','hora_extras.horas_excedidas','hora_extras.dia','users.name as nome_funcionario', 'users.id as fk_user')
+        ->select('hora_extras.id','hora_extras.horas_excedidas','hora_extras.dia','users.name as nome_funcionario', 'users.id as fk_user','hora_extras.local')
         ->orderBy('hora_extras.created_at', 'desc')->get();
 
 
@@ -41,7 +41,13 @@ class HoraExtraController extends Controller
     }
 
     private function setBtns(HoraExtra $hora_extras){
-        $dados = "data-id_del='$hora_extras->id' data-id='$hora_extras->id' data-horas_excedidas='$hora_extras->horas_excedidas' data-dia='$hora_extras->dia' data-nome_funcionario='$hora_extras->nome_funcionario' data-fk_user='$hora_extras->fk_user' ";
+        $dados = "data-id_del='$hora_extras->id' 
+        data-id='$hora_extras->id' 
+        data-horas_excedidas='$hora_extras->horas_excedidas' 
+        data-dia='$hora_extras->dia' 
+        data-local='$hora_extras->local' 
+        data-nome_funcionario='$hora_extras->nome_funcionario' 
+        data-fk_user='$hora_extras->fk_user' ";
 
         $btnEditar = '';
         $btnDeletar = '';
@@ -82,6 +88,7 @@ class HoraExtraController extends Controller
             $hora_extra->horas_excedidas = $request->horas_excedidas;
             $hora_extra->dia = $request->dia;
             $hora_extra->fk_user = $request->fk_user;
+            $hora_extra->local = $request->local;
             $hora_extra->status = 'Ativo';
             $hora_extra->save();
             
@@ -91,7 +98,7 @@ class HoraExtraController extends Controller
 
     public function update(Request $request)
     {
-        $rules = array(
+        /*$rules = array(
             'horas_excedidas' => 'required|numeric|max:99',
             'dia' => 'required',
             'fk_user' => 'required'
@@ -106,14 +113,15 @@ class HoraExtraController extends Controller
         $validator->setAttributeNames($attributeNames);
         if ($validator->fails()){
                 return Response::json(array('errors' => $validator->getMessageBag()->toArray()));
-        }else {
+        }else { */
             $hora_extra = HoraExtra::find($request->id);
             $hora_extra->horas_excedidas = $request->horas_excedidas;
             $hora_extra->dia = $request->dia;
+            $hora_extra->local = $request->local;
             $hora_extra->save();
 
             return response()->json($hora_extra);
-        }
+        //}
     }
 
     public function destroy(Request $request)

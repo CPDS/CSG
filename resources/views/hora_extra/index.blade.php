@@ -35,6 +35,7 @@
                                 <th>Funcionário</th>
                                 <th>Horas estendidas</th>   
                                 <th>Dia</th>
+                                <th>Local</th>
                                 <th width="20%">Ações</th>
                             </tr>
                             </thead>

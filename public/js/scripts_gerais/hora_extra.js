@@ -21,6 +21,7 @@ $(document).ready(function($) {
             { data: 'nome_funcionario', name: 'nome_funcionario' },
             { data: 'horas_excedidas', name: 'horas_excedidas' },
             { data: 'dia', name: 'dia' },
+            { data: 'local', name: 'local' },
             { data: 'acao', name: 'acao' },
             ],
             createdRow : function( row, data, index ) {
@@ -66,7 +67,7 @@ $(document).ready(function($) {
             columnDefs : [
               { targets : [4], sortable : false },
               { "width": "5%", "targets": 0 }, 
-              { "width": "53%", "targets": 1 },
+              { "width": "20%", "targets": 1 },
               { "width": "20%", "targets": 2 }, 
               { "width": "10%", "targets": 3 },
               { "width": "12%", "targets": 4 }

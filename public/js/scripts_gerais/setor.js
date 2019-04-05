@@ -250,6 +250,27 @@ $(document).ready(function($) {
   
 });
 
+$(document).on('click', '.btnGerarRelatorio', function() {
+        $('.modal-footer .btn-action').removeClass('edit');
+        $('.modal-footer .btn-action').addClass('add');
+        $('.modal-footer .btn-action').removeClass('hidden');
+
+        //habilita os campos desabilitados
+        $('#nome').prop('readonly',false);
+        $('#sigla').prop('readonly',false);
+        $('#email').prop('readonly',false);
+        $('#telefone').prop('readonly',false);
+        
+
+        $('.modal-title').text('Relatório de Setor');
+        $('.callout').addClass("hidden"); 
+        $('.callout').find("p").text(""); 
+
+        $('#form')[0].reset();
+
+        jQuery('#relatorio-modal').modal('show');
+});
+
 $(document).on('click', '.btnAdicionar', function() {
         $('.modal-footer .btn-action').removeClass('edit');
         $('.modal-footer .btn-action').addClass('add');

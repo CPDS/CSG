@@ -16,6 +16,7 @@ class CreateHoraExtrasTable extends Migration
         Schema::create('hora_extras', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('horas_excedidas');
+            $table->string('local');
             $table->date('dia');
             $table->integer('fk_user')->unsigned();
             $table->foreign('fk_user')->references('id')->on('users');

@@ -37,6 +37,16 @@
                             </div>       
                         </div>
                     </div>
+
+                     <div class="form-group">
+                        <div class="col-sm-12">
+                            <strong>Local:</strong>
+                            <div class="input-group">
+                                <span data-toggle="tooltip" title="Horas excedidas" class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                <input type="text" maxlength="254" class="form-control" name="local"  id="local">
+                            </div>       
+                        </div>
+                    </div>
                     
                     <div class="form-group">
                         <div class="col-sm-12">

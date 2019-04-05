@@ -111,7 +111,6 @@ class RelatorioController extends Controller
     }
 
     public function setores(){
-        
         $setores = Setor::orderBy('created_at', 'desc')->where('status','Ativo')->get();
         
         $footer = \View::make('relatorios.footer')->render();
