@@ -4,6 +4,7 @@
 <!-- Laravel App -->
 <script src="{{ url (mix('/js/app.js')) }}" type="text/javascript"></script>
 <script src ="{{ asset('/js/scripts_gerais/relatorio.js') }}" type = "text/javascript" ></script>
+@include('material.modals.relatorio_material')
 @include('setor.modals.relatorio_setor')
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.

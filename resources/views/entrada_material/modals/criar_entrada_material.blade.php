@@ -21,7 +21,7 @@
                                 <span data-toggle="tooltip" title="Descrição" class="input-group-addon"><i class="fa fa-pencil"></i></span>
                                 <select class="form-control" name="fk_material" id="fk_material">
                                     @foreach($materials as $material)
-                                    <option value="{{$material->id}}">{{$material->descricao}}</option>
+                                      <option value="{{$material->id}}">{{$material->descricao}}</option>
                                     @endforeach
                                 </select>
                             </div>       

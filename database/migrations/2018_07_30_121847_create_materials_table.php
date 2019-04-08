@@ -16,7 +16,7 @@ class CreateMaterialsTable extends Migration
         Schema::create('materials', function (Blueprint $table) {
             $table->increments('id');
             $table->string('tipo');
-            $table->string('descricao');           
+            $table->string('descricao')->nullable();           
             $table->integer('fk_user');
             $table->foreign('fk_user')->references('id')->on('users');
             $table->string('status');

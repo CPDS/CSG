@@ -87,6 +87,8 @@ class EscalaHorarioController extends Controller
             $escala_horario = new EscalaHorario();
             $escala_horario->horario_inicio = $request->horario_inicio;
             $escala_horario->dia_semana = $request->dia_semana;
+            $escala_horario->horario_inicio_tarde = $request->horario_inicio_tarde;
+            $escala_horario->horario_termino_tarde = $request->horario_termino_tarde;
             $escala_horario->horario_termino = $request->horario_termino;
             $escala_horario->fk_user = $request->fk_user;
             $escala_horario->fk_setor = $request->fk_setor;
@@ -114,6 +116,8 @@ class EscalaHorarioController extends Controller
     {
         $escala_horario = EscalaHorario::find($request->id);
         $escala_horario->horario_inicio = $request->horario_inicio;
+        $escala_horario->horario_termino_tarde = $request->horario_termino_tarde;
+        $escala_horario->horario_inicio_tarde = $request->horario_inicio_tarde;
         $escala_horario->dia_semana = $request->dia_semana;
         $escala_horario->horario_termino = $request->horario_termino;
         $escala_horario->fk_setor = $request->fk_setor;

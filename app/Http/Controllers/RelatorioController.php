@@ -93,11 +93,11 @@ class RelatorioController extends Controller
         return $pdf->stream();
     }
 
-    public function materials(){
-        
+    public function materials(Request $request)
+    {
         $materials = Material::LEFTJOIN('material_entradas','material_entradas.fk_material','=','materials.id')
         ->LEFTJOIN('material_saidas','material_saidas.fk_material','=','materials.id')
-        ->select('materials.*','material_entradas.quantidade as entrada','material_saidas.quantidade as saida')
+        ->select('materials.*','material_entradas.quantidade as entrada','material_saidas.quantidade_atendida as saida')
         ->where('material_entradas.status','Ativo')
         ->orderBy('created_at', 'desc')->get();
    

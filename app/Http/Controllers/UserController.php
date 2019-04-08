@@ -213,8 +213,8 @@ class UserController extends Controller
             'telefone' => 'required',
             'endereco' => 'required',
             'email' => 'required',
-            'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
-            'password_confirmation' => 'min:6',
+            //'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
+            //'password_confirmation' => 'min:6',
         );                
         if ($request->nome_role == "Empresa")
             $rules = $rules + ['cnpj' => 'required|unique:users,cnpj,' . $request->id.',id',];
@@ -257,6 +257,9 @@ class UserController extends Controller
             $user->contato = $request->contato;
             $user->status = 'Ativo';
             $user->save();
+
+            $user->removeRole($user->getRoleNames()[0]);
+            $user->assignRole($request->nome_role);
         }
     }
 

@@ -33,10 +33,6 @@
                     <li><a href="{{ url('gerenciar-setores/relatorio') }}" target="_blank"><i class=' fa fa-file-text'></i> <span>Relatório dos setores</span></a>
                     </li>
                     @endcan
-                    <!-- @can('ver-relatorio-setor')
-                    <li><a href="#" class="btnRelatorioSetor" data-toggle="tooltip"><i class="fa fa-file-text"></i> Relatório Setor</a>
-                    </li>
-                    @endcan -->
                 </ul>
             </li>
             
@@ -88,8 +84,13 @@
                    <li><a href="{{ url('gerenciar-entradas-materiais') }}"><i class='fa fa-database'></i> <span>Estoque</span></a></li>
                    @endcan
 
-                   @can('ver-relatorio-material')
+                   <!-- @can('ver-relatorio-material')
                     <li><a href="{{ url('gerenciar-materiais/relatorio') }}" target="_blank"><i class='fa fa-file-text'></i> <span>Relatório</span></a></li>
+                    @endcan -->
+
+                    @can('ver-relatorio-material')
+                    <li><a href="#" class="btnRelatorioMaterial" data-toggle="tooltip"><i class="fa fa-file-text"></i> Relatório Material</a>
+                    </li>
                     @endcan
                 </ul>
             </li>

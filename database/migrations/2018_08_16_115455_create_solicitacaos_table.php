@@ -15,8 +15,8 @@ class CreateSolicitacaosTable extends Migration
     { 
         Schema::create('solicitacaos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('titulo');
-            $table->string('descricao');
+            $table->string('titulo')->nullable();
+            $table->string('descricao')->nullable();
             $table->date('data_solicitacao');
             $table->string('observacao_solicitado')->nullable();
             $table->string('observacao_solicitante')->nullable();

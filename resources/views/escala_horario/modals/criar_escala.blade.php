@@ -30,7 +30,7 @@
 
                      <div class="form-group">
                         <div class="col-sm-6">
-                            <strong>Horário início:</strong>
+                            <strong>Horário início da manhã:</strong>
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="Horário início" class="input-group-addon"><i class="fa fa-clock-o"></i></span>
                                 <input type="time" maxlength="254" class="form-control" name="horario_inicio"  id="horario_inicio">
@@ -38,10 +38,28 @@
                         </div>
                    
                         <div class="col-sm-6">
-                            <strong>Horário fim:</strong>
+                            <strong>Horário fim da manhã:</strong>
                             <div class="input-group">
                                 <span data-toggle="tooltip" title="Horário fim" class="input-group-addon"><i class="fa fa-clock-o"></i></span>
                                 <input type="time" maxlength="254" class="form-control" name="horario_termino"  id="horario_termino">
+                            </div>       
+                        </div>
+                    </div>
+
+                       <div class="form-group">
+                        <div class="col-sm-6">
+                            <strong>Horário início da tarde:</strong>
+                            <div class="input-group">
+                                <span data-toggle="tooltip" title="Horário início" class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                <input type="time" maxlength="254" class="form-control" name="horario_inicio_tarde"  id="horario_inicio">
+                            </div>       
+                        </div>
+                   
+                        <div class="col-sm-6">
+                            <strong>Horário fim da tarde:</strong>
+                            <div class="input-group">
+                                <span data-toggle="tooltip" title="Horário fim" class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                <input type="time" maxlength="254" class="form-control" name="horario_termino_tarde"  id="horario_termino">
                             </div>       
                         </div>
                     </div>

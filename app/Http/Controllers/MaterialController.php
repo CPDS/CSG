@@ -24,6 +24,13 @@ class MaterialController extends Controller
         return view('material.index');    
     } 
 
+    public function materiais()
+    {
+        $material =  Material::where('status','Ativo')->get();
+
+        return response()->json($material);
+    }
+
     public function list()
     {
 

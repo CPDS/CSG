@@ -16,7 +16,9 @@ class CreateEscalaHorariosTable extends Migration
         Schema::create('escala_horarios', function (Blueprint $table) {
             $table->increments('id');
             $table->time('horario_inicio');
-            $table->time('horario_termino');
+            $table->time('horario_termino'); 
+            $table->time('horario_inicio_tarde');
+            $table->time('horario_termino_tarde');
             $table->string('dia_semana');
             $table->integer('fk_user')->unsigned();
             $table->foreign('fk_user')->references('id')->on('users');  
