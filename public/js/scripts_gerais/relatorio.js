@@ -1,5 +1,5 @@
 $(document).on('click', '.btnRelatorioMaterial', function() {
-        var option = '' ;
+        var option = '<option></option>' ;
 
         $.getJSON('./relatorios/materiais', function(dados){
                 
@@ -8,16 +8,13 @@ $(document).on('click', '.btnRelatorioMaterial', function() {
                 if(dados.length > 0){
                     $.each(dados, function(i,dado){
                         console.log(dado.tipo);
-                        option += '<option>'+dado.tipo+'</option>' ;//agrupando ambientes por tipo
+                        option += '<option value='+dado.id+'>'+dado.tipo+'</option>' ;//agrupando ambientes por tipo
                     });
                             $('#materiais').html(option).show();
                 }
 
         });
-
-
-
-
+        
         $('.modal-title').text('Relatório de Material');
         $('.callout').addClass("hidden"); 
         $('.callout').find("p").text(""); 

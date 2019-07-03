@@ -79,7 +79,7 @@ Route::group(['prefix' => 'gerenciar-contratos', 'where' => ['id' => '[0-9]+'], 
         Route::post('/relatorio',['as' => 'gerenciar-contratos.relatorio', 'uses' => 'RelatorioController@contratos']);
 }); 	
 
-Route::group(['prefix' => 'gerenciar-setores', 'where' => ['id' => '[0-9]+'], 'middleware' => ['role:Administrador|Coordenador|Tecnico']] ,function() {
+Route::group(['prefix' => 'gerenciar-setores', 'where' => ['id' => '[0-9]+'], 'middleware' => ['role:Administrador|Coordenador|Tecnico|Ag-limpeza']] ,function() {
         Route::get('', ['as' => 'gerenciar-setores.index', 'uses' => 'SetorController@index']);
         Route::get('/list',['as' => 'gerenciar-setores.list', 'uses' => 'SetorController@list']);
         Route::post('/store', ['as' => 'gerenciar-setores.store', 'uses' => 'SetorController@store']);

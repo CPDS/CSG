@@ -22,6 +22,8 @@
 
             <li  class="@yield('setor') | '' " ><a href="{{ url('home') }}"><i class='fa fa-dashboard '></i> <span>Painel de Controle</span></a>
             </li>
+
+           @if(Auth::user()->HasAnyPermission(['ver-setor']))  
             <li class="treeview" class="active">   
                 <a href="#"><i class='fa fa-users'></i> <span>Gerenciar Setores</span> <i class="fa fa-angle-left pull-right"></i></a>
 
@@ -35,6 +37,7 @@
                     @endcan
                 </ul>
             </li>
+            @endif
             
             @if(Auth::user()->HasAnyPermission(['ver-usuario','ver-escala','ver-horas-extras']))
              <li class="treeview" class="active">   

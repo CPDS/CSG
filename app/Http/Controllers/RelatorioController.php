@@ -98,14 +98,17 @@ class RelatorioController extends Controller
         $materials = Material::LEFTJOIN('material_entradas','material_entradas.fk_material','=','materials.id')
         ->LEFTJOIN('material_saidas','material_saidas.fk_material','=','materials.id')
         ->select('materials.*','material_entradas.quantidade as entrada','material_saidas.quantidade_atendida as saida')
-        ->where('material_entradas.status','Ativo')
-        ->orderBy('created_at', 'desc')->get();
-   
+        ->where('materials.status','Ativo');
+        
+        if(isset($request->materiais))
+            $materials = $materials->where('materials.id',$request->materiais);
+
+        $materials = $materials->orderBy('created_at', 'desc')->get(); 
         
         $footer = \View::make('relatorios.footer')->render();
         $header = \View::make('relatorios.header')->render();
 
-        $pdf = PDF::loadView('material.relatorio', ['materials' => $materials]);
+        $pdf = PDF::loadView('material.relatorio_material', ['materials' => $materials]);
         $pdf->setPaper('a4')->setOption('header-html',$header)->setOption('footer-html',$footer);
         return $pdf->stream();  
     }

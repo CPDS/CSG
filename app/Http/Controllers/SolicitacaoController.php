@@ -37,10 +37,10 @@ class SolicitacaoController extends Controller
  
     public function list()
     {   
-
         $solicitacaos = Solicitacao::JOIN('users','users.id','=','solicitacaos.fk_user_solicitante')
         ->select('solicitacaos.id','solicitacaos.data_solicitacao','solicitacaos.titulo','solicitacaos.descricao as descricao_solicitacao','solicitacaos.observacao_solicitado','solicitacaos.observacao_solicitante')
-        ->orderBy('solicitacaos.created_at', 'desc')->get();
+        ->orderBy('solicitacaos.created_at', 'desc')
+        ->where('solicitacaos.status','!=','Inativo')->get();
 
         return DataTables::of($solicitacaos)
             ->editColumn('acao', function ($solicitacaos){
@@ -82,13 +82,13 @@ class SolicitacaoController extends Controller
             'titulo' => 'required'
         );
         $attributeNames = array(
-            'titulo' => 'Data da solicitação'
+            'titulo' => 'Título'
         );
         
         $validator = Validator::make(Input::all(), $rules);
         $validator->setAttributeNames($attributeNames);
         if ($validator->fails()){
-                return Response::json(array('errors' => $validator->getMessageBag()->toArray()));
+            return Response::json(array('errors' => $validator->getMessageBag()->toArray()));
         }else { 
             $data = date("Y-m-d");
 
@@ -102,22 +102,28 @@ class SolicitacaoController extends Controller
             $solicitacao->observacao_solicitante = $request->observacao_solicitante;
             $solicitacao->fk_user_solicitante = Auth::User()->id;
             $solicitacao->status = $request->status;
+
             $solicitacao->save();
 
-            
-            foreach ($request->materiais as $value) {   
-                $material_saida = new MaterialSaida();
-                $material_saida->quantidade = $value['quantidade'];
-                $material_saida->fk_material = $value['fk_material'];
-                $material_saida->fk_solicitacao = $solicitacao->id;
-                $material_saida->save();
+            if (isset($request->materiais))
+            {
+                foreach ($request->materiais as $value) {   
+                    $material_saida = new MaterialSaida();
+                    $material_saida->quantidade = $value['quantidade'];
+                    $material_saida->fk_material = $value['fk_material'];
+                    $material_saida->fk_solicitacao = $solicitacao->id;
+                    $material_saida->save();
+                }
             }
 
-            foreach ($request->servicos as $value) {   
-                $servico_solicitacao = new ServicoSolicitacao();
-                $servico_solicitacao->fk_servico = $value;
-                $servico_solicitacao->fk_solicitacao = $solicitacao->id;
-                $servico_solicitacao->save();
+            if (isset($request->servicos))
+            {
+                foreach ($request->servicos as $value) {   
+                    $servico_solicitacao = new ServicoSolicitacao();
+                    $servico_solicitacao->fk_servico = $value;
+                    $servico_solicitacao->fk_solicitacao = $solicitacao->id;
+                    $servico_solicitacao->save();
+                }
             }
             
             return response()->json($solicitacao);
@@ -147,7 +153,7 @@ class SolicitacaoController extends Controller
         DB::table("material_saidas")->where("material_saidas.fk_solicitacao",$request->id)
                 ->delete();
 
-        if($request->materiais != null){        
+        if(isset($request->materiais)){        
             foreach ($request->materiais as $value) {   
                 $material_saida = new MaterialSaida();
                 $material_saida->quantidade = $value['quantidade'];
@@ -160,7 +166,7 @@ class SolicitacaoController extends Controller
         DB::table("servico_solicitacaos")->where("servico_solicitacaos.fk_solicitacao",$request->id)
                 ->delete();
 
-        if($request->servicos != null){
+        if(isset($request->servicos)){ 
             foreach ($request->servicos as $value) {   
                 $servico_solicitacao = new ServicoSolicitacao();
                 $servico_solicitacao->fk_servico = $value;
@@ -177,6 +183,8 @@ class SolicitacaoController extends Controller
         $solicitacao = Solicitacao::find($request->id_del);
         $solicitacao->status = 'Inativo';
         $solicitacao->save();
+
+        dd($solicitacao->status);
 
         return response()->json($solicitacao);
     }

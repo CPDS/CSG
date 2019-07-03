@@ -18,7 +18,7 @@
              <input type="hidden" id="id_del" name="id_del">
         </form>
 
-      <h3>Deseja realmente deletar essa hora extra?</h3>                
+      <h3>Deseja realmente deletar essa solicitação?</h3>                
 
       </div> <!-- Fim de ModaL Body-->
 

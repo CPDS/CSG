@@ -93,12 +93,10 @@ $(document).ready(function($){
 
 
     $('.modal-footer').on('click', '.add', function() {
-        var dados = new FormData($("#form")[0]); //pega os dados do form
-
         $.ajax({
             type: 'post',
             url: "/gerenciar-solicitacoes/store",
-             data: {
+            data: {
                 'data_solicitacao': $("#data_solicitacao").val(),
                 'local_servico': $("#local_servico").val(),
                 'titulo': $("#titulo").val(),
@@ -321,6 +319,7 @@ $(document).ready(function($){
 
 
     $(document).on('click', '.btnAdicionar', function() {
+            $('#material_id').empty(); 
             $('.modal-footer .btn-action').removeClass('edit');
             $('.modal-footer .btn-action').addClass('add');
             $('.modal-footer .btn-action').removeClass('hidden');
@@ -367,6 +366,7 @@ $(document).ready(function($){
             
             jQuery('#criar_editar-modal').modal('show');
     });
+
     $(document).on('click', '.btnEditar', function() {
             $('.modal-footer .btn-action').removeClass('add');
             $('.modal-footer .btn-action').addClass('edit');
@@ -403,7 +403,8 @@ $(document).ready(function($){
             contentType: false,
               success: function(response) {
 
-                if(response.data[0].id != null){ 
+                if(response.data[0].id != null){
+                    $('#material_id').empty(); 
                     for(var i = 0; i < response.data.length; i++){
                         var cols = '';
                         cols = '';

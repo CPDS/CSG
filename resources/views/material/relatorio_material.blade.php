@@ -28,7 +28,7 @@
   			<tr>
   				<th class="tg-ox40">NOME DO MATERIAL</th>
   				<th class="tg-ox40">DESCRIÇÃO</th>	
-  				<th class="tg-ox40">QUANTIDADE</th>
+          <th class="tg-ox40">QUANTIDADE</th>
 
   			</tr>
 
