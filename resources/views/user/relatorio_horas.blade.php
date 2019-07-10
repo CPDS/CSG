@@ -28,8 +28,8 @@
 			<tr>
 				<th class="tg-q19q">Funcionário</th>
 				<th class="tg-q19q">Horas excedidas</th>	
-				<th class="tg-q19q">Dia</th>
-
+        <th class="tg-q19q">Data</th>
+        <th class="tg-q19q">Local</th>
 			</tr>
 
 		@foreach($horas_extras as $hora)
@@ -39,6 +39,7 @@
 				<td class="tg-q19q"> <?php 
         $date=date_create($hora->dia);
         echo date_format($date,'d/m/Y') ?></td>
+        <td class="tg-q19q">{{$hora->local}}</td>
 			</tr>			
 		@endforeach
 		</table>

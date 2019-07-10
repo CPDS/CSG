@@ -9,6 +9,10 @@
 <link rel="stylesheet" href="{{ asset('css/iziToast.min.css') . '?update=' . str_random(3)}}">
 <script src="{{ asset('js/iziToast.min.js') . '?update=' . str_random(3)}}"></script>
 
+<script src="{{ asset('plugins/select2/select2.min.js') }}" type = "text/javascript"></script>
+<link rel="stylesheet" href="{{ asset('plugins/select2/select2.css'). '?update=' . str_random(3) }}">
+<link rel="stylesheet" href="{{ asset('plugins/select2/select2.min.css') . '?update=' . str_random(3)}}">
+
 @section('htmlheader_title')
 	Gerenciar Usuários
 @endsection

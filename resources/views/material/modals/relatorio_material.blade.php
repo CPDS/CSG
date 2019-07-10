@@ -18,7 +18,7 @@
         {{ csrf_field() }}
          <div class="form-group">
             <div class="col-sm-12">
-                <strong>materiais:</strong>
+                <strong>material:</strong>
                 <div class="input-group">
                     <span data-toggle="tooltip" title="Nome" class="input-group-addon"><i class="fa fa-pencil"></i></span>
                     <select name="materiais" id="materiais" class="form-control">
@@ -29,18 +29,29 @@
         </div> 
 
          <div class="form-group">
-            <div class="col-sm-12">
-                <strong>Tipo de movimentação:</strong>
+            <div class="col-sm-6">
+                <strong>Tipo de relatório:</strong>
                 <div class="input-group">
                     <span data-toggle="tooltip" title="Nome" class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                    <select name="materiais" id="materiais" class="form-control">
-                      <option></option>
-                      <option>Entrada</option>
-                      <option>Saída</option>
+                    <select name="tipo" id="tipoRel" class="form-control">
+                      <option value="analitico">Analítico</option>
+                      <option value="resumido">Resumido</option>
                     </select>
                 </div>       
             </div>
-        </div>   
+            <div class="col-sm-6">
+                <strong>Tipo de movimentação:</strong>
+                <div class="input-group">
+                    <span data-toggle="tooltip" title="Nome" class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                    <select name="tipo" id="tipoMov" class="form-control">
+                      <option></option>
+                      <option value="entrada">Entrada</option>
+                      <option value="saida">Saída</option>
+                    </select>
+                </div>       
+            </div>
+        </div>  
+
 
         <div class="form-group">
             <div class="col-sm-6">

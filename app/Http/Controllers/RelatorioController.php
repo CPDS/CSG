@@ -11,6 +11,7 @@ use App\EscalaHorario;
 use App\HoraExtra;
 use App\Material;
 use App\Setor;
+use DB;
 
 class RelatorioController extends Controller
 {
@@ -63,13 +64,25 @@ class RelatorioController extends Controller
         return $pdf->stream();
     }
 
-    public function escalas(){
+    public function escalas(Request $request){
 
         $escala_horarios = EscalaHorario::JOIN('users','escala_horarios.fk_user','=','users.id')
         ->JOIN('setors','setors.id','=','escala_horarios.fk_setor')
-        ->where('escala_horarios.status','Ativo')
-        ->select('escala_horarios.id','escala_horarios.horario_inicio','escala_horarios.dia_semana','escala_horarios.horario_termino', 'users.name as nome_funcionario', 'users.id as fk_user','setors.nome as nome_setor' , 'escala_horarios.fk_setor')
-        ->orderBy('escala_horarios.created_at', 'desc')->get();
+        ->select('escala_horarios.*','escala_horarios.horario_termino','escala_horarios.dia_semana', 'users.name as nome_funcionario', 'users.id as fk_user','setors.nome as nome_setor' , 'escala_horarios.fk_setor');  
+
+        if(isset($request->funcionariosEscala))
+        {
+           $escala_horarios = $escala_horarios->where('escala_horarios.fk_user',$request->funcionarios);  
+        }
+        if(isset($request->dia))
+        {
+           $escala_horarios = $escala_horarios->where('escala_horarios.dia_semana','like',$request->dia);  
+        }
+        if(isset($request->setoresEscala))
+        {
+           $escala_horarios = $escala_horarios->where('escala_horarios.fk_setor',$request->setores);  
+        }
+        $escala_horarios = $escala_horarios->where('escala_horarios.status','Ativo')->orderBy('escala_horarios.created_at', 'desc')->get();
         
         $footer = \View::make('relatorios.footer')->render();
         $header = \View::make('relatorios.header')->render();
@@ -79,11 +92,24 @@ class RelatorioController extends Controller
         return $pdf->stream();  
     }
 
-    public function horas(){
+    public function horas(Request $request){
         $horas_extras = HoraExtra::JOIN('users','hora_extras.fk_user','=','users.id')
-        ->where('hora_extras.status','Ativo')
-        ->select('hora_extras.id','hora_extras.horas_excedidas','hora_extras.dia','users.name as nome_funcionario', 'users.id as fk_user')
-        ->orderBy('hora_extras.created_at', 'desc')->get();
+        ->select('hora_extras.*','users.name as nome_funcionario', 'users.id');
+
+        if(isset($request->funcionariosHora))
+        {
+           $horas_extras = $horas_extras->where('hora_extras.fk_user',$request->funcionariosHora);  
+        }
+        if(isset($request->dataIni))
+        {
+           $horas_extras = $horas_extras->where('hora_extras.dia','>=',$request->dataIni);  
+        }
+        if(isset($request->dataFim))
+        {
+           $horas_extras = $horas_extras->where('hora_extras.dia','<=',$request->dataFim);  
+        }
+
+        $horas_extras = $horas_extras->where('hora_extras.status','Ativo')->orderBy('hora_extras.created_at', 'desc')->get();
         
         $footer = \View::make('relatorios.footer')->render();
         $header = \View::make('relatorios.header')->render();
@@ -95,20 +121,38 @@ class RelatorioController extends Controller
 
     public function materials(Request $request)
     {
-        $materials = Material::LEFTJOIN('material_entradas','material_entradas.fk_material','=','materials.id')
-        ->LEFTJOIN('material_saidas','material_saidas.fk_material','=','materials.id')
-        ->select('materials.*','material_entradas.quantidade as entrada','material_saidas.quantidade_atendida as saida')
-        ->where('materials.status','Ativo');
-        
+        $entradas =  Material::LEFTJOIN('material_entradas','material_entradas.fk_material','=','materials.id')
+        ->LEFTJOIN('material_saidas','material_saidas.fk_material','=','materials.id');
+
+        if(isset($request->tipoRel) and $request->tipoRel == "resumido")
+        {
+            $materials = $materials->select('materials.*',DB::raw('SUM(material_entradas.quantidade) as entrada'),DB::raw('SUM(material_saidas.quantidade) as saida'))->groupBy('materials.id');
+        }
+        else
+        {
+            $materials = $materials->select('materials.*','material_entradas.quantidade as entrada','material_saidas.quantidade as saida');
+        }
         if(isset($request->materiais))
             $materials = $materials->where('materials.id',$request->materiais);
+        if(isset($request->tipoMov))
+        {
+            if($request->tipoMov == "entrada")
+            {
+                $materials = $materials->where('material_saidas.id',null);                
+            }
+            else
+            {
+                $materials = $materials->where('material_entradas.id',null);
+            }
+        }
 
-        $materials = $materials->orderBy('created_at', 'desc')->get(); 
-        
+        $materials = $materials->where('materials.status','Ativo')
+                     ->orderBy('created_at','asc');
+
         $footer = \View::make('relatorios.footer')->render();
         $header = \View::make('relatorios.header')->render();
 
-        $pdf = PDF::loadView('material.relatorio_material', ['materials' => $materials]);
+        $pdf = PDF::loadView('material.relatorio_material', ['materials' => $entradas]);
         $pdf->setPaper('a4')->setOption('header-html',$header)->setOption('footer-html',$footer);
         return $pdf->stream();  
     }

@@ -6,6 +6,9 @@
 <script src ="{{ asset('/js/scripts_gerais/relatorio.js') }}" type = "text/javascript" ></script>
 @include('material.modals.relatorio_material')
 @include('setor.modals.relatorio_setor')
+@include('user.modals.relatorio_escala')
+@include('user.modals.relatorio_horas')
+
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
       Both of these plugins are recommended to enhance the

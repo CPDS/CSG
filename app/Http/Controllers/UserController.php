@@ -26,6 +26,13 @@ class UserController extends Controller
         return view('user.index',compact('setores'));    
     }  
 
+    public function funcionarios()
+    {
+        $users =  User::where('status','Ativo')->get();
+        return response()->json($users);
+    }
+
+
     public function permissions()
     {
         $permissions = Permission::all();

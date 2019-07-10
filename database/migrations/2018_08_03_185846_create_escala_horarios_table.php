@@ -23,7 +23,7 @@ class CreateEscalaHorariosTable extends Migration
             $table->integer('fk_user')->unsigned();
             $table->foreign('fk_user')->references('id')->on('users');  
             $table->integer('fk_setor')->unsigned();
-            $table->foreign('fk_setor')->references('id')->on('setors');
+            $table->foreign('fk_setor')->references('id')->on('setors')->onDelete('cascade');
             $table->string('status');       
             $table->timestamps();
         });

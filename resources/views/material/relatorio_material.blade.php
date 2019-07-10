@@ -29,14 +29,15 @@
   				<th class="tg-ox40">NOME DO MATERIAL</th>
   				<th class="tg-ox40">DESCRIÇÃO</th>	
           <th class="tg-ox40">QUANTIDADE</th>
-
+          <th class="tg-ox40">DATA</th>
   			</tr>
 
   		@foreach($materials as $material)
   			<tr>	
   				<td class="tg-q19q">{{$material->descricao}}</td>
-  				<td class="tg-q19q">{{$material->tipo}}</td>
-          <td class="tg-q19q">{{$material->entrada - $material->saida}}</td>
+          <td class="tg-q19q">{{$material->tipo}}</td>
+          <td class="tg-q19q">{{$material->quantidade}}</td>
+          <td class="tg-q19q">{{date("d/m/Y",strtotime($material->created_at))}}</td>
   			</tr>			
   		@endforeach
   		</table>

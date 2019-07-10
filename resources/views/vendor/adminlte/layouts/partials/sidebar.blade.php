@@ -60,17 +60,22 @@
                    <li><a href="{{ url('gerenciar-horas') }}"><i class='fa fa-clock-o'></i> <span>Horas Extras</span></a></li>
                    @endcan
 
-                   @can('ver-relatorio-hora')
-                    <li><a href="{{ url('gerenciar-horas/relatorio') }}" target="_blank"><i class='fa fa-file-text'></i> <span>Relatório horas extras</span></a></li>
-                   @endcan
+                  @can('ver-relatorio-hora')
+                  <li>
+                    <a href="#" class="btnRelatorioHora" data-toggle="tooltip"><i class="fa fa-file-text"></i> Relatório horas extras</a>
+                  </li>
+                  @endcan
 
-                    @can('ver-relatorio-hora')
-                    <li><a href="{{ url('gerenciar-users/relatorio') }}" target="_blank"><i class='fa fa-file-text'></i> <span>Relatório Usuários</span></a></li>
-                   @endcan 
-
-                    @can('ver-relatorio-escala')
-                    <li><a href="{{ url('gerenciar-escalas/relatorio') }}" target="_blank"><i class='fa fa-file-text'></i> <span>Relatório Escala</span></a></li>
+                  @can('ver-relatorio-usuario')
+                    <li><a href="{{ url('gerenciar-users/relatorio') }}" target="_blank"><i class=' fa fa-file-text'></i> <span>Relatório Usuários</span></a>
+                    </li>
                     @endcan
+                   
+                  @can('ver-relatorio-escala')
+                  <li>
+                    <a href="#" class="btnRelatorioEscala" data-toggle="tooltip"><i class="fa fa-file-text"></i> Relatório Escala</a>
+                  </li>
+                  @endcan
                 </ul>
             </li>
             @endif
@@ -86,10 +91,6 @@
                    @can('ver-estoque')
                    <li><a href="{{ url('gerenciar-entradas-materiais') }}"><i class='fa fa-database'></i> <span>Estoque</span></a></li>
                    @endcan
-
-                   <!-- @can('ver-relatorio-material')
-                    <li><a href="{{ url('gerenciar-materiais/relatorio') }}" target="_blank"><i class='fa fa-file-text'></i> <span>Relatório</span></a></li>
-                    @endcan -->
 
                     @can('ver-relatorio-material')
                     <li><a href="#" class="btnRelatorioMaterial" data-toggle="tooltip"><i class="fa fa-file-text"></i> Relatório Material</a>

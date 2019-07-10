@@ -19,6 +19,12 @@ class SetorController extends Controller
         return view('setor.index');    
     } 
 
+    public function setores()
+    {
+        $setores =  Setor::where('status','Ativo')->get();
+        return response()->json($setores);   
+    } 
+
     public function list()
     {
 

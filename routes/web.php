@@ -20,21 +20,12 @@ Route::get('/contratada', function () {
 });
 
 
-Route::group(['middleware' => 'auth'], function () {
-
-
-Route::group(['prefix' => 'relatorios', 'where' => ['id' => '[0-9]+'], 'middleware' => ['role:Administrador|Coordenador|Tecnico|Ag-limpeza|Professor|Servidor']] ,function() {
-        Route::get('/materiais', ['as' => '.index', 'uses' => 'MaterialController@materiais']);
-        Route::get('/list',['as' => '.list', 'uses' => 'MaterialController@list']);
-        Route::post('/store', ['as' => '.store', 'uses' => 'MaterialController@store']);
-        Route::post('/update', ['as' => '.update', 'uses' => 'MaterialController@update']);
-        Route::post('/delete', ['as' => '.destroy', 'uses' => 'MaterialController@destroy']);
-        Route::post('/relatorio',['as' => '.relatorio', 'uses' => 'RelatorioController@materials']);
-});     
+Route::group(['middleware' => 'auth'], function () {    
 
 Route::group(['prefix' => 'gerenciar-materiais', 'where' => ['id' => '[0-9]+'], 'middleware' => ['role:Administrador|Coordenador|Tecnico|Ag-limpeza|Professor|Servidor']] ,function() {
         Route::get('', ['as' => 'gerenciar-materiais.index', 'uses' => 'MaterialController@index']);
         Route::get('/list',['as' => 'gerenciar-materiais.list', 'uses' => 'MaterialController@list']);
+        Route::get('/materiais', ['as' => '.index', 'uses' => 'MaterialController@materiais']);
         Route::post('/store', ['as' => 'gerenciar-materiais.store', 'uses' => 'MaterialController@store']);
         Route::post('/update', ['as' => 'gerenciar-materiais.update', 'uses' => 'MaterialController@update']);
         Route::post('/delete', ['as' => 'gerenciar-materiais.destroy', 'uses' => 'MaterialController@destroy']);
@@ -76,12 +67,13 @@ Route::group(['prefix' => 'gerenciar-contratos', 'where' => ['id' => '[0-9]+'], 
         Route::post('/store', ['as' => 'gerenciar-contratos.store', 'uses' => 'ContratoController@store']);
         Route::post('/update', ['as' => 'gerenciar-contratos.update', 'uses' => 'ContratoController@update']);
         Route::post('/delete', ['as' => 'gerenciar-contratos.destroy', 'uses' => 'ContratoController@destroy']);
-        Route::post('/relatorio',['as' => 'gerenciar-contratos.relatorio', 'uses' => 'RelatorioController@contratos']);
+        Route::get('/relatorio',['as' => 'gerenciar-contratos.relatorio', 'uses' => 'RelatorioController@contratos']);
 }); 	
 
 Route::group(['prefix' => 'gerenciar-setores', 'where' => ['id' => '[0-9]+'], 'middleware' => ['role:Administrador|Coordenador|Tecnico|Ag-limpeza']] ,function() {
         Route::get('', ['as' => 'gerenciar-setores.index', 'uses' => 'SetorController@index']);
         Route::get('/list',['as' => 'gerenciar-setores.list', 'uses' => 'SetorController@list']);
+        Route::get('/setores', ['as' => '.index', 'uses' => 'SetorController@setores']);
         Route::post('/store', ['as' => 'gerenciar-setores.store', 'uses' => 'SetorController@store']);
         Route::post('/update', ['as' => 'gerenciar-setores.update', 'uses' => 'SetorController@update']);
         Route::post('/delete', ['as' => 'gerenciar-setores.destroy', 'uses' => 'SetorController@destroy']);
@@ -103,11 +95,14 @@ Route::group(['prefix' => 'gerenciar-users', 'where' => ['id' => '[0-9]+'], 'mid
         Route::get('/get-permissions/{papel}', ['as' => 'gerenciar-users.permissions', 'uses' => 'UserController@getPermissions']);
         Route::get('', ['as' => 'gerenciar-users.index', 'uses' => 'UserController@index']);
         Route::get('/list',['as' => 'gerenciar-users.list', 'uses' => 'UserController@list']);
+        Route::get('/funcionarios',['as' => '.index', 'uses' => 'UserController@funcionarios']);
         Route::post('/store', ['as' => 'gerenciar-users.store', 'uses' => 'UserController@store']);
         Route::post('/update', ['as' => 'gerenciar-users.update', 'uses' => 'UserController@update']);
         Route::post('/delete', ['as' => 'gerenciar-users.destroy', 'uses' => 'UserController@destroy']);
         Route::post('/permission', ['as' => 'gerenciar-users.post.permission', 'uses' => 'UserController@createPermissions']);
-        Route::post('/relatorio',['as' => 'gerenciar-users.relatorio', 'uses' => 'RelatorioController@usuarios']);
+        Route::get('/relatorio',['as' => 'gerenciar-users.relatorio', 'uses' => 'RelatorioController@usuarios']);
+        Route::post('/relatotio_escalas',['as' => 'gerenciar-escala.relatorio', 'uses' => 'RelatorioController@escalas']);
+        Route::post('/relatotio_horas',['as' => 'gerenciar-horas.relatorio', 'uses' => 'RelatorioController@horas']);
 });    
 
 Route::group(['prefix' => 'gerenciar-escalas', 'where' => ['id' => '[0-9]+'], 'middleware' => ['role:Administrador|Servidor|Coordenador|Tecnico|Ag-limpeza|Professor']] ,function() {
@@ -171,7 +166,7 @@ Route::group(['prefix' => 'gerenciar-solicitacoes', 'where' => ['id' => '[0-9]+'
         Route::post('/update', ['as' => 'gerenciar-solicitacoes.update', 'uses' => 'SolicitacaoController@update']);
         Route::post('/delete', ['as' => 'gerenciar-solicitacoes.destroy', 'uses' => 'SolicitacaoController@destroy']);
         Route::get('/materiais/{id}',['as' => 'gerenciar-solicitacoes.materiais', 'uses' => 'SolicitacaoController@materiais']);
-        Route::post('/relatorio',['as' => 'gerenciar-solicitacoes.relatorio', 'uses' => 'RelatorioController@solicitacoes']);
+        Route::get('/relatorio',['as' => 'gerenciar-solicitacoes.relatorio', 'uses' => 'RelatorioController@solicitacoes']);
 
 }); 
 

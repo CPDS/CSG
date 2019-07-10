@@ -28,17 +28,17 @@
 			<tr>
 				<th class="tg-q19q">Funcionário</th>
 				<th class="tg-q19q">Setor</th>	
-        <th class="tg-q19q">Horário início</th>
-        <th class="tg-q19q">Horário fim</th>
-				<th class="tg-q19q">Dia da seman</th>
+        <th class="tg-q19q">Manhã</th>
+        <th class="tg-q19q">Tarde</th>
+				<th class="tg-q19q">Dia</th>
 			</tr>
 
 		@foreach($escala_horarios as $escala)
 			<tr>	
         <td class="tg-q19q">{{$escala->nome_funcionario}}</td>
 				<td class="tg-q19q">{{$escala->nome_setor}}</td>
-				<td class="tg-q19q">{{$escala->horario_inicio}}</td>
-        <td class="tg-q19q">{{$escala->horario_termino}}</td>
+				<td class="tg-q19q">{{$escala->horario_inicio}}-{{$escala->horario_termino}}</td>
+        <td class="tg-q19q">{{$escala->horario_inicio_tarde}}-{{$escala->horario_termino_tarde}}</td>
 				<td class="tg-q19q">{{$escala->dia_semana}}</td>
 			</tr>			
 		@endforeach

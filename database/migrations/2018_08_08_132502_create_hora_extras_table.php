@@ -19,7 +19,7 @@ class CreateHoraExtrasTable extends Migration
             $table->string('local');
             $table->date('dia');
             $table->integer('fk_user')->unsigned();
-            $table->foreign('fk_user')->references('id')->on('users');
+            $table->foreign('fk_user')->references('id')->on('users')->onDelete('cascade');
             $table->string('status');  
             $table->timestamps();
         });
